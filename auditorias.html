@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Auditorías — INDUSECC</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ══════════════════════ VARIABLES Y RESET ══════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --wine:        #7B1E22;
+  --wine-dark:   #550F13;
+  --wine-deep:   #360A0D;
+  --wine-hi:     #9B2429;
+  --wine-soft:   #A84147;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dark:   #8B6914;
+  --gold-pale:   #F5EDD6;
+  --white:       #FFFFFF;
+  --cream:       #FBF8F3;
+  --parchment:   #F2EDE4;
+  --ink:         #1C1008;
+  --text:        #2A1A1B;
+  --muted:       #7A6060;
+  --border:      rgba(123,30,34,0.12);
+  --border-gold: rgba(201,168,76,0.25);
+  --shadow:      rgba(123,30,34,0.15);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  padding-top: 115px; /* Compensa la altura del navbar fijo */
+}
+
+/* ══════════════════════ NAVBAR DESKTOP ══════════════════════ */
+.ind-header-wrapper {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+  background: #0A0A0A;
+  box-shadow: 0 2px 15px rgba(0,0,0,.5);
+  transition: box-shadow 0.4s ease, background 0.4s ease;
+}
+.ind-header-wrapper.scrolled {
+  background: rgba(5,5,5,0.98);
+  box-shadow: 0 4px 30px rgba(0,0,0,.8), 0 1px 0 rgba(201,168,76,.18);
+}
+.ind-top-bar {
+  background: #000; border-bottom: 1px solid rgba(201,168,76,.1);
+  padding: 0 60px; display: flex; justify-content: space-between; align-items: center;
+  height: 35px;
+}
+.ind-top-info { display: flex; gap: 25px; }
+.ind-top-item {
+  display: flex; align-items: center; gap: 8px;
+  color: #A89880; font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.ind-top-item svg { width: 12px; height: 12px; color: var(--gold); }
+.ind-top-item a { color: inherit; text-decoration: none; transition: color .3s; }
+.ind-top-item a:hover { color: var(--gold-light); }
+.ind-main-header {
+  background: rgba(10,10,10,.98); backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.ind-container {
+  max-width: 1400px; margin: 0 auto; padding: 0 60px;
+  height: 80px; display: flex; align-items: center; justify-content: space-between;
+}
+.ind-logo-group { display: flex; align-items: center; gap: 20px; }
+.ind-logo-img { max-height: 48px; width: auto; display: block; }
+.ind-logo-sep { width: 1px; height: 30px; background: rgba(201,168,76,.2); }
+.ind-header-tagline {
+  font-family: 'Playfair Display', serif; color: #A89880;
+  font-size: 15px; font-style: italic; line-height: 1.3; max-width: 200px;
+}
+.ind-nav { display: flex; align-items: center; gap: 30px; height: 100%; }
+.ind-menu-item { position: relative; height: 100%; display: flex; align-items: center; }
+.ind-link {
+  text-decoration: none; color: rgba(255,255,255,.9);
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; transition: .3s; display: flex; align-items: center;
+}
+.ind-link:hover, .ind-link.active { color: var(--gold-light); }
+.ind-dropdown {
+  position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  width: 260px; background: #0D0D0D; border: 1px solid rgba(201,168,76,.2);
+  padding: 10px 0; opacity: 0; visibility: hidden; transition: all .3s ease; z-index: 200;
+}
+.ind-menu-item:hover .ind-dropdown { opacity: 1; visibility: visible; }
+.ind-drop-link {
+  display: block; padding: 12px 20px; color: rgba(255,255,255,.6); text-decoration: none;
+  font-size: 12px; font-weight: 600; text-transform: uppercase; transition: .3s;
+}
+.ind-drop-link:hover {
+  background: rgba(139,26,26,.15); color: #fff;
+  padding-left: 25px; border-left: 3px solid var(--wine);
+}
+.ind-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.ind-btn-cta {
+  background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+  color: #fff; text-decoration: none; font-size: 9.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 1px; padding: 12px 22px;
+  clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition: .3s; border: none; cursor: pointer;
+}
+.ind-btn-cta:hover { opacity: .9; }
+.theme-toggle-btn {
+  display: flex; align-items: center; gap: 6px; background: rgba(255,255,255,.06);
+  border: 1px solid rgba(201,168,76,.3); padding: 7px 12px; cursor: pointer;
+  font-size: 10px; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,.8);
+  transition: all .3s;
+}
+.theme-toggle-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+/* ══════════════════════ NAVBAR MOBILE (Bottom Nav) ══════════════════════ */
+.ind-bottom-nav {
+  display: none; position: fixed; bottom: 0; left: 0;
+  width: 100%; height: 65px; background: #000;
+  border-top: 1px solid rgba(201,168,76,.2); z-index: 2000; overflow: hidden;
+}
+.ind-bnav-container {
+  display: flex; justify-content: space-around; align-items: center;
+  height: 100%; max-width: 600px; margin: 0 auto;
+}
+.ind-bnav-item {
+  text-decoration: none; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; color: rgba(255,255,255,.5);
+  transition: .3s; flex: 1; padding: 0 4px; border: none; background: transparent; cursor: pointer;
+}
+.ind-bnav-item svg { width: 20px; height: 20px; }
+.ind-bnav-item span { font-size: 8px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+.ind-bnav-item.active { color: var(--gold); }
+.ind-bnav-item.wa-item { color: #25D366; }
+
+@media (max-width: 1150px) {
+  .ind-nav, .ind-actions, .ind-top-bar, .ind-logo-sep, .ind-header-tagline { display: none !important; }
+  .ind-bottom-nav { display: block; }
+  .ind-container { height: 60px; justify-content: center; padding: 0 20px; }
+  .ind-logo-img { max-height: 40px; }
+  body { padding-top: 60px; }
+}
+
+/* ══════════════════════ HERO ══════════════════════ */
+.hero {
+  min-height: calc(100vh - 115px);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: #0e0204;
+}
+.hero::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px; z-index: 20;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 10%, var(--gold) 35%, var(--gold-light) 55%, var(--gold-dark) 85%, transparent);
+}
+#heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; }
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 3;
+  background:
+    radial-gradient(ellipse 80% 70% at 30% 60%, rgba(123,30,34,0.55) 0%, transparent 65%),
+    linear-gradient(160deg, rgba(8,1,2,0.8) 0%, rgba(20,4,6,0.4) 60%, rgba(8,1,2,0.95) 100%),
+    linear-gradient(to top, rgba(8,1,2,0.98) 0%, transparent 45%);
+}
+.h-br { position: absolute; z-index: 15; pointer-events: none; width: 44px; height: 44px; }
+.h-br-tl { top: 90px; left: 28px; border-top: 1px solid rgba(201,168,76,0.5); border-left: 1px solid rgba(201,168,76,0.5); }
+.h-br-tr { top: 90px; right: 28px; border-top: 1px solid rgba(201,168,76,0.2); border-right: 1px solid rgba(201,168,76,0.2); }
+.h-br-bl { bottom: 68px; left: 28px; border-bottom: 1px solid rgba(201,168,76,0.2); border-left: 1px solid rgba(201,168,76,0.2); }
+.h-br-br { bottom: 68px; right: 28px; border-bottom: 1px solid rgba(201,168,76,0.5); border-right: 1px solid rgba(201,168,76,0.5); }
+
+.hero-body {
+  position: relative; z-index: 10; flex: 1;
+  display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: center;
+  padding: 80px 80px 80px; max-width: 1280px; margin: 0 auto; width: 100%;
+}
+.hero-content { display: flex; flex-direction: column; align-items: flex-start; }
+
+.hero-breadcrumb { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; opacity: 0; animation: fadeUp .6s .2s ease forwards; }
+.hb-home { font-size: 9px; font-weight: 600; letter-spacing: .25em; text-transform: uppercase; color: rgba(255,255,255,.3); text-decoration: none; transition: color .3s; }
+.hb-home:hover { color: var(--gold); }
+.hb-sep { color: rgba(201,168,76,.3); font-size: 10px; }
+.hb-current { font-size: 9px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); }
+
+.hero-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 32px; opacity: 0; animation: fadeUp .7s .35s ease forwards; }
+.h-eye-dot { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); flex-shrink:0; }
+.h-eye-line { width: 40px; height: 1px; background: linear-gradient(to right, var(--gold), rgba(201,168,76,.3)); }
+.h-eye-txt { font-size: 9.5px; font-weight: 700; letter-spacing: .42em; text-transform: uppercase; color: var(--gold); }
+
+.hero-title {
+  font-family: 'Playfair Display', serif; font-size: clamp(3.4rem, 5.5vw, 6.2rem);
+  font-weight: 900; line-height: .9; letter-spacing: -.04em; color: #fff; margin-bottom: 0;
+  opacity: 0; animation: fadeUp .9s .5s ease forwards;
+}
+.hero-title .ht-l1 { display: block; }
+.hero-title .ht-l2 {
+  display: block; font-style: italic; font-weight: 300;
+  background: linear-gradient(108deg, var(--gold-dark) 0%, var(--gold) 40%, var(--gold-light) 70%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.hero-sub-block { margin-top: 36px; margin-bottom: 48px; opacity: 0; animation: fadeUp .8s .7s ease forwards; }
+.hero-sub { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.9; max-width: 500px; margin-bottom: 24px; }
+.hero-sub strong { color: rgba(255,255,255,.8); font-weight: 500; }
+
+.hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px; background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22);
+  padding: 7px 14px; font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(201,168,76,.75); transition: all .3s; cursor: default;
+}
+.hero-tag:hover { background: rgba(201,168,76,.15); color: var(--gold-light); }
+.h-tag-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+.hero-actions { display: flex; align-items: center; gap: 28px; opacity: 0; animation: fadeUp .8s .85s ease forwards; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  color: var(--wine-deep); padding: 18px 44px;
+  font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+  text-decoration: none; border: none; position: relative; overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%); transition: all .35s; cursor: pointer;
+}
+.btn-primary::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); opacity: 0; transition: opacity .3s; }
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 60px rgba(201,168,76,.35); }
+.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+.btn-primary svg { width: 16px; height: 16px; transition: transform .3s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.38); text-decoration: none; transition: color .3s; cursor: pointer; background: none; border: none;
+}
+.btn-ghost-line { width: 24px; height: 1px; background: currentColor; transition: width .3s; }
+.btn-ghost:hover { color: var(--gold-light); }
+.btn-ghost:hover .btn-ghost-line { width: 44px; }
+
+/* Hero Right — Audit Ring */
+.hero-right-panel { display: flex; flex-direction: column; gap: 16px; opacity: 0; animation: fadeUp 1s .95s ease forwards; }
+.audit-ring-card { background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.18); backdrop-filter: blur(24px); padding: 40px 32px 32px; position: relative; overflow: hidden; }
+.audit-ring-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold-dark), var(--gold-light), var(--gold-dark)); }
+.arc-center { position: relative; width: 140px; height: 140px; margin: 0 auto 28px; }
+.arc-svg { width: 140px; height: 140px; transform: rotate(-90deg); }
+.arc-track { fill: none; stroke: rgba(201,168,76,.1); stroke-width: 3; }
+.arc-fill { fill: none; stroke: url(#arcGrad); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 376; stroke-dashoffset: 376; transition: stroke-dashoffset 2s 1.5s cubic-bezier(.4,0,.2,1); }
+.arc-fill.animate { stroke-dashoffset: 56; }
+.arc-inner { position: absolute; inset: 12px; border-radius: 50%; background: linear-gradient(135deg, rgba(123,30,34,.5), rgba(40,8,10,.9)); border: 1px solid rgba(201,168,76,.2); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.arc-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--gold-light); line-height: 1; }
+.arc-lbl { font-size: 8px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(201,168,76,.5); margin-top: 4px; }
+.arc-card-title { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 6px; }
+.arc-card-sub { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.35); text-align: center; line-height: 1.7; }
+.arc-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(201,168,76,.1); justify-content: center; }
+.arc-badge { font-size: 8.5px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(201,168,76,.25); padding: 5px 12px; }
+
+.hero-mini-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+.h-mini-stat { background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.1); padding: 18px 12px; text-align: center; transition: background .3s; }
+.h-mini-stat:hover { background: rgba(201,168,76,.07); }
+.h-mini-num { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 4px; }
+.h-mini-lbl { font-size: 8px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); line-height: 1.4; }
+
+/* Stats bar */
+.hero-stats-bar {
+  position: relative; z-index: 10; display: flex; align-items: stretch;
+  background: rgba(12,3,4,.92); backdrop-filter: blur(24px); border-top: 1px solid rgba(201,168,76,.14);
+  opacity: 0; animation: fadeUp .8s 1.1s ease forwards;
+}
+.hero-stat { flex: 1; padding: 24px 28px; border-right: 1px solid rgba(201,168,76,.1); display: flex; align-items: center; gap: 14px; transition: background .3s; }
+.hero-stat:last-child { border-right: none; }
+.hero-stat:hover { background: rgba(201,168,76,.05); }
+.h-stat-icon { width: 36px; height: 36px; flex-shrink: 0; border: 1px solid rgba(201,168,76,.25); display: flex; align-items: center; justify-content: center; }
+.h-stat-icon svg { width: 16px; height: 16px; stroke: var(--gold); fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 3px; }
+.stat-label { font-size: 9px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.3); line-height: 1.4; }
+
+/* ══════════════════════ SECTION COMMONS ══════════════════════ */
+.section-tag { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.st-line { width: 32px; height: 1px; background: var(--wine); }
+.st-txt { font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--wine); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.5rem); font-weight: 900; line-height: .95; letter-spacing: -.03em; color: var(--ink); }
+.section-title em { font-style: italic; font-weight: 400; color: var(--wine); }
+.section-rule { display: flex; gap: 0; margin: 20px 0 0; }
+.sr-wine { width: 56px; height: 2px; background: var(--wine); }
+.sr-fade { width: 40px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-left: 4px; }
+.section-tag-dark { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.section-tag-dark .std-line { width: 32px; height: 1px; background: var(--gold); }
+.section-tag-dark .std-txt { font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.section-title-light { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 3.5vw, 3.5rem); font-weight: 900; line-height: .95; letter-spacing: -.03em; color: #fff; }
+.section-title-light em { font-style: italic; font-weight: 300; background: linear-gradient(105deg, var(--gold-dark), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* ══════════════════════ QUÉ ES (INTRO) ══════════════════════ */
+.intro-section { padding: 120px 80px; max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 100px; align-items: center; }
+.intro-description { font-size: 1.05rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-top: 28px; max-width: 520px; }
+.intro-description strong { color: var(--wine); font-weight: 600; }
+.intro-highlight { margin-top: 36px; padding: 28px 32px; border-left: 3px solid var(--gold); background: linear-gradient(to right, rgba(201,168,76,.05), transparent); }
+.intro-highlight p { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; font-weight: 400; color: var(--ink); line-height: 1.7; }
+.intro-right { display: flex; flex-direction: column; gap: 16px; }
+.intro-value-card { padding: 28px 32px; border: 1px solid var(--border); background: var(--white); position: relative; overflow: hidden; transition: all .4s; cursor: default; }
+.intro-value-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(to bottom, var(--gold), var(--wine)); transform: scaleY(0); transform-origin: top; transition: transform .4s; }
+.intro-value-card:hover::before { transform: scaleY(1); }
+.intro-value-card:hover { box-shadow: 0 20px 60px var(--shadow); transform: translateX(6px); }
+.ivc-num { font-family: 'Playfair Display', serif; font-size: .8rem; font-weight: 900; color: rgba(123,30,34,.15); margin-bottom: 8px; }
+.ivc-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .12em; color: var(--wine); margin-bottom: 6px; }
+.ivc-text { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+/* ══════════════════════ TIPOS DE AUDITORÍA (TABS) ══════════════════════ */
+.tipos-section { background: var(--parchment); padding: 120px 0; position: relative; overflow: hidden; }
+.tipos-section::before { content: 'AUDITORÍA'; position: absolute; right: -20px; top: 50%; transform: translateY(-50%); font-family: 'Playfair Display', serif; font-size: clamp(6rem, 14vw, 16rem); font-weight: 900; color: rgba(123,30,34,.03); letter-spacing: -.04em; pointer-events: none; user-select: none; }
+.tipos-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.tipos-header { margin-bottom: 60px; }
+.tipos-tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 1px solid var(--border); }
+.tipos-tab { padding: 18px 32px; font-size: 10px; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); background: none; border: none; cursor: pointer; position: relative; transition: color .3s; }
+.tipos-tab::after { content: ''; position: absolute; bottom: -1px; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--wine), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .35s; }
+.tipos-tab:hover { color: var(--wine); }
+.tipos-tab.active { color: var(--wine); }
+.tipos-tab.active::after { transform: scaleX(1); }
+.tipos-panels { padding-top: 56px; }
+.tipos-panel { display: none; }
+.tipos-panel.active { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; animation: fadeIn .4s ease; }
+.tp-icon-wrap { width: 80px; height: 80px; background: linear-gradient(135deg, var(--wine-dark), var(--wine-hi)); display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 32px; }
+.tp-icon-wrap::after { content: ''; position: absolute; bottom: -6px; right: -6px; width: 100%; height: 100%; border: 1px solid rgba(123,30,34,.15); }
+.tp-icon-wrap svg { width: 32px; height: 32px; stroke: #fff; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.tp-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--ink); line-height: .95; letter-spacing: -.02em; margin-bottom: 20px; }
+.tp-title em { font-style: italic; color: var(--wine); }
+.tp-desc { font-size: 1rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 32px; }
+.tp-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.tp-tag { font-size: 9px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--wine); border: 1px solid rgba(123,30,34,.18); padding: 6px 14px; background: rgba(123,30,34,.04); transition: all .3s; }
+.tp-tag:hover { background: rgba(123,30,34,.1); }
+.tp-right { display: flex; flex-direction: column; gap: 12px; }
+.tp-feature { padding: 22px 26px; background: var(--white); border: 1px solid var(--border); position: relative; overflow: hidden; transition: all .35s; cursor: default; }
+.tp-feature::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--wine), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .4s; }
+.tp-feature:hover::before { transform: scaleX(1); }
+.tp-feature:hover { box-shadow: 0 12px 32px var(--shadow); transform: translateY(-2px); }
+.tp-feat-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+.tp-feat-diamond { width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; }
+.tp-feat-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .15em; color: var(--wine); }
+.tp-feat-text { font-size: 13px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+
+/* ══════════════════════ NORMAS SECTION ══════════════════════ */
+.normas-section { background: linear-gradient(170deg, var(--wine-deep) 0%, var(--wine-dark) 50%, #2a0508 100%); padding: 120px 0; position: relative; overflow: hidden; }
+.normas-section::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(201,168,76,.01) 3px, rgba(201,168,76,.01) 4px); pointer-events: none; }
+.normas-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.normas-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-bottom: 64px; }
+.normas-desc { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.9; margin-top: 28px; }
+.normas-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.norma-card { background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.1); padding: 36px 28px; position: relative; overflow: hidden; transition: all .4s; cursor: default; display: flex; flex-direction: column; }
+.norma-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(to right, var(--gold-dark), var(--gold-light)); transform: scaleX(0); transform-origin: center; transition: transform .5s; }
+.norma-card:hover::before { transform: scaleX(1); }
+.norma-card:hover { background: rgba(201,168,76,.06); border-color: rgba(201,168,76,.25); transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.4); }
+.nc-code { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 900; color: var(--gold); line-height: 1; margin-bottom: 10px; transition: color .3s; }
+.norma-card:hover .nc-code { color: var(--gold-light); }
+.nc-name { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: rgba(255,255,255,.7); margin-bottom: 12px; }
+.nc-desc { font-size: 12px; font-weight: 300; color: rgba(255,255,255,.35); line-height: 1.7; flex: 1; }
+.nc-tag { margin-top: 20px; display: inline-flex; align-items: center; gap: 7px; font-size: 8.5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(201,168,76,.5); }
+.nc-tag-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; opacity: .5; }
+.norma-card:hover .nc-tag { color: var(--gold); }
+.norma-card:hover .nc-tag-dot { opacity: 1; }
+
+/* ══════════════════════ PROCESO SECTION ══════════════════════ */
+.proceso-section { padding: 120px 0; background: var(--cream); position: relative; overflow: hidden; }
+.proceso-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.proceso-header { text-align: center; margin-bottom: 80px; }
+.proceso-header .section-tag { justify-content: center; }
+.proceso-steps { display: grid; grid-template-columns: repeat(5, 1fr); position: relative; }
+.proceso-steps::before { content: ''; position: absolute; top: 44px; left: calc(10% + 28px); right: calc(10% + 28px); height: 1px; background: linear-gradient(to right, var(--gold), rgba(201,168,76,.2), var(--gold)); z-index: 0; }
+.proceso-step { display: flex; flex-direction: column; align-items: center; text-align: center; padding: 0 16px; position: relative; z-index: 1; cursor: default; }
+.ps-circle { width: 88px; height: 88px; border-radius: 50%; border: 1px solid var(--border-gold); background: var(--white); display: flex; align-items: center; justify-content: center; position: relative; margin-bottom: 28px; transition: all .4s; flex-shrink: 0; }
+.ps-circle::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; background: linear-gradient(135deg, rgba(123,30,34,.05), rgba(201,168,76,.08)); transition: all .4s; }
+.proceso-step:hover .ps-circle { border-color: var(--gold); box-shadow: 0 0 0 8px rgba(201,168,76,.08), 0 12px 40px rgba(123,30,34,.15); transform: scale(1.08); }
+.proceso-step:hover .ps-circle::before { background: linear-gradient(135deg, rgba(123,30,34,.12), rgba(201,168,76,.15)); }
+.ps-circle svg { width: 26px; height: 26px; stroke: var(--wine); fill: none; stroke-width: 1.4; stroke-linecap: round; transition: stroke .3s; }
+.proceso-step:hover .ps-circle svg { stroke: var(--gold-dark); }
+.ps-num { position: absolute; top: -4px; right: -4px; width: 22px; height: 22px; border-radius: 50%; background: var(--wine); color: #fff; font-size: 8px; font-weight: 800; display: flex; align-items: center; justify-content: center; letter-spacing: .05em; }
+.ps-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; color: var(--wine); margin-bottom: 8px; }
+.ps-text { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7; }
+
+/* ══════════════════════ VALOR AGREGADO ══════════════════════ */
+.valor-section { background: var(--parchment); padding: 120px 0; }
+.valor-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.valor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+.valor-card { padding: 44px 36px; background: var(--white); border: 1px solid var(--border); position: relative; overflow: hidden; transition: all .4s; cursor: default; }
+.valor-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(123,30,34,.02), rgba(201,168,76,.03)); opacity: 0; transition: opacity .4s; }
+.valor-card:hover::before { opacity: 1; }
+.valor-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(to right, var(--wine), var(--gold)); transform: scaleX(0); transform-origin: left; transition: transform .5s; }
+.valor-card:hover::after { transform: scaleX(1); }
+.valor-card:hover { box-shadow: 0 32px 80px var(--shadow); transform: translateY(-6px); }
+.vc-icon { width: 60px; height: 60px; background: linear-gradient(135deg, rgba(123,30,34,.08), rgba(201,168,76,.08)); border: 1px solid var(--border-gold); display: flex; align-items: center; justify-content: center; margin-bottom: 28px; transition: all .4s; }
+.valor-card:hover .vc-icon { background: linear-gradient(135deg, var(--wine-dark), var(--wine-hi)); border-color: transparent; }
+.vc-icon svg { width: 24px; height: 24px; stroke: var(--wine); fill: none; stroke-width: 1.4; stroke-linecap: round; transition: stroke .4s; }
+.valor-card:hover .vc-icon svg { stroke: #fff; }
+.vc-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .14em; color: var(--wine); margin-bottom: 12px; }
+.vc-text { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.85; }
+
+/* ══════════════════════ FAQ ACORDEÓN ══════════════════════ */
+.faq-section { padding: 120px 0; background: var(--cream); }
+.faq-inner { max-width: 1280px; margin: 0 auto; padding: 0 80px; }
+.faq-layout { display: grid; grid-template-columns: 360px 1fr; gap: 100px; align-items: start; }
+.faq-left { position: sticky; top: 100px; }
+.faq-left-desc { font-size: .95rem; font-weight: 300; color: var(--muted); line-height: 1.9; margin-top: 28px; }
+.faq-cta { display: inline-flex; align-items: center; gap: 12px; margin-top: 40px; font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--wine); text-decoration: none; border-bottom: 1px solid rgba(123,30,34,.25); padding-bottom: 8px; transition: gap .3s, border-color .3s, color .3s; }
+.faq-cta:hover { gap: 22px; border-color: var(--wine); color: var(--wine-dark); }
+.faq-cta svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+.faq-list { display: flex; flex-direction: column; gap: 2px; }
+.faq-item { border: 1px solid var(--border); background: var(--white); overflow: hidden; transition: border-color .3s; }
+.faq-item.open { border-color: rgba(123,30,34,.25); }
+.faq-question { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 24px 28px; cursor: pointer; user-select: none; transition: background .3s; }
+.faq-question:hover { background: var(--parchment); }
+.faq-q-text { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+.faq-item.open .faq-q-text { color: var(--wine); }
+.faq-icon { width: 28px; height: 28px; flex-shrink: 0; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; transition: all .3s; }
+.faq-item.open .faq-icon { background: var(--wine); border-color: var(--wine); }
+.faq-icon svg { width: 12px; height: 12px; stroke: var(--muted); fill: none; stroke-width: 2; transition: all .3s; }
+.faq-item.open .faq-icon svg { stroke: #fff; transform: rotate(45deg); }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height .5s cubic-bezier(.4,0,.2,1), padding .3s; padding: 0 28px; }
+.faq-item.open .faq-answer { max-height: 400px; padding: 0 28px 24px; }
+.faq-answer-inner { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.9; border-top: 1px solid var(--border); padding-top: 20px; }
+
+/* ══════════════════════ CTA FINAL ══════════════════════ */
+.cta-section { background: linear-gradient(160deg, var(--wine-deep) 0%, var(--wine-dark) 55%, #1a0305 100%); padding: 120px 0; position: relative; overflow: hidden; }
+.cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,.05), transparent), repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(201,168,76,.01) 60px, rgba(201,168,76,.01) 61px); }
+.cta-inner { max-width: 900px; margin: 0 auto; padding: 0 80px; text-align: center; position: relative; z-index: 2; }
+.cta-eyebrow { display: flex; align-items: center; justify-content: center; gap: 16px; margin-bottom: 40px; }
+.cta-eye-line { width: 50px; height: 1px; background: linear-gradient(to right, transparent, rgba(201,168,76,.4)); }
+.cta-eye-txt { font-size: 9px; font-weight: 700; letter-spacing: .4em; text-transform: uppercase; color: rgba(201,168,76,.6); }
+.cta-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 5vw, 4.5rem); font-weight: 900; line-height: .9; letter-spacing: -.03em; color: #fff; margin-bottom: 28px; }
+.cta-title em { font-style: italic; font-weight: 300; background: linear-gradient(105deg, var(--gold-dark), var(--gold-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.cta-desc { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.9; max-width: 560px; margin: 0 auto 56px; }
+.cta-actions { display: flex; align-items: center; justify-content: center; gap: 32px; }
+.btn-primary-lg { display: inline-flex; align-items: center; gap: 16px; background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light)); color: var(--wine-deep); padding: 22px 56px; font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase; text-decoration: none; border: none; clip-path: polygon(14px 0%, 100% 0%, calc(100% - 14px) 100%, 0% 100%); transition: all .35s; cursor: pointer; position: relative; overflow: hidden; }
+.btn-primary-lg::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, var(--gold), var(--gold-light)); opacity: 0; transition: opacity .3s; }
+.btn-primary-lg:hover::before { opacity: 1; }
+.btn-primary-lg:hover { transform: translateY(-3px); box-shadow: 0 24px 70px rgba(201,168,76,.4); }
+.btn-primary-lg span, .btn-primary-lg svg { position: relative; z-index: 1; }
+.btn-primary-lg svg { width: 18px; height: 18px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform .3s; }
+.btn-primary-lg:hover svg { transform: translateX(5px); }
+.btn-outline-light { display: inline-flex; align-items: center; gap: 12px; border: 1px solid rgba(255,255,255,.2); padding: 22px 48px; font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: rgba(255,255,255,.6); text-decoration: none; transition: all .35s; }
+.btn-outline-light:hover { border-color: var(--gold); color: var(--gold); }
+.btn-outline-light svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.5; }
+
+/* ══════════════════════ FOOTER GLOBAL ══════════════════════ */
+/* ══════════════════════ FOOTER GLOBAL ══════════════════════ */
+.ind-footer-wrap {
+  background-color: #0D0D0D; color: #F5F0E8;
+  position: relative; overflow: hidden; border-top: 1px solid rgba(201,168,76,.12);
+}
+.ind-f-top-accent { height: 4px; width: 100%; background: linear-gradient(to right, #5C0E0E, #8B1A1A, #C9A84C, #5C0E0E); }
+.ind-f-main { max-width: 1300px; margin: 0 auto; padding: 80px 60px 40px; }
+.ind-f-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr 1fr; gap: 50px; margin-bottom: 60px; }
+.ind-f-brand { display: flex; flex-direction: column; gap: 25px; }
+.ind-f-logo-img { max-width: 200px; height: auto; display: block; }
+.ind-f-slogan { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; color: var(--gold-light); line-height: 1.3; }
+.ind-f-contact-strip { display: flex; flex-direction: column; gap: 15px; }
+
+/* 👇 AQUÍ ESTÁ LA MAGIA PARA TUS ÍCONOS DE CONTACTO 👇 */
+.ind-f-contact-link { display: flex; align-items: center; gap: 12px; color: #A89880; text-decoration: none; font-size: 13px; transition: color .3s; }
+.ind-f-contact-link:hover { color: #F5F0E8; }
+.ind-f-contact-link svg { width: 20px; height: 20px; flex-shrink: 0; } /* <-- Esta es la línea nueva */
+
+.ind-f-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #F5F0E8; margin-bottom: 30px; position: relative; }
+.ind-f-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 20px; height: 1px; background: var(--gold); }
+.ind-f-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.ind-f-item-link { text-decoration: none; color: #A89880; font-size: 13px; transition: all .3s ease; }
+.ind-f-item-link:hover { color: var(--gold-light); transform: translateX(5px); }
+.ind-f-social-wrap { display: flex; gap: 15px; margin-top: 25px; }
+.ind-f-social-icon { width: 42px; height: 42px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: transform .4s, filter .3s; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+.ind-f-social-icon.linkedin  { background-color: #0077B5; }
+.ind-f-social-icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.ind-f-social-icon.facebook  { background-color: #1877F2; }
+.ind-f-social-icon:hover { transform: scale(1.1) translateY(-3px); filter: brightness(1.1); }
+.ind-f-bottom { border-top: 1px solid rgba(255,255,255,.05); padding: 30px 60px; max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+.ind-f-copy { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.3); }
+.ind-f-copy span { color: var(--gold); }
+.ind-f-office { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.25); }
+
+
+
+
+/* ══════════════════════ SCROLL REVEAL ══════════════════════ */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* ══════════════════════ SCROLL INDICATOR ══════════════════════ */
+.scroll-indicator { position: fixed; top: 0; left: 0; right: 0; height: 2px; background: rgba(255,255,255,.05); z-index: 200; }
+.scroll-progress { height: 100%; background: linear-gradient(to right, var(--wine), var(--gold)); width: 0%; transition: width .1s linear; }
+
+/* ══════════════════════ ANIMATIONS ══════════════════════ */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ══════════════════════ RESPONSIVE ══════════════════════ */
+@media (max-width: 1200px) {
+  .normas-grid { grid-template-columns: repeat(2, 1fr); }
+  .proceso-steps { grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .proceso-steps::before { display: none; }
+}
+@media (max-width: 1100px) { 
+  .ind-f-grid { grid-template-columns: 1fr 1fr; gap: 40px; } .ind-f-main { padding: 60px 40px; } 
+}
+@media (max-width: 1024px) {
+  .hero-body, .intro-section, .normas-header, .faq-layout { grid-template-columns: 1fr; }
+  .hero-right-panel { display: none; }
+  .tipos-panel.active { grid-template-columns: 1fr; }
+  .valor-grid { grid-template-columns: 1fr 1fr; }
+  .cta-actions { flex-direction: column; }
+  .hero-body, .intro-section, .tipos-inner, .normas-inner, .proceso-inner, .valor-inner, .faq-inner { padding-left: 32px; padding-right: 32px; }
+  .cta-inner { padding: 0 32px; }
+}
+@media (max-width: 768px) {
+  .normas-grid, .valor-grid { grid-template-columns: 1fr; }
+  .proceso-steps { grid-template-columns: 1fr 1fr; }
+  .tipos-tabs { overflow-x: auto; }
+  .hero-stats-bar { flex-wrap: wrap; }
+  .hero-stat { min-width: 50%; }
+}
+@media (max-width: 650px) {
+  .ind-f-main { padding: 50px 20px 100px; }
+  .ind-f-grid { grid-template-columns: 1fr; gap: 45px; text-align: center; }
+  .ind-f-brand { align-items: center; }
+  .ind-f-title::after { left: 50%; transform: translateX(-50%); }
+  .ind-f-contact-strip { align-items: center; }
+  .ind-f-social-wrap { justify-content: center; }
+  .ind-f-bottom { flex-direction: column; gap: 15px; text-align: center; padding: 30px 20px 100px; }
+}
+</style>
+</head>
+<body>
+<div class="ind-header-wrapper" id="navbar">
+  <div class="ind-top-bar">
+    <div class="ind-top-info">
+      <div class="ind-top-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>55 4015 2551</span>
+      </div>
+      
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+
+
+    </div>
+    <div class="ind-top-item" style="opacity:0.6;">INDUSECC</div>
+  </div>
+
+  <header class="ind-main-header">
+    <div class="ind-container">
+      <div class="ind-logo-group">
+        <a class="ind-logo-wrap" href="index.html">
+          <img alt="Logo INDUSECC" class="ind-logo-img" src="Imagenes/logo.png"/>
+        </a>
+        <div class="ind-logo-sep"></div>
+        <div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+      </div>
+
+      <nav class="ind-nav">
+        <div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+        <div class="ind-menu-item"><a class="ind-link" href="nosotros.html">¿Quiénes Somos?</a></div>
+       <div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">Implementación de un Sistema de Gestión</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">Certificación de Normas ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">Consultoría y Asesoría en Normatividad ISO</a>
+<a class="ind-drop-link" href="auditorias.html">Auditorías</a>
+</div>
+</div>
+        <div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+      </nav>
+
+      <div class="ind-actions">
+        <button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+          <svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <span id="themeLabel">Oscuro</span>
+        </button>
+        <a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<nav class="ind-bottom-nav">
+  <div class="ind-bnav-container">
+    <a class="ind-bnav-item active" href="index.html">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+      <span>Inicio</span>
+    </a>
+    <a class="ind-bnav-item" href="servicios.html">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+      <span>Servicios</span>
+    </a>
+    <a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
+      <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+      <span>WhatsApp</span>
+    </a>
+    <a class="ind-bnav-item" href="contacto.html">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      <span>Contacto</span>
+    </a>
+  </div>
+</nav>
+
+<div class="scroll-indicator"><div class="scroll-progress" id="scrollProgress"></div></div>
+
+<section class="hero" id="inicio">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-overlay"></div>
+<div class="h-br h-br-tl"></div>
+<div class="h-br h-br-tr"></div>
+<div class="h-br h-br-bl"></div>
+<div class="h-br h-br-br"></div>
+<div class="hero-body">
+<div class="hero-content">
+
+<div class="hero-eyebrow">
+<div class="h-eye-dot"></div>
+<div class="h-eye-line"></div>
+<span class="h-eye-txt">INDUSECC · Servicio Especializado</span>
+</div>
+<h1 class="hero-title">
+<span class="ht-l1">Auditorías</span>
+<span class="ht-l2">de Excelencia</span>
+</h1>
+<div class="hero-sub-block">
+<p class="hero-sub">
+          Soluciones de <strong>auditoría externa</strong> para el cumplimiento de auditorías internas,
+          seguimiento del sistema de gestión y <strong>mejora continua</strong> con valor añadido.
+        </p>
+<div class="hero-tags">
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 9001</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 14001</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 45001</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 27001</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 50001</span>
+</div>
+</div>
+<div class="hero-actions">
+<a class="btn-primary" href="/contacto">
+<span>Solicitar Diagnóstico</span>
+<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</a>
+<button class="btn-ghost" onclick="document.getElementById('tipos').scrollIntoView({behavior:'smooth'})">
+<span class="btn-ghost-line"></span>
+          Ver Tipos
+        </button>
+</div>
+</div>
+<div class="hero-right-panel">
+<div class="audit-ring-card">
+<svg style="position:absolute;width:0;height:0">
+<defs>
+<linearGradient id="arcGrad" x1="0%" x2="100%" y1="0%" y2="0%">
+<stop offset="0%" stop-color="#8B6914"></stop>
+<stop offset="50%" stop-color="#C9A84C"></stop>
+<stop offset="100%" stop-color="#E8C97A"></stop>
+</linearGradient>
+</defs>
+</svg>
+<div class="arc-center">
+<svg class="arc-svg" viewBox="0 0 140 140">
+<circle class="arc-track" cx="70" cy="70" r="60"></circle>
+<circle class="arc-fill" cx="70" cy="70" id="arcFill" r="60"></circle>
+</svg>
+<div class="arc-inner">
+<div class="arc-num" id="arcNum">85</div>
+<div class="arc-lbl">% Eficiencia</div>
+</div>
+</div>
+<div class="arc-card-title">Tasa de Cumplimiento</div>
+<div class="arc-card-sub">Promedio de mejora en sistemas de gestión tras auditoría INDUSECC</div>
+<div class="arc-badges">
+<span class="arc-badge">Certificado</span>
+<span class="arc-badge">Auditores Expertos</span>
+<span class="arc-badge">Valor Añadido</span>
+</div>
+</div>
+<div class="hero-mini-stats">
+<div class="h-mini-stat">
+<div class="h-mini-num">+200</div>
+<div class="h-mini-lbl">Auditorías realizadas</div>
+</div>
+<div class="h-mini-stat">
+<div class="h-mini-num">15+</div>
+<div class="h-mini-lbl">Normas cubiertas</div>
+</div>
+<div class="h-mini-stat">
+<div class="h-mini-num">100%</div>
+<div class="h-mini-lbl">Satisfacción cliente</div>
+</div>
+</div>
+</div>
+</div>
+<div class="hero-stats-bar">
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"></path></svg>
+</div>
+<div>
+<div class="stat-num" data-count="200">0</div>
+<div class="stat-label">Auditorías<br/>Completadas</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+</div>
+<div>
+<div class="stat-num" data-count="15">0</div>
+<div class="stat-label">Años de<br/>Experiencia</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg>
+</div>
+<div>
+<div class="stat-num" data-count="120">0</div>
+<div class="stat-label">Empresas<br/>Auditadas</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+</div>
+<div>
+<div class="stat-num" data-count="98">0</div>
+<div class="stat-label">% Satisfacción<br/>del Cliente</div>
+</div>
+</div>
+</div>
+</section>
+<section class="intro-section reveal" id="intro">
+<div class="intro-left">
+<div class="section-tag">
+<div class="st-line"></div>
+<span class="st-txt">¿Qué Ofrecemos?</span>
+</div>
+<h2 class="section-title">Auditoría<br/><em>Externa Experta</em></h2>
+<div class="section-rule"><div class="sr-wine"></div><div class="sr-fade"></div></div>
+<p class="intro-description">
+      INDUSECC ofrece <strong>soluciones de auditoría externa</strong> para el cumplimiento de auditorías internas necesarias para el seguimiento del sistema de gestión, para <strong>cualquier norma solicitada</strong>, añadiendo aspectos de valor para el logro de la mejora continua.
+    </p>
+<div class="intro-highlight">
+<p>"No solo verificamos el cumplimiento; identificamos oportunidades de mejora que impulsan el crecimiento sostenible de su organización."</p>
+</div>
+</div>
+<div class="intro-right">
+<div class="intro-value-card reveal reveal-delay-1">
+<div class="ivc-num">01</div>
+<div class="ivc-title">Cumplimiento Normativo</div>
+<div class="ivc-text">Verificación exhaustiva del cumplimiento de requisitos para cualquier norma de sistema de gestión, asegurando que su organización esté alineada con los estándares internacionales.</div>
+</div>
+<div class="intro-value-card reveal reveal-delay-2">
+<div class="ivc-num">02</div>
+<div class="ivc-title">Seguimiento del Sistema</div>
+<div class="ivc-text">Monitoreo continuo de la eficacia del sistema de gestión implantado, identificando desviaciones y áreas de mejora antes de que se conviertan en problemas.</div>
+</div>
+<div class="intro-value-card reveal reveal-delay-3">
+<div class="ivc-num">03</div>
+<div class="ivc-title">Valor Añadido</div>
+<div class="ivc-text">Incorporamos aspectos que van más allá del simple cumplimiento: recomendaciones estratégicas, benchmarking sectorial y oportunidades de innovación en su sistema de gestión.</div>
+</div>
+</div>
+</section>
+
+<section class="tipos-section" id="tipos">
+<div class="tipos-inner">
+<div class="tipos-header reveal">
+<div class="section-tag">
+<div class="st-line"></div>
+<span class="st-txt">Modalidades</span>
+</div>
+<h2 class="section-title">Tipos de <em>Auditoría</em></h2>
+</div>
+<div class="tipos-tabs reveal">
+<button class="tipos-tab active" data-tab="0">Auditoría de Sistema</button>
+<button class="tipos-tab" data-tab="1">Auditoría de Proceso</button>
+<button class="tipos-tab" data-tab="2">Auditoría de Producto</button>
+<button class="tipos-tab" data-tab="3">Auditoría Integrada</button>
+</div>
+<div class="tipos-panels">
+<div class="tipos-panel active" data-panel="0">
+<div class="tp-left">
+<div class="tp-icon-wrap">
+<svg viewBox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+</div>
+<h3 class="tp-title">Auditoría de <em>Sistema</em></h3>
+<p class="tp-desc">Evaluación integral del sistema de gestión en su conjunto, verificando la coherencia, eficacia e implementación de todos sus elementos conforme a la norma aplicable.</p>
+<div class="tp-tags">
+<span class="tp-tag">ISO 9001</span>
+<span class="tp-tag">ISO 14001</span>
+<span class="tp-tag">ISO 45001</span>
+<span class="tp-tag">ISO 27001</span>
+<span class="tp-tag">ISO 50001</span>
+</div>
+</div>
+<div class="tp-right">
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Análisis Documental</span></div>
+<div class="tp-feat-text">Revisión exhaustiva de todos los documentos del sistema: política, objetivos, procedimientos, registros y manuales de gestión.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Entrevistas Estructuradas</span></div>
+<div class="tp-feat-text">Conversaciones con el personal clave para verificar el conocimiento real del sistema y la cultura de calidad implantada.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Informe Detallado</span></div>
+<div class="tp-feat-text">Entrega de informe completo con hallazgos, no conformidades, observaciones y recomendaciones de mejora priorizadas.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Plan de Acción</span></div>
+<div class="tp-feat-text">Acompañamiento en la elaboración del plan de acciones correctivas y preventivas, con seguimiento de su implementación.</div>
+</div>
+</div>
+</div>
+<div class="tipos-panel" data-panel="1">
+<div class="tp-left">
+<div class="tp-icon-wrap">
+<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+</div>
+<h3 class="tp-title">Auditoría de <em>Proceso</em></h3>
+<p class="tp-desc">Evaluación en profundidad de procesos específicos para verificar su eficacia, eficiencia y conformidad con los requisitos establecidos, identificando oportunidades de optimización.</p>
+<div class="tp-tags">
+<span class="tp-tag">Procesos Clave</span>
+<span class="tp-tag">Indicadores KPI</span>
+<span class="tp-tag">Mapeo de Flujos</span>
+<span class="tp-tag">Riesgos</span>
+</div>
+</div>
+<div class="tp-right">
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Mapeo de Procesos</span></div>
+<div class="tp-feat-text">Análisis del flujo completo del proceso, identificando entradas, salidas, controles, recursos y puntos de control críticos.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Medición de Eficacia</span></div>
+<div class="tp-feat-text">Evaluación de los indicadores de desempeño del proceso y comparación con los objetivos establecidos por la organización.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Identificación de Riesgos</span></div>
+<div class="tp-feat-text">Detección de riesgos y oportunidades en el proceso que puedan afectar la calidad del producto o servicio final.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Benchmarking Sectorial</span></div>
+<div class="tp-feat-text">Comparación del desempeño del proceso con las mejores prácticas del sector y recomendaciones de mejora basadas en evidencia.</div>
+</div>
+</div>
+</div>
+<div class="tipos-panel" data-panel="2">
+<div class="tp-left">
+<div class="tp-icon-wrap">
+<svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"></path></svg>
+</div>
+<h3 class="tp-title">Auditoría de <em>Producto</em></h3>
+<p class="tp-desc">Verificación de que los productos o servicios entregados cumplen con los requisitos especificados por el cliente, los estándares normativos y las regulaciones aplicables.</p>
+<div class="tp-tags">
+<span class="tp-tag">Requisitos Cliente</span>
+<span class="tp-tag">Inspección</span>
+<span class="tp-tag">Trazabilidad</span>
+<span class="tp-tag">Liberación</span>
+</div>
+</div>
+<div class="tp-right">
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Verificación de Especificaciones</span></div>
+<div class="tp-feat-text">Comprobación de que el producto final cumple con todas las especificaciones técnicas, normativas y contractuales establecidas.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Control de Trazabilidad</span></div>
+<div class="tp-feat-text">Verificación de la trazabilidad completa del producto, desde las materias primas hasta la entrega al cliente final.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Revisión de Registros</span></div>
+<div class="tp-feat-text">Análisis de los registros de inspección, pruebas y controles aplicados durante la fabricación o prestación del servicio.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Criterios de Aceptación</span></div>
+<div class="tp-feat-text">Evaluación de los criterios de aceptación y rechazo aplicados, y la gestión de los productos no conformes detectados.</div>
+</div>
+</div>
+</div>
+<div class="tipos-panel" data-panel="3">
+<div class="tp-left">
+<div class="tp-icon-wrap">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+</div>
+<h3 class="tp-title">Auditoría <em>Integrada</em></h3>
+<p class="tp-desc">Auditoría simultánea de múltiples sistemas de gestión (calidad, medio ambiente, seguridad, energía…), optimizando recursos y ofreciendo una visión holística de la organización.</p>
+<div class="tp-tags">
+<span class="tp-tag">Multi-norma</span>
+<span class="tp-tag">Eficiencia</span>
+<span class="tp-tag">Visión Global</span>
+<span class="tp-tag">Ahorro de Tiempo</span>
+</div>
+</div>
+<div class="tp-right">
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Sinergias entre Normas</span></div>
+<div class="tp-feat-text">Aprovechamiento de los elementos comunes entre diferentes normas para una auditoría más eficiente y menos disruptiva para la organización.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Reducción de Costes</span></div>
+<div class="tp-feat-text">Optimización de recursos al combinar múltiples auditorías en un solo proceso, reduciendo el tiempo dedicado y el impacto en la operación diaria.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Informe Consolidado</span></div>
+<div class="tp-feat-text">Un único informe que cubre todos los sistemas auditados, con hallazgos cruzados y oportunidades de mejora integradas.</div>
+</div>
+<div class="tp-feature">
+<div class="tp-feat-head"><div class="tp-feat-diamond"></div><span class="tp-feat-title">Equipo Auditor Especializado</span></div>
+<div class="tp-feat-text">Auditores multidisciplinares con competencia acreditada en cada una de las normas incluidas en el alcance de la auditoría.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="normas-section" id="normas">
+<div class="normas-inner">
+<div class="normas-header reveal">
+<div>
+<div class="section-tag-dark">
+<div class="std-line"></div>
+<span class="std-txt">Estándares Internacionales</span>
+</div>
+<h2 class="section-title-light">Cualquier <em>Norma</em><br/>Solicitada</h2>
+</div>
+<div>
+<p class="normas-desc">INDUSECC tiene capacidad de auditar conforme a cualquier estándar internacional de sistema de gestión. Nuestros auditores cuentan con la formación y experiencia necesaria para cubrir el amplio espectro de normas ISO y sectoriales.</p>
+</div>
+</div>
+<div class="normas-grid reveal">
+<div class="norma-card">
+<div class="nc-code">9001</div>
+<div class="nc-name">Gestión de Calidad</div>
+<div class="nc-desc">Sistemas de gestión de la calidad. Requisitos para demostrar la capacidad de proporcionar productos y servicios que satisfagan los requisitos del cliente.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGC</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">14001</div>
+<div class="nc-name">Gestión Ambiental</div>
+<div class="nc-desc">Marco de referencia para proteger el medio ambiente y responder a las cambiantes condiciones ambientales en equilibrio con las necesidades socioeconómicas.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGA</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">45001</div>
+<div class="nc-name">Seguridad y Salud</div>
+<div class="nc-desc">Requisitos para sistemas de gestión de la seguridad y salud en el trabajo, proporcionando lugares de trabajo seguros y saludables.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SST</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">27001</div>
+<div class="nc-name">Seguridad de Información</div>
+<div class="nc-desc">Estándar internacional para la gestión de la seguridad de la información, protegiendo activos de información críticos de la organización.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGSI</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">50001</div>
+<div class="nc-name">Gestión de Energía</div>
+<div class="nc-desc">Marco para gestionar el desempeño energético, incluyendo eficiencia, uso y consumo energético, reduciendo costes y emisiones.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGEn</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">22000</div>
+<div class="nc-name">Seguridad Alimentaria</div>
+<div class="nc-desc">Sistemas de gestión de la inocuidad de los alimentos. Requisitos para cualquier organización en la cadena alimentaria.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGSA</div>
+</div>
+<div class="norma-card">
+<div class="nc-code">37001</div>
+<div class="nc-name">Antisoborno</div>
+<div class="nc-desc">Sistema de gestión antisoborno para ayudar a las organizaciones a implementar controles para prevenir, detectar y tratar el soborno.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> ISO · SGAS</div>
+</div>
+<div class="norma-card" style="background: rgba(201,168,76,.05); border-color: rgba(201,168,76,.2);">
+<div class="nc-code" style="background: linear-gradient(108deg,#8B6914,#C9A84C,#E8C97A); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">+</div>
+<div class="nc-name">Otras Normas</div>
+<div class="nc-desc">IATF 16949, AS 9100, ISO 13485, FSSC 22000, SA 8000, normas sectoriales y cualquier estándar específico de su industria.</div>
+<div class="nc-tag"><span class="nc-tag-dot"></span> Consultar disponibilidad</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+</div>
+</section>
+<section class="proceso-section" id="proceso">
+<div class="proceso-inner">
+<div class="proceso-header reveal">
+<div class="section-tag">
+<div class="st-line"></div>
+<span class="st-txt">Metodología</span>
+</div>
+<h2 class="section-title">Nuestro <em>Proceso</em><br/>de Auditoría</h2>
+</div>
+<div class="proceso-steps reveal">
+<div class="proceso-step">
+<div class="ps-circle">
+<svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line></svg>
+<div class="ps-num">01</div>
+</div>
+<div class="ps-title">Planificación</div>
+<div class="ps-text">Definición del alcance, objetivos, criterios y logística de la auditoría.</div>
+</div>
+<div class="proceso-step">
+<div class="ps-circle">
+<svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<div class="ps-num">02</div>
+</div>
+<div class="ps-title">Revisión Documental</div>
+<div class="ps-text">Análisis previo de documentación y registros del sistema de gestión.</div>
+</div>
+<div class="proceso-step">
+<div class="ps-circle">
+<svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87"></path><path d="M16 3.13a4 4 0 010 7.75"></path></svg>
+<div class="ps-num">03</div>
+</div>
+<div class="ps-title">Ejecución in-situ</div>
+<div class="ps-text">Entrevistas, observación directa e inspección de instalaciones y procesos.</div>
+</div>
+<div class="proceso-step">
+<div class="ps-circle">
+<svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+<div class="ps-num">04</div>
+</div>
+<div class="ps-title">Análisis &amp; Informe</div>
+<div class="ps-text">Elaboración del informe detallado con hallazgos, evidencias y recomendaciones.</div>
+</div>
+<div class="proceso-step">
+<div class="ps-circle">
+<svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+<div class="ps-num">05</div>
+</div>
+<div class="ps-title">Seguimiento</div>
+<div class="ps-text">Verificación de la implementación de acciones correctivas y mejoras propuestas.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="valor-section" id="valor">
+<div class="valor-inner">
+<div class="reveal">
+<div class="section-tag">
+<div class="st-line"></div>
+<span class="st-txt">Diferencial INDUSECC</span>
+</div>
+<h2 class="section-title">Valor <em>Añadido</em><br/>en cada Auditoría</h2>
+</div>
+<div class="valor-grid">
+<div class="valor-card reveal reveal-delay-1">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+</div>
+<div class="vc-title">Auditores Certificados</div>
+<div class="vc-text">Equipo de auditores líderes certificados por organismos acreditados, con amplia experiencia sectorial y formación continua en las últimas versiones normativas.</div>
+</div>
+<div class="valor-card reveal reveal-delay-2">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+</div>
+<div class="vc-title">Mejora Continua Real</div>
+<div class="vc-text">No nos limitamos a identificar incumplimientos; proponemos soluciones prácticas y factibles que generan mejoras tangibles en el desempeño de su sistema de gestión.</div>
+</div>
+<div class="valor-card reveal reveal-delay-3">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
+</div>
+<div class="vc-title">Respuesta Ágil</div>
+<div class="vc-text">Entrega de informes preliminares en menos de 48 horas tras la auditoría. Disponibilidad para auditorías urgentes pre-certificación y respuesta inmediata ante necesidades críticas.</div>
+</div>
+<div class="valor-card reveal reveal-delay-1">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+</div>
+<div class="vc-title">Cobertura Nacional</div>
+<div class="vc-text">Presencia en todo el territorio para realizar auditorías in-situ, con la misma calidad de servicio independientemente de la ubicación de sus instalaciones.</div>
+</div>
+<div class="valor-card reveal reveal-delay-2">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+</div>
+<div class="vc-title">Confidencialidad Total</div>
+<div class="vc-text">Compromiso de absoluta confidencialidad con toda la información de su organización. Acuerdos de no divulgación firmados antes de cada proceso de auditoría.</div>
+</div>
+<div class="valor-card reveal reveal-delay-3">
+<div class="vc-icon">
+<svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="1" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>
+</div>
+<div class="vc-title">Relación Calidad-Precio</div>
+<div class="vc-text">Planes de auditoría adaptados al tamaño y necesidades de cada organización, con precios competitivos y transparentes, sin costes ocultos ni sorpresas.</div>
+</div>
+</div>
+</div>
+</section>
+<section class="faq-section" id="faq">
+<div class="faq-inner">
+<div class="faq-layout">
+<div class="faq-left reveal">
+<div class="section-tag">
+<div class="st-line"></div>
+<span class="st-txt">Preguntas Frecuentes</span>
+</div>
+<h2 class="section-title">Resolvemos<br/>sus <em>Dudas</em></h2>
+<div class="section-rule"><div class="sr-wine"></div><div class="sr-fade"></div></div>
+<p class="faq-left-desc">Tiene preguntas sobre el proceso de auditoría externa de INDUSECC. Aquí encontrará respuestas claras a las consultas más habituales de nuestros clientes.</p>
+<a class="faq-cta" href="#contacto">
+          Consulta Personalizada
+          <svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</a>
+</div>
+<div class="faq-list reveal reveal-delay-2">
+<div class="faq-item">
+<div class="faq-question">
+<span class="faq-q-text">¿Cuál es la diferencia entre auditoría interna y externa?</span>
+<div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">La auditoría interna es realizada por personal de la propia organización o en su nombre. La auditoría externa, como la que ofrece INDUSECC, es realizada por una entidad independiente y ajena a la organización, lo que aporta objetividad, imparcialidad y una perspectiva externa valiosa. INDUSECC actúa como su auditor externo para satisfacer el requisito normativo de auditorías internas independientes.</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span class="faq-q-text">¿Con qué frecuencia debo realizar una auditoría?</span>
+<div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">La frecuencia depende del programa de auditoría de su organización y los requisitos normativos. Generalmente se recomienda al menos una auditoría completa del sistema por año. Sin embargo, INDUSECC trabaja con usted para definir la frecuencia óptima según el riesgo, madurez del sistema y el ciclo de certificación, pudiendo realizarse auditorías parciales con mayor frecuencia.</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span class="faq-q-text">¿Cuánto tiempo dura una auditoría?</span>
+<div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">La duración varía según el tamaño de la organización, la complejidad del sistema, el alcance y las normas a auditar. Para una pyme con un único sistema, puede ser de 1-2 días. Para organizaciones medianas o grandes, o auditorías integradas, puede extenderse de 3 a 5 días o más. INDUSECC realiza una estimación personalizada antes de cada auditoría.</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span class="faq-q-text">¿Qué ocurre si se detectan no conformidades?</span>
+<div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">Las no conformidades forman parte natural del proceso de mejora. INDUSECC documenta cada hallazgo con evidencias objetivas y le acompaña en la definición de acciones correctivas eficaces. No conformidades detectadas a tiempo son oportunidades de mejora que fortalecen su sistema antes de una auditoría de certificación o de cliente.</div>
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-question">
+<span class="faq-q-text">¿Pueden auditar normas muy específicas o sectoriales?</span>
+<div class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">Sí. Además de las principales normas ISO, INDUSECC tiene capacidad de auditar estándares sectoriales como IATF 16949 (automoción), AS 9100 (aeronáutica), ISO 13485 (dispositivos médicos), FSSC 22000 (seguridad alimentaria) y otros. Consúltenos su norma específica y le informaremos sobre nuestra disponibilidad y experiencia en ese estándar.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="cta-section" id="contacto">
+<div class="cta-inner reveal">
+<div class="cta-eyebrow">
+<div class="cta-eye-line"></div>
+<span class="cta-eye-txt">Dé el Primer Paso</span>
+<div class="cta-eye-line" style="transform:scaleX(-1)"></div>
+</div>
+<h2 class="cta-title">¿Listo para una Auditoría<br/>de <em>Alto Impacto</em>?</h2>
+<p class="cta-desc">Solicite un diagnóstico gratuito y descubra cómo INDUSECC puede fortalecer su sistema de gestión con valor real para su organización.</p>
+<div class="cta-actions">
+<a class="btn-primary-lg" href="mailto:danna@indusecc.com.mx">
+<span>Solicitar Diagnóstico Gratuito</span>
+<svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</a>
+<a class="btn-outline-light" href="servicios.html">
+<svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+        Ver más Servicios
+      </a>
+</div>
+</div>
+</section>
+
+<footer class="ind-footer-wrap">
+  <div class="ind-f-top-accent"></div>
+  <div class="ind-f-main">
+    <div class="ind-f-grid">
+      <div class="ind-f-brand">
+        <div class="ind-f-logo-container">
+          <img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+        </div>
+        <p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+        <div class="ind-f-contact-strip">
+          <a class="ind-f-contact-link" href="tel:5540152551">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+          <a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+          <div class="ind-f-contact-link">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, México
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 class="ind-f-title">Navegación</h4>
+        <ul class="ind-f-list">
+          <li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+          <li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+          <li><a class="ind-f-item-link" href="nosotros.html">¿Quiénes Somos?</a></li>
+          <li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+        </ul>
+      </div>
+     <div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="implementacion-sistema.html">Implementción de un sistema de gestión</a></li>
+<li><a class="ind-f-item-link" href="consultoria-asesoria.html">Consultoria y asesoria</a></li>
+<li><a class="ind-f-item-link" href="certificacion-iso_.html">Certificación ISO</a></li>
+<li><a class="ind-f-item-link" href="auditorias.html">Auditorías</a></li>
+</ul>
+</div>
+      <div>
+        <h4 class="ind-f-title">Legal y Soporte</h4>
+        <ul class="ind-f-list">
+          <li><a class="ind-f-item-link" href="contacto.html">Contáctanos</a></li>
+          <li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+          <li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
+          <li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+        </ul>
+         <div class="ind-f-social-wrap">
+          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-f-bottom">
+    <div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+    <div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
+  </div>
+</footer>
+
+<script>
+/* ══════════ HERO CANVAS — GRID + PARTICLES ══════════ */
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Particles
+  for (let i = 0; i < 60; i++) {
+    particles.push({
+      x: Math.random() * 1000,
+      y: Math.random() * 1000,
+      vx: (Math.random() - .5) * .3,
+      vy: (Math.random() - .5) * .3,
+      r: Math.random() * 1.5 + .3,
+      a: Math.random() * .6 + .1
+    });
+  }
+
+  let mouse = { x: W / 2, y: H / 2 };
+  document.querySelector('.hero')?.addEventListener('mousemove', e => {
+    const r = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - r.left;
+    mouse.y = e.clientY - r.top;
+  });
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Grid lines
+    ctx.strokeStyle = 'rgba(201,168,76,0.04)';
+    ctx.lineWidth = 1;
+    const gs = 80;
+    for (let x = 0; x <= W; x += gs) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke(); }
+    for (let y = 0; y <= H; y += gs) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke(); }
+
+    // Particles
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+      if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,168,76,${p.a})`;
+      ctx.fill();
+    });
+
+    // Lines between close particles
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(201,168,76,${.08 * (1 - dist / 100)})`;
+          ctx.lineWidth = .5;
+          ctx.stroke();
+        }
+      }
+    }
+
+    animId = requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ══════════ ARC ANIMATION ══════════ */
+setTimeout(() => {
+  const arc = document.getElementById('arcFill');
+  if (arc) arc.classList.add('animate');
+}, 1500);
+
+/* ══════════ COUNTER ANIMATION ══════════ */
+function animateCounter(el, target, suffix = '') {
+  let start = 0;
+  const duration = 1800;
+  const startTime = performance.now();
+  function update(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    start = Math.round(ease * target);
+    el.textContent = start + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting && !entry.target.dataset.done) {
+      entry.target.dataset.done = '1';
+      const target = parseInt(entry.target.dataset.count);
+      const suffix = entry.target.dataset.suffix || '';
+      animateCounter(entry.target, target, suffix);
+    }
+  });
+}, { threshold: .5 });
+counters.forEach(c => counterObserver.observe(c));
+
+/* ══════════ NAVBAR SCROLL ══════════ */
+const navbar = document.getElementById('navbar');
+const scrollProgress = document.getElementById('scrollProgress');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  if(navbar) navbar.classList.toggle('scrolled', scrolled > 60);
+  const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+  if(scrollProgress) scrollProgress.style.width = (scrolled / maxScroll * 100) + '%';
+});
+
+/* ══════════ REVEAL ON SCROLL ══════════ */
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: .15, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(r => revealObs.observe(r));
+
+/* ══════════ TABS ══════════ */
+const tabs = document.querySelectorAll('.tipos-tab');
+const panels = document.querySelectorAll('.tipos-panel');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    const idx = tab.dataset.tab;
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelector(`.tipos-panel[data-panel="${idx}"]`)?.classList.add('active');
+  });
+});
+
+/* ══════════ FAQ ACCORDION ══════════ */
+const faqItems = document.querySelectorAll('.faq-item');
+faqItems.forEach(item => {
+  item.querySelector('.faq-question').addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    faqItems.forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+/* ══════════ NORMA CARD HOVER GLOW ══════════ */
+document.querySelectorAll('.norma-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+    card.style.background = `radial-gradient(circle at ${x}% ${y}%, rgba(201,168,76,.10), rgba(255,255,255,.03) 60%)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.background = '';
+  });
+});
+</script>
+</body>
+</html>

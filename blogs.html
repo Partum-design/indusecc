@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Blog INDUSECC | Actualizaciones ISO, Cumplimiento y Estrategia Operativa</title>
+<meta content="Centro de conocimiento INDUSECC: análisis técnicos de normas ISO, transiciones regulatorias y guías prácticas para operar con evidencia auditable." name="description"/>
+<link href="Imagenes/favicon.png" rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --wine: #7B1E22;
+  --wine-dark: #4B1013;
+  --wine-deep: #26080A;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --ink: #17100A;
+  --text: #2A1A1B;
+  --muted: #6E5A5B;
+  --cream: #FAF7F2;
+  --paper: #FFFFFF;
+  --line: rgba(123,30,34,.15);
+}
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+}
+a { color: inherit; }
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(14, 5, 6, .94);
+  border-bottom: 1px solid rgba(201,168,76,.2);
+  backdrop-filter: blur(12px);
+}
+.topbar-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+.brand img {
+  width: 54px;
+  height: 54px;
+  object-fit: contain;
+}
+.brand-copy {
+  color: #fff;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.menu a {
+  text-decoration: none;
+  color: rgba(255,255,255,.74);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-bottom: 1px solid transparent;
+  transition: color .25s, border-color .25s;
+}
+.menu a:hover,
+.menu a.is-active {
+  color: var(--gold-light);
+  border-color: rgba(201,168,76,.45);
+}
+
+.hero {
+  position: relative;
+  min-height: 64vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(130deg, rgba(22,8,9,.85) 0%, rgba(22,8,9,.45) 55%, rgba(22,8,9,.9) 100%),
+    radial-gradient(circle at 18% 20%, rgba(201,168,76,.22), transparent 40%);
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(.85) contrast(1.05) brightness(.55);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(1160px, 92vw);
+  margin: 0 auto;
+  padding: 80px 0 74px;
+}
+.hero-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+.hero-kicker::before {
+  content: '';
+  width: 34px;
+  height: 1px;
+  background: var(--gold);
+}
+.hero h1 {
+  margin-top: 18px;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.3rem, 5.8vw, 4.6rem);
+  line-height: .96;
+  letter-spacing: -.02em;
+  max-width: 880px;
+}
+.hero p {
+  margin-top: 24px;
+  max-width: 760px;
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(255,255,255,.8);
+}
+.hero-metrics {
+  margin-top: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.metric {
+  padding: 10px 14px;
+  border: 1px solid rgba(201,168,76,.35);
+  background: rgba(22,8,9,.55);
+  color: var(--gold-light);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.hub {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 72px 24px 90px;
+}
+.hub-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 26px;
+}
+.hub-top h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3.3vw, 2.8rem);
+  color: var(--ink);
+}
+.hub-top h2 em { color: var(--wine); font-style: italic; font-weight: 500; }
+.hub-top p {
+  max-width: 620px;
+  color: var(--muted);
+  line-height: 1.85;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+}
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(67, 20, 22, .12);
+}
+.card--featured { grid-column: span 8; }
+.card--future { grid-column: span 4; }
+.media {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+.card--future .media { height: 220px; }
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.card:hover .media img { transform: scale(1.06); }
+.tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  background: rgba(20,4,6,.75);
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,.45);
+  padding: 7px 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+.body {
+  padding: 24px 24px 26px;
+  display: grid;
+  gap: 14px;
+}
+.meta {
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--wine);
+  font-weight: 700;
+}
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.34rem, 2vw, 2.1rem);
+  line-height: 1.14;
+  color: var(--ink);
+}
+.card--future .title { font-size: 1.35rem; }
+.desc {
+  color: var(--muted);
+  line-height: 1.8;
+  font-size: 14px;
+}
+.cta {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: var(--wine);
+  color: var(--gold-light);
+  padding: 13px 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  width: fit-content;
+  clip-path: polygon(9px 0%, 100% 0%, calc(100% - 9px) 100%, 0% 100%);
+}
+.cta:hover { background: var(--wine-dark); }
+.ghost {
+  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--wine);
+  font-weight: 700;
+}
+.ghost::after {
+  content: '';
+  width: 14px;
+  height: 1px;
+  background: currentColor;
+  transition: width .25s;
+}
+.ghost:hover::after { width: 24px; }
+
+.future-copy {
+  margin-top: 28px;
+  border: 1px dashed rgba(123,30,34,.24);
+  background: #fff;
+  padding: 18px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.future-copy strong { color: var(--wine); }
+
+.footer {
+  margin-top: 28px;
+  background: var(--wine-deep);
+  color: rgba(255,255,255,.74);
+  border-top: 1px solid rgba(201,168,76,.2);
+}
+.footer-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 12px;
+}
+
+@media (max-width: 1024px) {
+  .card--featured, .card--future { grid-column: span 12; }
+  .hero { min-height: 58vh; }
+}
+@media (max-width: 680px) {
+  .topbar-inner { padding: 12px 14px; }
+  .brand img { width: 44px; height: 44px; }
+  .brand-copy { display: none; }
+  .menu { gap: 6px; }
+  .menu a { font-size: 9px; letter-spacing: .11em; padding: 6px 8px; }
+  .hero-content { padding: 58px 0 56px; }
+  .hero p { font-size: 14px; }
+  .hub { padding: 56px 16px 74px; }
+  .media { height: 220px; }
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+<div class="topbar-inner">
+<a class="brand" href="index.html">
+<img alt="INDUSECC" src="Imagenes/logo.png"/>
+<span class="brand-copy">INDUSECC · Blog Técnico</span>
+</a>
+<nav class="menu">
+<a href="index.html">Inicio</a>
+<a href="servicios.html">Servicios</a>
+<a class="is-active" href="blogs.html">Blog</a>
+<a href="contacto.html">Contacto</a>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<img alt="Sostenibilidad y gestión ambiental empresarial" class="hero-bg" src="img_blogs/global-environmental-sustainability-background-green-technology.jpg.jpeg"/>
+<div class="hero-content">
+<span class="hero-kicker">Centro de Contenido INDUSECC</span>
+<h1>Blogs de cumplimiento ISO, gestión ambiental y estrategia operativa</h1>
+<p>
+      Este espacio está diseñado para crecer con artículos técnicos, guías de transición normativa y análisis aplicables
+      a operación real. Empezamos con la actualización crítica: ISO 14001:2026.
+    </p>
+<div class="hero-metrics">
+<span class="metric">Actualizado 2026</span>
+<span class="metric">Enfoque Ejecutivo</span>
+<span class="metric">Base Técnica Auditada</span>
+</div>
+</div>
+</section>
+
+<main class="hub">
+<div class="hub-top">
+<h2>Publicaciones <em>destacadas</em></h2>
+<p>
+        Artículos pensados para dirección, responsables de sistemas de gestión, auditores y equipos de cumplimiento.
+        Aquí irán acumulándose los nuevos blogs conforme se publiquen.
+      </p>
+</div>
+
+<section class="blog-grid">
+<article class="card card--featured">
+<div class="media">
+<img alt="Norma ISO 14001:2026 actualización" src="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg"/>
+<span class="tag">Nuevo · ISO 14001:2026</span>
+</div>
+<div class="body">
+<span class="meta">15 abril 2026 · lectura 12 min</span>
+<h3 class="title">ISO 14001:2026 en México: cambios estructurales, transición oficial y guía de implementación operativa</h3>
+<p class="desc">
+            Desglose completo de los cambios frente a ISO 14001:2015, impacto por cláusula, efectos en cadena de suministro,
+            digitalización del SGA y hoja de ruta para migrar antes de mayo de 2029.
+          </p>
+<a class="cta" href="blog-iso-14001-2026-mexico-guia-transicion.html">Leer Blog Completo</a>
+</div>
+</article>
+
+<article class="card card--future">
+<div class="media">
+<img alt="Equipo revisando plan ambiental" src="img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg"/>
+<span class="tag">Próximamente</span>
+</div>
+<div class="body">
+<span class="meta">Próxima publicación</span>
+<h3 class="title">Transición ISO 9001:2026 y convergencia con ISO 14001</h3>
+<p class="desc">Guía de integración para equipos que operan sistemas de gestión combinados.</p>
+<a class="ghost" href="contacto.html">Solicitar aviso</a>
+</div>
+</article>
+
+<article class="card card--future">
+<div class="media">
+<img alt="Foco de sostenibilidad ambiental" src="img_blogs/bulb-is-located-inside-with-leaves-forest-trees-are-light-concepts-environmental-conservation-global-warming-plant-growing-inside-lamp-bulb-dry.jpg.jpeg"/>
+<span class="tag">Próximamente</span>
+</div>
+<div class="body">
+<span class="meta">Próxima publicación</span>
+<h3 class="title">Scope 3 y control de proveedores bajo cláusula 8.1</h3>
+<p class="desc">Cómo estructurar criterios ambientales y evidencia auditable con proveedores externos.</p>
+<a class="ghost" href="contacto.html">Solicitar aviso</a>
+</div>
+</article>
+</section>
+
+<div class="future-copy">
+<strong>Estructura lista para crecer:</strong> cada nuevo artículo se agrega como tarjeta en esta parrilla, conservando
+      el mismo diseño visual y navegación. Si quieres, después te dejo también paginación y filtros por norma.
+    </div>
+</main>
+
+<footer class="footer">
+<div class="footer-inner">
+<span>© 2026 INDUSECC. Blog técnico de normas y cumplimiento.</span>
+<span><a href="contacto.html">Contacto</a> · <a href="index.html">Volver al inicio</a></span>
+</div>
+</footer>
+</body>
+</html>

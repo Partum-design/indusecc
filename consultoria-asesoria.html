@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Consultoría y Asesoría en Normatividad ISO — INDUSECC</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --wine:        #7B1E22;
+  --wine-dark:   #550F13;
+  --wine-deep:   #360A0D;
+  --wine-hi:     #9B2429;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dark:   #8B6914;
+  --gold-pale:   #F5EDD6;
+  --white:       #FFFFFF;
+  --cream:       #FBF8F3;
+  --parchment:   #F2EDE4;
+  --ink:         #1C1008;
+  --text:        #2A1A1B;
+  --muted:       #7A6060;
+  --border:      rgba(123,30,34,0.12);
+  --border-gold: rgba(201,168,76,0.25);
+  --shadow:      rgba(123,30,34,0.15);
+}
+
+/* ══ MIDNIGHT THEME ══ */
+body.midnight {
+  --cream:#0D0D12; --white:#13131A; --parchment:#181820;
+  --ink:#F0ECE4; --text:#E8E0D8; --muted:#A09898;
+  --border:rgba(201,168,76,0.18); --border-gold:rgba(201,168,76,0.22);
+  --shadow:rgba(0,0,0,0.6); background:#0D0D12; color:#E8E0D8;
+}
+body.midnight .con-intro-band  { background:#13131A; }
+body.midnight .con-cards       { background:#0D0D12; }
+body.midnight .con-card        { background:#181820; border-color:rgba(201,168,76,.15); }
+body.midnight .con-card:hover  { background:#1E1E28; border-color:rgba(201,168,76,.35); }
+body.midnight .con-card-num    { color:rgba(201,168,76,.12); }
+body.midnight .con-process     { background:#13131A; }
+body.midnight .con-process-step{ background:#1E1E28; border-color:rgba(201,168,76,.12); }
+body.midnight .nos-cta         { background:#0D0D12; }
+body.midnight .section-title   { color:#F0ECE4; }
+body.midnight .ind-header-wrapper { background:#050508 !important; }
+body.midnight .ind-top-bar     { background:#02020A; }
+body.midnight .ind-main-header { background:rgba(5,5,8,.98); }
+body.midnight .con-card-tag    { background:rgba(201,168,76,.08); color:rgba(201,168,76,.7); }
+body.midnight .con-divider-line { background:rgba(201,168,76,.15); }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family:'Outfit',sans-serif;
+  background:var(--cream); color:var(--text);
+  overflow-x:hidden; padding-top:115px;
+  transition:background .4s ease, color .4s ease;
+}
+@media(max-width:1150px){ body{ padding-top:70px; } }
+img,video { max-width:100%; }
+
+/* ══ SCROLL REVEAL ══ */
+.reveal { opacity:1; transform:none; }
+.reveal.animate-ready { opacity:0; transform:translateY(22px); transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1); }
+.reveal.animate-ready.revealed { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:.08s; }
+.reveal-delay-2 { transition-delay:.18s; }
+.reveal-delay-3 { transition-delay:.28s; }
+.reveal-delay-4 { transition-delay:.40s; }
+.reveal-delay-5 { transition-delay:.50s; }
+
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp    { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+@keyframes scaleIn   { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@keyframes shimmer   { 0%{background-position:200% center} 100%{background-position:-200% center} }
+@keyframes shineSweep{ 0%{left:-100%} 18%{left:120%} 100%{left:120%} }
+@keyframes floatUp   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes pulse     { 0%,100%{opacity:.6} 50%{opacity:1} }
+@keyframes borderGlow { 0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,0)} 50%{box-shadow:0 0 20px 2px rgba(201,168,76,.12)} }
+
+.shine-el { position:relative; overflow:hidden; }
+.shine-el::after {
+  content:''; position:absolute; top:0; left:-100%; width:55%; height:100%;
+  background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.30) 50%,rgba(255,255,255,0) 100%);
+  transform:skewX(-20deg); animation:shineSweep 3.8s ease-in-out infinite; pointer-events:none; z-index:10;
+}
+
+/* ══ SECTION TAGS ══ */
+.section-tag { display:inline-flex; align-items:center; gap:12px; margin-bottom:20px; }
+.section-tag-line { width:32px; height:1px; background:var(--gold); }
+.section-tag-text { font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--wine); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,4vw,4rem); font-weight:900; line-height:1.02; letter-spacing:-.03em; color:var(--ink); }
+.section-title em { font-style:italic; color:var(--wine); }
+.section-rule { display:flex; align-items:center; gap:0; margin:20px 0 0; }
+.rule-wine { width:72px; height:2px; background:var(--wine); }
+.rule-gold { width:36px; height:1px; background:linear-gradient(to right,var(--gold),transparent); margin-left:4px; }
+
+/* ══ BUTTONS ══ */
+.btn-primary {
+  display:inline-flex; align-items:center; gap:14px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  color:var(--wine-deep); padding:18px 44px;
+  font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  text-decoration:none; border:none; position:relative; overflow:hidden;
+  clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+  transition:all .35s; cursor:pointer;
+}
+.btn-primary::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); opacity:0; transition:opacity .3s; }
+.btn-primary:hover::before { opacity:1; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 20px 60px rgba(201,168,76,.35); }
+.btn-primary span,.btn-primary svg { position:relative; z-index:1; }
+.btn-primary svg { width:16px; height:16px; transition:transform .3s; }
+.btn-primary:hover svg { transform:translateX(4px); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); text-decoration:none; transition:color .3s;
+}
+.btn-ghost-line { width:24px; height:1px; background:currentColor; transition:width .3s; }
+.btn-ghost:hover { color:var(--gold-light); }
+.btn-ghost:hover .btn-ghost-line { width:44px; }
+.btn-wine {
+  display:inline-flex; align-items:center; gap:12px;
+  background:var(--wine); color:var(--gold-light);
+  padding:16px 36px; font-size:11px; font-weight:700; letter-spacing:.2em;
+  text-transform:uppercase; text-decoration:none;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:all .3s; position:relative; overflow:hidden;
+}
+.btn-wine:hover { background:var(--wine-dark); transform:translateY(-2px); box-shadow:0 12px 36px var(--shadow); }
+
+/* ══════════════════════════════════════
+   HEADER / NAVBAR
+══════════════════════════════════════ */
+.ind-header-wrapper {
+  position:fixed; top:0; width:100%; z-index:1000;
+  background:#0A0A0A; box-shadow:0 2px 15px rgba(0,0,0,.5);
+  transition:box-shadow .4s ease,background .4s ease;
+}
+.ind-header-wrapper.scrolled {
+  background:rgba(5,5,5,.98);
+  box-shadow:0 4px 30px rgba(0,0,0,.8),0 1px 0 rgba(201,168,76,.18);
+}
+.ind-top-bar {
+  background:#000; border-bottom:1px solid rgba(201,168,76,.1);
+  padding:0 60px; display:flex; justify-content:space-between; align-items:center; height:35px;
+}
+.ind-top-info { display:flex; gap:25px; }
+.ind-top-item {
+  display:flex; align-items:center; gap:8px;
+  color:#A89880; font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase;
+}
+.ind-top-item svg { width:12px; height:12px; color:var(--gold); }
+.ind-top-item a { color:inherit; text-decoration:none; transition:color .3s; }
+.ind-top-item a:hover { color:var(--gold-light); }
+.ind-main-header {
+  background:rgba(10,10,10,.98); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.ind-container {
+  max-width:1400px; margin:0 auto; padding:0 60px;
+  height:80px; display:flex; align-items:center; justify-content:space-between;
+}
+.ind-logo-group { display:flex; align-items:center; gap:20px; }
+.ind-logo-wrap { text-decoration:none; display:flex; align-items:center; }
+.ind-logo-img { max-height:48px; width:auto; display:block; }
+.ind-logo-sep { width:1px; height:30px; background:rgba(201,168,76,.2); }
+.ind-header-tagline { font-family:'Playfair Display',serif; color:#A89880; font-size:15px; font-style:italic; max-width:200px; line-height:1.3; }
+.ind-nav { display:flex; align-items:center; gap:30px; height:100%; }
+.ind-menu-item { position:relative; height:100%; display:flex; align-items:center; }
+.ind-link {
+  text-decoration:none; color:rgba(255,255,255,.9);
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px;
+  transition:.3s; display:flex; align-items:center;
+}
+.ind-link:hover,.ind-link.active { color:var(--gold-light); }
+.ind-dropdown {
+  position:absolute; top:100%; left:50%; transform:translateX(-50%);
+  min-width:280px; background:#0D0D0D; border:1px solid rgba(201,168,76,.2);
+  padding:10px 0; opacity:0; visibility:hidden; transition:all .3s ease; z-index:200;
+}
+.ind-menu-item:hover .ind-dropdown { opacity:1; visibility:visible; }
+.ind-drop-link {
+  display:block; padding:13px 22px; color:rgba(255,255,255,.65);
+  text-decoration:none; font-size:12px; font-weight:500; transition:.3s; line-height:1.4;
+}
+.ind-drop-link:hover,.ind-drop-link.active {
+  background:rgba(123,30,34,.15); color:#fff;
+  padding-left:28px; border-left:3px solid var(--wine);
+}
+.ind-actions { display:flex; align-items:center; gap:8px; position:relative; flex-shrink:0; }
+.ind-a11y-wrap { position:relative; display:flex; align-items:center; }
+.ind-btn-cta {
+  background:linear-gradient(135deg,var(--wine-deep),var(--wine));
+  color:#fff; text-decoration:none;
+  font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px;
+  padding:12px 22px; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition:.3s; border:none; cursor:pointer; position:relative; overflow:hidden;
+}
+.ind-btn-cta:hover { opacity:.9; }
+.theme-toggle-btn {
+  display:flex; align-items:center; gap:6px;
+  background:rgba(255,255,255,.06); border:1px solid rgba(201,168,76,.3);
+  padding:7px 12px; cursor:pointer; transition:all .3s;
+  font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase;
+  color:rgba(255,255,255,.8); white-space:nowrap; flex-shrink:0;
+}
+.theme-toggle-btn:hover { border-color:var(--gold); color:var(--gold-light); background:rgba(201,168,76,.12); }
+.theme-toggle-btn svg { width:14px; height:14px; stroke:var(--gold); fill:none; stroke-width:1.8; flex-shrink:0; }
+.a11y-trigger {
+  width:34px; height:34px; flex-shrink:0;
+  background:rgba(255,255,255,.06); border:1px solid rgba(201,168,76,.3);
+  display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .3s;
+}
+.a11y-trigger:hover { border-color:var(--gold); background:rgba(201,168,76,.12); }
+.a11y-trigger svg { width:17px; height:17px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.a11y-panel {
+  position:absolute; top:calc(100% + 12px); right:0; width:252px; background:#111;
+  border:1px solid rgba(201,168,76,.3); box-shadow:0 24px 64px rgba(0,0,0,.7);
+  z-index:9999; padding:18px; opacity:0; visibility:hidden; transform:translateY(-6px);
+  transition:opacity .22s ease,transform .22s ease,visibility .22s; pointer-events:none;
+}
+.a11y-panel.open { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+.a11y-panel-title { font-size:9px; font-weight:700; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(201,168,76,.15); }
+.a11y-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.a11y-label { font-size:12px; color:rgba(255,255,255,.72); font-weight:400; }
+.a11y-controls { display:flex; gap:5px; align-items:center; }
+.a11y-ctrl-btn { min-width:32px; height:32px; padding:0 6px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.85); font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.a11y-ctrl-btn:hover { background:rgba(201,168,76,.22); border-color:var(--gold); color:#fff; }
+.a11y-ctrl-btn.active { background:rgba(201,168,76,.32); border-color:var(--gold); color:var(--gold-light); }
+.a11y-sep { height:1px; background:rgba(255,255,255,.08); margin:14px 0; }
+.a11y-reset { width:100%; padding:9px; background:rgba(123,30,34,.32); border:1px solid rgba(123,30,34,.5); color:rgba(255,255,255,.75); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.a11y-reset:hover { background:var(--wine); color:#fff; }
+body.a11y-large { font-size:18px !important; }
+body.a11y-large .section-title { font-size:clamp(2.8rem,4.2vw,4.5rem) !important; }
+body.a11y-high-contrast { filter:contrast(1.5) brightness(1.05); }
+body.a11y-reduced-motion *,body.a11y-reduced-motion *::before,body.a11y-reduced-motion *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+
+/* Mobile bottom nav */
+.ind-bottom-nav {
+  display:none; position:fixed; bottom:0; left:0;
+  width:100%; height:65px; background:#000;
+  border-top:1px solid rgba(201,168,76,.2); z-index:2000; overflow:hidden;
+}
+.ind-bnav-container { display:flex; justify-content:space-around; align-items:center; height:100%; max-width:600px; margin:0 auto; }
+.ind-bnav-item { text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:4px; color:rgba(255,255,255,.5); transition:.3s; flex:1; padding:0 4px; border:none; background:transparent; cursor:pointer; }
+.ind-bnav-item svg { width:20px; height:20px; }
+.ind-bnav-item span { font-size:8px; font-weight:600; text-transform:uppercase; white-space:nowrap; }
+.ind-bnav-item.active { color:var(--gold); }
+.ind-bnav-item.wa-item { color:#25D366; }
+.ind-bnav-item.ctrl-item { color:rgba(255,255,255,.5); }
+.ind-sheet-overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); backdrop-filter:blur(5px); z-index:2001; opacity:0; visibility:hidden; transition:.3s; }
+.ind-sheet-overlay.active { opacity:1; visibility:visible; }
+.ind-bottom-sheet { position:fixed; bottom:-100%; left:0; width:100%; background:#0a0a0a; z-index:2002; border-radius:20px 20px 0 0; padding:25px 20px 80px; transition:bottom .4s cubic-bezier(.4,0,.2,1); border-top:2px solid var(--gold); }
+.ind-bottom-sheet.active { bottom:0; }
+.ind-sheet-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.ind-sheet-title { font-family:'Playfair Display',serif; color:var(--gold); font-size:20px; font-weight:700; font-style:italic; }
+.ind-sheet-close { background:rgba(255,255,255,.05); border:none; width:32px; height:32px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.ind-sheet-grid { display:grid; gap:8px; }
+.ind-sheet-link { padding:14px 18px; background:rgba(255,255,255,.02); border-radius:10px; color:#fff; text-decoration:none; font-size:11px; font-weight:500; display:flex; justify-content:space-between; align-items:center; transition:.2s; }
+.ind-sheet-link:hover { background:rgba(201,168,76,.08); color:var(--gold-light); }
+.mob-ctrl-sheet { position:fixed; bottom:-100%; left:0; width:100%; background:#0a0a0a; z-index:3000; border-radius:20px 20px 0 0; padding:24px 20px 90px; transition:bottom .4s cubic-bezier(.4,0,.2,1); border-top:2px solid var(--gold); }
+.mob-ctrl-sheet.active { bottom:0; }
+.mob-ctrl-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.mob-ctrl-title { font-family:'Playfair Display',serif; color:var(--gold); font-size:18px; font-weight:700; font-style:italic; }
+.mob-ctrl-close { background:rgba(255,255,255,.05); border:none; width:30px; height:30px; border-radius:50%; color:#fff; font-size:14px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+.mob-ctrl-section { margin-bottom:20px; }
+.mob-ctrl-section-label { font-size:9px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:rgba(255,255,255,.3); margin-bottom:10px; }
+.mob-theme-btn { width:100%; padding:14px; background:rgba(255,255,255,.04); border:1px solid rgba(201,168,76,.2); color:#fff; font-size:13px; font-weight:500; display:flex; justify-content:space-between; align-items:center; cursor:pointer; transition:.2s; }
+.mob-theme-btn svg { width:18px; height:18px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.mob-theme-btn:hover { background:rgba(201,168,76,.08); }
+.mob-a11y-grid { display:flex; flex-direction:column; gap:10px; }
+.mob-a11y-row { display:flex; justify-content:space-between; align-items:center; padding:12px 16px; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.06); }
+.mob-a11y-label { font-size:12px; color:rgba(255,255,255,.7); }
+.mob-a11y-controls { display:flex; gap:6px; }
+.mob-a11y-btn { min-width:36px; height:36px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); color:#fff; font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:.2s; }
+.mob-a11y-btn:hover,.mob-a11y-btn.active { background:rgba(201,168,76,.22); border-color:var(--gold); color:var(--gold-light); }
+.mob-a11y-reset { width:100%; margin-top:14px; padding:12px; background:rgba(123,30,34,.25); border:1px solid rgba(123,30,34,.4); color:rgba(255,255,255,.6); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; transition:.2s; }
+.mob-a11y-reset:hover { background:var(--wine); color:#fff; }
+@media(max-width:1150px){
+  .ind-nav,.ind-actions { display:none; }
+  .ind-bottom-nav { display:flex; }
+  .ind-container { padding:0 20px; }
+  .ind-top-bar { padding:0 20px; }
+  body { padding-bottom:70px; }
+}
+@media(min-width:1151px){ .ind-bottom-nav { display:none !important; } }
+
+/* ══════════════════════════════════════
+   HERO BANNER
+══════════════════════════════════════ */
+.con-hero {
+  position:relative; min-height:580px;
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.con-hero-img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; filter:brightness(0.22) saturate(0.4) contrast(1.1);
+}
+.con-hero-overlay {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 90% 80% at 20% 60%, rgba(123,30,34,0.65) 0%, transparent 65%),
+    linear-gradient(160deg, rgba(10,2,3,0.80) 0%, rgba(30,6,8,0.50) 60%, rgba(10,2,3,0.92) 100%),
+    linear-gradient(to top, rgba(10,2,3,0.97) 0%, transparent 40%);
+}
+.con-hero::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px; z-index:20;
+  background:linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 10%, var(--gold) 35%, var(--gold-light) 55%, var(--gold-dark) 85%, transparent);
+}
+.con-hero-content {
+  position:relative; z-index:10; flex:1;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:80px 80px 100px;
+  max-width:1000px;
+}
+.con-hero-eyebrow {
+  display:flex; align-items:center; gap:14px; margin-bottom:28px;
+}
+.con-eye-line { width:40px; height:1px; background:var(--gold); }
+.con-hero-eyebrow span {
+  font-size:10px; font-weight:700; letter-spacing:.35em; text-transform:uppercase;
+  color:rgba(201,168,76,.75);
+}
+.con-hero-content h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,5vw,4.8rem);
+  font-weight:900; line-height:1.0; letter-spacing:-.03em;
+  color:#fff; margin-bottom:24px;
+}
+.con-hero-content h1 em { font-style:italic; color:var(--gold-light); }
+.con-hero-sub {
+  font-size:clamp(15px,1.5vw,18px); font-weight:300;
+  color:rgba(255,255,255,.62); line-height:1.85;
+  max-width:640px; margin-bottom:40px;
+}
+.con-hero-sub strong { color:rgba(255,255,255,.88); font-weight:600; }
+.con-hero-actions { display:flex; gap:24px; align-items:center; flex-wrap:wrap; }
+.con-breadcrumb {
+  position:absolute; bottom:0; left:0; right:0; z-index:10;
+  padding:18px 80px;
+  border-top:1px solid rgba(201,168,76,.12);
+  background:rgba(5,2,2,.5);
+  backdrop-filter:blur(8px);
+  display:flex; align-items:center; gap:12px;
+}
+.con-bc-item {
+  font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.4); text-decoration:none; transition:color .3s;
+}
+.con-bc-item:hover { color:var(--gold-light); }
+.con-bc-item.current { color:rgba(201,168,76,.7); }
+.con-bc-sep { width:4px; height:4px; border-radius:50%; background:rgba(201,168,76,.3); }
+
+/* ══════════════════════════════════════
+   INTRO BAND
+══════════════════════════════════════ */
+.con-intro-band {
+  background:var(--parchment);
+  border-bottom:1px solid var(--border);
+}
+.con-intro-inner {
+  max-width:1200px; margin:0 auto; padding:80px 80px;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center;
+}
+.con-intro-left {}
+.con-intro-text {
+  font-size:17px; font-weight:300; color:var(--muted);
+  line-height:1.95; margin-top:28px;
+}
+.con-intro-text strong { color:var(--wine); font-weight:600; }
+.con-intro-right {
+  display:flex; flex-direction:column; gap:20px;
+}
+.con-intro-feat {
+  display:flex; align-items:flex-start; gap:18px;
+  padding:22px 24px;
+  border:1px solid var(--border);
+  background:var(--white);
+  transition:all .3s;
+}
+.con-intro-feat:hover {
+  border-color:rgba(201,168,76,.4);
+  box-shadow:0 8px 32px var(--shadow);
+  transform:translateX(4px);
+}
+.con-feat-icon {
+  width:44px; height:44px; flex-shrink:0;
+  background:linear-gradient(135deg,var(--wine-deep),var(--wine));
+  display:flex; align-items:center; justify-content:center;
+}
+.con-feat-icon svg { width:20px; height:20px; stroke:#fff; fill:none; stroke-width:1.6; stroke-linecap:round; }
+.con-feat-label { font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:var(--wine); margin-bottom:5px; }
+.con-feat-text { font-size:14px; font-weight:400; color:var(--muted); line-height:1.6; }
+
+/* ══════════════════════════════════════
+   DIVIDER HEADING
+══════════════════════════════════════ */
+.con-divider {
+  padding:72px 80px 48px;
+  text-align:center;
+  position:relative;
+}
+.con-divider-line {
+  position:absolute; top:50%; left:80px; right:80px;
+  height:1px; background:var(--border);
+  z-index:0;
+}
+.con-divider-inner {
+  position:relative; z-index:1; display:inline-block;
+  background:var(--cream); padding:0 32px;
+}
+.con-divider-label {
+  font-size:10px; font-weight:700; letter-spacing:.4em; text-transform:uppercase;
+  color:var(--wine); margin-bottom:12px;
+}
+.con-divider-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  font-weight:900; letter-spacing:-.02em;
+  color:var(--ink);
+}
+.con-divider-title em { font-style:italic; color:var(--wine); }
+
+/* ══════════════════════════════════════
+   CARDS GRID
+══════════════════════════════════════ */
+.con-cards {
+  background:var(--cream);
+  padding:0 80px 100px;
+}
+.con-cards-grid {
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns:repeat(4,1fr); gap:2px;
+}
+.con-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  padding:48px 32px;
+  position:relative; overflow:hidden;
+  display:flex; flex-direction:column;
+  transition:all .4s cubic-bezier(.4,0,.2,1);
+  cursor:default;
+}
+.con-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--wine),var(--gold));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform .4s ease;
+}
+.con-card:hover::before { transform:scaleX(1); }
+.con-card:hover {
+  border-color:rgba(201,168,76,.3);
+  box-shadow:0 20px 60px var(--shadow);
+  transform:translateY(-6px);
+}
+.con-card-num {
+  font-family:'Playfair Display',serif;
+  font-size:72px; font-weight:900;
+  color:rgba(123,30,34,.06);
+  line-height:1; margin-bottom:8px;
+  letter-spacing:-.04em;
+  transition:color .3s;
+}
+.con-card:hover .con-card-num { color:rgba(123,30,34,.1); }
+.con-card-icon {
+  width:52px; height:52px; margin-bottom:20px;
+  background:linear-gradient(135deg,var(--wine-deep),var(--wine));
+  display:flex; align-items:center; justify-content:center;
+  flex-shrink:0;
+  transition:transform .3s;
+}
+.con-card:hover .con-card-icon { transform:scale(1.08); }
+.con-card-icon svg { width:24px; height:24px; stroke:#fff; fill:none; stroke-width:1.6; stroke-linecap:round; }
+.con-card-tag {
+  display:inline-block; margin-bottom:16px;
+  padding:5px 14px; font-size:9px; font-weight:700;
+  letter-spacing:.25em; text-transform:uppercase;
+  background:rgba(123,30,34,.07); color:var(--wine);
+  border:1px solid rgba(123,30,34,.1);
+}
+.con-card-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem; font-weight:900; line-height:1.1;
+  letter-spacing:-.02em; color:var(--ink);
+  margin-bottom:16px;
+}
+.con-card-title em { font-style:italic; color:var(--wine); }
+.con-card-text {
+  font-size:14px; font-weight:300; color:var(--muted);
+  line-height:1.85; flex:1;
+}
+.con-card-footer {
+  margin-top:28px; padding-top:20px;
+  border-top:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+}
+.con-card-cta {
+  font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--wine); text-decoration:none;
+  display:flex; align-items:center; gap:8px; transition:gap .3s, color .3s;
+}
+.con-card-cta:hover { color:var(--gold-dark); gap:12px; }
+.con-card-cta svg { width:14px; height:14px; stroke:currentColor; fill:none; stroke-width:2; }
+.con-card-dot {
+  width:8px; height:8px; border-radius:50%;
+  background:linear-gradient(135deg,var(--wine),var(--gold));
+  flex-shrink:0;
+}
+
+/* Featured card style (first one or hovered) */
+.con-card.con-card--featured {
+  background:linear-gradient(160deg,var(--wine-deep),var(--wine-dark));
+  border-color:rgba(201,168,76,.25);
+  color:#fff;
+}
+.con-card--featured::before { transform:scaleX(1); background:linear-gradient(to right,var(--gold-dark),var(--gold-light)); }
+.con-card--featured .con-card-num { color:rgba(255,255,255,.06); }
+.con-card--featured .con-card-icon { background:rgba(255,255,255,.1); border:1px solid rgba(201,168,76,.3); }
+.con-card--featured .con-card-tag { background:rgba(201,168,76,.15); color:var(--gold-light); border-color:rgba(201,168,76,.2); }
+.con-card--featured .con-card-title { color:#fff; }
+.con-card--featured .con-card-title em { color:var(--gold-light); }
+.con-card--featured .con-card-text { color:rgba(255,255,255,.62); }
+.con-card--featured .con-card-footer { border-top-color:rgba(255,255,255,.1); }
+.con-card--featured .con-card-cta { color:var(--gold-light); }
+.con-card--featured .con-card-cta:hover { color:#fff; }
+.con-card--featured:hover { background:linear-gradient(160deg,#3a0b10,#5c1015); transform:translateY(-6px); }
+
+/* ══════════════════════════════════════
+   PROCESS STEPS
+══════════════════════════════════════ */
+.con-process {
+  background:var(--parchment);
+  padding:100px 80px;
+  border-top:1px solid var(--border);
+}
+.con-process-inner { max-width:1200px; margin:0 auto; }
+.con-process-header { text-align:center; margin-bottom:64px; }
+.con-process-steps {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;
+}
+.con-process-steps::before {
+  content:''; position:absolute; top:36px; left:10%; right:10%;
+  height:1px; background:linear-gradient(to right,transparent,var(--gold),var(--gold),transparent);
+  z-index:0; opacity:.4;
+}
+.con-process-step {
+  position:relative; z-index:1;
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  padding:0 20px;
+}
+.con-ps-circle {
+  width:72px; height:72px; border-radius:50%;
+  background:var(--white);
+  border:2px solid var(--border-gold);
+  display:flex; align-items:center; justify-content:center;
+  margin-bottom:24px;
+  transition:all .3s;
+  position:relative;
+}
+.con-process-step:hover .con-ps-circle {
+  border-color:var(--gold);
+  box-shadow:0 0 0 6px rgba(201,168,76,.08);
+}
+.con-ps-circle svg { width:26px; height:26px; stroke:var(--wine); fill:none; stroke-width:1.6; stroke-linecap:round; }
+.con-ps-num {
+  position:absolute; top:-8px; right:-8px;
+  width:22px; height:22px; border-radius:50%;
+  background:var(--wine); color:#fff;
+  font-size:9px; font-weight:800; letter-spacing:.05em;
+  display:flex; align-items:center; justify-content:center;
+}
+.con-ps-title {
+  font-family:'Playfair Display',serif;
+  font-size:1.1rem; font-weight:700; color:var(--ink);
+  margin-bottom:10px;
+}
+.con-ps-text { font-size:13px; font-weight:300; color:var(--muted); line-height:1.7; }
+
+/* ══════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════ */
+.nos-cta {
+  background:var(--cream); padding:100px 80px; position:relative; overflow:hidden;
+}
+.nos-cta::before {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(135deg,var(--wine-deep) 0%,var(--wine) 50%,var(--wine-deep) 100%);
+}
+.nos-cta::after {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,4 76,22 76,70 40,88 4,70 4,22' fill='none' stroke='%23C9A84C' stroke-width='.6' opacity='.08'/%3E%3C/svg%3E") repeat;
+  background-size:80px 92px; pointer-events:none;
+}
+.nos-cta-inner {
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; max-width:1200px; margin:0 auto;
+}
+.nos-cta-title { font-family:'Playfair Display',serif; font-size:clamp(2rem,3.5vw,3.5rem); font-weight:900; line-height:1.05; letter-spacing:-.03em; color:#fff; margin-top:16px; margin-bottom:24px; }
+.nos-cta-title em { font-style:italic; color:var(--gold-light); }
+.nos-cta-text { font-size:15px; font-weight:300; color:rgba(255,255,255,.55); line-height:1.9; max-width:420px; margin-bottom:40px; }
+.nos-cta-right { display:flex; flex-direction:column; gap:20px; }
+.nos-cta-item { display:flex; align-items:center; gap:18px; padding:22px 24px; background:rgba(255,255,255,.04); border:1px solid rgba(201,168,76,.15); transition:all .3s; }
+.nos-cta-item:hover { background:rgba(201,168,76,.07); border-color:rgba(201,168,76,.3); }
+.nos-cta-item-icon { width:44px; height:44px; flex-shrink:0; border:1px solid rgba(201,168,76,.25); display:flex; align-items:center; justify-content:center; }
+.nos-cta-item-icon svg { width:20px; height:20px; stroke:var(--gold); fill:none; stroke-width:1.5; stroke-linecap:round; }
+.nos-cta-item-label { font-size:9px; font-weight:700; letter-spacing:.22em; text-transform:uppercase; color:rgba(255,255,255,.38); margin-bottom:4px; }
+.nos-cta-item-val { font-size:15px; font-weight:500; color:#fff; text-decoration:none; transition:color .3s; display:block; }
+.nos-cta-item-val:hover { color:var(--gold-light); }
+.nos-cta-actions { display:flex; gap:20px; flex-wrap:wrap; }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+.ind-footer-wrap { background-color:#0D0D0D; color:#F5F0E8; font-family:'Outfit',sans-serif; position:relative; overflow:hidden; border-top:1px solid rgba(201,168,76,.12); }
+.ind-f-top-accent { height:4px; width:100%; background:linear-gradient(to right,#5C0E0E,#8B1A1A,#C9A84C,#5C0E0E); opacity:.85; }
+.ind-f-main { max-width:1300px; margin:0 auto; padding:80px 60px 40px; position:relative; z-index:1; }
+.ind-f-grid { display:grid; grid-template-columns:1.4fr .8fr .8fr 1fr; gap:50px; margin-bottom:60px; }
+.ind-f-brand { display:flex; flex-direction:column; gap:25px; }
+.ind-f-logo-container { position:relative; display:inline-block; max-width:200px; overflow:hidden; }
+.ind-f-logo-img { max-width:100%; height:auto; display:block; }
+.ind-f-slogan { font-family:'Playfair Display',serif; font-size:17px; font-style:italic; font-weight:400; color:var(--gold-light); line-height:1.3; max-width:280px; letter-spacing:.5px; }
+.ind-f-contact-strip { display:flex; flex-direction:column; gap:15px; }
+.ind-f-contact-link { display:flex; align-items:center; gap:12px; color:#A89880; text-decoration:none; font-size:13px; transition:color .3s; }
+.ind-f-contact-link:hover { color:#F5F0E8; }
+.ind-f-contact-link svg { width:16px; height:16px; color:var(--wine); stroke-width:2; }
+.ind-f-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:#F5F0E8; margin-bottom:30px; position:relative; }
+.ind-f-title::after { content:''; position:absolute; left:0; bottom:-10px; width:20px; height:1px; background:var(--gold); }
+.ind-f-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.ind-f-item-link { text-decoration:none; color:#A89880; font-size:13px; transition:all .3s ease; display:inline-block; }
+.ind-f-item-link:hover { color:var(--gold-light); transform:translateX(5px); }
+.ind-f-social-wrap { display:flex; gap:15px; margin-top:25px; }
+.ind-f-social-icon { width:42px; height:42px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; transition:transform .4s cubic-bezier(.175,.885,.32,1.275),filter .3s,box-shadow .3s; box-shadow:0 4px 10px rgba(0,0,0,.3); }
+.ind-f-social-icon.linkedin { background-color:#0077B5; }
+.ind-f-social-icon.instagram { background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.ind-f-social-icon.facebook { background-color:#1877F2; }
+.ind-f-social-icon:hover { transform:scale(1.2) translateY(-5px); filter:brightness(1.1); box-shadow:0 8px 20px rgba(0,0,0,.5); z-index:2; }
+.ind-f-bottom { border-top:1px solid rgba(255,255,255,.05); padding:30px 60px; max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,.3); }
+.ind-f-copy span { color:var(--gold); }
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1100px){
+  .con-cards-grid { grid-template-columns:1fr 1fr; }
+  .con-process-steps { grid-template-columns:1fr 1fr; gap:40px; }
+  .con-process-steps::before { display:none; }
+  .con-intro-inner { grid-template-columns:1fr; gap:48px; }
+  .nos-cta-inner { grid-template-columns:1fr; gap:52px; }
+  .ind-f-grid { grid-template-columns:1fr 1fr; gap:40px; }
+}
+@media(max-width:768px){
+  .con-hero-content { padding:56px 24px 100px; }
+  .con-breadcrumb { padding:14px 24px; }
+  .con-intro-inner { padding:60px 24px; }
+  .con-divider { padding:56px 24px 36px; }
+  .con-cards { padding:0 24px 80px; }
+  .con-cards-grid { grid-template-columns:1fr; }
+  .con-process { padding:80px 24px; }
+  .nos-cta { padding:80px 24px; }
+  .ind-f-main { padding:60px 25px 100px; }
+  .ind-f-grid { grid-template-columns:1fr; text-align:center; }
+  .ind-f-brand { align-items:center; }
+  .ind-f-title::after { left:50%; transform:translateX(-50%); }
+  .ind-f-contact-strip { align-items:center; }
+  .ind-f-social-wrap { justify-content:center; }
+  .ind-f-bottom { flex-direction:column; gap:15px; text-align:center; padding:30px 20px 120px; }
+}
+</style>
+</head>
+<body>
+<!-- ══ NAVBAR ══ -->
+<div class="ind-header-wrapper" id="navbar">
+<div class="ind-top-bar">
+<div class="ind-top-info">
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<a href="tel:5540152551">55 4015 2551</a>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+
+
+</div>
+<div class="ind-top-item" style="opacity:.6;">INDUSECC</div>
+</div>
+<header class="ind-main-header">
+<div class="ind-container">
+<div class="ind-logo-group">
+<a class="ind-logo-wrap" href="index.html">
+<img alt="Logo INDUSECC" class="ind-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</a>
+<div class="ind-logo-sep"></div>
+<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+</div>
+<nav class="ind-nav">
+<div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="nosotros.html">¿Quiénes Somos?</a></div>
+<div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">IMPLEMENTACIÓN DE UN SISTEMA DE GESTIÓN</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">CERTIFICACIÓN DE NORMAS ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">CONSULTORÍA Y ASESORÍA EN NORMATIVIDAD ISO</a>
+<a class="ind-drop-link" href="auditorias.html">AUDITORÍAS</a>
+</div>
+</div>
+<div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+</nav>
+<div class="ind-actions">
+<!-- Accesibilidad -->
+<div class="ind-a11y-wrap">
+<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel">
+<div class="a11y-panel-title">Accesibilidad</div>
+<div class="a11y-row">
+<span class="a11y-label">Tamaño de fuente</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="fontDown">A−</button>
+<button class="a11y-ctrl-btn" id="fontUp">A+</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Alto contraste</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="contrastBtn">◑</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Reducir movimiento</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="motionBtn">⏸</button>
+</div>
+</div>
+<div class="a11y-sep"></div>
+<button class="a11y-reset" id="a11yReset">↺ Restablecer</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<span id="themeLabel">Oscuro</span>
+</button>
+<!-- CTA -->
+<a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+</div>
+</div>
+</header>
+</div>
+<!-- Mobile nav -->
+<nav class="ind-bottom-nav">
+<div class="ind-bnav-container">
+<a class="ind-bnav-item" href="index.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span>Inicio</span>
+</a>
+<a class="ind-bnav-item active" href="javascript:void(0)" id="btnServicesMobile">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+<span>Servicios</span>
+</a>
+<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+<span>WhatsApp</span>
+</a>
+
+
+<a class="ind-bnav-item" href="contacto.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+
+  </path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span>Contacto</span>
+</a>
+<button class="ind-bnav-item ctrl-item" id="btnMobControls">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3">
+
+</circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
+<span>Ajustes</span>
+</button>
+</div>
+</nav>
+<!-- Overlays + Sheets -->
+<div class="ind-sheet-overlay" id="sheetOverlay"></div>
+<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
+<div class="ind-bottom-sheet" id="servicesSheet">
+<div class="ind-sheet-header">
+<h3 class="ind-sheet-title">Servicios</h3>
+<button class="ind-sheet-close" id="closeSheet">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+</button>
+</div>
+<div class="ind-sheet-grid">
+<a class="ind-sheet-link" data-i18n="nav_cap" href="implementacion-sistema.html">Implementación de un sistema de gestión <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_iso" href="certificacion-iso_.html">Certificación ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_mejora" href="consultoria-asesoria.html">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_audit" href="auditorias.html">Auditorías <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+</div>
+</div>
+<div class="mob-ctrl-sheet" id="mobCtrlSheet">
+<div class="mob-ctrl-header">
+<span class="mob-ctrl-title">Ajustes</span>
+<button class="mob-ctrl-close" id="closeMobCtrl">✕</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Tema</div>
+<button class="mob-theme-btn" onclick="toggleTheme()">
+<span id="mobThemeLabel">Activar Oscuro</span>
+<svg id="mobThemeIcon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Accesibilidad</div>
+<div class="mob-a11y-grid">
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Tamaño de texto</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobFontDown">A−</button>
+<button class="mob-a11y-btn" id="mobFontUp">A+</button>
+</div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Alto contraste</span>
+<div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobContrastBtn">◑</button></div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Reducir movimiento</span>
+<div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobMotionBtn">⏸</button></div>
+</div>
+</div>
+<button class="mob-a11y-reset" id="mobA11yReset">↺ Restablecer todo</button>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+     HERO BANNER
+══════════════════════════════════════ -->
+<section class="con-hero">
+<img alt="Consultoría INDUSECC" class="con-hero-img" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=1400&amp;q=80"/>
+<div class="con-hero-overlay"></div>
+<div class="con-hero-content">
+<div class="con-hero-eyebrow">
+<div class="con-eye-line"></div>
+<span>Indusecc — Servicios Especializados</span>
+</div>
+<h1>Consultoría y Asesoría en<br/><em>Normatividad ISO.</em></h1>
+<p class="con-hero-sub">
+      Realizamos <strong>acompañamiento y guía</strong> a nuestros clientes en la implementación de medidas para mejorar resultados, de acuerdo con la <strong>normatividad que se solicite</strong>.
+    </p>
+<div class="con-hero-actions">
+<a class="btn-primary shine-el" href="contacto.html">
+<span>Solicitar Asesoría</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<a class="btn-ghost" href="#modalidades">
+<div class="btn-ghost-line"></div>
+        Ver modalidades
+      </a>
+</div>
+</div>
+<div class="con-breadcrumb">
+<a class="con-bc-item" href="index.html">Inicio</a>
+<div class="con-bc-sep"></div>
+<a class="con-bc-item" href="/servicios.html">Servicios</a>
+<div class="con-bc-sep"></div>
+<span class="con-bc-item current">Consultoría y Asesoría ISO</span>
+</div>
+</section>
+<!-- ══════════════════════════════════════
+     INTRO BAND
+══════════════════════════════════════ -->
+<div class="con-intro-band">
+<div class="con-intro-inner">
+<div class="con-intro-left reveal">
+<div class="section-tag">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Nuestro Enfoque</span>
+</div>
+<h2 class="section-title">Guía experta para tu<br/><em>cumplimiento normativo.</em></h2>
+<div class="section-rule"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p class="con-intro-text reveal reveal-delay-2">
+        Desde el diagnóstico inicial hasta la implementación completa, en <strong>INDUSECC</strong> ofrecemos asesoría personalizada conforme al <strong>enfoque que la empresa interese</strong>. Adaptamos cada proceso a la realidad y ritmo de tu organización, garantizando resultados sólidos y sostenibles.
+      </p>
+</div>
+<div class="con-intro-right">
+<div class="con-intro-feat reveal reveal-delay-1">
+<div class="con-feat-icon">
+<svg viewbox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+</div>
+<div>
+<div class="con-feat-label">Enfoque Personalizado</div>
+<div class="con-feat-text">Adaptamos la asesoría al enfoque que la empresa necesite según la normatividad solicitada.</div>
+</div>
+</div>
+<div class="con-intro-feat reveal reveal-delay-2">
+<div class="con-feat-icon">
+<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+</div>
+<div>
+<div class="con-feat-label">Flexibilidad de Horario</div>
+<div class="con-feat-text">Disponible por hora, semana, mes o año — según las necesidades y etapa de tu proyecto.</div>
+</div>
+</div>
+<div class="con-intro-feat reveal reveal-delay-3">
+<div class="con-feat-icon">
+<svg viewbox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+</div>
+<div>
+<div class="con-feat-label">Mejora Continua</div>
+<div class="con-feat-text">Acompañamiento desde la implementación hasta el mantenimiento de estándares de calidad.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+     DIVIDER HEADING
+══════════════════════════════════════ -->
+<div class="con-divider" id="modalidades">
+<div class="con-divider-inner reveal">
+<div class="con-divider-label">Puede ser Realizada Mediante</div>
+<h2 class="con-divider-title">Elige la modalidad que <em>mejor se adapte</em> a ti</h2>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+     CARDS DE MODALIDADES
+══════════════════════════════════════ -->
+<div class="con-cards">
+<div class="con-cards-grid">
+<!-- Card 1 — Por Hora -->
+<div class="con-card con-card--featured reveal reveal-delay-1">
+<div class="con-card-num">01</div>
+<div class="con-card-icon">
+<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+</div>
+<div class="con-card-tag">Por Hora</div>
+<h3 class="con-card-title">Asesoría<br/><em>Por Hora.</em></h3>
+<p class="con-card-text">Ideal para resolver dudas puntuales y obtener orientación inmediata en normativas y certificaciones. Sin compromisos de largo plazo.</p>
+<div class="con-card-footer">
+<a class="con-card-cta" href="contacto.html">
+          Solicitar
+          <svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+<div class="con-card-dot" style="background:linear-gradient(135deg,var(--gold-dark),var(--gold-light));"></div>
+</div>
+</div>
+<!-- Card 2 — Semanal -->
+<div class="con-card reveal reveal-delay-2">
+<div class="con-card-num">02</div>
+<div class="con-card-icon">
+<svg viewbox="0 0 24 24"><rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+</div>
+<div class="con-card-tag">Semanal</div>
+<h3 class="con-card-title">Asesoría<br/><em>Semanal.</em></h3>
+<p class="con-card-text">Seguimiento continuo para avanzar en la implementación de sistemas de gestión de calidad. Sesiones estructuradas semana a semana.</p>
+<div class="con-card-footer">
+<a class="con-card-cta" href="contacto.html">
+          Solicitar
+          <svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+<div class="con-card-dot"></div>
+</div>
+</div>
+<!-- Card 3 — Mensual -->
+<div class="con-card reveal reveal-delay-3">
+<div class="con-card-num">03</div>
+<div class="con-card-icon">
+<svg viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+</div>
+<div class="con-card-tag">Mensual</div>
+<h3 class="con-card-title">Asesoría<br/><em>Mensual.</em></h3>
+<p class="con-card-text">Soporte estratégico para optimizar procesos y garantizar el cumplimiento normativo. Revisión y ajuste periódico del avance organizacional.</p>
+<div class="con-card-footer">
+<a class="con-card-cta" href="contacto.html">
+          Solicitar
+          <svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+<div class="con-card-dot"></div>
+</div>
+</div>
+<!-- Card 4 — Anual -->
+<div class="con-card reveal reveal-delay-4">
+<div class="con-card-num">04</div>
+<div class="con-card-icon">
+<svg viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<div class="con-card-tag">Anual</div>
+<h3 class="con-card-title">Asesoría<br/><em>Anual.</em></h3>
+<p class="con-card-text">Acompañamiento integral para mantener estándares de calidad y mejora continua. La solución más completa para organizaciones comprometidas con la excelencia.</p>
+<div class="con-card-footer">
+<a class="con-card-cta" href="contacto.html">
+          Solicitar
+          <svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+</a>
+<div class="con-card-dot"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+     PROCESO
+══════════════════════════════════════ -->
+<section class="con-process">
+<div class="con-process-inner">
+<div class="con-process-header reveal">
+<div class="section-tag" style="justify-content:center;">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Cómo Trabajamos</span>
+</div>
+<h2 class="section-title" style="text-align:center;">Nuestro proceso de <em>asesoría.</em></h2>
+<div class="section-rule" style="justify-content:center; margin-top:20px;"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+</div>
+<div class="con-process-steps">
+<div class="con-process-step reveal reveal-delay-1">
+<div class="con-ps-circle">
+<svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><line x1="21" x2="16.65" y1="21" y2="16.65"></line></svg>
+<div class="con-ps-num">1</div>
+</div>
+<h4 class="con-ps-title">Diagnóstico</h4>
+<p class="con-ps-text">Analizamos la situación actual de tu empresa e identificamos brechas respecto a la normativa objetivo.</p>
+</div>
+<div class="con-process-step reveal reveal-delay-2">
+<div class="con-ps-circle">
+<svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+<div class="con-ps-num">2</div>
+</div>
+<h4 class="con-ps-title">Plan de acción</h4>
+<p class="con-ps-text">Diseñamos un plan estructurado y cronograma de implementación adaptado a tu modalidad de asesoría.</p>
+</div>
+<div class="con-process-step reveal reveal-delay-3">
+<div class="con-ps-circle">
+<svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+<div class="con-ps-num">3</div>
+</div>
+<h4 class="con-ps-title">Acompañamiento</h4>
+<p class="con-ps-text">Guiamos a tu equipo en cada etapa de la implementación con sesiones presenciales o virtuales.</p>
+</div>
+<div class="con-process-step reveal reveal-delay-4">
+<div class="con-ps-circle">
+<svg viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+<div class="con-ps-num">4</div>
+</div>
+<h4 class="con-ps-title">Seguimiento</h4>
+<p class="con-ps-text">Evaluamos resultados, realizamos ajustes y garantizamos la mejora continua de tu sistema.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════════════════════════════════
+     CTA SECTION
+══════════════════════════════════════ -->
+<section class="nos-cta">
+<div class="nos-cta-inner">
+<div class="nos-cta-left reveal">
+<div class="section-tag" style="margin-bottom:4px;">
+<div class="section-tag-line" style="background:rgba(201,168,76,.5);"></div>
+<span class="section-tag-text" style="color:rgba(201,168,76,.7);">Comienza Hoy</span>
+</div>
+<h2 class="nos-cta-title">¿Listo para <em>elevar</em><br/>tus estándares?</h2>
+<p class="nos-cta-text">Contáctanos y recibe una evaluación sin costo. Nuestros expertos te orientarán hacia la modalidad de asesoría que mejor se adapte a las necesidades de tu empresa.</p>
+<div class="nos-cta-actions">
+<a class="btn-primary shine-el" href="https://wa.me/525540152551" style="background:linear-gradient(135deg,#1a7a3c,#25a550,#2ecc71);" target="_blank">
+<svg fill="currentColor" style="width:16px;height:16px;" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+<span>Ing. Danna </span>
+</a>
+
+<a class="btn-primary shine-el" href="https://wa.me/525616044547" style="background:linear-gradient(135deg,#1a7a3c,#25a550,#2ecc71);" target="_blank">
+<svg fill="currentColor" style="width:16px;height:16px;" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+<span>Lic. Erick </span>
+</a>
+
+
+<a class="btn-wine shine-el" href="contacto.html">
+<span>Solicitar diagnóstico</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" style="width:15px;height:15px;" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+
+
+
+</div>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="nos-cta-item">
+<div class="nos-cta-item-icon"><svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+<div>
+<div class="nos-cta-item-label">Teléfono directo</div>
+<a class="nos-cta-item-val" href="tel:5540152551">55 4015 2551</a>
+</div>
+</div>
+<div class="nos-cta-item" style="margin-top:2px;">
+<div class="nos-cta-item-icon"><svg viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg></div>
+<div>
+<div class="nos-cta-item-label">Correo electrónico</div>
+<a class="nos-cta-item-val" href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a>
+</div>
+</div>
+<div class="nos-cta-item" style="margin-top:2px;">
+<div class="nos-cta-item-icon"><svg viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></div>
+<div>
+<div class="nos-cta-item-label">Ubicación</div>
+<div class="nos-cta-item-val">CDMX, México</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="ind-footer-wrap">
+<div class="ind-f-top-accent"></div>
+<div class="ind-f-main">
+<div class="ind-f-grid reveal">
+
+<div class="ind-f-brand">
+<div class="ind-f-logo-container">
+<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</div>
+<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+<div class="ind-f-contact-strip">
+<a class="ind-f-contact-link" href="tel:5540152551">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+<div class="ind-f-contact-link">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, México
+          </div>
+</div>
+</div>
+
+<div>
+<h4 class="ind-f-title">Navegación</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+<li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+<li><a class="ind-f-item-link" href="nosotros.html">¿Quiénes Somos?</a></li>
+<li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="implementacion-sistema.html">Implementción de un sistema de gestión</a></li>
+<li><a class="ind-f-item-link" href="consultoria-asesoria.html">Consultoria y asesoria</a></li>
+<li><a class="ind-f-item-link" href="certificacion-iso_.html">Certificación ISO</a></li>
+<li><a class="ind-f-item-link" href="auditorias.html">Auditorías</a></li>
+</ul>
+</div>
+
+<div>
+<h4 class="ind-f-title">Legal y Soporte</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="contacto.html">Contáctanos</a></li>
+<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+<li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
+<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+</ul>
+</div>
+
+</div> <div class="ind-f-bottom">
+<div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+<div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
+</div>
+
+</div> </footer>
+<script>
+/* ══ SCROLL REVEAL ══ */
+(function(){
+  const all = document.querySelectorAll('.reveal');
+  all.forEach(el => el.classList.add('animate-ready'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+  },{ threshold:0.01, rootMargin:'0px 0px 80px 0px' });
+  all.forEach(el => io.observe(el));
+})();
+
+/* ══ NAVBAR SCROLL ══ */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>50);
+});
+
+/* ══ SMOOTH SCROLL ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const href=this.getAttribute('href');
+    if(href&&href!=='#'){ const t=document.querySelector(href); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+  });
+});
+
+/* ══ SHARED STATE ══ */
+let isMidnight   = localStorage.getItem('ind-theme')==='midnight';
+let fontLevel    = parseInt(localStorage.getItem('ind-font')||'0');
+let highContrast = localStorage.getItem('ind-contrast')==='1';
+let reducedMo    = localStorage.getItem('ind-motion')==='1';
+
+/* ══ THEME ══ */
+function applyTheme(){
+  document.body.classList.toggle('midnight',isMidnight);
+  const sunSVG='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moonSVG='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  const di=document.getElementById('themeIcon'), dl=document.getElementById('themeLabel');
+  const mi=document.getElementById('mobThemeIcon'), ml=document.getElementById('mobThemeLabel');
+  if(isMidnight){
+    if(di) di.innerHTML=sunSVG; if(dl) dl.textContent='Claro';
+    if(mi) mi.innerHTML=sunSVG; if(ml) ml.textContent='Volver a Normal';
+  } else {
+    if(di) di.innerHTML=moonSVG; if(dl) dl.textContent='Oscuro';
+    if(mi) mi.innerHTML=moonSVG; if(ml) ml.textContent='Activar Oscuro';
+  }
+}
+function toggleTheme(){ isMidnight=!isMidnight; localStorage.setItem('ind-theme',isMidnight?'midnight':'normal'); applyTheme(); }
+
+/* ══ FONT ══ */
+function applyFontLevel(){
+  document.body.classList.remove('a11y-large');
+  if(fontLevel===1){ document.body.classList.add('a11y-large'); document.body.style.fontSize=''; }
+  else if(fontLevel===-1){ document.body.style.fontSize='14px'; }
+  else { document.body.style.fontSize=''; }
+  ['fontUp','mobFontUp'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.toggle('active',fontLevel===1); });
+  ['fontDown','mobFontDown'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.toggle('active',fontLevel===-1); });
+}
+function applyContrast(){ document.body.classList.toggle('a11y-high-contrast',highContrast); ['contrastBtn','mobContrastBtn'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.toggle('active',highContrast); }); }
+function applyMotion(){ document.body.classList.toggle('a11y-reduced-motion',reducedMo); ['motionBtn','mobMotionBtn'].forEach(id=>{ const el=document.getElementById(id); if(el) el.classList.toggle('active',reducedMo); }); }
+function wireBtn(id,fn){ const el=document.getElementById(id); if(el) el.addEventListener('click',fn); }
+
+/* ══ DESKTOP A11Y PANEL ══ */
+const a11yTrigger=document.getElementById('a11yTrigger'), a11yPanel=document.getElementById('a11yPanel');
+if(a11yTrigger&&a11yPanel){
+  a11yTrigger.addEventListener('click',e=>{ e.stopPropagation(); a11yPanel.classList.toggle('open'); });
+  document.addEventListener('click',e=>{ if(!a11yPanel.contains(e.target)&&e.target!==a11yTrigger) a11yPanel.classList.remove('open'); });
+}
+wireBtn('fontUp',()=>{ fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('fontDown',()=>{ fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('contrastBtn',()=>{ highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('motionBtn',()=>{ reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('a11yReset',()=>{ fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* ══ MOBILE CONTROLS SHEET ══ */
+const mobCtrlSheet=document.getElementById('mobCtrlSheet'), mobCtrlOverlay=document.getElementById('mobCtrlOverlay');
+function openMobCtrl(){ if(mobCtrlSheet) mobCtrlSheet.classList.add('active'); if(mobCtrlOverlay) mobCtrlOverlay.classList.add('active'); }
+function closeMobCtrlFn(){ if(mobCtrlSheet) mobCtrlSheet.classList.remove('active'); if(mobCtrlOverlay) mobCtrlOverlay.classList.remove('active'); }
+wireBtn('btnMobControls',openMobCtrl); wireBtn('closeMobCtrl',closeMobCtrlFn);
+if(mobCtrlOverlay) mobCtrlOverlay.addEventListener('click',closeMobCtrlFn);
+wireBtn('mobFontUp',()=>{ fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobFontDown',()=>{ fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobContrastBtn',()=>{ highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('mobMotionBtn',()=>{ reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('mobA11yReset',()=>{ fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* ══ SERVICES SHEET ══ */
+const btnServicesMobile=document.getElementById('btnServicesMobile');
+const servicesSheet=document.getElementById('servicesSheet');
+const sheetOverlay=document.getElementById('sheetOverlay');
+const closeSheetBtn=document.getElementById('closeSheet');
+function openSvc(){ if(servicesSheet) servicesSheet.classList.add('active'); if(sheetOverlay) sheetOverlay.classList.add('active'); }
+function closeSvc(){ if(servicesSheet) servicesSheet.classList.remove('active'); if(sheetOverlay) sheetOverlay.classList.remove('active'); }
+if(btnServicesMobile) btnServicesMobile.addEventListener('click',openSvc);
+if(closeSheetBtn) closeSheetBtn.addEventListener('click',closeSvc);
+if(sheetOverlay) sheetOverlay.addEventListener('click',closeSvc);
+
+/* ══ INIT ══ */
+applyTheme(); applyFontLevel(); applyContrast(); applyMotion();
+</script>
+</body>
+</html>

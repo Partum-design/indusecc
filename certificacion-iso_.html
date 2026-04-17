@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Certificación de Normas ISO — INDUSECC</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --wine:#7B1E22;--wine-dark:#550F13;--wine-deep:#360A0D;--wine-hi:#9B2429;--wine-soft:#A84147;
+  --gold:#C9A84C;--gold-light:#E8C97A;--gold-dark:#8B6914;--gold-pale:#F5EDD6;
+  --white:#FFFFFF;--cream:#FBF8F3;--parchment:#F2EDE4;
+  --ink:#1C1008;--text:#2A1A1B;--muted:#7A6060;
+  --border:rgba(123,30,34,.12);--border-gold:rgba(201,168,76,.25);--shadow:rgba(123,30,34,.15);
+}
+body.midnight{--cream:#0D0D12;--white:#13131A;--parchment:#181820;--ink:#F0ECE4;--text:#E8E0D8;--muted:#A09898;background:#0D0D12;color:#E8E0D8;}
+body.midnight .ind-header-wrapper{background:#050508!important;}
+body.midnight .ind-top-bar{background:#02020A;}
+body.midnight .ind-main-header{background:rgba(5,5,8,.98);}
+body.midnight .modal-box{background:#1a0508;}
+html{scroll-behavior:smooth;}
+body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;padding-top:115px;transition:background .4s,color .4s;}
+@media(max-width:1150px){body{padding-top:70px;}}
+
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes shineSweep{0%{left:-100%}18%{left:120%}100%{left:120%}}
+@keyframes shine-logo{0%{left:-150%}20%{left:150%}100%{left:150%}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes floatR{0%,100%{transform:translateY(0) rotate(3deg)}50%{transform:translateY(-10px) rotate(-3deg)}}
+@keyframes orbit{from{transform:rotate(0deg) translateX(130px) rotate(0deg)}to{transform:rotate(360deg) translateX(130px) rotate(-360deg)}}
+@keyframes orbitRev{from{transform:rotate(0deg) translateX(85px) rotate(0deg)}to{transform:rotate(-360deg) translateX(85px) rotate(360deg)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(201,168,76,.4)}70%{box-shadow:0 0 0 16px rgba(201,168,76,0)}}
+@keyframes stampIn{0%{transform:scale(2) rotate(-20deg);opacity:0}60%{transform:scale(.95) rotate(2deg);opacity:1}80%{transform:scale(1.05) rotate(-1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes checkDraw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+@keyframes scanLine{0%{top:-4px}100%{top:100%}}
+@keyframes glitch1{0%,100%{clip-path:polygon(0 0,100% 0,100% 35%,0 35%);transform:translate(-4px)}50%{clip-path:polygon(0 0,100% 0,100% 35%,0 35%);transform:translate(4px)}}
+@keyframes glitch2{0%,100%{clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);transform:translate(4px)}50%{clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);transform:translate(-4px)}}
+@keyframes progressFill{from{width:0}to{width:var(--pct)}}
+@keyframes borderRun{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+@keyframes cardFlip{0%{transform:rotateY(0)}100%{transform:rotateY(180deg)}}
+@keyframes popIn{0%{transform:scale(0) rotate(-10deg);opacity:0}80%{transform:scale(1.05) rotate(1deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes slideRight2{from{opacity:0;transform:translateX(-40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes typewriter{from{width:0}to{width:100%}}
+@keyframes cursor{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes ribbonPulse{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.02)}}
+
+/* ══ REVEAL ══ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-36px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.reveal-l.visible{opacity:1;transform:translateX(0);}
+.reveal-r{opacity:0;transform:translateX(36px);transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1);}
+.reveal-r.visible{opacity:1;transform:translateX(0);}
+.reveal-delay-1{transition-delay:.1s;}.reveal-delay-2{transition-delay:.2s;}.reveal-delay-3{transition-delay:.3s;}.reveal-delay-4{transition-delay:.4s;}.reveal-delay-5{transition-delay:.5s;}.reveal-delay-6{transition-delay:.6s;}.reveal-delay-7{transition-delay:.7s;}
+
+/* ══ SHINE ══ */
+.shine-el{position:relative;overflow:hidden;}
+.shine-el::after{content:'';position:absolute;top:0;left:-100%;width:55%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.30) 50%,rgba(255,255,255,0) 100%);transform:skewX(-20deg);animation:shineSweep 3.8s ease-in-out infinite;pointer-events:none;z-index:10;}
+
+/* ══ NAVBAR ══ */
+.ind-header-wrapper{position:fixed;top:0;width:100%;z-index:1000;background:#0A0A0A;box-shadow:0 2px 15px rgba(0,0,0,.5);transition:box-shadow .4s,background .4s;}
+.ind-header-wrapper.scrolled{background:rgba(5,5,5,.98);box-shadow:0 4px 30px rgba(0,0,0,.8),0 1px 0 rgba(201,168,76,.18);}
+.ind-top-bar{background:#000;border-bottom:1px solid rgba(201,168,76,.1);padding:0 60px;display:flex;justify-content:space-between;align-items:center;height:35px;}
+.ind-top-info{display:flex;gap:25px;}
+.ind-top-item{display:flex;align-items:center;gap:8px;color:#A89880;font-size:10px;font-weight:500;letter-spacing:1px;text-transform:uppercase;}
+.ind-top-item svg{width:12px;height:12px;color:var(--gold);}
+.ind-top-item a{color:inherit;text-decoration:none;transition:color .3s;}
+.ind-top-item a:hover{color:var(--gold-light);}
+.ind-main-header{background:rgba(10,10,10,.98);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.05);}
+.ind-container{max-width:1400px;margin:0 auto;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;}
+.ind-logo-group{display:flex;align-items:center;gap:20px;}
+.ind-logo-wrap{text-decoration:none;display:flex;align-items:center;}
+.ind-logo-img{max-height:48px;width:auto;display:block;}
+.ind-logo-sep{width:1px;height:30px;background:rgba(201,168,76,.2);}
+.ind-header-tagline{font-family:'Playfair Display',serif;color:#A89880;font-size:15px;font-style:italic;max-width:200px;line-height:1.3;}
+.ind-nav{display:flex;align-items:center;gap:30px;height:100%;}
+.ind-menu-item{position:relative;height:100%;display:flex;align-items:center;}
+.ind-link{text-decoration:none;color:rgba(255,255,255,.9);font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;transition:.3s;display:flex;align-items:center;}
+.ind-link:hover,.ind-link.active{color:var(--gold-light);}
+.ind-dropdown{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:280px;background:#0D0D0D;border:1px solid rgba(201,168,76,.2);padding:10px 0;opacity:0;visibility:hidden;transition:all .3s;z-index:200;}
+.ind-menu-item:hover .ind-dropdown{opacity:1;visibility:visible;}
+.ind-drop-link{display:block;padding:12px 20px;color:rgba(255,255,255,.6);text-decoration:none;font-size:10px;font-weight:600;text-transform:uppercase;transition:.3s;}
+.ind-drop-link:hover{background:rgba(139,26,26,.15);color:#fff;padding-left:25px;border-left:3px solid var(--wine);}
+.ind-actions{display:flex;align-items:center;gap:8px;}
+.ind-a11y-wrap{position:relative;display:flex;align-items:center;}
+.a11y-trigger{width:34px;height:34px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.a11y-trigger:hover{border-color:var(--gold);background:rgba(201,168,76,.12);}
+.a11y-trigger svg{width:17px;height:17px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.a11y-panel{position:absolute;top:calc(100% + 12px);right:0;width:252px;background:#111;border:1px solid rgba(201,168,76,.3);box-shadow:0 24px 64px rgba(0,0,0,.7);z-index:9999;padding:18px;opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .22s,transform .22s,visibility .22s;pointer-events:none;}
+.a11y-panel.open{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;}
+.a11y-panel-title{font-size:9px;font-weight:700;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid rgba(201,168,76,.15);}
+.a11y-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.a11y-label{font-size:12px;color:rgba(255,255,255,.72);font-weight:400;}
+.a11y-controls{display:flex;gap:5px;}
+.a11y-ctrl-btn{min-width:32px;height:32px;padding:0 6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.a11y-ctrl-btn:hover{background:rgba(201,168,76,.22);border-color:var(--gold);color:#fff;}
+.a11y-ctrl-btn.active{background:rgba(201,168,76,.32);border-color:var(--gold);color:var(--gold-light);}
+.a11y-sep{height:1px;background:rgba(255,255,255,.08);margin:14px 0;}
+.a11y-reset{width:100%;padding:9px;background:rgba(123,30,34,.32);border:1px solid rgba(123,30,34,.5);color:rgba(255,255,255,.75);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.a11y-reset:hover{background:var(--wine);color:#fff;}
+.theme-toggle-btn{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.3);padding:7px 12px;cursor:pointer;transition:all .3s;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.8);white-space:nowrap;}
+.theme-toggle-btn:hover{border-color:var(--gold);color:var(--gold-light);background:rgba(201,168,76,.12);}
+.theme-toggle-btn svg{width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.ind-btn-cta{background:linear-gradient(135deg,var(--wine-deep),var(--wine));color:#fff;text-decoration:none;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:12px 22px;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:.3s;border:none;cursor:pointer;position:relative;overflow:hidden;}
+.ind-btn-cta:hover{opacity:.9;}
+/* Mobile */
+.ind-bottom-nav{display:none;position:fixed;bottom:0;left:0;width:100%;height:65px;background:#000;border-top:1px solid rgba(201,168,76,.2);z-index:2000;}
+.ind-bnav-container{display:flex;justify-content:space-around;align-items:center;height:100%;max-width:600px;margin:0 auto;}
+.ind-bnav-item{text-decoration:none;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(255,255,255,.5);transition:.3s;flex:1;border:none;background:transparent;cursor:pointer;}
+.ind-bnav-item svg{width:20px;height:20px;}
+.ind-bnav-item span{font-size:8px;font-weight:600;text-transform:uppercase;}
+.ind-bnav-item.active{color:var(--gold);}
+.ind-bnav-item.wa-item{color:#25D366;}
+.ind-bnav-item.ctrl-item{color:rgba(255,255,255,.5);}
+.ind-sheet-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(5px);z-index:2001;opacity:0;visibility:hidden;transition:.3s;}
+.ind-sheet-overlay.active{opacity:1;visibility:visible;}
+.ind-bottom-sheet{position:fixed;bottom:-100%;left:0;width:100%;background:#0a0a0a;z-index:2002;border-radius:20px 20px 0 0;padding:25px 20px 80px;transition:bottom .4s cubic-bezier(.4,0,.2,1);border-top:2px solid var(--gold);}
+.ind-bottom-sheet.active{bottom:0;}
+.ind-sheet-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.ind-sheet-title{font-family:'Playfair Display',serif;color:var(--gold);font-size:20px;font-weight:700;font-style:italic;}
+.ind-sheet-close{background:rgba(255,255,255,.05);border:none;width:32px;height:32px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;}
+.ind-sheet-grid{display:grid;gap:8px;}
+.ind-sheet-link{padding:14px 18px;background:rgba(255,255,255,.02);border-radius:10px;color:#fff;text-decoration:none;font-size:10px;font-weight:600;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;transition:.2s;}
+.ind-sheet-link:hover{background:rgba(201,168,76,.08);color:var(--gold-light);}
+.mob-ctrl-sheet{position:fixed;bottom:-100%;left:0;width:100%;background:#0a0a0a;z-index:3000;border-radius:20px 20px 0 0;padding:24px 20px 90px;transition:bottom .4s cubic-bezier(.4,0,.2,1);border-top:2px solid var(--gold);}
+.mob-ctrl-sheet.active{bottom:0;}
+.mob-ctrl-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid rgba(201,168,76,.15);}
+.mob-ctrl-title{font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;font-weight:700;font-style:italic;}
+.mob-ctrl-close{background:rgba(255,255,255,.06);border:none;width:34px;height:34px;border-radius:50%;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;}
+.mob-ctrl-section{margin-bottom:20px;}
+.mob-ctrl-section-label{font-size:9px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,168,76,.6);margin-bottom:10px;}
+.mob-theme-btn{width:100%;padding:13px 16px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.25);color:rgba(255,255,255,.8);font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;cursor:pointer;transition:all .3s;}
+.mob-theme-btn:hover{background:rgba(201,168,76,.1);border-color:var(--gold);}
+.mob-theme-btn svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.8;}
+.mob-a11y-grid{display:grid;gap:10px;}
+.mob-a11y-row{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);}
+.mob-a11y-label{font-size:13px;color:rgba(255,255,255,.75);}
+.mob-a11y-controls{display:flex;gap:6px;}
+.mob-a11y-btn{min-width:36px;height:36px;padding:0 8px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.85);font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.mob-a11y-btn.active{background:rgba(201,168,76,.3);border-color:var(--gold);color:var(--gold-light);}
+.mob-a11y-btn:hover{background:rgba(201,168,76,.2);border-color:var(--gold);color:#fff;}
+.mob-a11y-reset{width:100%;margin-top:12px;padding:12px;background:rgba(123,30,34,.3);border:1px solid rgba(123,30,34,.4);color:rgba(255,255,255,.75);font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
+.mob-a11y-reset:hover{background:var(--wine);color:#fff;}
+@media(max-width:1150px){
+  .ind-nav,.ind-actions,.ind-top-bar,.ind-logo-sep,.ind-header-tagline{display:none;}
+  .ind-bottom-nav{display:block;}
+  .ind-container{height:70px;justify-content:center;}
+  .ind-logo-img{max-height:42px;}
+}
+
+/* ══ SECTION HELPERS ══ */
+.container{max-width:1280px;margin:0 auto;}
+.section-tag{display:inline-flex;align-items:center;gap:12px;margin-bottom:20px;}
+.section-tag-line{width:32px;height:1px;background:var(--gold);}
+.section-tag-text{font-size:11px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--wine);}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,3.8vw,3.6rem);font-weight:900;line-height:1.02;letter-spacing:-.03em;color:var(--ink);}
+.section-title em{font-style:italic;color:var(--wine);}
+.section-rule{display:flex;align-items:center;gap:0;margin:20px 0 0;}
+.rule-wine{width:72px;height:2px;background:var(--wine);}
+.rule-gold{width:36px;height:1px;background:linear-gradient(to right,var(--gold),transparent);margin-left:4px;}
+
+/* ══════════════════════════════
+   HERO — CERTIFICADO HOLOGRÁFICO
+══════════════════════════════ */
+.cert-hero{
+  min-height:calc(100vh - 115px);position:relative;overflow:hidden;
+  display:flex;align-items:center;background:#1a0508;
+}
+@media(max-width:1150px){.cert-hero{min-height:calc(100vh - 70px);}
+  .steps-tracker,.modalities-section,.norms-section,.simulator-section,.success-section,.cert-cta{padding:80px 40px;}
+  .cert-hero-body{padding:40px;}}
+#certCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;}
+.cert-hero-overlay{position:absolute;inset:0;z-index:2;
+  background:radial-gradient(ellipse 65% 80% at 15% 55%,rgba(123,30,34,.55) 0%,transparent 60%),
+  linear-gradient(155deg,rgba(26,5,8,.72) 0%,rgba(40,8,14,.35) 60%,rgba(26,5,8,.85) 100%),
+  linear-gradient(to top,rgba(26,5,8,.9) 0%,transparent 50%);}
+.cert-hero-bar{position:absolute;left:0;top:0;bottom:0;width:4px;z-index:20;
+  background:linear-gradient(to bottom,transparent,rgba(201,168,76,.2) 10%,var(--gold) 35%,var(--gold-light) 55%,var(--gold-dark) 85%,transparent);}
+
+.cert-hero-body{position:relative;z-index:10;max-width:1300px;margin:0 auto;padding:60px;width:100%;
+  display:grid;grid-template-columns:1fr 520px;gap:60px;align-items:center;}
+@media(max-width:1100px){.cert-hero-body{grid-template-columns:1fr;}}
+
+/* Hero left */
+.cert-hero-pre{font-size:9px;font-weight:700;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:10px;opacity:0;animation:fadeUp .6s .2s ease forwards;}
+.cert-hero-eyebrow{display:inline-flex;align-items:center;gap:12px;margin-bottom:28px;opacity:0;animation:fadeUp .7s .3s ease forwards;}
+.cert-hero-eyebrow-dot{width:6px;height:6px;background:var(--gold);transform:rotate(45deg);}
+.cert-hero-eyebrow-line{width:40px;height:1px;background:linear-gradient(to right,var(--gold),transparent);}
+.cert-hero-eyebrow-tag{font-size:9px;font-weight:700;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);}
+.cert-hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,5.5vw,5.2rem);font-weight:900;line-height:.92;letter-spacing:-.03em;color:#fff;margin-bottom:24px;opacity:0;animation:fadeUp .9s .4s ease forwards;}
+.cert-hero-title em{display:block;font-style:italic;font-weight:300;
+  background:linear-gradient(108deg,var(--gold-dark) 0%,var(--gold) 35%,var(--gold-light) 65%,var(--gold) 100%);
+  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:shimmer 5s linear infinite;}
+.cert-hero-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.62);line-height:1.9;max-width:520px;margin-bottom:40px;opacity:0;animation:fadeUp .8s .55s ease forwards;}
+.cert-hero-sub strong{color:rgba(255,255,255,.9);font-weight:500;}
+
+/* Typewriter text */
+.cert-typewriter-wrap{display:flex;align-items:center;gap:8px;margin-bottom:40px;opacity:0;animation:fadeUp .7s .65s ease forwards;}
+.cert-typewriter-label{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.cert-typewriter{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-light);white-space:nowrap;overflow:hidden;border-right:2px solid var(--gold);animation:cursor 1s ease infinite;}
+
+/* Hero actions */
+.cert-hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .75s ease forwards;}
+.btn-cert-primary{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));color:var(--wine-deep);padding:18px 40px;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .35s;position:relative;overflow:hidden;}
+.btn-cert-primary:hover{transform:translateY(-2px);box-shadow:0 20px 60px rgba(201,168,76,.4);}
+.btn-cert-primary svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .3s;}
+.btn-cert-primary:hover svg{transform:translateX(5px);}
+.btn-cert-ghost{display:inline-flex;align-items:center;gap:10px;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.5);text-decoration:none;transition:color .3s;border:1px solid rgba(255,255,255,.12);padding:17px 28px;}
+.btn-cert-ghost:hover{color:var(--gold-light);border-color:rgba(201,168,76,.4);}
+
+/* Live badge */
+.cert-live-badge{display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.25);padding:8px 16px;opacity:0;animation:fadeUp .6s .8s ease forwards;}
+.cert-live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:pulse 2s ease infinite;}
+.cert-live-text{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:#22c55e;}
+
+/* Stats row */
+.cert-hero-stats{display:flex;gap:0;margin-top:52px;padding-top:32px;border-top:1px solid rgba(201,168,76,.12);opacity:0;animation:fadeUp .7s 1s ease forwards;}
+.cert-hero-stat{flex:1;padding-right:32px;border-right:1px solid rgba(201,168,76,.1);}
+.cert-hero-stat:last-child{border-right:none;padding-right:0;padding-left:32px;}
+.cert-hero-stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:5px;}
+.cert-hero-stat-lbl{font-size:8.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.62);line-height:1.5;}
+
+/* Hero right — certificate visual */
+.cert-visual{position:relative;display:flex;align-items:center;justify-content:center;opacity:0;animation:fadeIn 1.2s .7s ease forwards;}
+@media(max-width:1100px){.cert-visual{display:none;}}
+
+/* Certificate card */
+.cert-card-wrap{position:relative;width:440px;height:320px;perspective:1000px;}
+.cert-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.4,0,.2,1);cursor:pointer;}
+.cert-card-wrap:hover .cert-card{transform:rotateY(8deg) rotateX(-4deg);}
+.cert-card-front{
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(53,10,13,.97) 0%,rgba(75,14,18,.95) 100%);
+  border:1px solid rgba(201,168,76,.4);
+  padding:32px 36px;overflow:hidden;
+}
+/* Holographic shimmer on card */
+.cert-card-front::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(201,168,76,.04) 0%,transparent 40%,rgba(123,30,34,.08) 60%,transparent 100%);
+  animation:shimmer 4s linear infinite;background-size:200% 200%;
+}
+.cert-card-accent{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(to right,var(--gold-dark),var(--gold),var(--gold-light),var(--gold),var(--gold-dark));animation:ribbonPulse 3s ease infinite;}
+.cert-card-watermark{position:absolute;right:-20px;bottom:-20px;font-family:'Playfair Display',serif;font-size:9rem;font-weight:900;color:rgba(201,168,76,.04);pointer-events:none;line-height:1;}
+.cert-card-logo-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
+.cert-card-logo{height:32px;opacity:.85;filter:brightness(1.2);}
+.cert-card-stamp-wrap{position:relative;width:64px;height:64px;}
+.cert-card-stamp{width:100%;height:100%;}
+.cert-card-body{text-align:center;margin-bottom:20px;}
+.cert-card-label{font-size:8px;font-weight:700;letter-spacing:.35em;text-transform:uppercase;color:rgba(201,168,76,.85);margin-bottom:6px;}
+.cert-card-norm{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;color:var(--gold-light);letter-spacing:-.02em;line-height:1;}
+.cert-card-norm-name{font-size:10px;font-weight:400;color:rgba(255,255,255,.8);margin-top:4px;letter-spacing:.08em;}
+.cert-card-divider{height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,.3),transparent);margin:16px 0;}
+.cert-card-footer-row{display:flex;justify-content:space-between;align-items:center;}
+.cert-card-org{font-size:9px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+.cert-card-valid{font-size:9px;font-weight:600;color:rgba(255,255,255,.65);}
+/* Scan line effect */
+.cert-card-scan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,rgba(201,168,76,.4),transparent);animation:scanLine 3s linear infinite;pointer-events:none;z-index:5;}
+/* Corner decorations */
+.cert-corner{position:absolute;width:18px;height:18px;}
+.cert-corner-tl{top:12px;left:12px;border-top:1px solid rgba(201,168,76,.5);border-left:1px solid rgba(201,168,76,.5);}
+.cert-corner-tr{top:12px;right:12px;border-top:1px solid rgba(201,168,76,.5);border-right:1px solid rgba(201,168,76,.5);}
+.cert-corner-bl{bottom:12px;left:12px;border-bottom:1px solid rgba(201,168,76,.5);border-left:1px solid rgba(201,168,76,.5);}
+.cert-corner-br{bottom:12px;right:12px;border-bottom:1px solid rgba(201,168,76,.5);border-right:1px solid rgba(201,168,76,.5);}
+
+/* Orbiting ISO badges */
+.orbit-system{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.orbit-badge{position:absolute;width:40px;height:40px;background:rgba(8,1,4,.92);border:1px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--gold);transform-origin:center center;white-space:nowrap;}
+.ob1{animation:orbit 12s linear infinite;}
+.ob2{animation:orbit 12s linear infinite;animation-delay:-3s;}
+.ob3{animation:orbit 12s linear infinite;animation-delay:-6s;}
+.ob4{animation:orbit 12s linear infinite;animation-delay:-9s;}
+/* Floating metric cards */
+.cert-float-card{position:absolute;background:rgba(53,10,13,.95);border:1px solid rgba(201,168,76,.3);border-left:3px solid var(--gold);padding:10px 14px;white-space:nowrap;z-index:15;}
+.cert-float-num{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--gold-light);line-height:1;}
+.cert-float-lbl{font-size:8px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:2px;}
+.cf1{top:-12%;right:-10%;animation:float 4s ease-in-out infinite;}
+.cf2{bottom:0%;left:-14%;animation:float 5s 1s ease-in-out infinite;}
+
+/* Norm selector inside visual */
+.cert-norm-selector{display:flex;flex-direction:column;gap:8px;margin-top:24px;}
+.cert-norm-btn{display:flex;align-items:center;gap:10px;padding:8px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.2);cursor:pointer;transition:all .25s;text-align:left;}
+.cert-norm-btn:hover,.cert-norm-btn.active-norm{background:rgba(201,168,76,.15);border-color:var(--gold);}
+.cert-norm-btn-code{font-family:'Playfair Display',serif;font-size:.8rem;font-weight:700;color:var(--gold-light);min-width:64px;}
+.cert-norm-btn-name{font-size:10px;font-weight:500;color:rgba(255,255,255,.85);}
+
+/* ══════════════════════════════
+   INTERACTIVE STEP TRACKER
+══════════════════════════════ */
+.steps-tracker{background:linear-gradient(160deg,var(--wine-deep) 0%,#1a0508 50%,var(--wine-deep) 100%);padding:100px 60px;position:relative;overflow:hidden;}
+.steps-tracker::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23C9A84C' stroke-width='.3' opacity='.04'/%3E%3C/svg%3E") repeat;background-size:60px;pointer-events:none;}
+
+.tracker-inner{max-width:1280px;margin:0 auto;}
+.tracker-header{text-align:center;margin-bottom:72px;}
+.tracker-title-light{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.6rem);font-weight:900;line-height:1;letter-spacing:-.03em;color:#fff;}
+.tracker-title-light em{font-style:italic;font-weight:300;background:linear-gradient(108deg,var(--gold-dark),var(--gold),var(--gold-light));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite;}
+.tracker-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.7);margin-top:16px;line-height:1.8;}
+
+/* Interactive progress bar */
+.tracker-progress{display:flex;align-items:center;gap:0;margin-bottom:64px;position:relative;}
+.tracker-progress::before{content:'';position:absolute;top:50%;left:0;right:0;height:2px;background:rgba(201,168,76,.12);transform:translateY(-50%);z-index:0;}
+.tracker-progress-fill{position:absolute;top:50%;left:0;height:2px;background:linear-gradient(to right,var(--gold-dark),var(--gold-light));transform:translateY(-50%);transition:width 1s cubic-bezier(.4,0,.2,1);z-index:1;}
+
+.tracker-step-dot {
+  position: relative;
+  z-index: 2; /* Nivel superior para tapar la línea */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  cursor: pointer;
+}
+
+.tracker-dot {
+  width: 44px;
+  height: 44px;
+  /* CAMBIO: Fondo sólido (el mismo de la sección) para ocultar la línea */
+  background: #1a0508; 
+  border: 2px solid rgba(201, 168, 76, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .4s;
+  position: relative;
+}
+
+
+/* Cuando el paso está activo */
+.tracker-dot.t-active {
+  border-color: var(--gold);
+  background: var(--wine); /* Fondo sólido vino */
+  box-shadow: 0 0 0 6px rgba(201, 168, 76, 0.15);
+}
+
+/* Cuando el paso está completado */
+.tracker-dot.t-done {
+  border-color: #22c55e;
+  background: #1a0508; /* Mantenemos fondo sólido para que no se vea la línea verde detrás */
+  box-shadow: inset 0 0 10px rgba(34, 197, 94, 0.2);
+}
+
+.tracker-dot-num{font-family:'Playfair Display',serif;font-size:.85rem;font-weight:700;color:rgba(255,255,255,.6);transition:color .3s;}
+.tracker-dot.t-active .tracker-dot-num{color:#fff;}
+.tracker-dot.t-done .tracker-dot-num{display:none;}
+.tracker-dot-check{display:none;width:18px;height:18px;stroke:#22c55e;fill:none;stroke-width:2.5;}
+.tracker-dot.t-done .tracker-dot-check{display:block;}
+.tracker-dot-lbl{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:10px;text-align:center;max-width:80px;transition:color .3s;}
+.tracker-dot.t-active .tracker-dot-lbl{color:var(--gold);}
+.tracker-dot.t-done .tracker-dot-lbl{color:rgba(34,197,94,.7);}
+
+/* Step content panel */
+.tracker-panel{background:rgba(255,255,255,.06);border:1px solid rgba(201,168,76,.18);border-top:3px solid var(--gold);padding:48px;position:relative;overflow:hidden;min-height:320px;}
+.tracker-panel::after{content:'';position:absolute;top:0;right:0;bottom:0;width:3px;background:linear-gradient(to bottom,transparent,rgba(201,168,76,.15),transparent);}
+.tracker-panel-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+@media(max-width:900px){.tracker-panel-inner{grid-template-columns:1fr;}}
+.tracker-panel-step{display:none;animation:fadeUp .5s ease;}
+.tracker-panel-step.t-panel-active{display:block;}
+.tp-tag{font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.tp-num{font-family:'Playfair Display',serif;font-size:4rem;font-weight:900;color:rgba(201,168,76,.08);line-height:1;position:absolute;top:20px;right:32px;}
+.tp-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:700;color:#fff;margin-bottom:16px;line-height:1.1;text-shadow:0 1px 8px rgba(0,0,0,.3);}
+.tp-desc{font-size:14px;font-weight:300;color:rgba(255,255,255,.78);line-height:1.85;margin-bottom:24px;}
+.tp-checklist{display:flex;flex-direction:column;gap:10px;}
+.tp-check{display:flex;align-items:flex-start;gap:12px;}
+.tp-check-icon{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+.tp-check-icon svg{width:100%;height:100%;stroke:var(--gold);fill:none;stroke-width:2;}
+.tp-check-text{font-size:12px;font-weight:400;color:rgba(255,255,255,.82);line-height:1.6;}
+/* Panel image side */
+.tracker-panel-img{position:relative;overflow:hidden;height:280px;}
+.tracker-panel-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.7) saturate(.6) contrast(1.1);transition:transform .6s;}
+.tracker-panel:hover .tracker-panel-img img{transform:scale(1.04);}
+.tracker-panel-img-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,30,34,.45),rgba(12,2,4,.6));}
+.tracker-panel-img-badge{position:absolute;bottom:16px;left:16px;background:rgba(6,1,3,.9);border:1px solid rgba(201,168,76,.25);border-left:3px solid var(--gold);padding:10px 14px;}
+.tpib-val{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--gold-light);}
+.tpib-lbl{font-size:8px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.3);}
+
+/* Nav arrows */
+.tracker-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:28px;}
+.tracker-nav-btn{width:44px;height:44px;background:rgba(255,255,255,.04);border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;}
+.tracker-nav-btn:hover{border-color:var(--gold);background:rgba(201,168,76,.1);}
+.tracker-nav-btn svg{width:18px;height:18px;stroke:rgba(255,255,255,.6);fill:none;stroke-width:2;}
+.tracker-nav-btn:hover svg{stroke:var(--gold-light);}
+.tracker-nav-label{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.65);}
+
+/* ══════════════════════════════
+   3 MODALITIES — FLIP CARDS
+══════════════════════════════ */
+.modalities-section{background:var(--parchment);padding:100px 60px;position:relative;overflow:hidden;}
+.modalities-section::before{content:'CERT';position:absolute;right:-20px;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-size:clamp(8rem,18vw,20rem);font-weight:900;color:rgba(123,30,34,.04);pointer-events:none;line-height:1;letter-spacing:-.06em;}
+.modalities-header{text-align:center;margin-bottom:64px;}
+.modalities-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+@media(max-width:900px){.modalities-grid{grid-template-columns:1fr;max-width:560px;}}
+
+/* Flip card */
+.flip-card{height:440px;perspective:1200px;cursor:pointer;}
+.flip-card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.4,0,.2,1);}
+.flip-card:hover .flip-card-inner{transform:rotateY(180deg);}
+.flip-card-front,.flip-card-back{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+
+.flip-card-front{background:#fff;border:1px solid rgba(201,168,76,.15);display:flex;flex-direction:column;overflow:hidden;}
+.flip-front-img{height:180px;position:relative;overflow:hidden;}
+.flip-front-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.75) saturate(.6);transition:transform .6s;}
+.flip-card:hover .flip-front-img img{transform:scale(1.05);}
+.flip-front-img-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(123,30,34,.3),rgba(8,1,3,.5));}
+.flip-front-num{position:absolute;top:16px;left:16px;font-family:'Playfair Display',serif;font-size:2.5rem;font-weight:900;color:rgba(201,168,76,.6);line-height:1;}
+.flip-front-body{padding:22px 24px 20px;flex:1;display:flex;flex-direction:column;gap:10px;border-top:3px solid var(--wine);}
+
+.flip-front-tag{font-size:8.5px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--wine);}
+.flip-front-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:var(--ink);line-height:1.2;}
+.flip-front-hint{font-size:11px;font-weight:400;color:var(--muted);margin-top:auto;display:flex;align-items:center;gap:6px;}
+.flip-front-hint svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2;}
+
+.flip-card-back{background:linear-gradient(145deg,#3d0b0f,var(--wine));transform:rotateY(180deg);padding:26px 28px 24px;display:flex;flex-direction:column;border:1px solid rgba(201,168,76,.25);overflow:hidden;position:relative;}
+.flip-card-back::after{content:'ISO';position:absolute;bottom:-20px;right:-10px;font-family:'Playfair Display',serif;font-size:7rem;font-weight:900;color:rgba(201,168,76,.05);pointer-events:none;line-height:1;letter-spacing:-.04em;}
+.flip-back-tag{font-size:8px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,201,122,.95);flex-shrink:0;}
+.flip-back-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:700;color:#fff;line-height:1.2;margin:8px 0 10px;flex-shrink:0;}
+.flip-back-desc{font-size:12px;font-weight:300;color:rgba(255,255,255,.88);line-height:1.7;margin-bottom:14px;flex-shrink:0;}
+.flip-back-features{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;flex:1;}
+.flip-back-feat{display:flex;align-items:center;gap:8px;font-size:10.5px;font-weight:500;color:rgba(255,255,255,.92);}
+.flip-back-feat::before{content:'';width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex-shrink:0;}
+.flip-back-cta{display:inline-flex;align-items:center;gap:8px;padding:11px 22px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));border:none;color:var(--wine-deep);text-decoration:none;font-size:8.5px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;transition:all .3s;align-self:flex-start;flex-shrink:0;white-space:nowrap;}
+.flip-back-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.35);}
+.flip-back-cta svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2;}
+
+/* Express badge */
+.express-badge{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;background:rgba(234,179,8,.1);border:1px solid rgba(234,179,8,.3);margin-top:8px;align-self:flex-start;}
+.express-badge-dot{width:6px;height:6px;border-radius:50%;background:#eab308;animation:pulse 2s ease infinite;}
+.express-badge-text{font-size:8px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#eab308;}
+
+/* ══════════════════════════════
+   ISO NORMS — INTERACTIVE GRID
+══════════════════════════════ */
+.norms-section{background:var(--cream);padding:100px 60px;}
+.norms-inner{max-width:1280px;margin:0 auto;}
+.norms-header{text-align:center;margin-bottom:64px;}
+.norms-subtitle{font-size:13px;font-weight:300;color:var(--muted);margin-top:16px;line-height:1.8;}
+
+/* Norm detail sidebar */
+.norms-layout{display:grid;grid-template-columns:1fr 360px;gap:40px;align-items:start;}
+@media(max-width:1000px){.norms-layout{grid-template-columns:1fr;}}
+
+.norms-grid{display:flex;flex-direction:column;gap:3px;}
+.norm-item{display:flex;align-items:stretch;gap:0;border:1px solid rgba(201,168,76,.12);background:#fff;overflow:hidden;cursor:pointer;transition:all .35s;position:relative;}
+.norm-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--wine);transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.4,0,.2,1);}
+.norm-item:hover::before,.norm-item.norm-active::before{transform:scaleY(1);}
+.norm-item:hover,.norm-item.norm-active{border-color:rgba(201,168,76,.3);background:var(--gold-pale);}
+.norm-item-left{padding:20px 20px 20px 24px;display:flex;align-items:center;gap:20px;flex:1;}
+.norm-item-code{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--wine);min-width:90px;line-height:1;}
+.norm-item-code span{display:block;font-size:8px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-dark);margin-top:2px;}
+.norm-item-info{}
+.norm-item-name{font-size:12px;font-weight:700;color:var(--ink);text-transform:uppercase;letter-spacing:.08em;margin-bottom:3px;}
+.norm-item-desc{font-size:11px;font-weight:300;color:var(--muted);line-height:1.5;}
+.norm-item-arrow{padding:0 20px;display:flex;align-items:center;}
+.norm-item-arrow svg{width:16px;height:16px;stroke:rgba(201,168,76,.4);fill:none;stroke-width:2;transition:all .3s;}
+.norm-item:hover .norm-item-arrow svg,.norm-item.norm-active .norm-item-arrow svg{stroke:var(--wine);transform:translateX(4px);}
+.norm-item-year{padding:0 16px;display:flex;align-items:center;background:rgba(123,30,34,.05);border-left:1px solid rgba(201,168,76,.1);min-width:64px;justify-content:center;}
+.norm-item-year span{font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--wine);transform:rotate(-90deg);white-space:nowrap;}
+
+/* Norm detail panel */
+.norm-detail{background:#fff;border:1px solid rgba(201,168,76,.15);border-top:4px solid var(--wine);position:sticky;top:130px;overflow:hidden;}
+.norm-detail-header{padding:28px 28px 20px;background:linear-gradient(135deg,var(--wine-dark),var(--wine));}
+.norm-detail-code{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--gold-light);line-height:1;margin-bottom:4px;}
+.norm-detail-year{font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.norm-detail-name{font-size:13px;font-weight:700;color:rgba(255,255,255,.85);text-transform:uppercase;letter-spacing:.1em;margin-top:6px;line-height:1.3;}
+.norm-detail-body{padding:24px 28px;}
+.norm-detail-desc{font-size:13px;font-weight:300;color:var(--muted);line-height:1.85;margin-bottom:20px;}
+.norm-detail-applies{margin-bottom:20px;}
+.norm-detail-applies-title{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--wine);margin-bottom:10px;}
+.norm-detail-sectors{display:flex;flex-wrap:wrap;gap:6px;}
+.norm-sector{padding:4px 10px;background:rgba(123,30,34,.06);border:1px solid rgba(123,30,34,.1);font-size:10px;font-weight:600;color:var(--wine);letter-spacing:.08em;}
+.norm-detail-cta{display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(135deg,var(--gold-dark),var(--gold));color:var(--wine-deep);font-size:9.5px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;margin:0 28px 28px;}
+.norm-detail-cta:hover{opacity:.9;transform:translateY(-1px);}
+.norm-detail-cta svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2.5;margin-left:8px;}
+
+/* ══════════════════════════════
+   PROGRESS SIMULATOR
+══════════════════════════════ */
+.simulator-section{background:linear-gradient(160deg,var(--wine-deep) 0%,#1a0508 60%,var(--wine-deep) 100%);padding:100px 60px;position:relative;overflow:hidden;}
+.simulator-section::before{content:'';position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(123,30,34,.08),transparent 70%);pointer-events:none;}
+.simulator-inner{max-width:1100px;margin:0 auto;}
+.simulator-header{text-align:center;margin-bottom:60px;}
+.sim-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:900;color:#fff;line-height:1;letter-spacing:-.03em;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.3);}
+.sim-title em{font-style:italic;font-weight:300;background:linear-gradient(108deg,var(--gold-dark),var(--gold),var(--gold-light));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite;}
+.sim-sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.72);line-height:1.8;}
+
+/* Simulator UI */
+
+.sim-ui {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    /* CAMBIO: Reducimos padding para dar aire al contenido */
+    padding: 30px 25px; 
+    backdrop-filter: blur(8px);
+    /* AÑADIR: Asegura que nada sobrepase el borde */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+.sim-controls{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;}
+@media(max-width:700px){.sim-controls{grid-template-columns:1fr;}}
+.sim-label{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(232,201,122,.9);margin-bottom:10px;display:block;}
+.sim-select{width:100%;padding:12px 16px;background:rgba(255,255,255,.1);border:1px solid rgba(201,168,76,.3);color:#fff;font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;appearance:none;cursor:pointer;outline:none;transition:border-color .3s;}
+.sim-select:focus{border-color:rgba(201,168,76,.6);}
+.sim-select option{background:#360A0D;}
+.sim-slider-wrap{grid-column:1/-1;}
+.sim-slider{width:100%;appearance:none;height:4px;background:rgba(255,255,255,.2);outline:none;border-radius:2px;}
+.sim-slider::-webkit-slider-thumb{appearance:none;width:20px;height:20px;background:var(--gold);cursor:pointer;}
+.sim-slider::-webkit-slider-thumb:hover{background:var(--gold-light);}
+.sim-slider-labels{display:flex;justify-content:space-between;margin-top:8px;}
+.sim-slider-label{font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);}
+
+/* Results */
+.sim-results {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Se ajusta solo */
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+@media(max-width:700px){.sim-results{grid-template-columns:1fr;}}
+
+.sim-result-card {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    padding: 20px;
+    text-align: center; /* Mejor lectura */
+}
+.sim-result-label{font-size:9px;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:rgba(201,168,76,.85);margin-bottom:8px;}
+.sim-result-val{font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--gold-light);line-height:1;}
+.sim-result-note{font-size:10px;font-weight:400;color:rgba(255,255,255,.65);margin-top:4px;line-height:1.5;}
+
+/* Timeline output */
+
+.sim-timeline {
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+    margin-top: 20px;
+    /* Evita que cualquier sub-elemento empuje el ancho */
+    overflow: visible; 
+}
+
+
+.sim-timeline-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.12);
+    position: relative;
+    margin-bottom: 12px;
+    /* IMPORTANTE: */
+    border-radius: 3px;
+    overflow: hidden; 
+}
+
+
+.sim-phase{position:absolute;top:0;height:100%;transition:all .6s cubic-bezier(.4,0,.2,1);}
+.sim-phase-1{background:linear-gradient(to right,var(--wine),var(--wine-hi));left:0;}
+.sim-phase-2{background:linear-gradient(to right,var(--gold-dark),var(--gold));}
+.sim-phase-3{background:linear-gradient(to right,var(--gold),var(--gold-light));}
+.sim-phase-4{background:linear-gradient(to right,#22c55e,#16a34a);}
+.sim-phase-5{background:linear-gradient(to right,rgba(255,255,255,.3),rgba(255,255,255,.15));}
+
+.sim-timeline-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 5px;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.sim-tl-label {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Evitamos que una palabra larga estire el flexbox */
+    min-width: 0; 
+    padding: 0 4px; /* Pequeño respiro entre etiquetas */
+}
+
+.sim-tl-text {
+    font-size: 8px;
+    line-height: 1.2;
+    text-align: center;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    /* AÑADIR: Evita que el espaciado entre letras estire el div */
+    letter-spacing: 0.02em; 
+}
+
+
+/* Ajuste para el punto (dot) */
+.sim-tl-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%; /* Lo hace circular como en tu imagen */
+    opacity: 0.6;
+    flex-shrink: 0;
+}
+
+.sim-legend{display:flex;flex-wrap:wrap;gap:16px;margin-top:24px;}
+.sim-legend-item{display:flex;align-items:center;gap:8px;font-size:10px;font-weight:500;color:rgba(255,255,255,.72);}
+.sim-legend-dot{width:10px;height:10px;flex-shrink:0;}
+
+/* ══════════════════════════════
+   SUCCESS RATE & STATS
+══════════════════════════════ */
+.success-section{background:var(--parchment);padding:100px 60px;}
+.success-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+@media(max-width:960px){.success-inner{grid-template-columns:1fr;}}
+.success-left{}
+.success-p{font-size:15px;font-weight:300;color:var(--muted);line-height:1.95;margin-bottom:18px;}
+.success-p strong{color:var(--wine);font-weight:600;}
+/* Animated donut */
+
+
+.donut-wrap {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Eliminamos overflow hidden si lo tuviera */
+}
+
+
+
+.donut-svg {
+    width: 100%;
+    height: 100%;
+    /* overflow visible permite que la sombra respire fuera del viewbox */
+    overflow: visible; 
+    filter: drop-shadow(0 6px 15px rgba(201, 168, 76, 0.3));
+    transform: rotate(-90deg);
+}
+
+
+
+.donut-bg {
+    fill: none;
+    stroke: rgba(123, 30, 34, 0.05);
+    stroke-width: 10; /* Unificado */
+}
+
+
+.donut-fill {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 10; /* Unificado */
+    stroke-linecap: round;
+    /* Perímetro para radio 80 es 502.6 */
+    stroke-dasharray: 502.6; 
+    stroke-dashoffset: 502.6;
+    transition: stroke-dashoffset 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+
+
+
+.donut-inner {
+    position: absolute;
+    /* No necesita inset: 0 si usamos flex en el padre */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.donut-pct{font-family:'Playfair Display',serif;font-size:3.2rem;font-weight:900;color:var(--wine);line-height:1;}
+.donut-label{font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-top:4px;}
+
+/* Mini stats */
+.success-mini-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sms-card{background:#fff;border:1px solid rgba(201,168,76,.15);padding:20px;border-left:3px solid var(--wine);transition:all .3s;}
+.sms-card:hover{border-left-color:var(--gold);background:var(--gold-pale);transform:translateX(4px);}
+.sms-num{font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:var(--wine);line-height:1;margin-bottom:5px;}
+.sms-lbl{font-size:9px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);}
+
+/* Testimonial card */
+.success-testi{background:linear-gradient(135deg,var(--wine-dark),var(--wine));padding:36px;margin-top:24px;position:relative;overflow:hidden;}
+.success-testi::before{content:'"';font-family:'Playfair Display',serif;font-size:8rem;color:rgba(255,255,255,.06);position:absolute;top:-20px;left:10px;line-height:1;}
+.st-text{font-family:'Playfair Display',serif;font-size:1rem;font-style:italic;color:rgba(255,255,255,.85);line-height:1.7;margin-bottom:20px;position:relative;z-index:1;}
+.st-author{display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
+.st-avatar{width:44px;height:44px;border-radius:50%;background:rgba(201,168,76,.2);border:2px solid rgba(201,168,76,.3);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:var(--gold-light);}
+.st-name{font-size:12px;font-weight:700;color:#fff;}
+.st-role{font-size:10px;font-weight:400;color:rgba(255,255,255,.45);}
+
+/* ══════════════════════════════
+   CTA FINAL
+══════════════════════════════ */
+.cert-cta{background:linear-gradient(155deg,var(--wine-deep) 0%,#260609 50%,var(--wine-deep) 100%);padding:100px 60px;position:relative;overflow:hidden;}
+.cert-cta::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='38' fill='none' stroke='%23C9A84C' stroke-width='.3' opacity='.04'/%3E%3C/svg%3E") repeat;background-size:80px;pointer-events:none;}
+/* Glitch title effect */
+.cert-cta-inner{max-width:900px;margin:0 auto;text-align:center;position:relative;z-index:1;}
+.cta-glitch-wrap{position:relative;display:inline-block;margin-bottom:24px;}
+.cta-glitch-title{font-family:'Playfair Display',serif;font-size:clamp(2.4rem,5vw,4.5rem);font-weight:900;color:#fff;line-height:.95;letter-spacing:-.03em;}
+.cta-glitch-title em{font-style:italic;font-weight:300;background:linear-gradient(108deg,var(--gold-dark),var(--gold),var(--gold-light));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 5s linear infinite;}
+.cta-sub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.85;max-width:560px;margin:0 auto 48px;}
+.cta-btns{display:flex;align-items:center;gap:20px;justify-content:center;flex-wrap:wrap;}
+.btn-cta-gold{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));color:var(--wine-deep);padding:20px 48px;font-size:10px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all .35s;position:relative;overflow:hidden;}
+.btn-cta-gold:hover{transform:translateY(-2px);box-shadow:0 20px 60px rgba(201,168,76,.4);}
+.btn-cta-gold svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.5;transition:transform .3s;}
+.btn-cta-gold:hover svg{transform:translateX(5px);}
+.btn-cta-outline{display:inline-flex;align-items:center;gap:12px;border:1px solid rgba(201,168,76,.55);color:rgba(255,255,255,.88);padding:19px 36px;text-decoration:none;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;transition:all .3s;}
+.btn-cta-outline:hover{border-color:var(--gold-light);color:#fff;background:rgba(201,168,76,.1);}
+.btn-cta-outline svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
+.cta-trust{display:flex;align-items:center;gap:32px;justify-content:center;margin-top:52px;padding-top:40px;border-top:1px solid rgba(201,168,76,.1);flex-wrap:wrap;}
+.cta-trust-item{display:flex;align-items:center;gap:10px;}
+.cta-trust-item svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;}
+.cta-trust-text{font-size:11px;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:.05em;}
+
+/* ══ FOOTER ══ */
+.ind-footer-wrap{background-color:#0D0D0D;color:#F5F0E8;font-family:'Outfit',sans-serif;position:relative;overflow:hidden;border-top:1px solid rgba(201,168,76,.12);}
+.ind-f-top-accent{height:4px;width:100%;background:linear-gradient(to right,#5C0E0E,#8B1A1A,#C9A84C,#5C0E0E);opacity:.85;}
+.ind-f-main{max-width:1300px;margin:0 auto;padding:80px 60px 40px;position:relative;z-index:1;}
+.ind-f-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr 1fr;gap:50px;margin-bottom:60px;}
+.ind-f-brand{display:flex;flex-direction:column;gap:25px;}
+.ind-f-logo-container{position:relative;display:inline-block;max-width:200px;overflow:hidden;}
+.ind-f-logo-container::after{content:'';position:absolute;top:0;left:-150%;width:50%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.4) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);animation:shine-logo 4s infinite;}
+.ind-f-logo-img{max-width:100%;height:auto;display:block;}
+.ind-f-slogan{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;font-weight:400;color:var(--gold-light);line-height:1.3;max-width:280px;letter-spacing:.5px;}
+.ind-f-contact-strip{display:flex;flex-direction:column;gap:15px;}
+.ind-f-contact-link{display:flex;align-items:center;gap:12px;color:#A89880;text-decoration:none;font-size:13px;transition:color .3s;}
+.ind-f-contact-link:hover{color:#F5F0E8;}
+.ind-f-contact-link svg{width:16px;height:16px;color:var(--wine);stroke-width:2;}
+.ind-f-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:3px;color:#F5F0E8;margin-bottom:30px;position:relative;}
+.ind-f-title::after{content:'';position:absolute;left:0;bottom:-10px;width:20px;height:1px;background:var(--gold);}
+.ind-f-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+.ind-f-item-link{text-decoration:none;color:#A89880;font-size:13px;transition:all .3s;display:inline-block;}
+.ind-f-item-link:hover{color:var(--gold-light);transform:translateX(5px);}
+.ind-f-social-wrap{display:flex;gap:15px;margin-top:25px;}
+.ind-f-social-icon{width:42px;height:42px;border-radius:6px;display:flex;align-items:center;justify-content:center;color:white;text-decoration:none;transition:transform .4s cubic-bezier(.175,.885,.32,1.275),filter .3s,box-shadow .3s;box-shadow:0 4px 10px rgba(0,0,0,.3);}
+.ind-f-social-icon.linkedin{background-color:#0077B5;}
+.ind-f-social-icon.instagram{background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%);}
+.ind-f-social-icon.facebook{background-color:#1877F2;}
+.ind-f-social-icon:hover{transform:scale(1.2) translateY(-5px);filter:brightness(1.1);box-shadow:0 8px 20px rgba(0,0,0,.5);z-index:2;}
+.ind-f-bottom{border-top:1px solid rgba(255,255,255,.05);padding:30px 60px;max-width:1300px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:rgba(255,255,255,.3);}
+.ind-f-copy span{color:var(--gold);}
+@media(max-width:1100px){.ind-f-grid{grid-template-columns:1fr 1fr;gap:40px;}.ind-f-main{padding:60px 40px;}}
+@media(max-width:650px){.ind-f-main{padding:60px 25px 100px;}.ind-f-grid{grid-template-columns:1fr;gap:45px;text-align:center;}.ind-f-brand{align-items:center;}.ind-f-title::after{left:50%;transform:translateX(-50%);}.ind-f-contact-strip{align-items:center;}.ind-f-social-wrap{justify-content:center;}.ind-f-bottom{flex-direction:column;gap:15px;text-align:center;padding:30px 20px 120px;}}
+
+/* ══ RESPONSIVE ══ */
+
+@media(max-width:1024px){
+  .cert-hero-body{grid-template-columns:1fr;padding:48px 40px;}
+  .cert-visual{display:none;}
+  .norms-layout{grid-template-columns:1fr;}
+  .norm-detail{position:relative;top:0;}
+  .success-inner{grid-template-columns:1fr;gap:48px;}
+  .ind-f-grid{grid-template-columns:1fr 1fr;gap:40px;}
+  .modalities-grid{grid-template-columns:1fr 1fr;gap:20px;}
+  .flip-card{height:420px;}
+}
+@media(max-width:768px){
+  .cert-hero-body,.steps-tracker,.modalities-section,.norms-section,.simulator-section,.success-section,.cert-cta{padding:64px 20px;}
+  .cert-hero-body{padding:48px 20px;}
+  .modalities-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto;}
+  .sim-controls{grid-template-columns:1fr;}
+  .success-mini-stats{grid-template-columns:1fr;}
+  .norms-layout{grid-template-columns:1fr;}
+  .cert-hero-stats{flex-direction:column;gap:20px;}
+  .cert-hero-stat{padding:0!important;border:none!important;}
+  .cta-btns{flex-direction:column;align-items:stretch;}
+  .btn-cta-gold,.btn-cta-outline{justify-content:center;}
+  .tracker-progress{overflow-x:auto;padding-bottom:12px;}
+  .tracker-panel{padding:28px 20px;}
+  .tracker-panel-inner{gap:32px;}
+  .tracker-panel-img{height:200px;}
+  .sim-ui{padding:28px 20px;}
+  .sim-results{grid-template-columns:1fr;}
+  .flip-card{height:auto;}
+  .flip-card-inner{transform-style:flat;transform:none!important;display:flex;flex-direction:column;}
+  .flip-card-back{position:relative;transform:none;backface-visibility:visible;-webkit-backface-visibility:visible;}
+  .flip-card-front{position:relative;backface-visibility:visible;-webkit-backface-visibility:visible;}
+  .success-inner{grid-template-columns:1fr;gap:40px;}
+  .donut-wrap{width:220px;height:220px;}
+  .cert-hero-title{font-size:clamp(2.4rem,9vw,3.5rem);}
+  .cta-trust{gap:16px;}
+  .cta-trust-item{flex-direction:column;text-align:center;gap:6px;}
+}
+@media(max-width:480px){
+  .cert-hero-body,.steps-tracker,.modalities-section,.norms-section,.simulator-section,.success-section,.cert-cta{padding:52px 16px;}
+  .flip-card{height:auto;perspective:none;}
+  .flip-card-inner{transform-style:flat;transform:none!important;display:flex;flex-direction:column;gap:16px;}
+  .flip-card-back{position:relative;transform:none;backface-visibility:visible;-webkit-backface-visibility:visible;border-radius:0;}
+  .flip-card-front{position:relative;backface-visibility:visible;-webkit-backface-visibility:visible;}
+  .tracker-panel{padding:28px 20px;}
+  .sim-ui{padding:28px 20px;}
+  .success-inner{gap:40px;}
+  .modalities-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<!-- ══ NAVBAR ══ -->
+<div class="ind-header-wrapper" id="navbar">
+<div class="ind-top-bar">
+<div class="ind-top-info">
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>55 4015 2551</span>
+</div>
+
+
+
+ <div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+
+
+</div>
+<div class="ind-top-item" style="opacity:.6;">INDUSECC</div>
+</div>
+<header class="ind-main-header">
+<div class="ind-container">
+<div class="ind-logo-group">
+<a class="ind-logo-wrap" href="index.html">
+<img alt="Logo INDUSECC" class="ind-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</a>
+<div class="ind-logo-sep"></div>
+<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+</div>
+<nav class="ind-nav">
+<div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="nosotros.html">¿Quiénes Somos?</a></div>
+<div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">Implementación de un Sistema de Gestión</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">Certificación de Normas ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">Consultoría y Asesoría en Normatividad ISO</a>
+<a class="ind-drop-link" href="auditorias.html">Auditorías</a>
+</div>
+</div>
+<div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+</nav>
+<div class="ind-actions">
+<!-- Accesibilidad -->
+<div class="ind-a11y-wrap">
+<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel">
+<div class="a11y-panel-title">Accesibilidad</div>
+<div class="a11y-row">
+<span class="a11y-label">Tamaño de fuente</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="fontDown">A−</button>
+<button class="a11y-ctrl-btn" id="fontUp">A+</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Alto contraste</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="contrastBtn">◑</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Reducir movimiento</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="motionBtn">⏸</button>
+</div>
+</div>
+<div class="a11y-sep"></div>
+<button class="a11y-reset" id="a11yReset">↺ Restablecer</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<span id="themeLabel">Oscuro</span>
+</button>
+<!-- CTA -->
+<a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+</div>
+</div>
+</header>
+</div>
+<nav class="ind-bottom-nav">
+<div class="ind-bnav-container">
+<a class="ind-bnav-item" href="index.html"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg><span>Inicio</span></a>
+<a class="ind-bnav-item active" href="javascript:void(0)" id="btnServicesMobile"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg><span>Servicios</span></a>
+<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg><span>WhatsApp</span></a>
+<a class="ind-bnav-item" href="contacto.html"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>Contacto</span></a>
+<button class="ind-bnav-item ctrl-item" id="btnMobControls"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg><span>Ajustes</span></button>
+</div>
+</nav>
+<div class="ind-sheet-overlay" id="sheetOverlay"></div>
+<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
+<div class="ind-bottom-sheet" id="servicesSheet">
+<div class="ind-sheet-header"><h3 class="ind-sheet-title">Servicios</h3><button class="ind-sheet-close" id="closeSheet"><svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg></button></div>
+
+<div class="ind-sheet-grid">
+<a class="ind-sheet-link" data-i18n="nav_cap" href="implementacion-sistema.html">Implementación de un sistema de gestión <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_iso" href="certificacion-iso_.html">Certificación ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_mejora" href="consultoria-asesoria.html">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_audit" href="auditorias.html">Auditorías <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+</div>
+</div>
+
+<div class="mob-ctrl-sheet" id="mobCtrlSheet">
+<div class="mob-ctrl-header"><span class="mob-ctrl-title">Ajustes</span><button class="mob-ctrl-close" id="closeMobCtrl">✕</button></div>
+<div class="mob-ctrl-section"><div class="mob-ctrl-section-label">Tema</div><button class="mob-theme-btn" onclick="toggleTheme()"><span id="mobThemeLabel">Modo Oscuro</span><svg id="mobThemeIcon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg></button></div>
+<div class="mob-ctrl-section"><div class="mob-ctrl-section-label">Accesibilidad</div>
+<div class="mob-a11y-grid">
+<div class="mob-a11y-row"><span class="mob-a11y-label">Tamaño</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobFontDown">A−</button><button class="mob-a11y-btn" id="mobFontUp">A+</button></div></div>
+<div class="mob-a11y-row"><span class="mob-a11y-label">Contraste</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobContrastBtn">◑</button></div></div>
+<div class="mob-a11y-row"><span class="mob-a11y-label">Movimiento</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobMotionBtn">⏸</button></div></div>
+</div>
+<button class="mob-a11y-reset" id="mobA11yReset">↺ Restablecer todo</button>
+</div>
+</div>
+<!-- ══════════ HERO ══════════ -->
+<section class="cert-hero">
+<canvas id="certCanvas"></canvas>
+<div class="cert-hero-overlay"></div>
+<div class="cert-hero-bar"></div>
+<div class="cert-hero-body">
+<div>
+<div class="cert-live-badge">
+<div class="cert-live-dot"></div>
+<span class="cert-live-text">100% Tasa de certificación exitosa</span>
+</div>
+<div class="cert-hero-pre">Servicio especializado INDUSECC</div>
+<div class="cert-hero-eyebrow">
+<div class="cert-hero-eyebrow-dot"></div>
+<div class="cert-hero-eyebrow-line"></div>
+<span class="cert-hero-eyebrow-tag">Certificación ISO Internacional</span>
+<div class="cert-hero-eyebrow-line"></div>
+<div class="cert-hero-eyebrow-dot"></div>
+</div>
+<h1 class="cert-hero-title">Certificación<br/>de Normas<br/><em>ISO</em></h1>
+<p class="cert-hero-sub">Servicio completo de <strong>análisis, implementación, capacitación, auditoría y certificación.</strong> Te acompañamos desde el día uno hasta recibir tu sello ISO internacional reconocido globalmente.</p>
+<div class="cert-typewriter-wrap">
+<span class="cert-typewriter-label">Certificamos en →</span>
+<span class="cert-typewriter" id="typewriterEl">ISO 9001:2015</span>
+</div>
+<div class="cert-hero-actions">
+<a class="btn-cert-primary shine-el" href="#pasos">Ver el proceso <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="btn-cert-ghost" href="contacto.html">Consulta gratuita</a>
+</div>
+<div class="cert-hero-stats">
+<div class="cert-hero-stat">
+<div class="cert-hero-stat-num" data-count="100" data-suffix="%">100%</div>
+<div class="cert-hero-stat-lbl">Empresas<br/>certificadas al 1er intento</div>
+</div>
+<div class="cert-hero-stat" style="padding-left:32px;padding-right:0;border-right:none;">
+<div class="cert-hero-stat-num" data-count="7" data-suffix=" ISO">7 ISO</div>
+<div class="cert-hero-stat-lbl">Normas<br/>que certificamos</div>
+</div>
+</div>
+</div>
+<!-- Certificate visual -->
+<div class="cert-visual">
+<div style="position:relative;">
+<div class="cert-card-wrap">
+<div class="cert-card" id="certCard">
+<div class="cert-card-front">
+<div class="cert-card-accent"></div>
+<div class="cert-card-scan"></div>
+<div class="cert-corner cert-corner-tl"></div>
+<div class="cert-corner cert-corner-tr"></div>
+<div class="cert-corner cert-corner-bl"></div>
+<div class="cert-corner cert-corner-br"></div>
+<div class="cert-card-watermark">ISO</div>
+<div class="cert-card-logo-row">
+<img alt="INDUSECC" class="cert-card-logo" src="Imagenes/logo.png"/>
+<div class="cert-card-stamp-wrap">
+<svg class="cert-card-stamp" viewbox="0 0 64 64">
+<circle cx="32" cy="32" fill="none" r="28" stroke="rgba(201,168,76,.4)" stroke-width="1.5"></circle>
+<circle cx="32" cy="32" fill="none" r="22" stroke="rgba(201,168,76,.25)" stroke-width="1"></circle>
+<path d="M20 32 L28 40 L44 24" fill="none" id="certCheckPath" stroke="#22c55e" stroke-dasharray="40" stroke-dashoffset="40" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" style="animation:checkDraw 1s 1s ease forwards;"></path>
+<text fill="rgba(201,168,76,.5)" font-family="Outfit,sans-serif" font-size="6" font-weight="700" letter-spacing="1" text-anchor="middle" x="32" y="56">CERTIFIED</text>
+</svg>
+</div>
+</div>
+<div class="cert-card-body">
+<div class="cert-card-label">Certificado Internacional</div>
+<div class="cert-card-norm" id="certCardNorm">ISO 9001</div>
+<div class="cert-card-norm-name" id="certCardNormName">Sistema de Gestión de Calidad</div>
+</div>
+<div class="cert-card-divider"></div>
+<div class="cert-card-footer-row">
+<div class="cert-card-org">INDUSECC Consultoría</div>
+<div class="cert-card-valid">Vigencia: 3 años</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Norm selector below card -->
+<div class="cert-norm-selector" id="normSelector">
+<button class="cert-norm-btn active-norm" data-name="Sistema de Gestión de Calidad" data-norm="ISO 9001" onclick="selectCertNorm(this)"><span class="cert-norm-btn-code">9001</span><span class="cert-norm-btn-name">Calidad</span></button>
+<button class="cert-norm-btn" data-name="Sistema de Gestión Ambiental" data-norm="ISO 14001" onclick="selectCertNorm(this)"><span class="cert-norm-btn-code">14001</span><span class="cert-norm-btn-name">Ambiental</span></button>
+<button class="cert-norm-btn" data-name="Seguridad y Salud en el Trabajo" data-norm="ISO 45001" onclick="selectCertNorm(this)"><span class="cert-norm-btn-code">45001</span><span class="cert-norm-btn-name">SST</span></button>
+<button class="cert-norm-btn" data-name="Seguridad de la Información" data-norm="ISO 27001" onclick="selectCertNorm(this)"><span class="cert-norm-btn-code">27001</span><span class="cert-norm-btn-name">Información</span></button>
+</div>
+<!-- Float cards -->
+<div class="cert-float-card cf1">
+<div class="cert-float-num" data-count="100" data-suffix="%">100%</div>
+<div class="cert-float-lbl">Tasa de éxito</div>
+</div>
+<div class="cert-float-card cf2">
+<div class="cert-float-num">48h</div>
+<div class="cert-float-lbl">Tiempo de respuesta</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════ INTERACTIVE STEP TRACKER ══════════ -->
+<section class="steps-tracker" id="pasos">
+<div class="tracker-inner">
+<div class="tracker-header reveal">
+<div class="section-tag" style="justify-content:center;"><div class="section-tag-line" style="background:rgba(201,168,76,.4)"></div><span class="section-tag-text" style="color:rgba(201,168,76,.8);">Metodología probada</span><div class="section-tag-line" style="background:rgba(201,168,76,.4)"></div></div>
+<h2 class="tracker-title-light">El proceso de<br/><em>certificación</em></h2>
+<p class="tracker-sub">Haz clic en cada etapa para conocer los detalles. Así de claro y transparente es nuestro proceso.</p>
+</div>
+<!-- Progress dots -->
+<div class="tracker-progress reveal">
+<div class="tracker-progress-fill" id="trackerFill" style="width:10%;"></div>
+<div class="tracker-step-dot" onclick="setTrackerStep(0)">
+<div class="tracker-dot t-active" id="td0"><span class="tracker-dot-num">1</span><svg class="tracker-dot-check" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<div class="tracker-dot-lbl" id="tl0">Levantamiento</div>
+</div>
+<div class="tracker-step-dot" onclick="setTrackerStep(1)">
+<div class="tracker-dot" id="td1"><span class="tracker-dot-num">2</span><svg class="tracker-dot-check" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<div class="tracker-dot-lbl" id="tl1">Desarrollo</div>
+</div>
+<div class="tracker-step-dot" onclick="setTrackerStep(2)">
+<div class="tracker-dot" id="td2"><span class="tracker-dot-num">3</span><svg class="tracker-dot-check" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<div class="tracker-dot-lbl" id="tl2">Auditoría</div>
+</div>
+<div class="tracker-step-dot" onclick="setTrackerStep(3)">
+<div class="tracker-dot" id="td3"><span class="tracker-dot-num">4</span><svg class="tracker-dot-check" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<div class="tracker-dot-lbl" id="tl3">Certificación</div>
+</div>
+<div class="tracker-step-dot" onclick="setTrackerStep(4)">
+<div class="tracker-dot" id="td4"><span class="tracker-dot-num">5</span><svg class="tracker-dot-check" viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+<div class="tracker-dot-lbl" id="tl4">Seguimiento</div>
+</div>
+</div>
+<!-- Panel -->
+<div class="tracker-panel reveal">
+<!-- Step 1 -->
+<div class="tracker-panel-step t-panel-active" id="tp0">
+<div class="tracker-panel-inner">
+<div style="position:relative;">
+<div class="tp-num">01</div>
+<div class="tp-tag">Paso 01 — Inicio</div>
+<h3 class="tp-title">Levantamiento de información</h3>
+<p class="tp-desc">Realizamos un diagnóstico exhaustivo de tu organización frente a los requisitos de la norma ISO objetivo. Identificamos con precisión las brechas, fortalezas y el estado actual de tu sistema de gestión.</p>
+<div class="tp-checklist">
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Diagnóstico GAP analysis completo</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Entrevistas con líderes de proceso</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Reporte de brechas con plan de acción</span></div>
+</div>
+</div>
+<div class="tracker-panel-img">
+<img alt="Analista revisando diagnóstico GAP de sistema ISO" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=700&amp;q=80"/>
+<div class="tracker-panel-img-overlay"></div>
+<div class="tracker-panel-img-badge"><div class="tpib-val">~4 sem.</div><div class="tpib-lbl">Duración estimada</div></div>
+</div>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="tracker-panel-step" id="tp1">
+<div class="tracker-panel-inner">
+<div style="position:relative;">
+<div class="tp-num">02</div>
+<div class="tp-tag">Paso 02 — Desarrollo</div>
+<h3 class="tp-title">Desarrollo del sistema de gestión</h3>
+<p class="tp-desc">Diseñamos e implementamos el sistema documental completo: políticas, procedimientos, instrucciones de trabajo y formatos alineados a cada cláusula de la norma. Capacitamos a tu equipo en cada etapa.</p>
+<div class="tp-checklist">
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Manual de calidad y políticas corporativas</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Procedimientos e instrucciones de trabajo</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Capacitación al 100% del equipo involucrado</span></div>
+</div>
+</div>
+<div class="tracker-panel-img">
+<img alt="Equipo desarrollando documentación del sistema de gestión ISO" src="https://images.unsplash.com/photo-1568992688065-536aad8a12f6?w=700&amp;q=80"/>
+<div class="tracker-panel-img-overlay"></div>
+<div class="tracker-panel-img-badge"><div class="tpib-val">3–5 mes</div><div class="tpib-lbl">Duración promedio</div></div>
+</div>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="tracker-panel-step" id="tp2">
+<div class="tracker-panel-inner">
+<div style="position:relative;">
+<div class="tp-num">03</div>
+<div class="tp-tag">Paso 03 — Auditoría</div>
+<h3 class="tp-title">Auditorías de Etapa 1 y 2 de certificación</h3>
+<p class="tp-desc">Coordinamos con el organismo certificador acreditado internacionalmente la realización de las auditorías oficiales. Preparamos a tu organización y estamos presentes durante todo el proceso para garantizar el éxito.</p>
+<div class="tp-checklist">
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Pre-auditoría interna con metodología ISO</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Consultor senior presente en auditorías oficiales</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Cierre de no conformidades en tiempo real</span></div>
+</div>
+</div>
+<div class="tracker-panel-img">
+<img alt="Auditor revisando cumplimiento de norma ISO" src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=700&q=80"/>
+<div class="tracker-panel-img-overlay"></div>
+<div class="tracker-panel-img-badge"><div class="tpib-val">2–4 sem.</div><div class="tpib-lbl">Proceso auditoría</div></div>
+</div>
+</div>
+</div>
+<!-- Step 4 -->
+<div class="tracker-panel-step" id="tp3">
+<div class="tracker-panel-inner">
+<div style="position:relative;">
+<div class="tp-num">04</div>
+<div class="tp-tag">Paso 04 — ¡Logro!</div>
+<h3 class="tp-title">Certificación internacional</h3>
+<p class="tp-desc">Tu organización recibe el certificado ISO con validez internacional de 3 años, reconocido globalmente. Este sello abre puertas a nuevos mercados, licitaciones y contratos que requieren certificación oficial.</p>
+<div class="tp-checklist">
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Certificado con validez internacional de 3 años</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Reconocido por organismos acreditados (IAF)</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Derecho a usar el logo de certificación</span></div>
+</div>
+</div>
+<div class="tracker-panel-img">
+<img alt="Entrega oficial del certificado ISO internacional" src="https://images.unsplash.com/photo-1521791136064-7986c2920216?w=700&amp;q=80"/>
+<div class="tracker-panel-img-overlay"></div>
+<div class="tracker-panel-img-badge"><div class="tpib-val">¡100%!</div><div class="tpib-lbl">Tasa de éxito INDUSECC</div></div>
+</div>
+</div>
+</div>
+<!-- Step 5 -->
+<div class="tracker-panel-step" id="tp4">
+<div class="tracker-panel-inner">
+<div style="position:relative;">
+<div class="tp-num">05</div>
+<div class="tp-tag">Paso 05 — Mantenimiento</div>
+<h3 class="tp-title">Seguimiento anual y renovación</h3>
+<p class="tp-desc">El certificado ISO requiere auditorías de seguimiento anuales y renovación cada 3 años. Nuestro equipo te acompaña en todo el ciclo de vida del certificado para asegurar su vigencia permanente.</p>
+<div class="tp-checklist">
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Auditorías de seguimiento anuales (años 1 y 2)</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Auditoría de recertificación al año 3</span></div>
+<div class="tp-check"><div class="tp-check-icon"><svg viewbox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></div><span class="tp-check-text">Soporte continuo y mejora del sistema</span></div>
+</div>
+</div>
+<div class="tracker-panel-img">
+<img alt="Seguimiento anual y mantenimiento del certificado ISO" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=700&amp;q=80"/>
+<div class="tracker-panel-img-overlay"></div>
+<div class="tracker-panel-img-badge"><div class="tpib-val">3 años</div><div class="tpib-lbl">Vigencia del certificado</div></div>
+</div>
+</div>
+</div>
+<!-- Nav -->
+<div class="tracker-nav">
+<button class="tracker-nav-btn" id="trackerPrev" onclick="moveTracker(-1)"><svg viewbox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"></path></svg></button>
+<span class="tracker-nav-label" id="trackerLabel">Paso 1 de 5</span>
+<button class="tracker-nav-btn" id="trackerNext" onclick="moveTracker(1)"><svg viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg></button>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════ 3 MODALITIES — FLIP CARDS ══════════ -->
+<section class="modalities-section" id="modalidades">
+<div style="max-width:1280px;margin:0 auto;">
+<div class="modalities-header reveal">
+<div class="section-tag" style="justify-content:center;"><div class="section-tag-line"></div><span class="section-tag-text">Alternativas a tu medida</span><div class="section-tag-line"></div></div>
+<h2 class="section-title" style="text-align:center;">3 modalidades de<br/><em>certificación</em></h2>
+<div class="section-rule" style="justify-content:center;margin-top:20px;"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p style="text-align:center;font-size:13px;font-weight:300;color:var(--muted);margin-top:20px;line-height:1.8;max-width:600px;margin-left:auto;margin-right:auto;">Contamos con alternativas de acuerdo con los intereses de cada cliente. <strong style="color:var(--wine);">Pasa el cursor sobre cada tarjeta</strong> para descubrir los detalles.</p>
+</div>
+<div class="modalities-grid">
+<!-- Modalidad 1 -->
+<div class="flip-card reveal">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<div class="flip-front-img">
+<img alt="Equipo en reunión estratégica de implementación ISO" src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=700&amp;q=80"/>
+<div class="flip-front-img-overlay"></div>
+<div class="flip-front-num">01</div>
+</div>
+<div class="flip-front-body">
+<div class="flip-front-tag">Modalidad completa</div>
+<div class="flip-front-title">Servicio Integral de Certificación</div>
+<div class="flip-front-hint"><svg viewbox="0 0 24 24"><path d="M7 17l9.2-9.2M17 17V7H7"></path></svg>Gira para ver detalles</div>
+</div>
+</div>
+<div class="flip-card-back">
+<div class="flip-back-tag">Modalidad 01 — La más completa</div>
+<div class="flip-back-title">Análisis → Implementación → Auditoría → Certificación</div>
+<div class="flip-back-desc">Nos encargamos de absolutamente todo el proceso. Desde el diagnóstico inicial hasta la entrega del certificado internacional. Ideal para empresas que inician desde cero o que quieren delegar completamente el proceso.</div>
+<div style="width:36px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:12px;"></div>
+<div class="flip-back-features">
+<div class="flip-back-feat">Diagnóstico y análisis de brechas</div>
+<div class="flip-back-feat">Implementación del sistema completo</div>
+<div class="flip-back-feat">Capacitación a todo el equipo</div>
+<div class="flip-back-feat">Auditoría interna y externa</div>
+<div class="flip-back-feat">Acompañamiento hasta el certificado</div>
+</div>
+<a class="flip-back-cta" href="contacto.html">Solicitar información <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+</div>
+</div>
+</div>
+<!-- Modalidad 2 -->
+<div class="flip-card reveal reveal-delay-2">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<div class="flip-front-img">
+<img alt="Consultor preparando documentación normativa ISO" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=700&q=80"/>
+<div class="flip-front-img-overlay"></div>
+<div class="flip-front-num">02</div>
+</div>
+<div class="flip-front-body">
+<div class="flip-front-tag">Modalidad documental</div>
+<div class="flip-front-title">Levantamiento de Documentación</div>
+<div class="flip-front-hint"><svg viewbox="0 0 24 24"><path d="M7 17l9.2-9.2M17 17V7H7"></path></svg>Gira para ver detalles</div>
+</div>
+</div>
+<div class="flip-card-back">
+<div class="flip-back-tag">Modalidad 02 — Sistema documental</div>
+<div class="flip-back-title">Levantamiento documental para certificación</div>
+<div class="flip-back-desc">Para empresas que ya tienen parte del sistema implementado y solo necesitan formalizar y levantar la documentación normativa completa. Incluye revisión, corrección y entrega lista para auditoría.</div>
+<div style="width:36px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:12px;"></div>
+<div class="flip-back-features">
+<div class="flip-back-feat">Revisión del sistema existente</div>
+<div class="flip-back-feat">Creación de documentos faltantes</div>
+<div class="flip-back-feat">Alineación a requisitos normativos</div>
+<div class="flip-back-feat">Preparación para auditoría de certificación</div>
+</div>
+<a class="flip-back-cta" href="contacto.html">Solicitar información <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+</div>
+</div>
+</div>
+<!-- Modalidad 3 -->
+<div class="flip-card reveal reveal-delay-4">
+<div class="flip-card-inner">
+<div class="flip-card-front">
+<div class="flip-front-img">
+<img alt="Proceso de certificación ISO express para urgencias" src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=700&amp;q=80"/>
+<div class="flip-front-img-overlay"></div>
+<div class="flip-front-num">03</div>
+</div>
+<div class="flip-front-body">
+<div class="flip-front-tag">Modalidad urgente</div>
+<div class="flip-front-title">Gestión Total + Certificación </div>
+<div class="express-badge"><div class="express-badge-dot"></div><span class="express-badge-text">Disponible para urgencias</span></div>
+<div class="flip-front-hint"><svg viewbox="0 0 24 24"><path d="M7 17l9.2-9.2M17 17V7H7"></path></svg>Gira para ver detalles</div>
+</div>
+</div>
+<div class="flip-card-back">
+<div class="flip-back-tag">Modalidad 03 — Urgente</div>
+<div class="flip-back-title">Certificación Express para casos de urgencia</div>
+<div class="flip-back-desc">Gestión total de la certificación en tiempo reducido para licitaciones, contratos urgentes o requisitos de clientes con fecha límite. Nuestro equipo dedicado acelera cada etapa del proceso sin comprometer la calidad.</div>
+<div style="width:36px;height:2px;background:linear-gradient(to right,var(--gold),transparent);margin-bottom:12px;"></div>
+<div class="flip-back-features">
+<div class="flip-back-feat">Equipo dedicado exclusivamente a tu caso</div>
+<div class="flip-back-feat">Proceso acelerado con máxima calidad</div>
+<div class="flip-back-feat">Coordinación prioritaria con organismo</div>
+<div class="flip-back-feat">Seguimiento diario del avance</div>
+</div>
+<a class="flip-back-cta" href="https://wa.me/525540152551?text=Necesito%20certificaci%C3%B3n%20ISO%20urgente" target="_blank">Consultar disponibilidad <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+</div>
+</div>
+</div>
+</div>
+</div></section>
+<!-- ══════════ NORMAS ISO — INTERACTIVE PANEL ══════════ -->
+<section class="norms-section" id="normas">
+<div class="norms-inner">
+<div class="norms-header reveal">
+<div class="section-tag" style="justify-content:center;"><div class="section-tag-line"></div><span class="section-tag-text">Normas que certificamos</span><div class="section-tag-line"></div></div>
+<h2 class="section-title" style="text-align:center;">Normas ISO más<br/><em>solicitadas</em></h2>
+<p class="norms-subtitle" style="text-align:center;max-width:600px;margin-left:auto;margin-right:auto;">Selecciona cualquier norma para ver sus detalles, sectores aplicables y cómo iniciar tu proceso de certificación.</p>
+</div>
+<div class="norms-layout reveal">
+<div class="norms-grid" id="normsGrid">
+<div class="norm-item norm-active" onclick="selectNorm(this,0)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 9001<span>Calidad</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Sistema de Gestión de Calidad</div><div class="norm-item-desc">La norma más adoptada a nivel mundial</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2015</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,1)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 22000<span>Inocuidad</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Inocuidad de los Alimentos</div><div class="norm-item-desc">Para toda la cadena alimentaria</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2018</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,2)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 45001<span>SST</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Seguridad y Salud en el Trabajo</div><div class="norm-item-desc">Prevención de lesiones laborales</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2018</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,3)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 28000<span>Cadena</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Seguridad de la Cadena de Suministro</div><div class="norm-item-desc">Gestión de riesgos logísticos</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2022</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,4)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 27001<span>Infosec</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Seguridad de la Información</div><div class="norm-item-desc">Protección de datos y ciberseguridad</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2022</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,5)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 39001<span>Vialidad</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Seguridad Vial</div><div class="norm-item-desc">Para gestión de tráfico y transporte</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2013</span></div>
+</div>
+<div class="norm-item" onclick="selectNorm(this,6)">
+<div class="norm-item-left">
+<div class="norm-item-code">ISO 14001<span>Ambiente</span></div>
+<div class="norm-item-info"><div class="norm-item-name">Sistema de Gestión Ambiental</div><div class="norm-item-desc">Minimización del impacto ecológico</div></div>
+</div>
+<div class="norm-item-arrow"><svg viewbox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+<div class="norm-item-year"><span>2015</span></div>
+</div>
+
+
+
+
+
+</div>
+<!-- Detail panel -->
+<div class="norm-detail" id="normDetail">
+<div class="norm-detail-header">
+<div class="norm-detail-code" id="ndCode">ISO 9001</div>
+<div class="norm-detail-year" id="ndYear">Versión 2015 · Renovación cada 3 años</div>
+<div class="norm-detail-name" id="ndName">Sistema de Gestión de Calidad</div>
+</div>
+<div class="norm-detail-body">
+<p class="norm-detail-desc" id="ndDesc">La norma ISO 9001 es el estándar internacional más reconocido y adoptado para sistemas de gestión de calidad. Permite a las organizaciones demostrar su capacidad para proporcionar productos y servicios que satisfagan consistentemente los requisitos del cliente.</p>
+<div class="norm-detail-applies">
+<div class="norm-detail-applies-title">Sectores de aplicación</div>
+<div class="norm-detail-sectors" id="ndSectors">
+<span class="norm-sector">Manufactura</span>
+<span class="norm-sector">Servicios</span>
+<span class="norm-sector">Salud</span>
+<span class="norm-sector">Educación</span>
+<span class="norm-sector">Gobierno</span>
+<span class="norm-sector">Tecnología</span>
+</div>
+</div>
+</div>
+<a class="norm-detail-cta" href="/contacto">Certificarme en esta norma <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════ TIMELINE SIMULATOR ══════════ -->
+<section class="simulator-section" id="simulador">
+<div class="simulator-inner">
+<div class="simulator-header reveal">
+<div class="section-tag" style="justify-content:center;"><div class="section-tag-line" style="background:rgba(201,168,76,.4)"></div><span class="section-tag-text" style="color:rgba(201,168,76,.8);">Herramienta exclusiva</span><div class="section-tag-line" style="background:rgba(201,168,76,.4)"></div></div>
+<h2 class="sim-title">Simula tu proceso de<br/><em>certificación</em></h2>
+<p class="sim-sub">Selecciona tu norma y el tamaño de tu empresa para ver una estimación del tiempo y costo aproximado de tu proceso.</p>
+</div>
+<div class="sim-ui reveal">
+<div class="sim-controls">
+<div>
+<label class="sim-label">Norma ISO objetivo</label>
+<select class="sim-select" id="simNorm" onchange="updateSimulator()">
+<option value="9001">ISO 9001:2015 — Calidad</option>
+<option value="14001">ISO 14001:2015 — Ambiental</option>
+<option value="45001">ISO 45001:2018 — SST</option>
+<option value="27001">ISO 27001:2022 — Información</option>
+<option value="22000">ISO 22000:2018 — Alimentos</option>
+<option value="28000">ISO 28000:2022 — Cadena suministro</option>
+</select>
+</div>
+<div>
+<label class="sim-label">Tamaño de empresa</label>
+<select class="sim-select" id="simSize" onchange="updateSimulator()">
+<option value="micro">Micro (1–10 personas)</option>
+<option value="small">Pequeña (11–50 personas)</option>
+<option selected="" value="medium">Mediana (51–250 personas)</option>
+<option value="large">Grande (250+ personas)</option>
+</select>
+</div>
+<div class="sim-slider-wrap">
+<label class="sim-label">Nivel de madurez del sistema actual: <span id="simMaturityLabel">50% implementado</span></label>
+<input class="sim-slider" id="simMaturity" max="100" min="0" oninput="updateSimulator()" type="range" value="50"/>
+<div class="sim-slider-labels"><span class="sim-slider-label">Sin sistema</span><span class="sim-slider-label">Sistema parcial</span><span class="sim-slider-label">Casi listo</span></div>
+</div>
+</div>
+<div class="sim-results" id="simResults">
+<div class="sim-result-card">
+<div class="sim-result-label">Tiempo estimado</div>
+<div class="sim-result-val" id="simTime">6–8 meses</div>
+<div class="sim-result-note">Desde el inicio hasta el certificado</div>
+</div>
+<div class="sim-result-card">
+<div class="sim-result-label">Modalidad recomendada</div>
+<div class="sim-result-val" id="simMod" style="font-size:1.2rem;">Servicio Integral</div>
+<div class="sim-result-note" id="simModNote">Análisis + Implementación + Cert.</div>
+</div>
+<div class="sim-result-card">
+<div class="sim-result-label">Probabilidad de éxito</div>
+<div class="sim-result-val" style="color:#22c55e;">100%</div>
+<div class="sim-result-note">Con INDUSECC — garantizado</div>
+</div>
+</div>
+<!-- Timeline visual -->
+<div class="sim-timeline">
+<div class="sim-timeline-bar">
+<div class="sim-phase sim-phase-1" id="sp1" style="width:20%;"></div>
+<div class="sim-phase sim-phase-2" id="sp2" style="left:20%;width:30%;"></div>
+<div class="sim-phase sim-phase-3" id="sp3" style="left:50%;width:20%;"></div>
+<div class="sim-phase sim-phase-4" id="sp4" style="left:70%;width:10%;"></div>
+<div class="sim-phase sim-phase-5" id="sp5" style="left:80%;width:20%;"></div>
+</div>
+<div class="sim-timeline-labels">
+<div class="sim-tl-label"><div class="sim-tl-dot"></div><span class="sim-tl-text" id="stl1">Mes 1–2<br/>Diagnóstico</span></div>
+<div class="sim-tl-label"><div class="sim-tl-dot"></div><span class="sim-tl-text" id="stl2">Mes 2–5<br/>Desarrollo</span></div>
+<div class="sim-tl-label"><div class="sim-tl-dot"></div><span class="sim-tl-text" id="stl3">Mes 5–7<br/>Pre-auditoría</span></div>
+<div class="sim-tl-label"><div class="sim-tl-dot"></div><span class="sim-tl-text" id="stl4">Mes 7–8<br/>Auditoría</span></div>
+<div class="sim-tl-label"><div class="sim-tl-dot"></div><span class="sim-tl-text" id="stl5">Año 1–3<br/>Seguimiento</span></div>
+</div>
+</div>
+<div class="sim-legend">
+<div class="sim-legend-item"><div class="sim-legend-dot" style="background:linear-gradient(to right,var(--wine),var(--wine-hi));"></div>Diagnóstico</div>
+<div class="sim-legend-item"><div class="sim-legend-dot" style="background:linear-gradient(to right,var(--gold-dark),var(--gold));"></div>Desarrollo</div>
+<div class="sim-legend-item"><div class="sim-legend-dot" style="background:linear-gradient(to right,var(--gold),var(--gold-light));"></div>Pre-auditoría</div>
+<div class="sim-legend-item"><div class="sim-legend-dot" style="background:linear-gradient(to right,#22c55e,#16a34a);"></div>Certificación</div>
+<div class="sim-legend-item"><div class="sim-legend-dot" style="background:rgba(255,255,255,.2);"></div>Seguimiento anual</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════════ SUCCESS RATE ══════════ -->
+<section class="success-section">
+<div class="success-inner">
+<div class="reveal">
+<div class="section-tag"><div class="section-tag-line"></div><span class="section-tag-text">¿Por qué elegirnos?</span></div>
+<h2 class="section-title">Resultados que<br/><em>hablan por sí solos</em></h2>
+<div class="section-rule"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p class="success-p" style="margin-top:28px;">INDUSECC mantiene un historial de <strong>100% de certificaciones exitosas al primer intento</strong>. No lo decimos nosotros: lo demuestran los más de 100 certificados entregados en múltiples industrias y normas ISO.</p>
+<div class="success-mini-stats">
+<div class="sms-card reveal reveal-delay-1"><div class="sms-num" data-count="100" data-suffix="+">100+</div><div class="sms-lbl">Empresas certificadas</div></div>
+<div class="sms-card reveal reveal-delay-2"><div class="sms-num" data-count="7" data-suffix="">7</div><div class="sms-lbl">Normas ISO disponibles</div></div>
+<div class="sms-card reveal reveal-delay-3"><div class="sms-num" data-count="10" data-suffix="+">10+</div><div class="sms-lbl">Años de experiencia</div></div>
+<div class="sms-card reveal reveal-delay-4"><div class="sms-num" data-count="3" data-suffix=" días">3 días</div><div class="sms-lbl">Respuesta inicial</div></div>
+</div>
+<div class="success-testi" style="margin-top:24px;">
+<div class="st-text">"INDUSECC nos guió en todo el proceso de certificación ISO 9001. En menos de 7 meses logramos el certificado al primer intento. La transparencia y el seguimiento fueron clave."</div>
+<div class="st-author">
+<div class="st-avatar">MR</div>
+<div><div class="st-name">María R.</div><div class="st-role">Directora de Calidad — Industria Manufacturera, CDMX</div></div>
+</div>
+</div>
+</div>
+<div class="reveal reveal-delay-2" style="text-align:center;">
+<div class="donut-wrap">
+<svg class="donut-svg" viewbox="0 0 100 100">
+<circle class="donut-bg" cx="50" cy="50" r="44"></circle>
+<circle class="donut-fill" cx="50" cy="50" id="donutFill" r="44"></circle>
+</svg>
+<div class="donut-inner">
+<div class="donut-pct" data-count="100" data-suffix="%">0%</div>
+<div class="donut-label">Tasa de éxito</div>
+</div>
+</div>
+<p style="font-size:12px;font-weight:300;color:var(--muted);margin-top:8px;">De las 100+ empresas certificadas con INDUSECC,<br/>el 100% obtuvo su certificado al primer intento.</p>
+</div>
+</div>
+</section>
+<!-- ══════════ CTA ══════════ -->
+<section class="cert-cta" id="contacto">
+<div class="cert-cta-inner">
+<div class="cta-glitch-wrap reveal">
+<h2 class="cta-glitch-title">¿Tu empresa lista para<br/><em>certificarse con ISO?</em></h2>
+</div>
+<p class="cta-sub reveal reveal-delay-1">Agenda tu consulta gratuita hoy. Sin compromiso. Te decimos exactamente qué necesitas, cuánto tiempo toma y cómo empezar.</p>
+<div class="cta-btns reveal reveal-delay-2">
+<a class="btn-cta-gold shine-el" href="contacto.html">Solicitar consulta gratuita <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="btn-cta-outline" href="https://wa.me/525616044547?text=Hola%2C%20quiero%20certificarme%20en%20ISO" target="_blank"><svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>WhatsApp directo</a>
+
+</div>
+<div class="cta-trust reveal reveal-delay-3">
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg><span class="cta-trust-text">100% tasa de éxito</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span class="cta-trust-text">Consulta sin costo</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg><span class="cta-trust-text">+100 empresas certificadas</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><rect height="11" rx="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span class="cta-trust-text">Información confidencial</span></div>
+</div>
+</div>
+</section>
+<!-- ══ FOOTER ══ -->
+<footer class="ind-footer-wrap">
+<div class="ind-f-top-accent"></div>
+<div class="ind-f-main">
+<div class="ind-f-grid reveal">
+<div class="ind-f-brand">
+<div class="ind-f-logo-container">
+<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</div>
+<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+<div class="ind-f-contact-strip">
+<a class="ind-f-contact-link" href="tel:5540152551">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+<div class="ind-f-contact-link">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, México
+          </div>
+</div>
+</div>
+<div>
+<h4 class="ind-f-title">Naven</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+<li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+<li><a class="ind-f-item-link" href="nosotros.html">¿Quiénes Somos?</a></li>
+<li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="servicios.html#consultoria">Consultoría ISO</a></li>
+<li><a class="ind-f-item-link" href="servicios.html#sistemas">Sistemas de Gestión</a></li>
+<li><a class="ind-f-item-link" href="servicios.html#certificacion">Certificación ISO</a></li>
+<li><a class="ind-f-item-link" href="servicios.html#auditoria">Auditorías</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Legal y Soporte</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="contacto.html">Contáctanos</a></li>
+<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+<li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
+<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+</ul>
+  <div class="ind-f-social-wrap">
+          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+<div class="ind-f-bottom">
+<div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+<div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
+</div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ══ CANVAS — ISO network particles ══ */
+(function(){
+  const c=document.getElementById('certCanvas');if(!c)return;
+  const ctx=c.getContext('2d');let W,H,pts;
+  const G='201,168,76',R='123,30,34',N=80,D=140;
+  function resize(){W=c.width=c.offsetWidth;H=c.height=c.offsetHeight;}
+  function mk(){return{x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.45,vy:(Math.random()-.5)*.45,r:1+Math.random()*2.5,g:Math.random()<.22};}
+  function init(){resize();pts=Array.from({length:N},mk);}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;});
+    for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<D){const al=(1-d/D)*.32,u=a.g||b.g;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle=u?`rgba(${G},${al*2})`:`rgba(${R},${al})`;ctx.lineWidth=u?.8:.35;ctx.stroke();}
+    }
+    pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.g?`rgba(${G},.8)`:`rgba(${R},.55)`;ctx.fill();});
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();pts.forEach(p=>{if(p.x>W)p.x=W*.9;if(p.y>H)p.y=H*.9;});});
+  init();draw();
+})();
+
+/* ══ TYPEWRITER ══ */
+const norms=['ISO 9001:2015','ISO 14001:2015','ISO 45001:2018','ISO 27001:2022','ISO 22000:2018','ISO 28000:2022','ISO 39001:2013'];
+let twIdx=0,twChar=0,twDeleting=false;
+const twEl=document.getElementById('typewriterEl');
+function typewriter(){
+  const word=norms[twIdx];
+  if(!twDeleting){twEl.textContent=word.slice(0,++twChar);if(twChar===word.length){twDeleting=true;setTimeout(typewriter,2200);return;}}
+  else{twEl.textContent=word.slice(0,--twChar);if(twChar===0){twDeleting=false;twIdx=(twIdx+1)%norms.length;}}
+  setTimeout(typewriter,twDeleting?45:80);
+}
+setTimeout(typewriter,1500);
+
+/* ══ CERT CARD NORM SELECTOR ══ */
+function selectCertNorm(btn){
+  document.querySelectorAll('.cert-norm-btn').forEach(b=>b.classList.remove('active-norm'));
+  btn.classList.add('active-norm');
+  document.getElementById('certCardNorm').textContent=btn.dataset.norm;
+  document.getElementById('certCardNormName').textContent=btn.dataset.name;
+}
+
+/* ══ STEP TRACKER ══ */
+let currentStep=0;
+const totalSteps=5;
+function setTrackerStep(idx){
+  currentStep=idx;
+  for(let i=0;i<totalSteps;i++){
+    const dot=document.getElementById('td'+i);
+    dot.classList.remove('t-active','t-done');
+    if(i<idx)dot.classList.add('t-done');
+    else if(i===idx)dot.classList.add('t-active');
+    document.querySelectorAll('.tracker-panel-step').forEach(p=>p.classList.remove('t-panel-active'));
+    document.getElementById('tp'+idx).classList.add('t-panel-active');
+  }
+  document.getElementById('trackerFill').style.width=(idx/(totalSteps-1)*100)+'%';
+  document.getElementById('trackerLabel').textContent='Paso '+(idx+1)+' de '+totalSteps;
+}
+function moveTracker(dir){
+  const next=Math.min(Math.max(currentStep+dir,0),totalSteps-1);
+  setTrackerStep(next);
+}
+
+/* ══ NORMS PANEL ══ */
+const normData=[
+  {code:'ISO 9001',year:'Versión 2015',name:'Sistema de Gestión de Calidad',desc:'La norma más adoptada mundialmente. Permite demostrar capacidad para entregar productos y servicios que satisfagan consistentemente los requisitos del cliente y mejorar continuamente.',sectors:['Manufactura','Servicios','Salud','Educación','Gobierno','Tecnología']},
+  {code:'ISO 22000',year:'Versión 2018',name:'Inocuidad de los Alimentos',desc:'Establece requisitos para sistemas de gestión de inocuidad alimentaria a lo largo de toda la cadena de suministro de alimentos. Combina principios HACCP con elementos de gestión sistémica.',sectors:['Alimentos','Restaurantes','Agricultura','Empaque','Logística alimentaria']},
+  {code:'ISO 45001',year:'Versión 2018',name:'Seguridad y Salud en el Trabajo',desc:'Proporciona un marco de referencia para gestionar los riesgos y oportunidades en materia de SST. Reemplazó a OHSAS 18001 como el estándar internacional para prevención de lesiones laborales.',sectors:['Construcción','Manufactura','Minería','Logística','Servicios públicos']},
+  {code:'ISO 28000',year:'Versión 2022',name:'Seguridad de la Cadena de Suministro',desc:'Especifica los requisitos para un sistema de gestión de la seguridad para la cadena de suministro. Aplica a organizaciones que buscan establecer, implementar y mejorar la seguridad logística.',sectors:['Logística','Transporte','Comercio internacional','Retail','Distribución']},
+  {code:'ISO 27001',year:'Versión 2022',name:'Seguridad de la Información',desc:'Establece los requisitos para un sistema de gestión de seguridad de la información (SGSI). Ayuda a proteger la confidencialidad, integridad y disponibilidad de los activos de información.',sectors:['Tecnología','Finanzas','Telecomunicaciones','Gobierno','Salud digital']},
+  {code:'ISO 39001',year:'Versión 2013',name:'Seguridad Vial',desc:'Permite a las organizaciones reducir y eventualmente eliminar la incidencia y el riesgo de muerte y lesiones graves relacionadas con el tráfico vial mediante la gestión sistemática de los riesgos viales.',sectors:['Transporte','Logística','Gobierno','Construcción vial','Empresas con flotas']},
+  {code:'ISO 14001',year:'Versión 2015',name:'Sistema de Gestión Ambiental',desc:'Proporciona a las organizaciones un marco para proteger el medio ambiente y responder a las condiciones ambientales cambiantes, equilibrando las necesidades socioeconómicas.',sectors:['Manufactura','Construcción','Energía','Minería','Servicios ambientales']},
+];
+function selectNorm(el,idx){
+  document.querySelectorAll('.norm-item').forEach(i=>i.classList.remove('norm-active'));
+  el.classList.add('norm-active');
+  const d=normData[idx];
+  document.getElementById('ndCode').textContent=d.code;
+  document.getElementById('ndYear').textContent=d.year+' · Renovación cada 3 años';
+  document.getElementById('ndName').textContent=d.name;
+  document.getElementById('ndDesc').textContent=d.desc;
+  const sc=document.getElementById('ndSectors');
+  sc.innerHTML=d.sectors.map(s=>`<span class="norm-sector">${s}</span>`).join('');
+}
+
+/* ══ SIMULATOR ══ */
+function updateSimulator(){
+  const norm=document.getElementById('simNorm').value;
+  const size=document.getElementById('simMaturity').value;
+  const mat=parseInt(document.getElementById('simMaturity').value);
+  const sizeVal=document.getElementById('simSize').value;
+  document.getElementById('simMaturityLabel').textContent=mat+'% implementado';
+
+  const complexMult={micro:0.7,small:1,medium:1.3,large:1.7}[sizeVal]||1;
+  const matFactor=1-(mat/100)*0.5;
+  const baseMonths={9001:6,14001:6,45001:7,27001:8,22000:7,28000:8}[norm]||6;
+  const total=Math.round(baseMonths*complexMult*matFactor);
+  const min=Math.max(3,total-1),max=total+2;
+
+  document.getElementById('simTime').textContent=`${min}–${max} meses`;
+
+  let mod,modNote;
+  if(mat<30){mod='Servicio Integral';modNote='Análisis + Implementación + Cert.';}
+  else if(mat<70){mod='Documental + Cert.';modNote='Levantamiento + Certificación';}
+  else{mod='Gestión Express';modNote='Pre-auditoría + Certificación';}
+  document.getElementById('simMod').textContent=mod;
+  document.getElementById('simModNote').textContent=modNote;
+
+  // Phase widths
+  const diagP=Math.round(100/total*2*complexMult);
+  const devP=Math.round(100*(1-mat/100)*0.55);
+  const preP=15,certP=10,followP=100-diagP-devP-preP-certP;
+  let left=0;
+  function setPhase(id,w){const el=document.getElementById(id);el.style.left=left+'%';el.style.width=Math.max(5,w)+'%';left+=Math.max(5,w);}
+  setPhase('sp1',diagP);setPhase('sp2',devP);setPhase('sp3',preP);setPhase('sp4',certP);setPhase('sp5',Math.max(10,followP));
+}
+updateSimulator();
+
+/* ══ DONUT ANIMATION ══ */
+const donut=document.getElementById('donutFill');
+const donutPct=document.querySelector('.donut-inner .donut-pct');
+const donutObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){
+    donut.style.strokeDashoffset='0';
+    let cur=0;const timer=setInterval(()=>{cur=Math.min(cur+2,100);donutPct.textContent=cur+'%';if(cur>=100)clearInterval(timer);},20);
+    donutObs.unobserve(e.target);
+  }});
+},{threshold:.4});
+if(donut)donutObs.observe(donut);
+
+/* ══ SCROLL REVEAL ══ */
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target);}});
+},{threshold:.08,rootMargin:'0px 0px -30px 0px'});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el=>revealObs.observe(el));
+
+/* ══ COUNTER ══ */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const target=parseInt(el.dataset.count),suffix=el.dataset.suffix||'';
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){
+    let cur=0;const step=Math.ceil(target/60);
+    const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=cur+suffix;if(cur>=target)clearInterval(t);},24);
+    obs.unobserve(el);
+  }});},{threshold:.5});obs.observe(el);
+});
+
+/* ══ NAVBAR SCROLL ══ */
+window.addEventListener('scroll',()=>{document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>50);});
+
+/* ══ SMOOTH SCROLL ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){const h=this.getAttribute('href');if(h&&h!=='#'){const t=document.querySelector(h);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}}});
+});
+
+/* ══ THEME ══ */
+let isMidnight=localStorage.getItem('ind-theme')==='midnight';
+function applyTheme(){
+  document.body.classList.toggle('midnight',isMidnight);
+  const sun='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moon='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  ['themeIcon','mobThemeIcon'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=isMidnight?sun:moon;});
+  ['themeLabel','mobThemeLabel'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent=isMidnight?'Claro':'Oscuro';});
+}
+function toggleTheme(){isMidnight=!isMidnight;localStorage.setItem('ind-theme',isMidnight?'midnight':'normal');applyTheme();}
+applyTheme();
+
+/* ══ A11Y ══ */
+const a11yT=document.getElementById('a11yTrigger'),a11yP=document.getElementById('a11yPanel');
+if(a11yT&&a11yP){a11yT.addEventListener('click',e=>{e.stopPropagation();a11yP.classList.toggle('open');});document.addEventListener('click',e=>{if(!a11yP.contains(e.target)&&e.target!==a11yT)a11yP.classList.remove('open');});}
+let fl=parseInt(localStorage.getItem('ind-font')||'0');
+function applyFont(){document.body.classList.remove('a11y-large');if(fl===1){document.body.classList.add('a11y-large');document.body.style.fontSize='';}else if(fl===-1){document.body.style.fontSize='14px';}else{document.body.style.fontSize='';}}
+function wireBtn(id,fn){const el=document.getElementById(id);if(el)el.addEventListener('click',fn);}
+wireBtn('fontUp',()=>{fl=Math.min(1,fl+1);applyFont();localStorage.setItem('ind-font',fl);});
+wireBtn('fontDown',()=>{fl=Math.max(-1,fl-1);applyFont();localStorage.setItem('ind-font',fl);});
+wireBtn('mobFontUp',()=>{fl=Math.min(1,fl+1);applyFont();localStorage.setItem('ind-font',fl);});
+wireBtn('mobFontDown',()=>{fl=Math.max(-1,fl-1);applyFont();localStorage.setItem('ind-font',fl);});
+let hc=localStorage.getItem('ind-contrast')==='1',rm=localStorage.getItem('ind-motion')==='1';
+function applyContrast(){document.body.classList.toggle('a11y-high-contrast',hc);['contrastBtn','mobContrastBtn'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',hc);});}
+function applyMotion(){document.body.classList.toggle('a11y-reduced-motion',rm);['motionBtn','mobMotionBtn'].forEach(id=>{const el=document.getElementById(id);if(el)el.classList.toggle('active',rm);});}
+wireBtn('contrastBtn',()=>{hc=!hc;applyContrast();localStorage.setItem('ind-contrast',hc?'1':'0');});
+wireBtn('mobContrastBtn',()=>{hc=!hc;applyContrast();localStorage.setItem('ind-contrast',hc?'1':'0');});
+wireBtn('motionBtn',()=>{rm=!rm;applyMotion();localStorage.setItem('ind-motion',rm?'1':'0');});
+wireBtn('mobMotionBtn',()=>{rm=!rm;applyMotion();localStorage.setItem('ind-motion',rm?'1':'0');});
+wireBtn('a11yReset',()=>{fl=0;hc=false;rm=false;['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k));document.body.style.fontSize='';applyFont();applyContrast();applyMotion();});
+wireBtn('mobA11yReset',()=>{fl=0;hc=false;rm=false;['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k));document.body.style.fontSize='';applyFont();applyContrast();applyMotion();});
+applyFont();applyContrast();applyMotion();
+
+/* ══ MOBILE SHEETS ══ */
+const mcs=document.getElementById('mobCtrlSheet'),mco=document.getElementById('mobCtrlOverlay');
+wireBtn('btnMobControls',()=>{mcs.classList.add('active');mco.classList.add('active');});
+wireBtn('closeMobCtrl',()=>{mcs.classList.remove('active');mco.classList.remove('active');});
+if(mco)mco.addEventListener('click',()=>{mcs.classList.remove('active');mco.classList.remove('active');});
+
+const bs = document.getElementById('btnServicesMobile');
+const ss = document.getElementById('servicesSheet');
+const so = document.getElementById('sheetOverlay');
+const cs = document.getElementById('closeSheet');
+
+// Función para abrir el menú de servicios
+function openSvc() { 
+  if(ss) ss.classList.add('active'); 
+  if(so) so.classList.add('active');
+  document.body.classList.add('no-scroll'); 
+}
+
+// Función para cerrar el menú de servicios
+function closeSvc() { 
+  if(ss) ss.classList.remove('active'); 
+  if(so) so.classList.remove('active');
+  document.body.classList.remove('no-scroll'); 
+}
+
+// Asignar los eventos
+if(bs) bs.addEventListener('click', openSvc);
+if(cs) cs.addEventListener('click', closeSvc);
+if(so) so.addEventListener('click', closeSvc);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Implementación de Sistema de Gestión — INDUSECC</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+
+:root {
+  --wine:#7B1E22; --wine-dark:#550F13; --wine-deep:#360A0D; --wine-hi:#9B2429; --wine-soft:#A84147;
+  --gold:#C9A84C; --gold-light:#E8C97A; --gold-dark:#8B6914; --gold-pale:#F5EDD6;
+  --white:#FFFFFF; --cream:#FBF8F3; --parchment:#F2EDE4;
+  --ink:#1C1008; --text:#2A1A1B; --muted:#7A6060;
+  --border:rgba(123,30,34,.12); --border-gold:rgba(201,168,76,.25); --shadow:rgba(123,30,34,.15);
+}
+body.midnight { --cream:#0D0D12; --white:#13131A; --parchment:#181820; --ink:#F0ECE4; --text:#E8E0D8; --muted:#A09898; --border:rgba(201,168,76,.18); --border-gold:rgba(201,168,76,.22); --shadow:rgba(0,0,0,.6); background:#0D0D12; color:#E8E0D8; }
+body.midnight .ind-header-wrapper { background:#050508 !important; }
+body.midnight .ind-top-bar { background:#02020A; }
+body.midnight .ind-main-header { background:rgba(5,5,8,.98); }
+body.midnight .page-intro { background:#13131A; }
+body.midnight .steps-section { background:#0D0D12; }
+body.midnight .step-card { background:#181820; border-color:rgba(201,168,76,.15); }
+body.midnight .cta-section { background:#13131A; }
+body.midnight .section-title { color:#F0ECE4; }
+
+html { scroll-behavior:smooth; }
+body { font-family:'Outfit',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; padding-top:115px; transition:background .4s,color .4s; }
+@media(max-width:1150px){ body { padding-top:70px; } }
+
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp { from{opacity:0;transform:translateY(32px)} to{opacity:1;transform:translateY(0)} }
+@keyframes fadeIn { from{opacity:0} to{opacity:1} }
+@keyframes scaleIn { from{transform:scaleX(0)} to{transform:scaleX(1)} }
+@keyframes shineSweep { 0%{left:-100%} 18%{left:120%} 100%{left:120%} }
+@keyframes shine-logo { 0%{left:-150%} 20%{left:150%} 100%{left:150%} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes rotateSlow { to{transform:rotate(360deg)} }
+@keyframes pulse { 0%,100%{opacity:.5} 50%{opacity:1} }
+@keyframes drawPath { from{stroke-dashoffset:1000} to{stroke-dashoffset:0} }
+@keyframes gearSpin { to{transform:rotate(360deg)} }
+@keyframes gearSpinRev { to{transform:rotate(-360deg)} }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+@keyframes countUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+@keyframes borderPulse { 0%,100%{border-color:rgba(201,168,76,.2)} 50%{border-color:rgba(201,168,76,.6)} }
+@keyframes lineGrow { from{width:0} to{width:100%} }
+
+/* ══ SHINE ══ */
+.shine-el { position:relative; overflow:hidden; }
+.shine-el::after { content:''; position:absolute; top:0; left:-100%; width:55%; height:100%; background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.30) 50%,rgba(255,255,255,0) 100%); transform:skewX(-20deg); animation:shineSweep 3.8s ease-in-out infinite; pointer-events:none; z-index:10; }
+
+/* ══ SCROLL REVEAL ══ */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .7s cubic-bezier(.4,0,.2,1); }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.reveal-delay-1 { transition-delay:.1s; }
+.reveal-delay-2 { transition-delay:.2s; }
+.reveal-delay-3 { transition-delay:.3s; }
+.reveal-delay-4 { transition-delay:.4s; }
+.reveal-delay-5 { transition-delay:.5s; }
+.reveal-delay-6 { transition-delay:.6s; }
+.reveal-delay-7 { transition-delay:.7s; }
+.reveal-delay-8 { transition-delay:.8s; }
+
+/* ══════════════════════════════════════
+   NAVBAR — IDÉNTICO AL INDEX
+══════════════════════════════════════ */
+.ind-header-wrapper { position:fixed; top:0; width:100%; z-index:1000; background:#0A0A0A; box-shadow:0 2px 15px rgba(0,0,0,.5); transition:box-shadow .4s,background .4s; }
+.ind-header-wrapper.scrolled { background:rgba(5,5,5,.98); box-shadow:0 4px 30px rgba(0,0,0,.8),0 1px 0 rgba(201,168,76,.18); }
+.ind-top-bar { background:#000; border-bottom:1px solid rgba(201,168,76,.1); padding:0 60px; display:flex; justify-content:space-between; align-items:center; height:35px; }
+.ind-top-info { display:flex; gap:25px; }
+.ind-top-item { display:flex; align-items:center; gap:8px; color:#A89880; font-size:10px; font-weight:500; letter-spacing:1px; text-transform:uppercase; }
+.ind-top-item svg { width:12px; height:12px; color:var(--gold); }
+.ind-top-item a { color:inherit; text-decoration:none; transition:color .3s; }
+.ind-top-item a:hover { color:var(--gold-light); }
+.ind-main-header { background:rgba(10,10,10,.98); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border-bottom:1px solid rgba(255,255,255,.05); }
+.ind-container { max-width:1400px; margin:0 auto; padding:0 60px; height:80px; display:flex; align-items:center; justify-content:space-between; }
+.ind-logo-group { display:flex; align-items:center; gap:20px; }
+.ind-logo-wrap { text-decoration:none; display:flex; align-items:center; }
+.ind-logo-img { max-height:48px; width:auto; display:block; }
+.ind-logo-sep { width:1px; height:30px; background:rgba(201,168,76,.2); }
+.ind-header-tagline { font-family:'Playfair Display',serif; color:#A89880; font-size:15px; font-style:italic; max-width:200px; line-height:1.3; }
+.ind-nav { display:flex; align-items:center; gap:30px; height:100%; }
+.ind-menu-item { position:relative; height:100%; display:flex; align-items:center; }
+.ind-link { text-decoration:none; color:rgba(255,255,255,.9); font-size:10.5px; font-weight:700; text-transform:uppercase; letter-spacing:1.2px; transition:.3s; display:flex; align-items:center; }
+.ind-link:hover,.ind-link.active { color:var(--gold-light); }
+.ind-dropdown { position:absolute; top:100%; left:50%; transform:translateX(-50%); width:280px; background:#0D0D0D; border:1px solid rgba(201,168,76,.2); padding:10px 0; opacity:0; visibility:hidden; transition:all .3s; z-index:200; }
+.ind-menu-item:hover .ind-dropdown { opacity:1; visibility:visible; }
+.ind-drop-link { display:block; padding:12px 20px; color:rgba(255,255,255,.6); text-decoration:none; font-size:10px; font-weight:600; text-transform:uppercase; transition:.3s; }
+.ind-drop-link:hover { background:rgba(139,26,26,.15); color:#fff; padding-left:25px; border-left:3px solid var(--wine); }
+.ind-actions { display:flex; align-items:center; gap:8px; }
+.ind-a11y-wrap { position:relative; display:flex; align-items:center; }
+.a11y-trigger { width:34px; height:34px; background:rgba(255,255,255,.06); border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all .3s; }
+.a11y-trigger:hover { border-color:var(--gold); background:rgba(201,168,76,.12); }
+.a11y-trigger svg { width:17px; height:17px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.a11y-panel { position:absolute; top:calc(100% + 12px); right:0; width:252px; background:#111; border:1px solid rgba(201,168,76,.3); box-shadow:0 24px 64px rgba(0,0,0,.7); z-index:9999; padding:18px; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .22s,transform .22s,visibility .22s; pointer-events:none; }
+.a11y-panel.open { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+.a11y-panel-title { font-size:9px; font-weight:700; letter-spacing:.32em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(201,168,76,.15); }
+.a11y-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.a11y-label { font-size:12px; color:rgba(255,255,255,.72); font-weight:400; }
+.a11y-controls { display:flex; gap:5px; }
+.a11y-ctrl-btn { min-width:32px; height:32px; padding:0 6px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.85); font-size:13px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.a11y-ctrl-btn:hover { background:rgba(201,168,76,.22); border-color:var(--gold); color:#fff; }
+.a11y-ctrl-btn.active { background:rgba(201,168,76,.32); border-color:var(--gold); color:var(--gold-light); }
+.a11y-sep { height:1px; background:rgba(255,255,255,.08); margin:14px 0; }
+.a11y-reset { width:100%; padding:9px; background:rgba(123,30,34,.32); border:1px solid rgba(123,30,34,.5); color:rgba(255,255,255,.75); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.a11y-reset:hover { background:var(--wine); color:#fff; }
+.theme-toggle-btn { display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.06); border:1px solid rgba(201,168,76,.3); padding:7px 12px; cursor:pointer; transition:all .3s; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:rgba(255,255,255,.8); white-space:nowrap; }
+.theme-toggle-btn:hover { border-color:var(--gold); color:var(--gold-light); background:rgba(201,168,76,.12); }
+.theme-toggle-btn svg { width:14px; height:14px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.ind-btn-cta { background:linear-gradient(135deg,var(--wine-deep),var(--wine)); color:#fff; text-decoration:none; font-size:9.5px; font-weight:700; text-transform:uppercase; letter-spacing:1px; padding:12px 22px; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); transition:.3s; border:none; cursor:pointer; position:relative; overflow:hidden; }
+.ind-btn-cta:hover { opacity:.9; }
+.ind-bottom-nav { display:none; position:fixed; bottom:0; left:0; width:100%; height:65px; background:#000; border-top:1px solid rgba(201,168,76,.2); z-index:2000; }
+.ind-bnav-container { display:flex; justify-content:space-around; align-items:center; height:100%; max-width:600px; margin:0 auto; }
+.ind-bnav-item { text-decoration:none; display:flex; flex-direction:column; align-items:center; gap:4px; color:rgba(255,255,255,.5); transition:.3s; flex:1; border:none; background:transparent; cursor:pointer; }
+.ind-bnav-item svg { width:20px; height:20px; }
+.ind-bnav-item span { font-size:8px; font-weight:600; text-transform:uppercase; }
+.ind-bnav-item.active { color:var(--gold); }
+.ind-bnav-item.wa-item { color:#25D366; }
+.ind-bnav-item.ctrl-item { color:rgba(255,255,255,.5); }
+.ind-sheet-overlay { position:fixed; inset:0; background:rgba(0,0,0,.85); backdrop-filter:blur(5px); z-index:2001; opacity:0; visibility:hidden; transition:.3s; }
+.ind-sheet-overlay.active { opacity:1; visibility:visible; }
+.ind-bottom-sheet { position:fixed; bottom:-100%; left:0; width:100%; background:#0a0a0a; z-index:2002; border-radius:20px 20px 0 0; padding:25px 20px 80px; transition:bottom .4s cubic-bezier(.4,0,.2,1); border-top:2px solid var(--gold); }
+.ind-bottom-sheet.active { bottom:0; }
+.ind-sheet-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
+.ind-sheet-title { font-family:'Playfair Display',serif; color:var(--gold); font-size:20px; font-weight:700; font-style:italic; }
+.ind-sheet-close { background:rgba(255,255,255,.05); border:none; width:32px; height:32px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.ind-sheet-grid { display:grid; gap:8px; }
+.ind-sheet-link { padding:14px 18px; background:rgba(255,255,255,.02); border-radius:10px; color:#fff; text-decoration:none; font-size:10px; font-weight:600; text-transform:uppercase; display:flex; justify-content:space-between; align-items:center; transition:.2s; }
+.ind-sheet-link:hover { background:rgba(201,168,76,.08); color:var(--gold-light); }
+.mob-ctrl-sheet { position:fixed; bottom:-100%; left:0; width:100%; background:#0a0a0a; z-index:3000; border-radius:20px 20px 0 0; padding:24px 20px 90px; transition:bottom .4s cubic-bezier(.4,0,.2,1); border-top:2px solid var(--gold); }
+.mob-ctrl-sheet.active { bottom:0; }
+.mob-ctrl-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:22px; padding-bottom:16px; border-bottom:1px solid rgba(201,168,76,.15); }
+.mob-ctrl-title { font-family:'Playfair Display',serif; color:var(--gold); font-size:18px; font-weight:700; font-style:italic; }
+.mob-ctrl-close { background:rgba(255,255,255,.06); border:none; width:34px; height:34px; border-radius:50%; color:#fff; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:18px; }
+.mob-ctrl-section { margin-bottom:20px; }
+.mob-ctrl-section-label { font-size:9px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:rgba(201,168,76,.6); margin-bottom:10px; }
+.mob-theme-btn { width:100%; padding:13px 16px; display:flex; align-items:center; justify-content:space-between; background:rgba(255,255,255,.05); border:1px solid rgba(201,168,76,.25); color:rgba(255,255,255,.8); font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; cursor:pointer; transition:all .3s; }
+.mob-theme-btn:hover { background:rgba(201,168,76,.1); border-color:var(--gold); }
+.mob-theme-btn svg { width:18px; height:18px; stroke:var(--gold); fill:none; stroke-width:1.8; }
+.mob-a11y-grid { display:grid; gap:10px; }
+.mob-a11y-row { display:flex; align-items:center; justify-content:space-between; padding:12px 14px; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.06); }
+.mob-a11y-label { font-size:13px; color:rgba(255,255,255,.75); }
+.mob-a11y-controls { display:flex; gap:6px; }
+.mob-a11y-btn { min-width:36px; height:36px; padding:0 8px; background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.85); font-size:14px; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; }
+.mob-a11y-btn.active { background:rgba(201,168,76,.3); border-color:var(--gold); color:var(--gold-light); }
+.mob-a11y-btn:hover { background:rgba(201,168,76,.2); border-color:var(--gold); color:#fff; }
+.mob-a11y-reset { width:100%; margin-top:12px; padding:12px; background:rgba(123,30,34,.3); border:1px solid rgba(123,30,34,.4); color:rgba(255,255,255,.75); font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; transition:all .2s; }
+.mob-a11y-reset:hover { background:var(--wine); color:#fff; }
+@media(max-width:1150px) {
+  .ind-nav,.ind-actions,.ind-top-bar,.ind-logo-sep,.ind-header-tagline { display:none; }
+  .ind-bottom-nav { display:block; }
+  .ind-container { height:70px; justify-content:center; }
+  .ind-logo-img { max-height:42px; }
+}
+
+/* ══════════════════════════════════════
+   HERO — ANIMACIÓN DE ENGRANAJES Y DOCUMENTOS
+══════════════════════════════════════ */
+.impl-hero {
+  min-height: calc(100vh - 115px);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background: #0D0205;
+}
+@media(max-width:1150px){ .impl-hero { min-height:calc(100vh - 70px); } }
+
+#heroCanvas { position:absolute; inset:0; width:100%; height:100%; z-index:1; pointer-events:none; }
+
+.hero-overlay-impl {
+  position:absolute; inset:0; z-index:2;
+  background:
+    radial-gradient(ellipse 70% 80% at 20% 50%, rgba(123,30,34,.55) 0%, transparent 60%),
+    linear-gradient(160deg, rgba(8,1,3,.7) 0%, rgba(20,4,8,.4) 60%, rgba(8,1,3,.85) 100%),
+    linear-gradient(to top, rgba(8,1,3,.9) 0%, transparent 45%);
+}
+.hero-left-bar {
+  position:absolute; left:0; top:0; bottom:0; width:4px; z-index:20;
+  background:linear-gradient(to bottom, transparent, rgba(201,168,76,.2) 10%, var(--gold) 35%, var(--gold-light) 55%, var(--gold-dark) 85%, transparent);
+}
+
+.hero-body-impl {
+  position:relative; z-index:10;
+  max-width:1300px; margin:0 auto; padding:80px 60px;
+  width:100%;
+  display:grid;
+  grid-template-columns:1fr 480px;
+  gap:60px;
+  align-items:center;
+}
+@media(max-width:1100px){ .hero-body-impl { grid-template-columns:1fr; } }
+
+/* Left content */
+.hero-content-impl {}
+.hero-eyebrow {
+  display:inline-flex; align-items:center; gap:12px; margin-bottom:28px;
+  opacity:0; animation:fadeUp .7s .2s ease forwards;
+}
+.hero-eyebrow-dot { width:6px; height:6px; background:var(--gold); transform:rotate(45deg); }
+.hero-eyebrow-line { width:40px; height:1px; background:linear-gradient(to right,var(--gold),rgba(201,168,76,.2)); }
+.hero-eyebrow-tag {
+  font-size:9px; font-weight:700; letter-spacing:.42em; text-transform:uppercase; color:var(--gold);
+}
+.hero-pretitle {
+  font-size:11px; font-weight:600; letter-spacing:.25em; text-transform:uppercase; color:rgba(255,255,255,.45);
+  margin-bottom:12px; opacity:0; animation:fadeUp .7s .3s ease forwards;
+}
+.hero-title-impl {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.6rem,5vw,4.8rem);
+  font-weight:900; line-height:.95; letter-spacing:-.03em;
+  color:#fff; margin-bottom:28px;
+  opacity:0; animation:fadeUp .9s .4s ease forwards;
+}
+.hero-title-impl em {
+  display:block; font-style:italic; font-weight:300;
+  background:linear-gradient(108deg,var(--gold-dark) 0%,var(--gold) 35%,var(--gold-light) 65%,var(--gold) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+.hero-sub-impl {
+  font-size:1rem; font-weight:300; color:rgba(255,255,255,.6); line-height:1.9; max-width:520px;
+  margin-bottom:44px; opacity:0; animation:fadeUp .8s .55s ease forwards;
+}
+.hero-sub-impl strong { color:rgba(255,255,255,.88); font-weight:500; }
+.hero-actions-impl {
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp .8s .7s ease forwards;
+}
+.btn-primary-impl {
+  display:inline-flex; align-items:center; gap:12px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  color:var(--wine-deep); padding:16px 36px;
+  font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  text-decoration:none; clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:all .35s; position:relative; overflow:hidden;
+}
+.btn-primary-impl:hover { transform:translateY(-2px); box-shadow:0 16px 48px rgba(201,168,76,.35); }
+.btn-primary-impl svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2.5; transition:transform .3s; }
+.btn-primary-impl:hover svg { transform:translateX(4px); }
+.btn-ghost-impl {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(255,255,255,.55); text-decoration:none; transition:color .3s;
+}
+.btn-ghost-impl-line { width:24px; height:1px; background:currentColor; transition:width .3s; }
+.btn-ghost-impl:hover { color:var(--gold-light); }
+.btn-ghost-impl:hover .btn-ghost-impl-line { width:44px; }
+
+/* Hero stats strip */
+.hero-stats-impl {
+  display:flex; gap:0; margin-top:56px;
+  border-top:1px solid rgba(201,168,76,.12);
+  opacity:0; animation:fadeUp .7s .9s ease forwards;
+}
+.hero-stat-impl {
+  padding:24px 36px 0 0; flex:1;
+}
+.hero-stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--gold-light); line-height:1; margin-bottom:4px; }
+.hero-stat-lbl { font-size:9px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.35); line-height:1.5; }
+
+/* ── Hero right panel: gear animation ── */
+.hero-visual-panel {
+  display:flex; align-items:center; justify-content:center;
+  opacity:0; animation:fadeIn 1.2s .6s ease forwards;
+}
+@media(max-width:1100px){ .hero-visual-panel { display:none; } }
+
+.gear-scene {
+  width:420px; height:420px; position:relative;
+}
+.gear-wrap { position:absolute; }
+.gear-wrap svg { display:block; }
+.gear-wrap.g1 { top:50%; left:50%; transform:translate(-50%,-50%); animation:gearSpin 8s linear infinite; }
+.gear-wrap.g2 { top:18%; left:60%; animation:gearSpinRev 5.33s linear infinite; }
+.gear-wrap.g3 { top:55%; left:10%; animation:gearSpinRev 6s linear infinite; }
+.gear-wrap.g4 { top:10%; left:12%; animation:gearSpin 7s linear infinite; }
+
+.gear-center-badge {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+  width:88px; height:88px; background:rgba(8,1,3,.9);
+  border:2px solid rgba(201,168,76,.4);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  z-index:5;
+  animation:borderPulse 3s ease infinite;
+}
+.gear-center-badge-num { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold-light); line-height:1; }
+.gear-center-badge-lbl { font-size:7px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:3px; }
+
+/* Floating doc cards */
+.float-doc {
+  position:absolute; z-index:10;
+  background:rgba(12,2,5,.88); border:1px solid rgba(201,168,76,.2);
+  padding:10px 14px; border-left:3px solid var(--gold);
+  min-width:140px;
+}
+.float-doc-label { font-size:8px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
+.float-doc-val { font-size:12px; font-weight:600; color:rgba(255,255,255,.8); display:flex; align-items:center; gap:6px; }
+.float-doc-dot { width:6px; height:6px; border-radius:50%; background:#22c55e; animation:blink 1.4s ease infinite; }
+.float-doc.fd1 { bottom:8%; right:2%; animation:float 4s ease-in-out infinite; }
+.float-doc.fd2 { top:8%; left:0%; animation:float 5s 1s ease-in-out infinite; }
+.float-doc.fd3 { top:38%; right:0%; animation:float 4.5s .5s ease-in-out infinite; }
+
+/* ══════════════════════════════════════
+   INTRO BAND — stats
+══════════════════════════════════════ */
+.intro-band {
+  background:var(--wine-deep); position:relative;
+  display:grid; grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(201,168,76,.15);
+  border-bottom:1px solid rgba(201,168,76,.1);
+}
+.intro-band::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23C9A84C' stroke-width='.4' opacity='.06'/%3E%3C/svg%3E") repeat;
+  background-size:60px; pointer-events:none;
+}
+.intro-stat {
+  padding:36px 32px; border-right:1px solid rgba(201,168,76,.1);
+  display:flex; align-items:center; gap:18px; position:relative; z-index:1;
+  transition:background .3s;
+}
+.intro-stat:last-child { border-right:none; }
+.intro-stat:hover { background:rgba(201,168,76,.06); }
+.intro-stat-icon { width:48px; height:48px; flex-shrink:0; border:1px solid rgba(201,168,76,.25); display:flex; align-items:center; justify-content:center; }
+.intro-stat-icon svg { width:20px; height:20px; stroke:var(--gold); fill:none; stroke-width:1.5; stroke-linecap:round; }
+.intro-stat-num { font-family:'Playfair Display',serif; font-size:1.9rem; font-weight:700; color:var(--gold-light); line-height:1; margin-bottom:4px; }
+.intro-stat-lbl { font-size:9px; font-weight:600; letter-spacing:.17em; text-transform:uppercase; color:rgba(255,255,255,.32); line-height:1.5; }
+@media(max-width:900px){ .intro-band { grid-template-columns:1fr 1fr; } .intro-stat { border-bottom:1px solid rgba(201,168,76,.1); } }
+@media(max-width:480px){ .intro-band { grid-template-columns:1fr; } }
+
+/* ══════════════════════════════════════
+   ¿QUÉ ES? — intro section
+══════════════════════════════════════ */
+.page-intro {
+  background:var(--parchment);
+  padding:100px 60px;
+  position:relative; overflow:hidden;
+}
+.page-intro::before {
+  content:'SGC'; position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+  font-family:'Playfair Display',serif; font-size:clamp(8rem,16vw,18rem);
+  font-weight:900; color:rgba(123,30,34,.04); pointer-events:none; line-height:1; letter-spacing:-.06em;
+}
+.intro-inner { max-width:1280px; margin:0 auto; display:grid; grid-template-columns:1fr 520px; gap:80px; align-items:center; }
+@media(max-width:1000px){ .intro-inner { grid-template-columns:1fr; } }
+
+.section-tag { display:inline-flex; align-items:center; gap:12px; margin-bottom:20px; }
+.section-tag-line { width:32px; height:1px; background:var(--gold); }
+.section-tag-text { font-size:11px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--wine); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(2.2rem,3.8vw,3.6rem); font-weight:900; line-height:1.02; letter-spacing:-.03em; color:var(--ink); }
+.section-title em { font-style:italic; color:var(--wine); }
+.section-rule { display:flex; align-items:center; gap:0; margin:20px 0 0; }
+.rule-wine { width:72px; height:2px; background:var(--wine); }
+.rule-gold { width:36px; height:1px; background:linear-gradient(to right,var(--gold),transparent); margin-left:4px; }
+
+.intro-text { margin-top:32px; }
+.intro-p { font-size:16px; font-weight:300; color:var(--muted); line-height:1.95; margin-bottom:22px; }
+.intro-p strong { color:var(--wine); font-weight:600; }
+
+.intro-highlights { display:flex; flex-direction:column; gap:14px; margin-top:36px; }
+.intro-hl {
+  display:flex; align-items:flex-start; gap:16px;
+  padding:16px 20px; background:#fff;
+  border:1px solid rgba(201,168,76,.15); border-left:3px solid var(--wine);
+  transition:all .3s;
+}
+.intro-hl:hover { border-left-color:var(--gold); background:var(--gold-pale); transform:translateX(4px); }
+.intro-hl-icon { width:36px; height:36px; flex-shrink:0; background:rgba(123,30,34,.06); display:flex; align-items:center; justify-content:center; }
+.intro-hl-icon svg { width:18px; height:18px; stroke:var(--wine); fill:none; stroke-width:1.5; stroke-linecap:round; }
+.intro-hl-title { font-size:12px; font-weight:700; color:var(--ink); text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px; }
+.intro-hl-desc { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; }
+
+/* Intro visual */
+.intro-visual { position:relative; }
+.intro-img-wrap {
+  position:relative; overflow:hidden;
+  border-top:3px solid var(--wine);
+}
+.intro-img-wrap img { width:100%; height:380px; object-fit:cover; display:block; filter:brightness(.85) saturate(.7) contrast(1.1); transition:transform .8s ease,filter .5s; }
+.intro-img-wrap:hover img { transform:scale(1.04); filter:brightness(.9) saturate(.85) contrast(1.1); }
+.intro-img-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(160deg,rgba(123,30,34,.45) 0%,rgba(53,10,13,.2) 50%,rgba(12,2,4,.6) 100%);
+}
+.intro-img-badge {
+  position:absolute; bottom:24px; left:24px;
+  background:rgba(10,2,4,.92); border:1px solid rgba(201,168,76,.3); padding:16px 20px;
+  border-left:3px solid var(--gold);
+}
+.intro-img-badge-num { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold-light); line-height:1; }
+.intro-img-badge-lbl { font-size:9px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:4px; }
+
+/* ══════════════════════════════════════
+   PASOS — 8 steps
+══════════════════════════════════════ */
+.steps-section {
+  background:var(--cream);
+  padding:100px 60px;
+  position:relative;
+}
+.steps-section::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,transparent,var(--wine),var(--gold),var(--wine),transparent);
+}
+.steps-header { text-align:center; margin-bottom:72px; }
+.steps-header .section-tag { justify-content:center; }
+
+.steps-timeline { max-width:1280px; margin:0 auto; position:relative; }
+
+/* Vertical line connector */
+.steps-timeline::before {
+  content:''; position:absolute; left:50%; top:0; bottom:0; width:2px;
+  background:linear-gradient(to bottom,transparent,rgba(201,168,76,.3) 5%,rgba(201,168,76,.3) 95%,transparent);
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+@media(max-width:900px){ .steps-timeline::before { left:32px; } }
+
+.step-item {
+  display:grid; grid-template-columns:1fr 64px 1fr; gap:0; align-items:start;
+  margin-bottom:56px; position:relative;
+}
+.step-item:last-child { margin-bottom:0; }
+/* odd steps: content left, image right */
+.step-item:nth-child(even) .step-left { order:3; text-align:left; padding-left:48px; padding-right:0; }
+.step-item:nth-child(even) .step-center { order:2; }
+.step-item:nth-child(even) .step-right { order:1; padding-right:48px; padding-left:0; }
+
+.step-left { padding-right:48px; }
+.step-right { padding-left:48px; }
+
+.step-card {
+  background:#fff;
+  border:1px solid rgba(201,168,76,.15);
+  padding:32px 28px;
+  position:relative; overflow:hidden;
+  transition:all .4s;
+}
+.step-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--wine),var(--gold));
+  transform:scaleX(0); transform-origin:left; transition:transform .4s cubic-bezier(.4,0,.2,1);
+}
+.step-card:hover::before { transform:scaleX(1); }
+.step-card:hover { border-color:rgba(201,168,76,.3); box-shadow:0 12px 48px rgba(123,30,34,.08); transform:translateY(-4px); }
+
+.step-card-tag { font-size:9px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--wine); margin-bottom:8px; }
+.step-card-title { font-family:'Playfair Display',serif; font-size:1.3rem; font-weight:700; color:var(--ink); line-height:1.15; margin-bottom:14px; }
+.step-card-desc { font-size:13px; font-weight:300; color:var(--muted); line-height:1.8; }
+.step-card-footer {
+  display:flex; align-items:center; gap:10px; margin-top:20px;
+  padding-top:16px; border-top:1px solid rgba(201,168,76,.12);
+}
+.step-card-footer-icon { width:28px; height:28px; border:1px solid rgba(201,168,76,.25); display:flex; align-items:center; justify-content:center; }
+.step-card-footer-icon svg { width:14px; height:14px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+.step-card-footer-text { font-size:10px; font-weight:600; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+
+/* Step image */
+.step-img-wrap {
+  position:relative; overflow:hidden;
+  border-top:2px solid var(--wine);
+  height:220px;
+}
+.step-img-wrap img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .6s ease; filter:brightness(.85) saturate(.65) contrast(1.1); }
+.step-card:hover ~ .step-img-wrap img,
+.step-img-wrap:hover img { transform:scale(1.05); }
+.step-img-overlay {
+  position:absolute; inset:0;
+  background:linear-gradient(135deg,rgba(123,30,34,.4) 0%,rgba(12,2,4,.55) 100%);
+}
+.step-img-num {
+  position:absolute; bottom:16px; right:16px;
+  font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:900;
+  color:rgba(201,168,76,.2); line-height:1; pointer-events:none;
+}
+
+/* Center node */
+.step-center {
+  display:flex; flex-direction:column; align-items:center; padding-top:28px;
+}
+.step-node {
+  width:56px; height:56px;
+  background:linear-gradient(135deg,var(--wine-dark),var(--wine));
+  border:3px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
+  position:relative; z-index:2;
+  transition:all .4s;
+}
+.step-node:hover { transform:scale(1.1); box-shadow:0 0 0 6px rgba(201,168,76,.15); }
+.step-node-num {
+  font-family:'Playfair Display',serif; font-size:1.1rem; font-weight:900; color:#fff;
+}
+.step-connector {
+  width:2px; flex:1; background:linear-gradient(to bottom,rgba(201,168,76,.3),transparent);
+  min-height:32px;
+}
+
+/* Mobile steps layout */
+@media(max-width:900px){
+  .step-item { grid-template-columns:64px 1fr; grid-template-rows:auto auto; }
+  .step-center { order:1; grid-row:1/3; }
+  .step-left,.step-right { order:2; grid-column:2; padding:0 0 0 20px !important; margin-bottom:16px; }
+  .step-item:nth-child(even) .step-left { order:2; }
+  .step-item:nth-child(even) .step-center { order:1; }
+  .step-item:nth-child(even) .step-right { order:3; grid-column:2; padding:0 0 0 20px !important; }
+  .steps-timeline::before { left:28px; transform:none; }
+  .step-node { width:44px; height:44px; }
+}
+
+/* ══════════════════════════════════════
+   ISO STANDARDS — normas aplicables
+══════════════════════════════════════ */
+.norms-section {
+  background:var(--parchment); padding:100px 60px; position:relative; overflow:hidden;
+}
+.norms-inner { max-width:1280px; margin:0 auto; }
+.norms-header { text-align:center; margin-bottom:60px; }
+.norms-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:2px; background:rgba(123,30,34,.08); }
+@media(max-width:1100px){ .norms-grid { grid-template-columns:repeat(3,1fr); } }
+@media(max-width:640px){ .norms-grid { grid-template-columns:1fr 1fr; } }
+
+.norm-card {
+  background:var(--white); padding:40px 28px;
+  position:relative; overflow:hidden; transition:all .4s;
+  cursor:default;
+}
+.norm-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--wine),var(--gold));
+  transform:scaleX(0); transform-origin:center; transition:transform .4s;
+}
+.norm-card:hover::before { transform:scaleX(1); }
+.norm-card:hover { background:var(--gold-pale); }
+.norm-card-code { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--wine); line-height:1; margin-bottom:8px; }
+.norm-card-name { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.1em; color:var(--ink); margin-bottom:10px; }
+.norm-card-desc { font-size:12px; font-weight:300; color:var(--muted); line-height:1.6; }
+.norm-card-badge { display:inline-block; margin-top:14px; padding:4px 10px; background:rgba(123,30,34,.07); border:1px solid rgba(123,30,34,.12); font-size:8px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--wine); }
+
+/* ══════════════════════════════════════
+   BENEFICIOS — visual grid
+══════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   BENEFICIOS — CSS UNIFICADO Y CORREGIDO
+══════════════════════════════════════ */
+.benefits-section {
+    background: var(--cream);
+    padding: 100px 60px;
+    position: relative;
+}
+
+.benefits-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr; /* Ajuste leve para dar más peso al texto */
+    gap: 80px;
+    align-items: center; /* Alineación vertical perfecta */
+}
+
+@media(max-width: 960px){ .benefits-inner { grid-template-columns: 1fr; } }
+
+.benefits-p { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 20px; }
+.benefits-p strong { color: var(--wine); font-weight: 600; }
+
+.benefits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
+@media(max-width: 500px){ .benefits-grid { grid-template-columns: 1fr; } }
+
+.benefit-card {
+    padding: 24px 20px; background: var(--parchment); border: 1px solid rgba(201,168,76,.15);
+    position: relative; overflow: hidden; transition: all .35s;
+}
+.benefit-card::after {
+    content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0;
+    background: linear-gradient(to bottom, var(--wine), var(--gold)); transition: height .4s;
+}
+.benefit-card:hover::after { height: 100%; }
+.benefit-card:hover { border-color: rgba(201,168,76,.3); background: #fff; transform: translateX(4px); }
+.benefit-icon { width: 40px; height: 40px; background: rgba(123,30,34,.06); display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
+.benefit-icon svg { width: 20px; height: 20px; stroke: var(--wine); fill: none; stroke-width: 1.5; }
+.benefit-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.benefit-desc { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.65; }
+
+/* --- Visual del Video y Acento --- */
+.benefits-visual { 
+    position: relative;
+    padding: 30px; /* Espacio de seguridad para que el acento no se corte */
+}
+
+.benefits-img-main {
+    position: relative;
+    overflow: hidden;
+    border-top: 3px solid var(--wine);
+    aspect-ratio: 4 / 5; /* Proporción vertical para que coincida con la altura de los beneficios */
+    max-height: 600px;
+    background: #000;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+.benefits-img-main-overlay { 
+    position: absolute; 
+    inset: 0; 
+    background: linear-gradient(160deg, rgba(123,30,34,0.3) 0%, rgba(12,2,4,0.6) 100%); 
+    z-index: 2;
+}
+
+
+/* LA IMAGEN DE ACENTO — Acomodada abajo a la derecha */
+.benefits-img-accent {
+    position: absolute;
+    /* Cambiamos top por bottom */
+    bottom: -30px; 
+    right: -30px;
+    
+    width: 200px; 
+    height: 200px;
+    border: 3px solid var(--gold);
+    z-index: 10; 
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+}
+.benefits-img-accent img { width: 100%; height: 100%; object-fit: cover; }
+
+.benefits-quote {
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    /* Ajustamos el margen derecho para que la cita termine antes de que empiece la imagen de acento */
+    right: 180px; 
+    background: rgba(10, 2, 4, 0.95);
+    border-left: 4px solid var(--gold);
+    padding: 25px;
+    z-index: 5;
+}
+
+.benefits-quote-text { font-family: 'Playfair Display', serif; font-size: 1rem; font-style: italic; color: #fff; line-height: 1.6; margin-bottom: 10px; }
+.benefits-quote-author { font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+
+
+/* ══════════════════════════════════════
+   CTA SECTION
+══════════════════════════════════════ */
+.cta-section {
+  background:linear-gradient(160deg,#0D0205 0%,#1a0508 50%,#0D0205 100%);
+  padding:100px 60px; position:relative; overflow:hidden;
+}
+.cta-section::before {
+  content:''; position:absolute; inset:0;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Ccircle cx='40' cy='40' r='38' fill='none' stroke='%23C9A84C' stroke-width='.3' opacity='.04'/%3E%3C/svg%3E") repeat;
+  background-size:80px; pointer-events:none;
+}
+.cta-inner { max-width:1000px; margin:0 auto; text-align:center; position:relative; z-index:1; }
+.cta-tag { display:inline-flex; align-items:center; gap:12px; margin-bottom:24px; }
+.cta-tag-line { width:40px; height:1px; background:rgba(201,168,76,.4); }
+.cta-tag-text { font-size:9px; font-weight:700; letter-spacing:.38em; text-transform:uppercase; color:rgba(201,168,76,.7); }
+.cta-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.2rem,4.5vw,4rem);
+  font-weight:900; color:#fff; line-height:1.02; letter-spacing:-.03em;
+  margin-bottom:20px;
+}
+.cta-title em {
+  font-style:italic; font-weight:300;
+  background:linear-gradient(108deg,var(--gold-dark),var(--gold),var(--gold-light));
+  background-size:200% auto; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+.cta-sub { font-size:1rem; font-weight:300; color:rgba(255,255,255,.5); line-height:1.8; max-width:560px; margin:0 auto 44px; }
+.cta-actions { display:flex; align-items:center; gap:24px; justify-content:center; flex-wrap:wrap; }
+.btn-cta-gold {
+  display:inline-flex; align-items:center; gap:14px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  color:var(--wine-deep); padding:20px 48px;
+  font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  text-decoration:none; clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+  transition:all .35s; position:relative; overflow:hidden;
+}
+.btn-cta-gold:hover { transform:translateY(-2px); box-shadow:0 20px 60px rgba(201,168,76,.35); }
+.btn-cta-gold svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2.5; transition:transform .3s; }
+.btn-cta-gold:hover svg { transform:translateX(4px); }
+.btn-cta-outline {
+  display:inline-flex; align-items:center; gap:12px;
+  border:1px solid rgba(201,168,76,.35); color:rgba(255,255,255,.65);
+  padding:19px 36px; text-decoration:none;
+  font-size:10px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  transition:all .3s;
+}
+.btn-cta-outline:hover { border-color:var(--gold); color:var(--gold-light); }
+.btn-cta-outline svg { width:16px; height:16px; stroke:currentColor; fill:none; stroke-width:2; }
+
+.cta-trust {
+  display:flex; align-items:center; gap:32px; justify-content:center; margin-top:52px;
+  padding-top:40px; border-top:1px solid rgba(201,168,76,.1); flex-wrap:wrap;
+}
+.cta-trust-item { display:flex; align-items:center; gap:10px; }
+.cta-trust-item svg { width:18px; height:18px; stroke:var(--gold); fill:none; stroke-width:1.5; }
+.cta-trust-text { font-size:11px; font-weight:500; color:rgba(255,255,255,.4); letter-spacing:.05em; }
+
+/* ══════════════════════════════════════
+   FOOTER — IDÉNTICO AL INDEX
+══════════════════════════════════════ */
+.ind-footer-wrap { background-color:#0D0D0D; color:#F5F0E8; font-family:'Outfit',sans-serif; position:relative; overflow:hidden; border-top:1px solid rgba(201,168,76,.12); }
+.ind-f-top-accent { height:4px; width:100%; background:linear-gradient(to right,#5C0E0E,#8B1A1A,#C9A84C,#5C0E0E); opacity:.85; }
+.ind-f-main { max-width:1300px; margin:0 auto; padding:80px 60px 40px; position:relative; z-index:1; }
+.ind-f-grid { display:grid; grid-template-columns:1.4fr .8fr .8fr 1fr; gap:50px; margin-bottom:60px; }
+.ind-f-brand { display:flex; flex-direction:column; gap:25px; }
+.ind-f-logo-container { position:relative; display:inline-block; max-width:200px; overflow:hidden; }
+.ind-f-logo-container::after { content:''; position:absolute; top:0; left:-150%; width:50%; height:100%; background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.4) 50%,rgba(255,255,255,0) 100%); transform:skewX(-25deg); animation:shine-logo 4s infinite; }
+.ind-f-logo-img { max-width:100%; height:auto; display:block; }
+.ind-f-slogan { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; font-weight:400; color:var(--gold-light); line-height:1.3; max-width:280px; letter-spacing:.5px; }
+.ind-f-contact-strip { display:flex; flex-direction:column; gap:15px; }
+.ind-f-contact-link { display:flex; align-items:center; gap:12px; color:#A89880; text-decoration:none; font-size:13px; transition:color .3s; }
+.ind-f-contact-link:hover { color:#F5F0E8; }
+.ind-f-contact-link svg { width:16px; height:16px; color:var(--wine); stroke-width:2; }
+.ind-f-title { font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:3px; color:#F5F0E8; margin-bottom:30px; position:relative; }
+.ind-f-title::after { content:''; position:absolute; left:0; bottom:-10px; width:20px; height:1px; background:var(--gold); }
+.ind-f-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
+.ind-f-item-link { text-decoration:none; color:#A89880; font-size:13px; transition:all .3s; display:inline-block; }
+.ind-f-item-link:hover { color:var(--gold-light); transform:translateX(5px); }
+.ind-f-social-wrap { display:flex; gap:15px; margin-top:25px; }
+.ind-f-social-icon { width:42px; height:42px; border-radius:6px; display:flex; align-items:center; justify-content:center; color:white; text-decoration:none; transition:transform .4s cubic-bezier(.175,.885,.32,1.275),filter .3s,box-shadow .3s; box-shadow:0 4px 10px rgba(0,0,0,.3); }
+.ind-f-social-icon.linkedin  { background-color:#0077B5; }
+.ind-f-social-icon.instagram { background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fdf497 5%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.ind-f-social-icon.facebook  { background-color:#1877F2; }
+.ind-f-social-icon:hover { transform:scale(1.2) translateY(-5px); filter:brightness(1.1); box-shadow:0 8px 20px rgba(0,0,0,.5); z-index:2; }
+.ind-f-bottom { border-top:1px solid rgba(255,255,255,.05); padding:30px 60px; max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:2px; color:rgba(255,255,255,.3); }
+.ind-f-copy span { color:var(--gold); }
+@media(max-width:1100px){ .ind-f-grid{grid-template-columns:1fr 1fr;gap:40px;} .ind-f-main{padding:60px 40px;} }
+@media(max-width:650px){ .ind-f-main{padding:60px 25px 100px;} .ind-f-grid{grid-template-columns:1fr;gap:45px;text-align:center;} .ind-f-brand{align-items:center;} .ind-f-title::after{left:50%;transform:translateX(-50%);} .ind-f-contact-strip{align-items:center;} .ind-f-social-wrap{justify-content:center;} .ind-f-bottom{flex-direction:column;gap:15px;text-align:center;padding:30px 20px 120px;} }
+
+/* ══ GENERAL RESPONSIVE ══ */
+@media(max-width:768px){
+  .page-intro,.steps-section,.norms-section,.benefits-section,.cta-section { padding:64px 20px; }
+  .hero-body-impl { padding:48px 20px; }
+  .intro-band { grid-template-columns:1fr 1fr; }
+  .norms-grid { grid-template-columns:1fr 1fr; }
+  .benefits-grid { grid-template-columns:1fr; }
+}
+@media(max-width:480px){
+  .hero-body-impl { padding:36px 16px; }
+  .page-intro,.steps-section,.norms-section,.benefits-section,.cta-section { padding:52px 16px; }
+  .intro-band { grid-template-columns:1fr; }
+  .norms-grid { grid-template-columns:1fr; }
+  .step-item { grid-template-columns:48px 1fr; }
+  .step-node { width:40px; height:40px; }
+  .step-node-num { font-size:.9rem; }
+  .hero-stats-impl { flex-direction:column; gap:16px; }
+  .hero-stat-impl { padding:0; }
+  .cta-actions { flex-direction:column; }
+}
+
+
+.step-video-content {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que el video cubra el área sin deformarse */
+    display: block;
+}
+
+.benefits-video-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Esto hace que el video llene el cuadro sin deformarse */
+    display: block;
+}
+
+
+
+
+</style>
+</head>
+<body>
+<!-- ══ NAVBAR — IDÉNTICO AL INDEX ══ -->
+<div class="ind-header-wrapper" id="navbar">
+<div class="ind-top-bar">
+<div class="ind-top-info">
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>55 4015 2551</span>
+</div>
+
+
+ <div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+
+
+
+
+
+</div>
+<div class="ind-top-item" style="opacity:0.6;">INDUSECC</div>
+</div>
+<header class="ind-main-header">
+<div class="ind-container">
+<div class="ind-logo-group">
+<a class="ind-logo-wrap" href="index.html">
+<img alt="Logo INDUSECC" class="ind-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</a>
+<div class="ind-logo-sep"></div>
+<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+</div>
+<nav class="ind-nav">
+<div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="nosotros.html">¿Quiénes Somos?</a></div>
+<div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">Implementación de un Sistema de Gestión</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">Certificación de Normas ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">Consultoría y Asesoría en Normatividad ISO</a>
+<a class="ind-drop-link" href="auditorias.html">Auditorías</a>
+</div>
+</div>
+<div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+</nav>
+<div class="ind-actions">
+<!-- Accesibilidad -->
+<div class="ind-a11y-wrap">
+<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel">
+<div class="a11y-panel-title">Accesibilidad</div>
+<div class="a11y-row">
+<span class="a11y-label">Tamaño de fuente</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="fontDown">A−</button>
+<button class="a11y-ctrl-btn" id="fontUp">A+</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Alto contraste</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="contrastBtn">◑</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Reducir movimiento</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="motionBtn">⏸</button>
+</div>
+</div>
+<div class="a11y-sep"></div>
+<button class="a11y-reset" id="a11yReset">↺ Restablecer</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<span id="themeLabel">Oscuro</span>
+</button>
+<!-- CTA -->
+<a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+</div>
+</div>
+</header>
+</div>
+<!-- Mobile bottom nav -->
+<nav class="ind-bottom-nav">
+<div class="ind-bnav-container">
+<a class="ind-bnav-item" href="index.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span>Inicio</span>
+</a>
+<a class="ind-bnav-item active" href="javascript:void(0)" id="btnServicesMobile">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+<span>Servicios</span>
+</a>
+<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+<span>WhatsApp</span>
+</a>
+<a class="ind-bnav-item" href="contacto.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span>Contacto</span>
+</a>
+<button class="ind-bnav-item ctrl-item" id="btnMobControls">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
+<span>Ajustes</span>
+</button>
+</div>
+</nav>
+<div class="ind-sheet-overlay" id="sheetOverlay"></div>
+<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
+<div class="ind-bottom-sheet" id="servicesSheet">
+<div class="ind-sheet-header">
+<h3 class="ind-sheet-title">Servicios</h3>
+<button class="ind-sheet-close" id="closeSheet"><svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg></button>
+</div>
+<div class="ind-sheet-grid">
+<a class="ind-sheet-link" data-i18n="nav_cap" href="implementacion-sistema.html">Implementación de un sistema de gestión <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_iso" href="certificacion-iso_.html">Certificación ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_mejora" href="consultoria-asesoria.html">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_audit" href="auditorias.html">Auditorías <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+</div>
+
+</div>
+<div class="mob-ctrl-sheet" id="mobCtrlSheet">
+<div class="mob-ctrl-header">
+<span class="mob-ctrl-title">Ajustes</span>
+<button class="mob-ctrl-close" id="closeMobCtrl">✕</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Tema</div>
+<button class="mob-theme-btn" id="mobThemeBtn" onclick="toggleTheme()">
+<span id="mobThemeLabel">Modo Oscuro</span>
+<svg id="mobThemeIcon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Accesibilidad</div>
+<div class="mob-a11y-grid">
+<div class="mob-a11y-row"><span class="mob-a11y-label">Tamaño de texto</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobFontDown">A−</button><button class="mob-a11y-btn" id="mobFontUp">A+</button></div></div>
+<div class="mob-a11y-row"><span class="mob-a11y-label">Alto contraste</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobContrastBtn">◑</button></div></div>
+<div class="mob-a11y-row"><span class="mob-a11y-label">Reducir movimiento</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobMotionBtn">⏸</button></div></div>
+</div>
+<button class="mob-a11y-reset" id="mobA11yReset">↺ Restablecer todo</button>
+</div>
+</div>
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section class="impl-hero">
+<canvas id="heroCanvas"></canvas>
+<div class="hero-overlay-impl"></div>
+<div class="hero-left-bar"></div>
+<div class="hero-body-impl">
+<!-- Left -->
+<div class="hero-content-impl">
+<div class="hero-pretitle">Servicio Especializado INDUSECC</div>
+<div class="hero-eyebrow">
+<div class="hero-eyebrow-dot"></div>
+<div class="hero-eyebrow-line"></div>
+<span class="hero-eyebrow-tag">Implementación ISO</span>
+<div class="hero-eyebrow-line"></div>
+<div class="hero-eyebrow-dot"></div>
+</div>
+<h1 class="hero-title-impl">
+        Sistema de<br/>
+<em>Gestión ISO</em>
+</h1>
+<p class="hero-sub-impl">
+        Diseñamos e implementamos tu sistema de gestión desde cero, con controles, mejoras y documentación que cumplen los más altos estándares normativos internacionales.
+        <strong> La diferencia entre operar y destacar.</strong>
+</p>
+<div class="hero-actions-impl">
+<a class="btn-primary-impl shine-el" href="#pasos">
+          Ver los 8 pasos
+          <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
+</a>
+<a class="btn-ghost-impl" href="contacto.html">
+<span class="btn-ghost-impl-line"></span>
+          Solicitar consulta
+        </a>
+</div>
+
+</div>
+<!-- Right — gear animation -->
+<div class="hero-visual-panel">
+<div class="gear-scene">
+<!-- Gear 1 — big center -->
+<div class="gear-wrap g1">
+<svg height="180" viewbox="0 0 100 100" width="180">
+<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(201,168,76,.55)" stroke-width="1.5"></path>
+<circle cx="49.3" cy="49.3" fill="none" r="10" stroke="rgba(201,168,76,.3)" stroke-width="1"></circle>
+</svg>
+</div>
+<!-- Gear 2 — top right -->
+<div class="gear-wrap g2">
+<svg height="110" viewbox="0 0 100 100" width="110">
+<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(123,30,34,.7)" stroke-width="1.5"></path>
+</svg>
+</div>
+<!-- Gear 3 — left mid -->
+<div class="gear-wrap g3">
+<svg height="120" viewbox="0 0 100 100" width="120">
+<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(201,168,76,.35)" stroke-width="1.5"></path>
+</svg>
+</div>
+<!-- Gear 4 — top left small -->
+<div class="gear-wrap g4">
+<svg height="80" viewbox="0 0 100 100" width="80">
+<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z" fill="none" stroke="rgba(155,36,41,.5)" stroke-width="1.5"></path>
+</svg>
+</div>
+<div class="gear-center-badge">
+<div class="gear-center-badge-num">ISO</div>
+<div class="gear-center-badge-lbl">Certified</div>
+</div>
+<!-- Float cards -->
+<div class="float-doc fd1">
+<div class="float-doc-label">Estado del sistema</div>
+<div class="float-doc-val"><span class="float-doc-dot"></span>Implementando</div>
+</div>
+<div class="float-doc fd2">
+<div class="float-doc-label">Norma objetivo</div>
+<div class="float-doc-val">ISO 9001:2015</div>
+</div>
+<div class="float-doc fd3">
+<div class="float-doc-label">Avance</div>
+<div class="float-doc-val">Paso 4 / 8</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ STATS BAND ══ -->
+<div class="intro-band">
+<div class="intro-stat reveal">
+<div class="intro-stat-icon"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg></div>
+<div><div class="intro-stat-num" data-count="100" data-suffix="%">100%</div><div class="intro-stat-lbl">Tasa de éxito en<br/>certificaciones</div></div>
+</div>
+<div class="intro-stat reveal reveal-delay-1">
+<div class="intro-stat-icon"><svg viewbox="0 0 24 24"><rect height="11" rx="1" width="6" x="3" y="10"></rect><rect height="15" rx="1" width="6" x="9" y="6"></rect><rect height="8" rx="1" width="6" x="15" y="13"></rect></svg></div>
+<div><div class="intro-stat-num" data-count="100" data-suffix="+">100+</div><div class="intro-stat-lbl">Empresas<br/>certificadas</div></div>
+</div>
+<div class="intro-stat reveal reveal-delay-2">
+<div class="intro-stat-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg></div>
+<div><div class="intro-stat-num" data-count="10" data-suffix="+">10+</div><div class="intro-stat-lbl">Años de<br/>experiencia</div></div>
+</div>
+<div class="intro-stat reveal reveal-delay-3">
+<div class="intro-stat-icon"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+<div><div class="intro-stat-num" data-count="5" data-suffix=" ISO">5 ISO</div><div class="intro-stat-lbl">Normas que<br/>implementamos</div></div>
+</div>
+</div>
+<!-- ══ ¿QUÉ ES? ══ -->
+<section class="page-intro">
+<div class="intro-inner">
+<div class="reveal">
+<div class="section-tag">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">¿Qué es?</span>
+</div>
+<h2 class="section-title">Implementación de un<br/><em>Sistema de Gestión</em></h2>
+<div class="section-rule"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<div class="intro-text">
+<p class="intro-p">En la implementación del sistema, se realiza el <strong>planteamiento, creación de controles, mejoras y documentos</strong> sobre una serie de requisitos normativos que influirán positivamente en la satisfacción del cliente.</p>
+<p class="intro-p">La implementación marca una diferencia en la <strong>competitividad y éxito a largo plazo</strong> de una organización, transformando procesos informales en sistemas robustos, medibles y auditables internacionalmente.</p>
+</div>
+<div class="intro-highlights">
+<div class="intro-hl">
+<div class="intro-hl-icon"><svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg></div>
+<div><div class="intro-hl-title">Documentación completa</div><div class="intro-hl-desc">Políticas, procedimientos e instrucciones alineados a la norma aplicable.</div></div>
+</div>
+<div class="intro-hl">
+<div class="intro-hl-icon"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+<div><div class="intro-hl-title">Capacitación del equipo</div><div class="intro-hl-desc">Formación a todo el personal involucrado en el sistema de gestión.</div></div>
+</div>
+<div class="intro-hl">
+<div class="intro-hl-icon"><svg viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+<div><div class="intro-hl-title">Mejora continua</div><div class="intro-hl-desc">Indicadores y controles para mantener el sistema activo y en evolución.</div></div>
+</div>
+</div>
+</div>
+<div class="reveal reveal-delay-2">
+<div class="intro-visual">
+<div class="intro-img-wrap">
+<img alt="Equipo implementando sistema de gestión ISO" src="https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?w=900&amp;q=80"/>
+<div class="intro-img-overlay"></div>
+<div class="intro-img-badge">
+<div class="intro-img-badge-num">ISO</div>
+<div class="intro-img-badge-lbl">9001 · 14001 · 45001</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ 8 PASOS ══ -->
+<section class="steps-section" id="pasos">
+<div class="steps-header reveal">
+<div class="section-tag" style="justify-content:center;">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Metodología Probada</span>
+<div class="section-tag-line"></div>
+</div>
+<h2 class="section-title" style="text-align:center;">8 pasos hacia tu<br/><em>certificación ISO</em></h2>
+<div class="section-rule" style="justify-content:center;margin-top:20px;"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+</div>
+<div class="steps-timeline">
+<!-- PASO 1 -->
+<div class="step-item reveal">
+  <div class="step-left">
+    <div class="step-img-wrap">
+      <video autoplay muted loop playsinline preload="auto" class="step-video-content">
+        <source src="Imagenes/0_Technology_People_3840x2160.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+      
+      <div class="step-img-overlay"></div>
+      <div class="step-img-num">01</div>
+    </div>
+  </div>
+
+  <div class="step-center">
+    <div class="step-node"><span class="step-node-num">1</span></div>
+    <div class="step-connector"></div>
+  </div>
+
+  <div class="step-right">
+    <div class="step-card">
+      <div class="step-card-tag">Paso 01</div>
+      <div class="step-card-title">Difusión del proyecto de implementación</div>
+      <div class="step-card-desc">Comunicamos a toda la organización el inicio del proyecto ISO, sus objetivos, alcance y beneficios esperados. Generamos el compromiso de la alta dirección y del equipo operativo para garantizar el éxito del proceso.</div>
+      <div class="step-card-footer">
+        <div class="step-card-footer-icon">
+          <svg viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6"></path></svg>
+        </div>
+        <span class="step-card-footer-text">Comunicación interna</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- PASO 2 -->
+<div class="step-item reveal">
+<div class="step-left">
+<div class="step-img-wrap">
+<img alt="Análisis de brechas y diagnóstico ISO" src="Imagenes/managers-controlling.jpg"/>
+<div class="step-img-overlay"></div>
+<div class="step-img-num">02</div>
+</div>
+</div>
+<div class="step-center">
+<div class="step-node"><span class="step-node-num">2</span></div>
+<div class="step-connector"></div>
+</div>
+<div class="step-right">
+<div class="step-card">
+<div class="step-card-tag">Paso 02</div>
+<div class="step-card-title">Análisis de situación actual</div>
+<div class="step-card-desc">Realizamos un diagnóstico exhaustivo de la organización frente a los requisitos de la norma ISO aplicable. Identificamos brechas, fortalezas existentes y áreas de mejora prioritarias con evidencia objetiva.</div>
+<div class="step-card-footer">
+<div class="step-card-footer-icon"><svg viewbox="0 0 24 24"><circle cx="11" cy="11" r="7"></circle><line x1="16.5" x2="22" y1="16.5" y2="22"></line></svg></div>
+<span class="step-card-footer-text">Diagnóstico GAP</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PASO 3 -->
+
+<div class="step-item reveal">
+  <div class="step-left">
+    <div class="step-img-wrap">
+      <video autoplay muted loop playsinline preload="auto" class="step-video-content">
+        <source src="Imagenes/0_Farmer_Agriculture_3840x2160.mp4" type="video/mp4">
+        <source src="Imagenes/0_Farmer_Agriculture_3840x2160.mov" type="video/quicktime">
+        Tu navegador no soporta video.
+      </video>
+      <div class="step-img-overlay"></div>
+      <div class="step-img-num">03</div>
+    </div>
+  </div>
+
+  <div class="step-center">   
+    <div class="step-node"><span class="step-node-num">3</span></div>
+    <div class="step-connector"></div>
+  </div>
+
+  <div class="step-right">
+    <div class="step-card">
+      <div class="step-card-tag">Paso 03</div>
+      <div class="step-card-title">Planificación</div>
+      <div class="step-card-desc">Diseñamos el plan maestro de implementación con cronograma, responsables, recursos y hitos de control. Definimos objetivos medibles y los indicadores clave de desempeño (KPIs) del sistema.</div>
+      <div class="step-card-footer">
+        <div class="step-card-footer-icon">
+          <svg viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="4"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
+        </div>
+        <span class="step-card-footer-text">Plan de trabajo</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- PASO 4 -->
+<div class="step-item reveal">
+<div class="step-left">
+<div class="step-img-wrap">
+<img alt="Capacitación del equipo en normas ISO" src="Imagenes/solucion a necesidades.jpg"/>
+<div class="step-img-overlay"></div>
+<div class="step-img-num">04</div>
+</div>
+</div>
+<div class="step-center">
+<div class="step-node"><span class="step-node-num">4</span></div>
+<div class="step-connector"></div>
+</div>
+<div class="step-right">
+<div class="step-card">
+<div class="step-card-tag">Paso 04</div>
+<div class="step-card-title">Solución a necesidades de capacitación</div>
+<div class="step-card-desc">Formamos a todos los colaboradores en los fundamentos de la norma ISO y en las responsabilidades específicas de cada puesto dentro del sistema de gestión. La competencia del equipo es la base del éxito.</div>
+<div class="step-card-footer">
+<div class="step-card-footer-icon"><svg viewbox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
+<span class="step-card-footer-text">Training ISO</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PASO 5 -->
+
+<div class="step-item reveal">
+  <div class="step-left">
+    <div class="step-img-wrap">
+      <video autoplay muted loop playsinline class="step-video-content">
+        <source src="Imagenes/GettyImages-1401965335.mp4" type="video/quicktime">
+        <source src="Imagenes/GettyImages-1401965335.mp4" type="video/mp4">
+        Tu navegador no soporta el video.
+      </video>
+      <div class="step-img-overlay"></div>
+      <div class="step-img-num">05</div>
+    </div>
+  </div>
+
+  <div class="step-center">
+    <div class="step-node"><span class="step-node-num">5</span></div>
+    <div class="step-connector"></div>
+  </div>
+
+  <div class="step-right">
+    <div class="step-card">
+      <div class="step-card-tag">Paso 05</div>
+      <div class="step-card-title">Preparación y levantamiento de documentos</div>
+      <div class="step-card-desc">Desarrollamos toda la documentación normativa: manual de calidad, políticas, procedimientos, instrucciones de trabajo, formatos y registros. Cada documento está alineado con los requisitos de la cláusula correspondiente.</div>
+      <div class="step-card-footer">
+        <div class="step-card-footer-icon">
+          <svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line></svg>
+        </div>
+        <span class="step-card-footer-text">Sistema documental</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  
+ 
+
+<!-- PASO 6 -->
+<div class="step-item reveal">
+<div class="step-left">
+<div class="step-img-wrap">
+<img alt="Implementación del sistema en operación" src="Imagenes/engineers-helmets-standing-by-factory.jpg"/>
+<div class="step-img-overlay"></div>
+<div class="step-img-num">06</div>
+</div>
+</div>
+<div class="step-center">
+<div class="step-node"><span class="step-node-num">6</span></div>
+<div class="step-connector"></div>
+</div>
+<div class="step-right">
+<div class="step-card">
+<div class="step-card-tag">Paso 06</div>
+<div class="step-card-title">Implementación a nivel práctico organizacional</div>
+<div class="step-card-desc">Ponemos en marcha el sistema en el día a día de la organización. Acompañamos en campo a los equipos para asegurar que los controles, procedimientos y registros se apliquen correctamente en cada proceso.</div>
+<div class="step-card-footer">
+<div class="step-card-footer-icon"><svg viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+<span class="step-card-footer-text">Operación en campo</span>
+</div>
+</div>
+</div>
+</div>
+<!-- PASO 7 -->
+<div class="step-item reveal">
+  <div class="step-left">
+    <div class="step-img-wrap">
+      <video autoplay muted loop playsinline preload="auto" class="step-video-content">
+        <source src="Imagenes/auditoria en linea .mp4" type="video/mp4">
+        <source src="Imagenes/auditoria en linea .mp4" type="video/quicktime">
+        Tu navegador no soporta el video.
+      </video>
+      <div class="step-img-overlay"></div>
+      <div class="step-img-num">07</div>
+    </div>
+  </div>
+
+  
+  <div class="step-center">
+    <div class="step-node"><span class="step-node-num">7</span></div>
+    <div class="step-connector"></div>
+  </div>
+
+  <div class="step-right">
+    <div class="step-card">
+      <div class="step-card-tag">Paso 07</div>
+      <div class="step-card-title">Auditoría del sistema</div>
+      <div class="step-card-desc">Realizamos una auditoría interna rigurosa con la misma rigurosidad de un organismo certificador. Evaluamos el cumplimiento de cada requisito normativo, detectamos no conformidades y generamos el informe de resultados.</div>
+      <div class="step-card-footer">
+        <div class="step-card-footer-icon">
+          <svg viewbox="0 0 24 24"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+        </div>
+        <span class="step-card-footer-text">Auditoría interna</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- PASO 8 -->
+<div class="step-item reveal">
+<div class="step-left">
+<div class="step-img-wrap">
+<img alt="Revisión final y corrección de no conformidades" src="Imagenes/revision.jpg"/>
+<div class="step-img-overlay"></div>
+<div class="step-img-num">08</div>
+</div>
+</div>
+<div class="step-center">
+<div class="step-node" style="background:linear-gradient(135deg,var(--gold-dark),var(--gold));border-color:var(--wine);"><span class="step-node-num" style="color:var(--wine-deep);">8</span></div>
+</div>
+<div class="step-right">
+<div class="step-card" style="border-color:rgba(201,168,76,.3);">
+<div class="step-card-tag">Paso 08 — Final</div>
+<div class="step-card-title">Corrección, revisión y auditoría</div>
+<div class="step-card-desc">Gestionamos el cierre de todas las no conformidades detectadas, verificamos la efectividad de las acciones correctivas y realizamos la revisión por la dirección. El sistema queda listo para la auditoría de certificación oficial.</div>
+<div class="step-card-footer">
+<div class="step-card-footer-icon"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+<span class="step-card-footer-text" style="color:var(--wine);">¡Listo para certificar!</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ NORMAS APLICABLES ══ -->
+<section class="norms-section">
+<div class="norms-inner">
+<div class="norms-header reveal">
+<div class="section-tag" style="justify-content:center;">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Normas que implementamos</span>
+<div class="section-tag-line"></div>
+</div>
+<h2 class="section-title" style="text-align:center;">Estándares<br/><em>internacionales</em></h2>
+</div>
+<div class="norms-grid">
+<div class="norm-card reveal">
+<div class="norm-card-code">ISO 9001</div>
+<div class="norm-card-name">Gestión de Calidad</div>
+<div class="norm-card-desc">Sistema de Gestión de la Calidad orientado a la satisfacción del cliente y mejora continua de procesos.</div>
+<div class="norm-card-badge">2015</div>
+</div>
+<div class="norm-card reveal reveal-delay-1">
+<div class="norm-card-code">ISO 14001</div>
+<div class="norm-card-name">Gestión Ambiental</div>
+<div class="norm-card-desc">Sistema de Gestión Ambiental para identificar, controlar y mejorar el impacto ambiental de la organización.</div>
+<div class="norm-card-badge">2015</div>
+</div>
+<div class="norm-card reveal reveal-delay-2">
+<div class="norm-card-code">ISO 45001</div>
+<div class="norm-card-name">Seguridad y Salud</div>
+<div class="norm-card-desc">Seguridad y Salud en el Trabajo para prevenir lesiones y enfermedades laborales en la organización.</div>
+<div class="norm-card-badge">2018</div>
+</div>
+<div class="norm-card reveal reveal-delay-3">
+<div class="norm-card-code">ISO 27001</div>
+<div class="norm-card-name">Seguridad de Info.</div>
+<div class="norm-card-desc">Gestión de la Seguridad de la Información para proteger datos críticos del negocio y de clientes.</div>
+<div class="norm-card-badge">2022</div>
+</div>
+<div class="norm-card reveal reveal-delay-4">
+<div class="norm-card-code">ISO 50001</div>
+<div class="norm-card-name">Gestión de Energía</div>
+<div class="norm-card-desc">Sistema de Gestión de la Energía para mejorar el desempeño energético y reducir costos y emisiones.</div>
+<div class="norm-card-badge">2018</div>
+</div>
+<div class="norm-card reveal reveal-delay-2">
+    <div class="norm-card-code">ISO 22000</div>
+    <div class="norm-card-name">Inocuidad Alimentaria</div>
+    <div class="norm-card-desc">Garantiza la seguridad de los alimentos a lo largo de toda la cadena de suministro, desde la granja hasta la mesa.</div>
+    <div class="norm-card-badge">2018</div>
+</div>
+
+<div class="norm-card reveal reveal-delay-2">
+    <div class="norm-card-code">ISO 37001</div>
+    <div class="norm-card-name">Sistemas Antisoborno</div>
+    <div class="norm-card-desc">Establece medidas para prevenir, detectar y gestionar riesgos de soborno y fomentar una cultura ética empresarial.</div>
+    <div class="norm-card-badge">2016</div>
+</div>
+
+<div class="norm-card reveal reveal-delay-2">
+    <div class="norm-card-code">ISO 39001</div>
+    <div class="norm-card-name">Seguridad Vial</div>
+    <div class="norm-card-desc">Sistema de gestión para reducir muertes y lesiones graves relacionadas con accidentes de tráfico en el entorno laboral.</div>
+    <div class="norm-card-badge">2012</div>
+</div>
+
+
+<div class="norm-card reveal reveal-delay-2">
+    <div class="norm-card-code">ISO 28001</div>
+    <div class="norm-card-name">Cadena de Suministro</div>
+    <div class="norm-card-desc">Mejora la seguridad en la cadena de suministro, protegiendo las mercancías y garantizando el comercio internacional seguro.</div>
+    <div class="norm-card-badge">2007</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ BENEFICIOS ══ -->
+<section class="benefits-section">
+<div class="benefits-inner">
+<div class="benefits-left reveal">
+<div class="section-tag">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">¿Por qué implementar?</span>
+</div>
+<h2 class="section-title">Beneficios que<br/><em>transforman</em> tu empresa</h2>
+<div class="section-rule"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p class="benefits-p" style="margin-top:28px;">Implementar un sistema de gestión ISO no es solo obtener un papel. Es instalar una <strong>cultura organizacional de excelencia</strong> que impacta directamente en resultados.</p>
+<div class="benefits-grid">
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg></div>
+<div class="benefit-title">Procesos estandarizados</div>
+<div class="benefit-desc">Operaciones documentadas, consistentes y replicables en toda la organización.</div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg></div>
+<div class="benefit-title">Mayor satisfacción del cliente</div>
+<div class="benefit-desc">Entregas consistentes que superan expectativas y construyen lealtad.</div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="1" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg></div>
+<div class="benefit-title">Reducción de costos</div>
+<div class="benefit-desc">Menos errores, reprocesos y desperdicios. Mayor eficiencia operativa.</div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"></path><path d="M13 13l6 6"></path></svg></div>
+<div class="benefit-title">Ventaja competitiva</div>
+<div class="benefit-desc">Acceso a licitaciones, contratos y mercados que requieren certificación ISO.</div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg></div>
+<div class="benefit-title">Equipo más competente</div>
+<div class="benefit-desc">Personal formado y comprometido con los objetivos organizacionales.</div>
+</div>
+<div class="benefit-card">
+<div class="benefit-icon"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+<div class="benefit-title">Confianza y reputación</div>
+<div class="benefit-desc">Sello de calidad reconocido mundialmente que proyecta profesionalismo.</div>
+</div>
+</div>
+</div>
+<div class="benefits-visual reveal reveal-delay-2">
+    <div class="benefits-img-main">
+        <video autoplay muted loop playsinline class="benefits-video-element">
+            <source src="Imagenes/beneficios (2).mp4" type="video/mp4">
+            Tu navegador no soporta video.
+        </video>
+        
+        <div class="benefits-img-main-overlay"></div>
+        
+        <div class="benefits-quote">
+            <div class="benefits-quote-text">"La implementación no es un gasto, es la inversión más rentable que puede hacer una empresa."</div>
+            <div class="benefits-quote-author">INDUSECC — Consultoría ISO</div>
+        </div>
+    </div>
+
+    <div class="benefits-img-accent">
+        <img alt="Oficina con sistema de gestión implementado" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80"/>
+    </div>
+</div>
+</div>
+</section>
+<!-- ══ CTA ══ -->
+<section class="cta-section" id="contacto">
+<div class="cta-inner">
+<div class="cta-tag reveal">
+<div class="cta-tag-line"></div>
+<span class="cta-tag-text">Empieza hoy</span>
+<div class="cta-tag-line"></div>
+</div>
+<h2 class="cta-title reveal reveal-delay-1">¿Listo para implementar tu<br/><em>Sistema de Gestión ISO?</em></h2>
+<p class="cta-sub reveal reveal-delay-2">Agenda una consulta gratuita con nuestros expertos. Sin compromiso. Te explicamos el proceso completo adaptado a tu empresa.</p>
+<div class="cta-actions reveal reveal-delay-3">
+<a class="btn-cta-gold shine-el" href="servicios.html">
+        Solicitar consulta gratuita
+        <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
+</a>
+<a class="btn-cta-outline" href="https://wa.me/525540152551?text=Hola%2C%20me%20interesa%20implementar%20un%20Sistema%20de%20Gesti%C3%B3n%20ISO%20en%20mi%20empresa." target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+        WhatsApp directo
+      </a>
+</div>
+<div class="cta-trust reveal reveal-delay-4">
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg><span class="cta-trust-text">100% tasa de certificación</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span class="cta-trust-text">Consulta inicial sin costo</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg><span class="cta-trust-text">+100 empresas certificadas</span></div>
+<div class="cta-trust-item"><svg viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span class="cta-trust-text">Información confidencial</span></div>
+</div>
+</div>
+</section>
+<!-- ══ FOOTER — IDÉNTICO AL INDEX ══ -->
+<footer class="ind-footer-wrap">
+<div class="ind-f-top-accent"></div>
+<div class="ind-f-main">
+<div class="ind-f-grid reveal">
+<div class="ind-f-brand">
+<div class="ind-f-logo-container">
+<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</div>
+<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+<div class="ind-f-contact-strip">
+<a class="ind-f-contact-link" href="tel:5540152551">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+<div class="ind-f-contact-link">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, México
+          </div>
+</div>
+</div>
+<div>
+<h4 class="ind-f-title">Navegación</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+<li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+<li><a class="ind-f-item-link" href="nosotros.html">¿Quiénes Somos?</a></li>
+<li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="implementacion-sistema.html">Implementación de un sistema de gestión</a></li>
+<li><a class="ind-f-item-link" href="consultoria-asesoria.html">Consultoria y asesoria</a></li>
+<li><a class="ind-f-item-link" href="certificacion-iso_.html">Certificación ISO</a></li>
+<li><a class="ind-f-item-link" href="auditorias.html">Auditorías</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Legal y Soporte</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="contacto.html">Contáctanos</a></li>
+<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+<li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
+<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+</ul>
+ <div class="ind-f-social-wrap">
+          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="#">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+<div class="ind-f-bottom">
+<div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+<div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
+</div>
+</footer>
+<script>
+/* ══ HERO CANVAS — Network particles ══ */
+(function(){
+  const canvas = document.getElementById('heroCanvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes;
+  const WINE = '123,30,34', GOLD = '201,168,76', N = 70, D = 140;
+
+  function resize(){ W = canvas.width = canvas.offsetWidth; H = canvas.height = canvas.offsetHeight; }
+  function makeNode(){
+    return { x:Math.random()*W, y:Math.random()*H, vx:(Math.random()-.5)*.5, vy:(Math.random()-.5)*.5, r:1+Math.random()*2, gold:Math.random()<.2 };
+  }
+  function init(){ resize(); nodes = Array.from({length:N}, makeNode); }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    nodes.forEach(n=>{ n.x+=n.vx; n.y+=n.vy; if(n.x<0||n.x>W)n.vx*=-1; if(n.y<0||n.y>H)n.vy*=-1; });
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i],b=nodes[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<D){
+          const al=(1-dist/D)*.35, ug=a.gold||b.gold;
+          ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=ug?`rgba(${GOLD},${al*1.8})`:`rgba(${WINE},${al})`;
+          ctx.lineWidth=ug?.8:.4; ctx.stroke();
+        }
+      }
+      const n=nodes[i]; ctx.beginPath(); ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+      ctx.fillStyle=n.gold?`rgba(${GOLD},.7)`:`rgba(${WINE},.5)`; ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{ resize(); nodes.forEach(nd=>{ if(nd.x>W)nd.x=W*.9; if(nd.y>H)nd.y=H*.9; }); });
+  init(); draw();
+})();
+
+/* ══ SCROLL REVEAL ══ */
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); observer.unobserve(e.target); } });
+},{ threshold:.1, rootMargin:'0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* ══ NAVBAR SCROLL ══ */
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY>50);
+});
+
+/* ══ COUNTER ANIMATION ══ */
+document.querySelectorAll('[data-count]').forEach(el=>{
+  const target=parseInt(el.dataset.count), suffix=el.dataset.suffix||'';
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        let cur=0; const step=Math.ceil(target/60);
+        const timer=setInterval(()=>{ cur=Math.min(cur+step,target); el.textContent=cur+suffix; if(cur>=target)clearInterval(timer); },24);
+        obs.unobserve(el);
+      }
+    });
+  },{threshold:.5}); obs.observe(el);
+});
+
+/* ══ SMOOTH SCROLL ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',function(e){
+    const href=this.getAttribute('href');
+    if(href&&href!=='#'){ const t=document.querySelector(href); if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); } }
+  });
+});
+
+/* ══ THEME ══ */
+let isMidnight = localStorage.getItem('ind-theme')==='midnight';
+function applyTheme(){
+  document.body.classList.toggle('midnight', isMidnight);
+  const sun='<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moon='<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  const di=document.getElementById('themeIcon'), dl=document.getElementById('themeLabel');
+  const mi=document.getElementById('mobThemeIcon'), ml=document.getElementById('mobThemeLabel');
+  if(isMidnight){ if(di)di.innerHTML=sun; if(dl)dl.textContent='Claro'; if(mi)mi.innerHTML=sun; if(ml)ml.textContent='Volver a Claro'; }
+  else { if(di)di.innerHTML=moon; if(dl)dl.textContent='Oscuro'; if(mi)mi.innerHTML=moon; if(ml)ml.textContent='Activar Oscuro'; }
+}
+function toggleTheme(){ isMidnight=!isMidnight; localStorage.setItem('ind-theme',isMidnight?'midnight':'normal'); applyTheme(); }
+applyTheme();
+
+/* ══ A11Y ══ */
+const a11yTrigger=document.getElementById('a11yTrigger'), a11yPanel=document.getElementById('a11yPanel');
+if(a11yTrigger&&a11yPanel){
+  a11yTrigger.addEventListener('click',e=>{ e.stopPropagation(); a11yPanel.classList.toggle('open'); });
+  document.addEventListener('click',e=>{ if(!a11yPanel.contains(e.target)&&e.target!==a11yTrigger) a11yPanel.classList.remove('open'); });
+}
+let fl=parseInt(localStorage.getItem('ind-font')||'0');
+function applyFont(){ document.body.classList.remove('a11y-large'); if(fl===1){document.body.classList.add('a11y-large');document.body.style.fontSize='';}else if(fl===-1){document.body.style.fontSize='14px';}else{document.body.style.fontSize='';} }
+function wireBtn(id,fn){ const el=document.getElementById(id); if(el) el.addEventListener('click',fn); }
+wireBtn('fontUp',()=>{ fl=Math.min(1,fl+1); applyFont(); localStorage.setItem('ind-font',fl); });
+wireBtn('fontDown',()=>{ fl=Math.max(-1,fl-1); applyFont(); localStorage.setItem('ind-font',fl); });
+wireBtn('mobFontUp',()=>{ fl=Math.min(1,fl+1); applyFont(); localStorage.setItem('ind-font',fl); });
+wireBtn('mobFontDown',()=>{ fl=Math.max(-1,fl-1); applyFont(); localStorage.setItem('ind-font',fl); });
+let hc=localStorage.getItem('ind-contrast')==='1', rm=localStorage.getItem('ind-motion')==='1';
+function applyContrast(){ document.body.classList.toggle('a11y-high-contrast',hc); ['contrastBtn','mobContrastBtn'].forEach(id=>{ const el=document.getElementById(id); if(el)el.classList.toggle('active',hc); }); }
+function applyMotion(){ document.body.classList.toggle('a11y-reduced-motion',rm); ['motionBtn','mobMotionBtn'].forEach(id=>{ const el=document.getElementById(id); if(el)el.classList.toggle('active',rm); }); }
+wireBtn('contrastBtn',()=>{ hc=!hc; applyContrast(); localStorage.setItem('ind-contrast',hc?'1':'0'); });
+wireBtn('mobContrastBtn',()=>{ hc=!hc; applyContrast(); localStorage.setItem('ind-contrast',hc?'1':'0'); });
+wireBtn('motionBtn',()=>{ rm=!rm; applyMotion(); localStorage.setItem('ind-motion',rm?'1':'0'); });
+wireBtn('mobMotionBtn',()=>{ rm=!rm; applyMotion(); localStorage.setItem('ind-motion',rm?'1':'0'); });
+wireBtn('a11yReset',()=>{ fl=0;hc=false;rm=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFont();applyContrast();applyMotion(); });
+wireBtn('mobA11yReset',()=>{ fl=0;hc=false;rm=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFont();applyContrast();applyMotion(); });
+applyFont(); applyContrast(); applyMotion();
+
+/* ══ MOBILE SHEETS ══ */
+const mobCtrlSheet=document.getElementById('mobCtrlSheet'), mobCtrlOverlay=document.getElementById('mobCtrlOverlay');
+wireBtn('btnMobControls',()=>{ mobCtrlSheet.classList.add('active'); mobCtrlOverlay.classList.add('active'); });
+wireBtn('closeMobCtrl',()=>{ mobCtrlSheet.classList.remove('active'); mobCtrlOverlay.classList.remove('active'); });
+if(mobCtrlOverlay) mobCtrlOverlay.addEventListener('click',()=>{ mobCtrlSheet.classList.remove('active'); mobCtrlOverlay.classList.remove('active'); });
+const btnSvc=document.getElementById('btnServicesMobile'), svcSheet=document.getElementById('servicesSheet'), shOverlay=document.getElementById('sheetOverlay'), closeSheet=document.getElementById('closeSheet');
+if(btnSvc) btnSvc.addEventListener('click',()=>{ svcSheet.classList.add('active'); shOverlay.classList.add('active'); });
+if(closeSheet) closeSheet.addEventListener('click',()=>{ svcSheet.classList.remove('active'); shOverlay.classList.remove('active'); });
+if(shOverlay) shOverlay.addEventListener('click',()=>{ svcSheet.classList.remove('active'); shOverlay.classList.remove('active'); });
+</script>
+</body>
+</html>

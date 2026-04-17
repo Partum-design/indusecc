@@ -1,0 +1,3612 @@
+﻿<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>INDUSECC â€” Excelencia en GestiÃ³n Empresarial</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --wine:        #7B1E22;
+  --wine-dark:   #550F13;
+  --wine-deep:   #360A0D;
+  --wine-hi:     #9B2429;
+  --wine-soft:   #A84147;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dark:   #8B6914;
+  --gold-pale:   #F5EDD6;
+  --white:       #FFFFFF;
+  --cream:       #FBF8F3;
+  --parchment:   #F2EDE4;
+  --ink:         #1C1008;
+  --text:        #2A1A1B;
+  --muted:       #7A6060;
+  --border:      rgba(123,30,34,0.12);
+  --border-gold: rgba(201,168,76,0.25);
+  --shadow:      rgba(123,30,34,0.15);
+}
+
+/* â•â•â•â•â•â•â•â•â•â• MIDNIGHT THEME â•â•â•â•â•â•â•â•â•â• */
+body.midnight {
+  --cream:       #0D0D12;
+  --white:       #13131A;
+  --parchment:   #181820;
+  --ink:         #F0ECE4;
+  --text:        #E8E0D8;
+  --muted:       #A09898;
+  --border:      rgba(201,168,76,0.18);
+  --border-gold: rgba(201,168,76,0.22);
+  --shadow:      rgba(0,0,0,0.6);
+  background: #0D0D12;
+  color: #E8E0D8;
+}
+body.midnight .quienes { background: #0D0D12; }
+body.midnight .quienes-left { background: #0D0D12; }
+body.midnight .proceso { background: #0D0D12; }
+body.midnight .testimonios { background: #13131A; }
+body.midnight .testi-card { background: #1E1E28; }
+body.midnight .testi-card-inner { background: #1E1E28; }
+body.midnight .svc-bullet { background: #1A1A24; border-color: rgba(201,168,76,.15); }
+body.midnight .svc-bullet:hover { background: #22222E; }
+body.midnight .proceso-step-circle { background: #1E1E28; border-color: rgba(201,168,76,.2); }
+body.midnight .section-title { color: #F0ECE4; }
+body.midnight .quienes-p { color: #A09898; }
+body.midnight .svc-pane-desc { color: #A09898; }
+body.midnight .sb-text { color: #A09898; }
+body.midnight .ind-header-wrapper { background: #050508 !important; }
+body.midnight .ind-top-bar { background: #02020A; }
+body.midnight .ind-main-header { background: rgba(5,5,8,.98); }
+body.midnight .servicios { background: #13131A; }
+body.midnight .servicios-panel { background: #13131A; }
+body.midnight .svc-detail-panel { background: #181820; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Outfit', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CUSTOM CURSOR â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• CUSTOM CURSOR â€” ELIMINADO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+
+
+/* NAVBAR LEGACY â€” eliminado */
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HERO  â€”  VINO CINEMATOGRÃFICO + CANVAS
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #1a0508;
+}
+.hero-video-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.12) saturate(0.3) contrast(1.2);
+  z-index: 0;
+}
+#heroCanvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 3; pointer-events: none;
+}
+#particlesCanvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  z-index: 4; pointer-events: none;
+}
+.hero-overlay {
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    radial-gradient(ellipse 90% 80% at 25% 60%, rgba(123,30,34,0.60) 0%, transparent 65%),
+    linear-gradient(160deg, rgba(10,2,3,0.75) 0%, rgba(30,6,8,0.45) 60%, rgba(10,2,3,0.9) 100%),
+    linear-gradient(to top, rgba(10,2,3,0.95) 0%, transparent 40%);
+}
+/* subtle scanlines */
+.hero-overlay::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.03) 3px, rgba(0,0,0,0.03) 4px);
+  pointer-events: none;
+}
+/* gold left bar */
+.hero::before {
+  content: '';
+  position: absolute; left: 0; top: 0; bottom: 0; width: 3px; z-index: 20;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2) 10%, var(--gold) 35%, var(--gold-light) 55%, var(--gold-dark) 85%, transparent);
+}
+/* corner brackets */
+.h-br { position: absolute; z-index: 15; pointer-events: none; width: 44px; height: 44px; }
+.h-br-tl { top: 20px; left: 28px; border-top: 1px solid rgba(201,168,76,0.5); border-left: 1px solid rgba(201,168,76,0.5); }
+.h-br-tr { top: 20px; right: 28px; border-top: 1px solid rgba(201,168,76,0.2); border-right: 1px solid rgba(201,168,76,0.2); }
+.h-br-bl { bottom: 68px; left: 28px; border-bottom: 1px solid rgba(201,168,76,0.2); border-left: 1px solid rgba(201,168,76,0.2); }
+.h-br-br { bottom: 68px; right: 28px; border-bottom: 1px solid rgba(201,168,76,0.5); border-right: 1px solid rgba(201,168,76,0.5); }
+
+/* â”€â”€ layout â”€â”€ */
+.hero-body {
+  position: relative; z-index: 10;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 32px;
+  align-items: center;
+  padding: 60px 80px 60px 80px;
+  max-width: 1280px;
+  margin: 0 auto;
+  width: 100%;
+}
+/* hero content â€” flex column, left-aligned */
+.hero-content {
+  display: flex; flex-direction: column; align-items: flex-start; text-align: left;
+}
+.hero-eyebrow { justify-content: flex-start; }
+.hero-tags { justify-content: flex-start; }
+.hero-actions { justify-content: flex-start; }
+/* On mobile (right panel hidden), center everything */
+@media (max-width: 1024px) {
+  .hero-content { align-items: center; text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-tags { justify-content: center; }
+  .hero-actions { justify-content: center; }
+}
+.hero-title .ht-l2 {
+  background: linear-gradient(108deg, var(--gold-dark) 0%, var(--gold) 40%, var(--gold-light) 70%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+/* â”€â”€ left content â”€â”€ */
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 44px;
+  opacity: 0; animation: fadeUp .7s .3s ease forwards;
+}
+.h-eye-dot { width: 5px; height: 5px; background: var(--gold); transform: rotate(45deg); flex-shrink:0; }
+.h-eye-line { width: 40px; height: 1px; background: linear-gradient(to right, var(--gold), rgba(201,168,76,.3)); }
+.h-eye-txt {
+  font-size: 9.5px; font-weight: 700; letter-spacing: .42em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.8rem, 6.5vw, 7.2rem);
+  font-weight: 900; line-height: .92; letter-spacing: -.04em;
+  color: #fff; margin-bottom: 0;
+  opacity: 0; animation: fadeUp .9s .5s ease forwards;
+}
+.hero-title .ht-l1 { display: block; }
+.hero-title .ht-l2 {
+  display: block; font-style: italic; font-weight: 300;
+  background: linear-gradient(108deg, var(--gold-dark) 0%, var(--gold) 40%, var(--gold-light) 70%, var(--gold) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-title .ht-l3 { display: block; color: rgba(255,255,255,.9); }
+.hero-title .ht-under { position: relative; display: inline-block; }
+.hero-title .ht-under::after {
+  content: ''; position: absolute; bottom: 3px; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-light), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  animation: scaleIn 1s 1.6s cubic-bezier(.4,0,.2,1) forwards;
+}
+
+.hero-sub-block {
+  margin-top: 38px; margin-bottom: 52px;
+  opacity: 0; animation: fadeUp .8s .7s ease forwards;
+}
+.hero-sub {
+  font-size: 1rem; font-weight: 300;
+  color: rgba(255,255,255,.48); line-height: 1.9; max-width: 480px; margin-bottom: 26px;
+}
+.hero-sub strong { color: rgba(255,255,255,.82); font-weight: 500; }
+.hero-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22);
+  padding: 7px 14px;
+  font-size: 9px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(201,168,76,.75); transition: all .3s;
+}
+.hero-tag:hover { background: rgba(201,168,76,.15); color: var(--gold-light); }
+.h-tag-dot { width: 4px; height: 4px; background: var(--gold); border-radius: 50%; }
+
+.hero-actions {
+  display: flex; align-items: center; gap: 28px;
+  opacity: 0; animation: fadeUp .8s .85s ease forwards;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 14px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  color: var(--wine-deep);
+  padding: 18px 44px;
+  font-size: 11px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
+  text-decoration: none; border: none; 
+  position: relative; overflow: hidden;
+  clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+  transition: all .35s;
+}
+.btn-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  opacity: 0; transition: opacity .3s;
+}
+.btn-primary:hover::before { opacity: 1; }
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 20px 60px rgba(201,168,76,.35); }
+.btn-primary span, .btn-primary svg { position: relative; z-index: 1; }
+.btn-primary svg { width: 16px; height: 16px; transition: transform .3s; }
+.btn-primary:hover svg { transform: translateX(4px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 11px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+  color: rgba(255,255,255,.38); text-decoration: none;  transition: color .3s;
+}
+.btn-ghost-line { width: 24px; height: 1px; background: currentColor; transition: width .3s; }
+.btn-ghost:hover { color: var(--gold-light); }
+.btn-ghost:hover .btn-ghost-line { width: 44px; }
+
+/* â”€â”€ right ISO card â”€â”€ */
+.hero-right-panel {
+  display: flex; flex-direction: column; gap: 16px; align-items: stretch;
+  opacity: 0; animation: fadeUp 1s .95s ease forwards;
+  animation-fill-mode: both;
+  margin-left: 0;
+}
+.hero-iso-card {
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(201,168,76,.2);
+  backdrop-filter: blur(24px);
+  padding: 38px 36px 32px;
+  position: relative; overflow: hidden;
+}
+.hero-iso-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--gold-dark), var(--gold-light), var(--gold-dark));
+}
+.hero-iso-card::after {
+  content: ''; position: absolute; bottom: -50px; right: -50px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.05), transparent 70%);
+  pointer-events: none;
+}
+.iso-ring-wrap {
+  width: 88px; height: 88px; margin: 0 auto 28px; position: relative;
+}
+.iso-ring-outer {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(201,168,76,.35);
+  animation: rotateSlow 22s linear infinite;
+}
+.iso-ring-outer::before {
+  content: ''; position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
+  width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+}
+.iso-ring-inner {
+  position: absolute; inset: 10px; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(123,30,34,.6), rgba(53,10,13,.85));
+  border: 1px solid rgba(201,168,76,.3);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.iso-ring-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 11px; font-weight: 900; color: var(--gold-light);
+  letter-spacing: .08em; line-height: 1.25; text-align: center;
+}
+.iso-ring-sub { font-size: 7.5px; font-weight: 600; color: rgba(201,168,76,.5); letter-spacing: .2em; }
+.iso-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem; font-weight: 700; color: #fff; text-align: center; margin-bottom: 8px;
+}
+.iso-card-desc {
+  font-size: 11px; font-weight: 300; color: rgba(255,255,255,.4); text-align: center; line-height: 1.75;
+}
+.iso-card-badge {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 22px; padding-top: 18px;
+  border-top: 1px solid rgba(201,168,76,.12);
+}
+.iso-card-badge svg { width: 13px; height: 13px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+.iso-badge-txt { font-size: 9px; font-weight: 700; letter-spacing: .25em; text-transform: uppercase; color: var(--gold); }
+
+/* mini stat bar */
+.hero-mini-stats {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px;
+}
+.h-mini-stat {
+  background: rgba(255,255,255,.03); border: 1px solid rgba(201,168,76,.1);
+  padding: 18px 12px; text-align: center; transition: background .3s;
+}
+.h-mini-stat:hover { background: rgba(201,168,76,.07); }
+.h-mini-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 4px;
+}
+.h-mini-lbl { font-size: 8px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); line-height: 1.4; }
+
+/* â”€â”€ stats bar â”€â”€ */
+.hero-stats-bar {
+  position: relative; z-index: 10;
+  display: flex; align-items: stretch;
+  background: rgba(12,3,4,.88); backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(201,168,76,.14);
+  opacity: 0; animation: fadeUp .8s 1.1s ease forwards;
+}
+.hero-stat {
+  flex: 1; padding: 26px 32px;
+  border-right: 1px solid rgba(201,168,76,.1);
+  display: flex; align-items: center; gap: 16px;
+  transition: background .3s; 
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat:hover { background: rgba(201,168,76,.05); }
+.h-stat-icon {
+  width: 38px; height: 38px; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,.25);
+  display: flex; align-items: center; justify-content: center;
+}
+.h-stat-icon svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.7rem; font-weight: 700; color: var(--gold-light); line-height: 1; margin-bottom: 3px;
+}
+.stat-label {
+  font-size: 9px; font-weight: 500; letter-spacing: .17em;
+  text-transform: uppercase; color: rgba(255,255,255,.32); line-height: 1.5;
+}
+
+/* ticker */
+.hero-ticker {
+  position: relative; z-index: 10; background: var(--wine);
+  height: 36px; overflow: hidden; display: flex; align-items: center;
+  border-top: 1px solid rgba(201,168,76,.18);
+}
+.hero-ticker-track {
+  display: flex; gap: 0;
+  animation: ticker 30s linear infinite; white-space: nowrap;
+}
+.hero-ticker-item {
+  display: inline-flex; align-items: center; gap: 20px; padding: 0 30px;
+  font-size: 9px; font-weight: 700; letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(201,168,76,.55);
+}
+.hero-ticker-item::after { content: 'â—†'; font-size: 5px; color: rgba(201,168,76,.28); }
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   SERVICIOS  â€”  PREMIUM INTERACTIVE
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.servicios {
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dark intro band */
+.servicios-intro-band {
+  background: var(--wine-deep);
+  padding: 100px 80px 80px;
+  position: relative; overflow: hidden;
+}
+.servicios-intro-band::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23C9A84C' stroke-width='.4' opacity='.08'/%3E%3Ccircle cx='30' cy='30' r='18' fill='none' stroke='%23C9A84C' stroke-width='.3' opacity='.05'/%3E%3C/svg%3E") repeat;
+  background-size: 60px 60px;
+}
+.servicios-intro-band::after {
+  content: 'SERVICIOS';
+  position: absolute; right: 40px; top: 50%; transform: translateY(-50%);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(6rem, 14vw, 16rem); font-weight: 900;
+  color: rgba(201,168,76,.04); letter-spacing: -.04em;
+  pointer-events: none; user-select: none; line-height: 1;
+}
+.sib-inner {
+  position: relative; z-index: 2;
+  display: grid; grid-template-columns: auto 1fr; gap: 80px; align-items: end;
+}
+.sib-left {}
+.sib-right { max-width: 420px; align-self: end; padding-bottom: 6px; }
+.sib-right p {
+  font-size: 14px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.9; margin-bottom: 24px;
+}
+.sib-right-cta {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-size: 10px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none; 
+  border-bottom: 1px solid rgba(201,168,76,.25); padding-bottom: 8px;
+  transition: gap .3s, border-color .3s;
+}
+.sib-right-cta:hover { gap: 20px; border-color: var(--gold); }
+.sib-right-cta svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* section tag on dark */
+.section-tag-dark {
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-tag-dark .std-line { width: 32px; height: 1px; background: var(--gold); }
+.section-tag-dark .std-txt {
+  font-size: 10px; font-weight: 700; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--gold);
+}
+.section-title-light {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.8rem, 4.5vw, 4.5rem);
+  font-weight: 900; line-height: .95; letter-spacing: -.03em; color: #fff;
+}
+.section-title-light em {
+  font-style: italic; font-weight: 300;
+  background: linear-gradient(105deg, var(--gold-dark), var(--gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.section-rule-gold {
+  display: flex; align-items: center; gap: 0; margin: 22px 0 0;
+}
+.srg-wine { width: 64px; height: 2px; background: var(--gold); }
+.srg-fade { width: 40px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-left: 4px; }
+
+/* â”€â”€ Services interactive panel â”€â”€ */
+.servicios-panel {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  min-height: 680px;
+}
+
+/* Left nav */
+.svc-nav {
+  background: var(--parchment);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column;
+}
+.svc-nav-item {
+  padding: 36px 40px;
+  border-bottom: 1px solid var(--border);
+   position: relative;
+  transition: background .4s;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.svc-nav-item::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(to bottom, var(--gold), var(--wine));
+  transform: scaleY(0); transform-origin: top;
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.svc-nav-item:hover::before,
+.svc-nav-item.active::before { transform: scaleY(1); }
+.svc-nav-item:hover,
+.svc-nav-item.active { background: var(--white); }
+
+.svc-nav-num {
+  font-family: 'Playfair Display', serif;
+  font-size: .95rem; font-weight: 900;
+  color: rgba(123,30,34,.18); line-height: 1;
+  transition: color .3s;
+}
+.svc-nav-item:hover .svc-nav-num,
+.svc-nav-item.active .svc-nav-num { color: rgba(123,30,34,.35); }
+
+.svc-nav-name {
+  font-size: 14px; font-weight: 800; color: var(--ink);
+  text-transform: uppercase; letter-spacing: .04em; line-height: 1.2;
+  transition: color .3s;
+}
+.svc-nav-item.active .svc-nav-name { color: var(--wine); }
+
+.svc-nav-tag {
+  font-size: 9px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* progress bar at bottom of nav item */
+.svc-nav-progress {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--gold), var(--wine));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s ease;
+}
+.svc-nav-item.active .svc-nav-progress { transform: scaleX(1); }
+
+/* Right detail panel */
+.svc-detail-panel {
+  position: relative; overflow: hidden;
+  background: var(--white);
+}
+.svc-pane {
+  position: absolute; inset: 0;
+  padding: 64px 72px;
+  display: flex; flex-direction: column;
+  opacity: 0; transform: translateX(32px);
+  transition: opacity .5s cubic-bezier(.4,0,.2,1), transform .5s cubic-bezier(.4,0,.2,1);
+  pointer-events: none;
+  overflow-y: auto;
+}
+.svc-pane.active {
+  opacity: 1; transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* pane header */
+.svc-pane-header {
+  display: flex; align-items: flex-start; gap: 28px; margin-bottom: 44px;
+}
+.svc-pane-icon-wrap {
+  width: 72px; height: 72px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--wine-dark), var(--wine-hi));
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.svc-pane-icon-wrap::after {
+  content: ''; position: absolute; bottom: -6px; right: -6px;
+  width: 100%; height: 100%;
+  border: 1px solid rgba(123,30,34,.14);
+}
+.svc-pane-icon-wrap svg { width: 30px; height: 30px; stroke: #fff; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.svc-pane-title-group {}
+.svc-pane-overtitle { font-size: 9px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--wine); margin-bottom: 8px; }
+.svc-pane-title { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 900; color: var(--ink); line-height: .95; letter-spacing: -.02em; }
+.svc-pane-title em { font-style: italic; font-weight: 400; color: var(--wine); }
+
+.svc-pane-rule { display: flex; gap: 0; margin-bottom: 32px; }
+.svc-rule-wine { width: 56px; height: 2px; background: var(--wine); }
+.svc-rule-gold { width: 32px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-left: 4px; }
+
+.svc-pane-desc {
+  font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 48px; max-width: 560px;
+}
+
+/* 3-column bullet cards */
+.svc-bullets {
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 44px;
+}
+.svc-bullet {
+  background: var(--parchment);
+  border: 1px solid var(--border);
+  padding: 24px 22px;
+  position: relative; overflow: hidden;
+  transition: box-shadow .35s, transform .35s, background .35s;
+}
+.svc-bullet::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--wine), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.4,0,.2,1);
+}
+.svc-bullet:hover::before { transform: scaleX(1); }
+.svc-bullet:hover { box-shadow: 0 16px 40px rgba(123,30,34,.1); transform: translateY(-3px); background: var(--white); }
+.sb-diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); margin-bottom: 12px; }
+.sb-title { font-size: 11px; font-weight: 700; color: var(--wine); text-transform: uppercase; letter-spacing: .15em; margin-bottom: 8px; }
+.sb-text { font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.75; }
+
+/* process steps */
+.svc-steps {
+  display: flex; align-items: stretch; gap: 0; margin-bottom: 40px;
+  border: 1px solid var(--border);
+}
+.svc-step {
+  flex: 1; padding: 22px 20px;
+  border-right: 1px solid var(--border);
+  position: relative;
+  transition: background .3s;
+}
+.svc-step:last-child { border-right: none; }
+.svc-step:hover { background: rgba(123,30,34,.03); }
+.svc-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 900; color: rgba(123,30,34,.08); line-height: 1; margin-bottom: 8px;
+  transition: color .3s;
+}
+.svc-step:hover .svc-step-num { color: rgba(123,30,34,.16); }
+.svc-step-txt { font-size: 11px; font-weight: 600; color: var(--text); line-height: 1.5; }
+
+/* CTA row */
+.svc-pane-cta {
+  display: flex; align-items: center; gap: 24px; padding-top: 32px; border-top: 1px solid var(--border);
+}
+.svc-cta-primary {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--wine); color: var(--gold-light);
+  padding: 16px 36px;
+  font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  text-decoration: none; 
+  clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+  transition: all .3s; position: relative; overflow: hidden;
+}
+.svc-cta-primary::before {
+  content: ''; position: absolute; inset: 0;
+  background: var(--wine-dark); opacity: 0; transition: opacity .3s;
+}
+.svc-cta-primary:hover::before { opacity: 1; }
+.svc-cta-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 36px var(--shadow); }
+.svc-cta-primary span, .svc-cta-primary svg { position: relative; z-index: 1; }
+.svc-cta-primary svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; transition: transform .3s; }
+.svc-cta-primary:hover svg { transform: translateX(4px); }
+
+.svc-cta-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;  transition: color .3s;
+}
+.svc-cta-ghost-line { width: 20px; height: 1px; background: currentColor; transition: width .3s; }
+.svc-cta-ghost:hover { color: var(--wine); }
+.svc-cta-ghost:hover .svc-cta-ghost-line { width: 36px; }
+
+/* â”€â”€ bottom strip â”€â”€ */
+.servicios-strip {
+  background: var(--wine-deep);
+  padding: 56px 80px;
+  display: grid; grid-template-columns: auto 1fr;
+  gap: 80px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.servicios-strip::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,4 76,22 76,70 40,88 4,70 4,22' fill='none' stroke='%23C9A84C' stroke-width='.6' opacity='.06'/%3E%3C/svg%3E") repeat;
+  background-size: 80px 92px;
+}
+.ss-label { position: relative; z-index: 1; }
+.ss-label-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem; font-weight: 700; line-height: 1; color: var(--gold-light); display: block; margin-bottom: 6px;
+}
+.ss-label-sub { font-size: 9.5px; font-weight: 600; letter-spacing: .28em; text-transform: uppercase; color: rgba(201,168,76,.4); }
+.ss-items {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px;
+}
+.ss-item { display: flex; align-items: flex-start; gap: 12px; }
+.ss-dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; margin-top: 4px; }
+.ss-txt { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.55); line-height: 1.5; }
+
+/* â”€â”€ SECTION WRAPPER (needed by rest of page) â”€â”€ */
+section { position: relative; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;
+}
+.section-tag-line { width: 32px; height: 1px; background: var(--gold); }
+.section-tag-text { font-size: 10px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: var(--wine); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 900; line-height: 1; letter-spacing: -.03em; color: var(--ink); }
+.section-title em { font-style: italic; color: var(--wine); }
+.section-rule { display: flex; align-items: center; gap: 0; margin: 20px 0 0; }
+.rule-wine { width: 72px; height: 2px; background: var(--wine); }
+.rule-gold { width: 36px; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-left: 4px; }
+
+/* â”€â”€ responsive â”€â”€ */
+@media (max-width:1200px){
+  nav{padding:0 40px;}
+  .hero-body{padding:40px 60px 60px;}
+  .servicios-intro-band{padding:80px 60px 60px;}
+  .sib-inner{gap:60px;}
+  .svc-bullets{grid-template-columns:1fr 1fr;}
+  .ss-items{grid-template-columns:1fr 1fr; gap:20px;}
+  .servicios-strip{padding:48px 60px;}
+}
+@media (max-width:1024px){
+  .hero-body{grid-template-columns:1fr; max-width:680px;}
+  .hero-right-panel{display:none;}
+  .servicios-panel{grid-template-columns:1fr; min-height:auto;}
+  .svc-nav{flex-direction:row; overflow-x:auto; border-right:none; border-bottom:1px solid var(--border);}
+  .svc-nav-item{padding:24px 28px; min-width:200px; border-bottom:none; border-right:1px solid var(--border);}
+  .svc-pane{position:relative; transform:none; pointer-events:auto; display:none; padding:48px 40px;}
+  .svc-pane.active{display:flex; opacity:1;}
+  .sib-inner{grid-template-columns:1fr;}
+}
+@media (max-width:768px){
+  .hero-title{font-size:clamp(2.8rem,9vw,4rem);}
+  .svc-bullets{grid-template-columns:1fr;}
+  .svc-steps{flex-direction:column;}
+  .svc-step{border-right:none; border-bottom:1px solid var(--border);}
+  .ss-items{grid-template-columns:1fr 1fr;}
+  .servicios-strip{grid-template-columns:1fr; gap:28px; padding:40px 40px;}
+}
+@media (max-width:640px){
+  .hero-body{padding:32px 24px 40px;}
+  .hero-stats-bar{flex-wrap:wrap;}
+  .hero-stat{flex:0 0 50%;}
+  .servicios-intro-band{padding:60px 24px;}
+  .svc-nav-item{min-width:160px; padding:20px 20px;}
+  .svc-pane{padding:36px 24px;}
+  .ss-items{grid-template-columns:1fr;}
+  .servicios-strip{padding:40px 24px;}
+  body{cursor:auto;}
+  .cursor{display:none;}
+}
+
+
+/* Pulse en nÃºmeros al terminar de contar */
+@keyframes numPop {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.12); }
+  100% { transform: scale(1); }
+}
+.num-pop { animation: numPop .35s cubic-bezier(.4,0,.2,1); }
+
+/* â•â• KEYFRAMES â•â• */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* â•â• SCROLL REVEAL â•â• */
+/* REVEAL â€” siempre visible, animaciÃ³n como mejora */
+.reveal { opacity: 1; transform: none; }
+.reveal.animate-ready { opacity: 0; transform: translateY(22px); transition: opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1); }
+.reveal.animate-ready.revealed { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: .08s; }
+.reveal-delay-2 { transition-delay: .18s; }
+.reveal-delay-3 { transition-delay: .28s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* â•â• QUIÃ‰NES SOMOS â•â• */
+.quienes {
+  background: var(--cream);
+  min-height: 90vh;
+  display: grid; grid-template-columns: 1fr 1fr;
+  position: relative;
+}
+.quienes-left {
+  padding: 120px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative;
+}
+.quienes-left::after {
+  content: ''; position: absolute; right: 0; top: 15%; bottom: 15%;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, var(--border-gold) 30%, var(--border-gold) 70%, transparent);
+}
+.quienes-big-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 14rem; font-weight: 900; line-height: .85;
+  color: rgba(123,30,34,.05);
+  position: absolute; bottom: 60px; left: 60px;
+  pointer-events: none; user-select: none;
+}
+.quienes-body { margin-top: 40px; }
+.quienes-p {
+  font-size: 15px; font-weight: 300; color: var(--muted);
+  line-height: 1.95; margin-bottom: 24px; max-width: 440px;
+}
+.quienes-p strong { color: var(--wine); font-weight: 600; }
+.quienes-right {
+  position: relative; overflow: hidden;
+  background: var(--wine-deep);
+}
+.quienes-right-img {
+  position: absolute; inset: 0;
+  background: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80') center/cover;
+  filter: brightness(.3) saturate(.5) contrast(1.2);
+}
+.quienes-right-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(123,30,34,.6) 0%, rgba(53,10,13,.4) 50%, rgba(20,4,6,.85) 100%);
+}
+.quienes-right-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 60px; z-index: 2;
+}
+.quienes-pillars {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+  background: rgba(201,168,76,.1);
+}
+.quienes-pillar {
+  background: rgba(255,255,255,.04);
+  backdrop-filter: blur(16px);
+  padding: 28px 24px;
+  border: 1px solid rgba(201,168,76,.1);
+  transition: background .3s;
+}
+.quienes-pillar:hover { background: rgba(201,168,76,.08); }
+.quienes-pillar-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem; font-weight: 700; color: var(--gold-light);
+  line-height: 1; margin-bottom: 6px;
+}
+.quienes-pillar-label {
+  font-size: 10px; font-weight: 500; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(255,255,255,.4); line-height: 1.5;
+}
+
+/* â•â• VALORES â•â• */
+.valores {
+  background: var(--wine-deep);
+  padding: 120px 80px;
+  position: relative; overflow: hidden;
+}
+.valores::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,4 76,22 76,70 40,88 4,70 4,22' fill='none' stroke='%23C9A84C' stroke-width='.5' opacity='.06'/%3E%3C/svg%3E") repeat;
+  background-size: 80px 92px;
+}
+.valores-header {
+  position: relative; z-index: 1;
+  text-align: center; margin-bottom: 64px;
+}
+.valores-grid {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; background: rgba(201,168,76,.08);
+}
+.valor-card {
+  background: rgba(255,255,255,.03);
+  padding: 48px 36px;
+  position: relative; overflow: hidden;
+  
+  transition: background .4s;
+  border: 1px solid rgba(201,168,76,.07);
+}
+.valor-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(to right, var(--gold), var(--wine));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.valor-card:hover::after { transform: scaleX(1); }
+.valor-card:hover { background: rgba(255,255,255,.055); }
+.valor-icon {
+  width: 56px; height: 56px;
+  border: 1px solid rgba(201,168,76,.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+  transition: border-color .3s;
+}
+.valor-card:hover .valor-icon { border-color: rgba(201,168,76,.6); }
+.valor-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.valor-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem; font-weight: 700; color: #fff;
+  letter-spacing: -.01em; margin-bottom: 16px; display: block;
+}
+.valor-text {
+  font-size: 13px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.85;
+}
+
+/* â•â• MISIÃ“N / VISIÃ“N â•â• */
+.mv {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 60vh;
+}
+.mv-panel {
+  position: relative; overflow: hidden;
+  min-height: 480px;
+  background: var(--wine-deep);
+}
+.mv-panel-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: brightness(.22) saturate(.5) contrast(1.1);
+  transition: filter .6s, transform .6s;
+}
+.mv-panel:hover .mv-panel-img { filter: brightness(.28) saturate(.6); transform: scale(1.03); }
+.mv-panel-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(123,30,34,.65) 0%, rgba(20,4,6,.7) 100%);
+}
+.mv-sep {
+  position: absolute; top: 0; bottom: 0; right: 0; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3) 30%, rgba(201,168,76,.3) 70%, transparent);
+}
+.mv-content {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 60px 56px; z-index: 2;
+}
+.mv-content-icon {
+  width: 48px; height: 48px;
+  border: 1px solid rgba(201,168,76,.3);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+}
+.mv-content-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; }
+.mv-content-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem; font-weight: 900; color: #fff;
+  letter-spacing: -.03em; line-height: 1; margin-bottom: 20px;
+}
+.mv-content-label span { color: var(--gold); }
+.mv-content-text {
+  font-size: 14px; font-weight: 300; color: rgba(255,255,255,.5);
+  line-height: 1.9; max-width: 380px;
+}
+
+/* â•â• PROCESO â•â• */
+.proceso {
+  background: var(--cream);
+  padding: 120px 80px;
+}
+.proceso-header {
+  text-align: center; margin-bottom: 80px;
+}
+.proceso-steps {
+  display: grid; grid-template-columns: repeat(5, 1fr);
+  gap: 0; position: relative;
+}
+.proceso-steps::before {
+  content: ''; position: absolute;
+  top: 32px; left: 10%; right: 10%; height: 1px;
+  background: linear-gradient(to right, var(--border), var(--gold), var(--border));
+  z-index: 0;
+}
+.proceso-step {
+  display: flex; flex-direction: column; align-items: center;
+  text-align: center; padding: 0 20px; position: relative; z-index: 1;
+  
+}
+.proceso-step-circle {
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--white);
+  border: 2px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 24px;
+  transition: all .4s;
+  position: relative;
+}
+.proceso-step:hover .proceso-step-circle {
+  border-color: var(--gold);
+  background: var(--wine);
+  box-shadow: 0 8px 32px var(--shadow);
+  transform: translateY(-4px);
+}
+.proceso-step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem; font-weight: 900; color: var(--wine);
+  transition: color .4s;
+}
+.proceso-step:hover .proceso-step-num { color: var(--gold-light); }
+.proceso-step-name {
+  font-size: 12px; font-weight: 700; color: var(--ink);
+  text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; line-height: 1.3;
+}
+.proceso-step-desc {
+  font-size: 12px; font-weight: 300; color: var(--muted); line-height: 1.7;
+}
+
+/* â•â• IMPACTO â•â• */
+.impacto {
+  background: var(--wine-deep);
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  position: relative; overflow: hidden;
+}
+.impacto::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(123,30,34,.4), transparent 70%);
+}
+.impacto-item {
+  position: relative; z-index: 1;
+  padding: 80px 60px;
+  border-right: 1px solid rgba(255,255,255,.06);
+  text-align: center; 
+  transition: background .4s;
+}
+.impacto-item:last-child { border-right: none; }
+.impacto-item:hover { background: rgba(201,168,76,.05); }
+.impacto-icon {
+  width: 52px; height: 52px;
+  border: 1px solid rgba(201,168,76,.25);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 28px;
+}
+.impacto-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.impacto-num {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 5.5rem); font-weight: 900;
+  color: #fff; line-height: .95; margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold-light));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.impacto-label {
+  font-size: 12px; font-weight: 500; letter-spacing: .2em;
+  text-transform: uppercase; color: rgba(255,255,255,.4); line-height: 1.6; margin-bottom: 16px;
+}
+.impacto-desc {
+  font-size: 12px; font-weight: 300; color: rgba(255,255,255,.3); line-height: 1.7; max-width: 220px; margin: 0 auto;
+}
+
+/* â•â• TESTIMONIOS â•â• */
+.testimonios {
+  background: var(--white);
+  padding: 120px 80px;
+  overflow: hidden;
+}
+.testimonios-header {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end;
+  margin-bottom: 64px;
+}
+.testimonios-header-right {
+  display: flex; flex-direction: column; align-items: flex-end;
+}
+.testimonios-avg {
+  display: flex; align-items: center; gap: 16px; margin-bottom: 8px;
+}
+.testi-avg-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem; font-weight: 900; color: var(--wine); line-height: 1;
+}
+.testi-avg-stars { display: flex; gap: 4px; }
+.testi-star {
+  width: 18px; height: 18px;
+  background: var(--gold); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.testi-star-small {
+  width: 12px; height: 12px;
+  background: var(--gold); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+.testi-avg-label { font-size: 11px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.testi-slider {
+  position: relative; overflow: hidden;
+  margin-bottom: 32px;
+}
+.testi-track {
+  display: flex; gap: 2px;
+  transition: transform .5s cubic-bezier(.4,0,.2,1);
+}
+.testi-card {
+  min-width: calc(50% - 1px); flex-shrink: 0;
+  background: var(--parchment);
+}
+.testi-card-inner {
+  padding: 48px 44px; height: 100%;
+  display: flex; flex-direction: column; gap: 24px;
+  position: relative;
+}
+.testi-quote-mark {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem; font-weight: 900; color: rgba(123,30,34,.08);
+  line-height: .6; position: absolute; top: 28px; left: 36px;
+  pointer-events: none; user-select: none;
+}
+.testi-rating { display: flex; gap: 3px; }
+.testi-quote {
+  font-size: 15px; font-weight: 300; color: var(--text);
+  line-height: 1.85; font-style: italic; flex: 1;
+  position: relative; z-index: 1;
+}
+.testi-divider { width: 40px; height: 1px; background: var(--gold); }
+.testi-author { display: flex; align-items: center; gap: 16px; }
+.testi-author-icon {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--wine-dark), var(--wine-hi));
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.testi-author-icon svg { width: 18px; height: 18px; stroke: var(--gold-light); fill: none; stroke-width: 1.4; }
+.testi-author-name { font-size: 13px; font-weight: 700; color: var(--ink); }
+.testi-author-role { font-size: 11px; font-weight: 400; color: var(--muted); }
+.testi-author-company { font-size: 10px; font-weight: 600; letter-spacing: .15em; text-transform: uppercase; color: var(--wine); }
+.testi-card-date { font-size: 10px; font-weight: 500; color: rgba(123,30,34,.35); letter-spacing: .1em; }
+.testi-score { text-align: right; }
+.testi-score-label { font-size: 9px; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.testi-stars-small { display: flex; gap: 3px; justify-content: flex-end; }
+.testi-nav {
+  display: flex; align-items: center; gap: 20px;
+}
+.testi-btn {
+  width: 48px; height: 48px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+   transition: all .3s;
+}
+.testi-btn:hover { border-color: var(--wine); background: var(--wine); }
+.testi-btn svg { width: 16px; height: 16px; stroke: var(--muted); fill: none; stroke-width: 1.8; transition: stroke .3s; }
+.testi-btn:hover svg { stroke: var(--gold-light); }
+.testi-dots { display: flex; gap: 8px; align-items: center; }
+.testi-dot {
+  width: 6px; height: 6px; background: var(--border); border-radius: 50%;
+   transition: all .3s;
+}
+.testi-dot.active { background: var(--wine); transform: scale(1.4); }
+
+/* â•â• CTA SECTION â•â• */
+.cta-section {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 60vh; overflow: hidden;
+  position: relative;
+}
+/* fondo vino con gradiente cinematogrÃ¡fico */
+.cta-left {
+  background: linear-gradient(135deg, var(--wine-deep) 0%, var(--wine) 60%, var(--wine-hi) 100%);
+  padding: 90px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  position: relative; overflow: hidden;
+}
+/* patrÃ³n hexagonal de fondo */
+.cta-left::before {
+  content: ''; position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='92'%3E%3Cpolygon points='40,4 76,22 76,70 40,88 4,70 4,22' fill='none' stroke='%23C9A84C' stroke-width='.6' opacity='.1'/%3E%3C/svg%3E") repeat;
+  background-size: 80px 92px;
+}
+/* destellos decorativos */
+.cta-left::after {
+  content: '';
+  position: absolute; top: -80px; right: -80px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-right {
+  background: var(--wine-deep);
+  padding: 90px 80px;
+  display: flex; flex-direction: column; justify-content: center;
+  gap: 36px; position: relative; overflow: hidden;
+}
+/* lÃ­nea separadora dorada vertical */
+.cta-right::before {
+  content: '';
+  position: absolute; left: 0; top: 10%; bottom: 10%; width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,.3) 30%, rgba(201,168,76,.3) 70%, transparent);
+}
+/* glow de fondo en cta-right */
+.cta-right::after {
+  content: '';
+  position: absolute; bottom: -100px; right: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(123,30,34,.4) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* â•â• FOOTER â•â• */
+footer {
+  background: var(--ink);
+  padding: 80px 80px 40px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 900; color: var(--gold-light);
+  letter-spacing: -.01em; margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.footer-desc {
+  font-size: 13px; font-weight: 300; color: rgba(255,255,255,.35);
+  line-height: 1.85; max-width: 260px; margin-bottom: 32px;
+}
+.footer-brand { display: flex; flex-direction: column; }
+.footer-grid {
+  display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px; margin-bottom: 60px;
+}
+.footer-col-title {
+  font-size: 10px; font-weight: 700; letter-spacing: .28em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 24px;
+}
+.footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.footer-links a {
+  font-size: 13px; font-weight: 300; color: rgba(255,255,255,.4);
+  text-decoration: none; transition: color .3s; 
+}
+.footer-links a:hover { color: var(--gold-light); }
+.footer-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-bottom-text {
+  font-size: 11px; font-weight: 300; color: rgba(255,255,255,.22);
+  letter-spacing: .05em;
+}
+.footer-bottom-cert {
+  display: flex; align-items: center; gap: 8px;
+}
+.footer-bottom-cert-text {
+  font-size: 10px; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: rgba(201,168,76,.5);
+}
+
+/* â•â• RESPONSIVE â€” REST OF PAGE â•â• */
+@media (max-width: 1200px) {
+  .quienes-left, .proceso, .testimonios, .impacto, .cta-left, .cta-right, .valores { padding-left: 60px; padding-right: 60px; }
+  footer { padding-left: 60px; padding-right: 60px; }
+  .valores-grid { grid-template-columns: 1fr 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+}
+@media (max-width: 1024px) {
+  .quienes { grid-template-columns: 1fr; }
+  .quienes-right { min-height: 50vw; }
+  .quienes-left::after { display: none; }
+  .mv { grid-template-columns: 1fr; }
+  .mv-panel { min-height: 400px; }
+  .mv-sep { display: none; }
+  .proceso-steps { grid-template-columns: 1fr 1fr; gap: 48px; }
+  .proceso-steps::before { display: none; }
+  .impacto { grid-template-columns: 1fr; }
+  .impacto-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+  .testimonios-header { grid-template-columns: 1fr; gap: 32px; }
+  .cta-section { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .valores-grid { grid-template-columns: 1fr; }
+  .quienes-left { padding: 80px 40px; }
+  .mv-content { padding: 40px 32px; }
+  .testi-card { min-width: 100% !important; }
+}
+@media (max-width: 640px) {
+  .quienes-left { padding: 60px 24px; }
+  .valores { padding: 80px 24px; }
+  .proceso { padding: 80px 24px; }
+  .proceso-steps { grid-template-columns: 1fr; }
+  .testimonios { padding: 80px 24px; }
+  .testi-card-inner { padding: 36px 24px; }
+  .impacto { padding: 0; }
+  .impacto-item { padding: 60px 32px; }
+  .cta-left, .cta-right { padding: 60px 24px; }
+  footer { padding: 60px 24px 40px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+
+.hero-content {}
+.testi-stars { display: flex; gap: 3px; }
+
+
+/* â•â• SHINE / GLOSS SWEEP EFFECT â•â• */
+@keyframes shineSweep {
+  0%   { left: -100%; }
+  18%  { left: 120%;  }
+  100% { left: 120%;  }
+}
+.shine-el {
+  position: relative; overflow: hidden;
+}
+.shine-el::after {
+  content: '';
+  position: absolute; top: 0; left: -100%; width: 55%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.30) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  animation: shineSweep 3.8s ease-in-out infinite;
+  pointer-events: none; z-index: 10;
+}
+/* Logo shine in footer */
+.ind-f-logo-container { position: relative; display: inline-block; overflow: hidden; }
+.ind-f-logo-container::after {
+  content: '';
+  position: absolute; top: 0; left: -150%; width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  animation: shine-logo 4s infinite;
+}
+@keyframes shine-logo {
+  0%   { left: -150%; }
+  20%  { left: 150%;  }
+  100% { left: 150%;  }
+}
+/* Title shimmer â€” for hero title gradient text */
+@keyframes titleShimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+.hero-title .ht-l2 {
+  background: linear-gradient(108deg, var(--gold-dark) 0%, var(--gold) 30%, var(--gold-light) 50%, var(--gold) 70%, var(--gold-dark) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  animation: titleShimmer 5s linear infinite;
+}
+
+
+/* â•â• FOOTER (reference design) â•â• */
+.ind-footer-wrap {
+  background-color: #0D0D0D;
+  color: #F5F0E8;
+  font-family: 'Outfit', sans-serif;
+  position: relative; overflow: hidden;
+  border-top: 1px solid rgba(201,168,76,.12);
+}
+.ind-f-top-accent {
+  height: 4px; width: 100%;
+  background: linear-gradient(to right, #5C0E0E, #8B1A1A, #C9A84C, #5C0E0E);
+  opacity: .85;
+}
+.ind-f-main { max-width: 1300px; margin: 0 auto; padding: 80px 60px 40px; position: relative; z-index: 1; }
+.ind-f-grid {
+  display: grid; grid-template-columns: 1.4fr .8fr .8fr 1fr;
+  gap: 50px; margin-bottom: 60px;
+}
+.ind-f-brand { display: flex; flex-direction: column; gap: 25px; }
+.ind-f-logo-container { position: relative; display: inline-block; max-width: 200px; overflow: hidden; }
+.ind-f-logo-img { max-width: 100%; height: auto; display: block; }
+.ind-f-slogan {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-style: italic; font-weight: 400;
+  color: var(--gold-light); line-height: 1.3; max-width: 280px; letter-spacing: .5px;
+}
+.ind-f-contact-strip { display: flex; flex-direction: column; gap: 15px; }
+.ind-f-contact-link {
+  display: flex; align-items: center; gap: 12px;
+  color: #A89880; text-decoration: none; font-size: 13px; transition: color .3s;
+}
+.ind-f-contact-link:hover { color: #F5F0E8; }
+.ind-f-contact-link svg { width: 16px; height: 16px; color: var(--wine); stroke-width: 2; }
+.ind-f-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: #F5F0E8; margin-bottom: 30px; position: relative;
+}
+.ind-f-title::after {
+  content: ''; position: absolute; left: 0; bottom: -10px;
+  width: 20px; height: 1px; background: var(--gold);
+}
+.ind-f-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.ind-f-item-link {
+  text-decoration: none; color: #A89880; font-size: 13px;
+  transition: all .3s ease; display: inline-block;
+}
+.ind-f-item-link:hover { color: var(--gold-light); transform: translateX(5px); }
+.ind-f-social-wrap { display: flex; gap: 15px; margin-top: 25px; }
+.ind-f-social-icon {
+  width: 42px; height: 42px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; text-decoration: none;
+  transition: transform .4s cubic-bezier(.175,.885,.32,1.275), filter .3s, box-shadow .3s;
+  box-shadow: 0 4px 10px rgba(0,0,0,.3);
+}
+.ind-f-social-icon.linkedin  { background-color: #0077B5; }
+.ind-f-social-icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.ind-f-social-icon.facebook  { background-color: #1877F2; }
+.ind-f-social-icon:hover { transform: scale(1.2) translateY(-5px); filter: brightness(1.1); box-shadow: 0 8px 20px rgba(0,0,0,.5); z-index: 2; }
+.ind-f-bottom {
+  border-top: 1px solid rgba(255,255,255,.05);
+  padding: 30px 60px; max-width: 1300px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 2px; color: rgba(255,255,255,.3);
+}
+.ind-f-copy span { color: var(--gold); }
+@media (max-width: 1100px) { .ind-f-grid { grid-template-columns: 1fr 1fr; gap: 40px; } .ind-f-main { padding: 60px 40px; } }
+@media (max-width: 650px) {
+  .ind-f-main { padding: 60px 25px 100px; }
+  .ind-f-grid { grid-template-columns: 1fr; gap: 45px; text-align: center; }
+  .ind-f-brand { align-items: center; }
+  .ind-f-title::after { left: 50%; transform: translateX(-50%); }
+  .ind-f-contact-strip { align-items: center; }
+  .ind-f-social-wrap { justify-content: center; }
+  .ind-f-bottom { flex-direction: column; gap: 15px; text-align: center; padding: 30px 20px 120px; }
+}
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   HEADER â€” IND SISTEMA (referencia)
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.ind-header-wrapper {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: #0A0A0A;
+  box-shadow: 0 2px 15px rgba(0,0,0,.5);
+  transition: box-shadow 0.4s ease, background 0.4s ease;
+}
+.ind-header-wrapper.scrolled {
+  background: rgba(5,5,5,0.98);
+  box-shadow: 0 4px 30px rgba(0,0,0,.8), 0 1px 0 rgba(201,168,76,.18);
+}
+.ind-top-bar {
+  background: #000;
+  border-bottom: 1px solid rgba(201,168,76,.1);
+  padding: 0 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 35px;
+}
+.ind-top-info { display: flex; gap: 25px; }
+.ind-top-item {
+  display: flex; align-items: center; gap: 8px;
+  color: #A89880; font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.ind-top-item svg { width: 12px; height: 12px; color: var(--gold); }
+.ind-top-item a { color: inherit; text-decoration: none; transition: color .3s; }
+.ind-top-item a:hover { color: var(--gold-light); }
+.ind-main-header {
+  background: rgba(10,10,10,.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.ind-container {
+  max-width: 1400px; margin: 0 auto; padding: 0 60px;
+  height: 80px; display: flex; align-items: center; justify-content: space-between;
+}
+.ind-logo-group { display: flex; align-items: center; gap: 20px; }
+.ind-logo-wrap { text-decoration: none; display: flex; align-items: center; }
+.ind-logo-img { max-height: 48px; width: auto; display: block; }
+.ind-logo-sep { width: 1px; height: 30px; background: rgba(201,168,76,.2); }
+.ind-header-tagline {
+  font-family: 'Playfair Display', serif;
+  color: #A89880; font-size: 15px; font-style: italic;
+  max-width: 200px; line-height: 1.3;
+}
+.ind-nav { display: flex; align-items: center; gap: 30px; height: 100%; }
+.ind-menu-item { position: relative; height: 100%; display: flex; align-items: center; }
+.ind-link {
+  text-decoration: none; color: rgba(255,255,255,.9);
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; transition: .3s;
+  display: flex; align-items: center;
+}
+.ind-link:hover, .ind-link.active { color: var(--gold-light); }
+.ind-dropdown {
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%);
+  width: 260px; background: #0D0D0D;
+  border: 1px solid rgba(201,168,76,.2);
+  padding: 10px 0;
+  opacity: 0; visibility: hidden;
+  transition: all .3s ease; z-index: 200;
+}
+.ind-menu-item:hover .ind-dropdown { opacity: 1; visibility: visible; }
+.ind-drop-link {
+  display: block; padding: 12px 20px;
+  color: rgba(255,255,255,.6); text-decoration: none;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  transition: .3s;
+}
+.ind-drop-link:hover {
+  background: rgba(139,26,26,.15); color: #fff;
+  padding-left: 25px; border-left: 3px solid var(--wine);
+}
+.ind-actions { display: flex; align-items: center; }
+.ind-btn-cta {
+  background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+  color: #fff; text-decoration: none;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 12px 22px;
+  clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition: .3s; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.ind-btn-cta:hover { opacity: .9; }
+
+/* â”€â”€ Mobile bottom nav â”€â”€ */
+.ind-bottom-nav {
+  display: none; position: fixed; bottom: 0; left: 0;
+  width: 100%; height: 65px; background: #000;
+  border-top: 1px solid rgba(201,168,76,.2); z-index: 2000;
+}
+.ind-bnav-container {
+  display: flex; justify-content: space-around; align-items: center;
+  height: 100%; max-width: 600px; margin: 0 auto;
+}
+.ind-bnav-item {
+  text-decoration: none; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; color: rgba(255,255,255,.5);
+  transition: .3s; flex: 1;
+}
+.ind-bnav-item svg { width: 20px; height: 20px; }
+.ind-bnav-item span { font-size: 8px; font-weight: 600; text-transform: uppercase; }
+.ind-bnav-item.active { color: var(--gold); }
+.ind-bnav-item.wa-item { color: #25D366; }
+
+/* â”€â”€ Bottom Sheet â”€â”€ */
+.ind-sheet-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  backdrop-filter: blur(5px); z-index: 2001;
+  opacity: 0; visibility: hidden; transition: .3s;
+}
+.ind-sheet-overlay.active { opacity: 1; visibility: visible; }
+.ind-bottom-sheet {
+  position: fixed; bottom: -100%; left: 0; width: 100%;
+  background: #0a0a0a; z-index: 2002;
+  border-radius: 20px 20px 0 0;
+  padding: 25px 20px 80px;
+  transition: bottom .4s cubic-bezier(.4,0,.2,1);
+  border-top: 2px solid var(--gold);
+}
+.ind-bottom-sheet.active { bottom: 0; }
+.ind-sheet-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.ind-sheet-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 20px; font-weight: 700; font-style: italic;
+}
+.ind-sheet-close {
+  background: rgba(255,255,255,.05); border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.ind-sheet-grid { display: grid; gap: 8px; }
+.ind-sheet-link {
+  padding: 14px 18px; background: rgba(255,255,255,.02);
+  border-radius: 10px; color: #fff; text-decoration: none;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* â”€â”€ Header responsive â”€â”€ */
+@media (max-width: 1150px) {
+  .ind-nav, .ind-actions, .ind-top-bar,
+  .ind-logo-sep, .ind-header-tagline { display: none; }
+  .ind-bottom-nav { display: block; }
+  .ind-container { height: 70px; justify-content: center; }
+  .ind-logo-img { max-height: 42px; }
+}
+
+/* Push hero below fixed header (top-bar 35 + main-header 80) */
+.hero { padding-top: 0; }
+body { padding-top: 115px; }
+.hero { margin-top: 0; min-height: calc(100vh - 115px); }
+@media (max-width: 1150px) { body { padding-top: 70px; } .hero { min-height: calc(100vh - 70px); } }
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+   CTA CONTACT BLOCK
+â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+.cta-contact-info {
+  display: flex; flex-direction: column; gap: 22px;
+  margin-bottom: 36px;
+}
+.cta-contact-item {
+  display: flex; align-items: center; gap: 18px;
+}
+.cta-contact-icon {
+  width: 48px; height: 48px; flex-shrink: 0;
+  border: 1px solid rgba(201,168,76,.3);
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(201,168,76,.07);
+}
+.cta-contact-icon svg { width: 20px; height: 20px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; }
+.cta-contact-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .25em;
+  text-transform: uppercase; color: rgba(255,255,255,.35);
+  margin-bottom: 4px;
+}
+.cta-contact-val {
+  font-size: 16px; font-weight: 500; color: #fff;
+  text-decoration: none; transition: color .3s;
+  display: block;
+}
+.cta-contact-val:hover { color: var(--gold-light); }
+.cta-cta-row {
+  display: flex; align-items: center; gap: 24px; flex-wrap: wrap;
+}
+
+/* CTA left text color fix (text inside wine bg) */
+.cta-left .section-tag-text { color: var(--gold-light); }
+.cta-left .section-title { color: #fff; }
+.cta-left .section-title em { color: var(--gold-light); }
+.cta-left .rule-wine { background: var(--gold); }
+.cta-left p { font-size: 14px; font-weight: 300; color: rgba(255,255,255,.55); line-height: 1.9; margin-top: 24px; max-width: 440px; }
+
+
+.ind-f-copy { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.3); }
+.ind-f-copy span { color: var(--gold); }
+.ind-f-office { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.25); }
+
+/* â•â•â•â•â•â•â•â•â•â• FONT SIZE INCREASES (mÃ¡s legibles) â•â•â•â•â•â•â•â•â•â• */
+body { font-size: 16px; }
+.hero-sub { font-size: 1.05rem; }
+.hero-tag { font-size: 11px; }
+.h-eye-txt { font-size: 11px; }
+.stat-label { font-size: 11px; }
+.h-mini-lbl { font-size: 10px; }
+.sib-right p { font-size: 16px; }
+.svc-pane-desc { font-size: 16px; }
+.sb-title { font-size: 12px; }
+.sb-text { font-size: 13px; }
+.svc-step-txt { font-size: 13px; }
+.svc-nav-name { font-size: 14px; }
+.svc-nav-tag { font-size: 11px; }
+.quienes-p { font-size: 16px; }
+.valor-text { font-size: 14px; }
+.mv-content-text { font-size: 15px; }
+.proceso-step-label { font-size: 14px; }
+.proceso-step-desc { font-size: 13px; }
+.testi-quote { font-size: 16px; }
+.testi-author-name { font-size: 14px; }
+.testi-author-role { font-size: 13px; }
+.testi-author-company { font-size: 11px; }
+.footer-links a { font-size: 14px; }
+.footer-desc { font-size: 14px; }
+.ind-link { font-size: 12px !important; }
+.ind-drop-link { font-size: 12px !important; }
+.impacto-num { font-size: clamp(3rem, 5vw, 5rem) !important; }
+.impacto-label { font-size: 15px !important; }
+.impacto-desc { font-size: 13px !important; }
+.section-tag-text { font-size: 12px; }
+.std-txt { font-size: 12px; }
+.ss-txt { font-size: 14px; }
+.cta-contact-val { font-size: 17px; }
+.cta-contact-label { font-size: 11px; }
+.footer-col-title { font-size: 12px; }
+
+/* â•â•â•â•â•â•â•â•â•â• NAVBAR EXTRAS â•â•â•â•â•â•â•â•â•â• */
+
+/* â”€ Theme Toggle â”€ */
+.theme-toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(201,168,76,.3);
+  padding: 7px 12px; cursor: pointer; transition: all .3s;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.8);
+  white-space: nowrap; flex-shrink: 0;
+}
+.theme-toggle-btn:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,168,76,.12); }
+.theme-toggle-btn svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+
+/* â”€ Lang Toggle â”€ */
+.lang-toggle {
+  display: flex; align-items: center; overflow: hidden;
+  border: 1px solid rgba(201,168,76,.3); flex-shrink: 0;
+}
+.lang-btn {
+  padding: 7px 11px; font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  cursor: pointer; transition: all .25s; background: transparent; border: none;
+  color: rgba(255,255,255,.55); text-transform: uppercase; line-height: 1;
+}
+.lang-btn.active { background: var(--wine); color: var(--gold-light); }
+.lang-btn:hover:not(.active) { color: var(--gold-light); background: rgba(201,168,76,.12); }
+
+/* â”€ Accessibility Trigger â”€ */
+.a11y-trigger {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(201,168,76,.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .3s;
+}
+.a11y-trigger:hover { border-color: var(--gold); background: rgba(201,168,76,.12); }
+.a11y-trigger svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+
+/* â”€ Accessibility Panel (dropdown) â”€ */
+.a11y-panel {
+  position: absolute; top: calc(100% + 12px); right: 0;
+  width: 252px; background: #111;
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 24px 64px rgba(0,0,0,.7);
+  z-index: 9999; padding: 18px;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  pointer-events: none;
+}
+.a11y-panel.open {
+  opacity: 1; visibility: visible;
+  transform: translateY(0); pointer-events: auto;
+}
+.a11y-panel-title {
+  font-size: 9px; font-weight: 700; letter-spacing: .32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.a11y-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.a11y-label { font-size: 12px; color: rgba(255,255,255,.72); font-weight: 400; }
+.a11y-controls { display: flex; gap: 5px; align-items: center; }
+.a11y-ctrl-btn {
+  min-width: 32px; height: 32px; padding: 0 6px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.85);
+  font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: all .2s; white-space: nowrap;
+}
+.a11y-ctrl-btn:hover { background: rgba(201,168,76,.22); border-color: var(--gold); color: #fff; }
+.a11y-ctrl-btn.active { background: rgba(201,168,76,.32); border-color: var(--gold); color: var(--gold-light); }
+.a11y-sep { height: 1px; background: rgba(255,255,255,.08); margin: 14px 0; }
+.a11y-reset {
+  width: 100%; padding: 9px; background: rgba(123,30,34,.32); border: 1px solid rgba(123,30,34,.5);
+  color: rgba(255,255,255,.75); font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; cursor: pointer; transition: all .2s;
+}
+.a11y-reset:hover { background: var(--wine); color: #fff; }
+
+/* â”€ Accessibility body states â”€ */
+body.a11y-large { font-size: 18px !important; }
+body.a11y-large .hero-title { font-size: clamp(4.2rem, 7vw, 8rem) !important; }
+body.a11y-large .section-title { font-size: clamp(2.8rem, 4.2vw, 4.5rem) !important; }
+body.a11y-large .quienes-p,
+body.a11y-large .svc-pane-desc,
+body.a11y-large .valor-text,
+body.a11y-large .mv-content-text,
+body.a11y-large .testi-quote,
+body.a11y-large .sib-right p { font-size: 18px !important; }
+body.a11y-high-contrast { filter: contrast(1.5) brightness(1.05); }
+body.a11y-reduced-motion *,
+body.a11y-reduced-motion *::before,
+body.a11y-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* â”€ Wrapper for a11y relative positioning â”€ */
+.ind-actions { display: flex; align-items: center; gap: 8px; position: relative; flex-shrink: 0; }
+.ind-a11y-wrap { position: relative; display: flex; align-items: center; }
+
+/* â•â•â•â•â•â•â•â•â•â• MOBILE CONTROLS SHEET â•â•â•â•â•â•â•â•â•â• */
+/* Shown on mobile only â€” contains theme + lang + a11y controls */
+.mob-ctrl-sheet {
+  position: fixed; bottom: -100%; left: 0; width: 100%;
+  background: #0a0a0a; z-index: 3000;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 90px;
+  transition: bottom .4s cubic-bezier(.4,0,.2,1);
+  border-top: 2px solid var(--gold);
+}
+.mob-ctrl-sheet.active { bottom: 0; }
+.mob-ctrl-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 22px;
+  padding-bottom: 16px; border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.mob-ctrl-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 18px; font-weight: 700; font-style: italic;
+}
+.mob-ctrl-close {
+  background: rgba(255,255,255,.06); border: none;
+  width: 34px; height: 34px; border-radius: 50%;
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; line-height: 1;
+}
+
+/* Section label inside sheet */
+.mob-ctrl-section { margin-bottom: 20px; }
+.mob-ctrl-section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(201,168,76,.6);
+  margin-bottom: 10px;
+}
+
+/* Lang row inside sheet */
+.mob-lang-row {
+  display: flex; gap: 8px;
+}
+.mob-lang-btn {
+  flex: 1; padding: 12px; background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1); color: rgba(255,255,255,.6);
+  font-size: 13px; font-weight: 800; letter-spacing: .12em;
+  text-transform: uppercase; cursor: pointer; transition: all .25s;
+  text-align: center;
+}
+.mob-lang-btn.active { background: var(--wine); border-color: var(--wine); color: var(--gold-light); }
+.mob-lang-btn:not(.active):hover { background: rgba(201,168,76,.1); border-color: rgba(201,168,76,.3); color: #fff; }
+
+/* Theme row inside sheet */
+.mob-theme-btn {
+  width: 100%; padding: 13px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.25);
+  color: rgba(255,255,255,.8); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; cursor: pointer; transition: all .3s;
+}
+.mob-theme-btn:hover { background: rgba(201,168,76,.1); border-color: var(--gold); }
+.mob-theme-btn svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+
+/* A11y inside sheet */
+.mob-a11y-grid { display: grid; gap: 10px; }
+.mob-a11y-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.mob-a11y-label { font-size: 13px; color: rgba(255,255,255,.75); }
+.mob-a11y-controls { display: flex; gap: 6px; }
+.mob-a11y-btn {
+  min-width: 36px; height: 36px; padding: 0 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.mob-a11y-btn.active { background: rgba(201,168,76,.3); border-color: var(--gold); color: var(--gold-light); }
+.mob-a11y-btn:hover { background: rgba(201,168,76,.2); border-color: var(--gold); color: #fff; }
+.mob-a11y-reset {
+  width: 100%; margin-top: 12px; padding: 12px;
+  background: rgba(123,30,34,.3); border: 1px solid rgba(123,30,34,.4);
+  color: rgba(255,255,255,.75); font-size: 11px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: all .2s;
+}
+.mob-a11y-reset:hover { background: var(--wine); color: #fff; }
+
+/* â•â•â•â•â•â•â•â•â•â• IMPROVED BOTTOM NAV (mobile) â•â•â•â•â•â•â•â•â•â• */
+.ind-bottom-nav {
+  display: none; position: fixed; bottom: 0; left: 0;
+  width: 100%; height: 65px; background: #000;
+  border-top: 1px solid rgba(201,168,76,.2); z-index: 2000;
+  overflow: hidden;
+}
+.ind-bnav-container {
+  display: flex; justify-content: space-around; align-items: center;
+  height: 100%; max-width: 600px; margin: 0 auto;
+}
+.ind-bnav-item {
+  text-decoration: none; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; color: rgba(255,255,255,.5);
+  transition: .3s; flex: 1; padding: 0 4px; border: none;
+  background: transparent; cursor: pointer;
+}
+.ind-bnav-item svg { width: 20px; height: 20px; }
+.ind-bnav-item span { font-size: 8px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+.ind-bnav-item.active { color: var(--gold); }
+.ind-bnav-item.wa-item { color: #25D366; }
+.ind-bnav-item.ctrl-item { color: rgba(255,255,255,.5); }
+.ind-bnav-item.ctrl-item:hover,
+.ind-bnav-item.ctrl-item.active-ctrl { color: var(--gold); }
+
+/* â•â•â•â•â•â•â•â•â•â• HEADER RESPONSIVE â€” FIXED â•â•â•â•â•â•â•â•â•â• */
+/* 1150px â€” breakpoint desktopâ†’mobile nav */
+@media (max-width: 1150px) {
+  .ind-nav, .ind-actions, .ind-top-bar,
+  .ind-logo-sep, .ind-header-tagline { display: none !important; }
+  .ind-bottom-nav { display: block; }
+  .ind-container { height: 60px; justify-content: center; padding: 0 20px; }
+  .ind-logo-img { max-height: 40px; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â• GENERAL OVERFLOW GUARDS â•â•â•â•â•â•â•â•â•â• */
+html, body { max-width: 100%; overflow-x: hidden; }
+img, video, canvas { max-width: 100%; }
+.hero-body { min-width: 0; }
+.servicios-panel, .servicios-intro-band, .servicios-strip { min-width: 0; overflow: hidden; }
+
+/* â•â•â•â•â•â•â•â•â•â• TABLET â€” 768px to 1024px â•â•â•â•â•â•â•â•â•â• */
+@media (max-width: 1024px) {
+  .hero-body { grid-template-columns: 1fr; max-width: 700px; margin: 0 auto; }
+  .hero-right-panel { display: none; }
+  .hero-content { align-items: center; text-align: center; }
+  .hero-eyebrow, .hero-tags, .hero-actions { justify-content: center; }
+  .hero-sub { max-width: 100%; }
+
+  .servicios-intro-band { padding: 70px 40px 60px; }
+  .sib-inner { grid-template-columns: 1fr; gap: 36px; }
+  .sib-right { max-width: 100%; }
+  .svc-bullets { grid-template-columns: 1fr 1fr; }
+  .ss-items { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .servicios-strip { grid-template-columns: 1fr; gap: 28px; padding: 48px 40px; }
+
+  .quienes { grid-template-columns: 1fr; }
+  .quienes-right { min-height: 50vw; }
+  .quienes-left::after { display: none; }
+  .quienes-left { padding: 80px 40px; }
+
+  .mv { grid-template-columns: 1fr; }
+  .mv-panel { min-height: 360px; }
+  .mv-sep { display: none; }
+
+  .proceso-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .proceso-steps::before { display: none; }
+
+  .impacto { grid-template-columns: 1fr 1fr; }
+  .impacto-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.06); }
+
+  .testimonios-header { grid-template-columns: 1fr; gap: 28px; }
+  .cta-section { grid-template-columns: 1fr; }
+  .cta-left, .cta-right { padding: 70px 40px; }
+
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+  footer { padding: 60px 40px 40px; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â• MOBILE â€” max 767px â•â•â•â•â•â•â•â•â•â• */
+@media (max-width: 767px) {
+  body { padding-top: 60px; }
+  .hero { min-height: calc(100vh - 60px); }
+
+  .hero-body { padding: 32px 20px 40px; }
+  .hero-title { font-size: clamp(2.6rem, 9vw, 3.6rem) !important; }
+  .hero-sub { font-size: .95rem; }
+  .hero-actions { flex-direction: column; align-items: center; gap: 16px; }
+  .btn-primary { padding: 15px 32px; font-size: 10px; }
+  .hero-stats-bar { flex-wrap: wrap; }
+  .hero-stat { flex: 0 0 50%; border-right: none; border-bottom: 1px solid rgba(201,168,76,.1); }
+  .hero-stat:nth-child(odd) { border-right: 1px solid rgba(201,168,76,.1); }
+
+  .servicios-intro-band { padding: 56px 20px 48px; }
+  .sib-inner { gap: 28px; }
+  .svc-bullets { grid-template-columns: 1fr; }
+  .svc-steps { flex-direction: column; }
+  .svc-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .ss-items { grid-template-columns: 1fr; }
+  .servicios-strip { padding: 36px 20px; gap: 20px; }
+
+  .quienes-left { padding: 60px 20px; }
+  .quienes-p { font-size: 15px; }
+  .valores { padding: 80px 20px; }
+  .valores-grid { grid-template-columns: 1fr; }
+  .valor-card { padding: 36px 24px; }
+
+  .mv-content { padding: 36px 24px; }
+  .mv-content-label { font-size: 2.2rem; }
+  .mv-content-text { font-size: 14px; }
+
+  .proceso { padding: 80px 20px; }
+  .proceso-steps { grid-template-columns: 1fr; }
+  .proceso-step { padding: 0 0 40px; }
+
+  .impacto { grid-template-columns: 1fr; }
+  .impacto-item { padding: 50px 24px; border-right: none !important; border-bottom: 1px solid rgba(255,255,255,.06); }
+
+  .testimonios { padding: 70px 20px; overflow: hidden; }
+  .testi-card { min-width: 100% !important; }
+  .testi-card-inner { padding: 32px 20px; }
+  .testi-quote { font-size: 14px; }
+  .testimonios-header { flex-direction: column; gap: 20px; }
+
+  .cta-left, .cta-right { padding: 60px 20px; }
+  .cta-cta-row { flex-direction: column; align-items: flex-start; gap: 16px; }
+
+  footer { padding: 56px 20px 100px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+
+  .ind-f-main { padding: 50px 20px 100px; }
+  .ind-f-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .ind-f-brand { align-items: center; }
+  .ind-f-title::after { left: 50%; transform: translateX(-50%); }
+  .ind-f-contact-strip { align-items: center; }
+  .ind-f-social-wrap { justify-content: center; }
+  .ind-f-bottom { flex-direction: column; gap: 12px; text-align: center; padding: 24px 20px 100px; }
+
+  .section-title { font-size: clamp(2rem, 7vw, 3rem) !important; }
+  .section-tag-text { font-size: 10px; }
+  .section-rule { justify-content: flex-start; }
+
+  .svc-pane-title { font-size: clamp(1.6rem, 5vw, 2rem); }
+  .svc-pane { padding: 32px 20px; }
+  .svc-pane-cta { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .svc-nav-item { padding: 18px 16px; min-width: 140px; }
+
+  .a11y-panel { right: -60px; width: 260px; }
+  .mob-ctrl-sheet { padding: 22px 16px 84px; }
+}
+
+/* â•â•â•â•â•â•â•â•â•â• EXTRA SMALL â€” max 400px â•â•â•â•â•â•â•â•â•â• */
+@media (max-width: 400px) {
+  .hero-title { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
+  .hero-body { padding: 24px 16px 32px; }
+  .hero-stat { flex: 0 0 100%; border-right: none !important; }
+  .hero-actions { width: 100%; }
+  .btn-primary { width: 100%; justify-content: center; }
+  .ss-label-main { font-size: 1.6rem; }
+  .svc-nav { overflow-x: auto; }
+  .svc-nav-item { min-width: 120px; padding: 16px 12px; }
+}
+</style>
+</head>
+<body>
+<!-- Cursor -->
+<div class="cursor" id="cursor">
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+</div>
+<!-- â•â• NAV â•â• -->
+<div class="ind-header-wrapper" id="navbar">
+<div class="ind-top-bar">
+<div class="ind-top-info">
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>55 4015 2551</span>
+</div>
+ <div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+</div>
+<div class="ind-top-item" style="opacity:0.6;">INDUSECC</div>
+</div>
+<header class="ind-main-header">
+<div class="ind-container">
+<div class="ind-logo-group">
+<a class="ind-logo-wrap" href="index.html">
+<img alt="Logo INDUSECC" class="ind-logo-img" src="Imagenes/logo.png"/>
+</a>
+<div class="ind-logo-sep"></div>
+<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+</div>
+<nav class="ind-nav">
+<div class="ind-menu-item"><a class="ind-link active" href="index.html">Inicio</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="nosotros.html">Â¿QuiÃ©nes Somos?</a></div>
+<div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">ImplementaciÃ³n de un Sistema de GestiÃ³n</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">CertificaciÃ³n de Normas ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">ConsultorÃ­a y AsesorÃ­a en Normatividad ISO</a>
+<a class="ind-drop-link" href="auditorias.html">AuditorÃ­as</a>
+</div>
+</div>
+
+<div class="ind-menu-item"><a class="ind-link" href="blogs.html">Blog</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+</nav>
+<div class="ind-actions">
+<!-- Accesibilidad -->
+<div class="ind-a11y-wrap">
+<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel">
+<div class="a11y-panel-title">Accesibilidad</div>
+<div class="a11y-row">
+<span class="a11y-label">TamaÃ±o de fuente</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="fontDown">Aâˆ’</button>
+<button class="a11y-ctrl-btn" id="fontUp">A+</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Alto contraste</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="contrastBtn">â—‘</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Reducir movimiento</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="motionBtn">â¸</button>
+</div>
+</div>
+<div class="a11y-sep"></div>
+<button class="a11y-reset" id="a11yReset">â†º Restablecer</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<span id="themeLabel">Oscuro</span>
+</button>
+<!-- CTA -->
+<a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+</div>
+</div>
+</header>
+</div>
+<nav class="ind-bottom-nav">
+<div class="ind-bnav-container">
+<a class="ind-bnav-item active" href="#hero" id="bnavHome">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span data-i18n="nav_home">Inicio</span>
+</a>
+<a class="ind-bnav-item" href="javascript:void(0)" id="btnServicesMobile">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+<span data-i18n="nav_services">Servicios</span>
+</a>
+<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+<span>WhatsApp</span>
+</a>
+<a class="ind-bnav-item" href="contacto.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span data-i18n="nav_cta_short">Contacto</span>
+</a>
+<button class="ind-bnav-item ctrl-item" id="btnMobControls">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
+<span data-i18n="mob_controls">Ajustes</span>
+</button>
+</div>
+</nav>
+<!-- Overlays -->
+<div class="ind-sheet-overlay" id="sheetOverlay"></div>
+<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
+<!-- Services Sheet -->
+<div class="ind-bottom-sheet" id="servicesSheet">
+<div class="ind-sheet-header">
+<h3 class="ind-sheet-title" data-i18n="nav_services">Servicios</h3>
+<button class="ind-sheet-close" id="closeSheet">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+</button>
+</div>
+<div class="ind-sheet-grid">
+<a class="ind-sheet-link" data-i18n="nav_cap" href="implementacion-sistema.html">ImplementaciÃ³n de un sistema de gestiÃ³n <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_iso" href="certificacion-iso_.html">CertificaciÃ³n ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_mejora" href="consultoria-asesoria.html">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_audit" href="auditorias.html">AuditorÃ­as <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+</div>
+</div>
+<!-- Mobile Controls Sheet -->
+<div class="mob-ctrl-sheet" id="mobCtrlSheet">
+<div class="mob-ctrl-header">
+<span class="mob-ctrl-title" data-i18n="mob_controls_title">Ajustes</span>
+<button class="mob-ctrl-close" id="closeMobCtrl">âœ•</button>
+</div>
+<!-- Theme -->
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label" data-i18n="mob_theme_label">Tema</div>
+<button class="mob-theme-btn" id="mobThemeBtn" onclick="toggleTheme()">
+<span data-i18n="theme_midnight" id="mobThemeLabel">Modo Oscuro</span>
+<svg id="mobThemeIcon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+</div>
+<!-- Accessibility -->
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label" data-i18n="a11y_title">Accesibilidad</div>
+<div class="mob-a11y-grid">
+<div class="mob-a11y-row">
+<span class="mob-a11y-label" data-i18n="a11y_font">TamaÃ±o de texto</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobFontDown">Aâˆ’</button>
+<button class="mob-a11y-btn" id="mobFontUp">A+</button>
+</div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label" data-i18n="a11y_contrast">Alto contraste</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobContrastBtn">â—‘</button>
+</div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label" data-i18n="a11y_motion">Reducir movimiento</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobMotionBtn">â¸</button>
+</div>
+</div>
+</div>
+<button class="mob-a11y-reset" data-i18n="a11y_reset" id="mobA11yReset">â†º Restablecer todo</button>
+</div>
+</div>
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• HERO â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="hero" id="hero">
+<video autoplay="" class="hero-video-bg" loop="" muted="" playsinline="">
+<source src="https://indusecc.store/wp-content/uploads/2026/02/0_Business_Office_4096x2160-1.mp4" type="video/mp4"/>
+</video>
+<canvas id="heroCanvas"></canvas>
+<canvas id="particlesCanvas"></canvas>
+<div class="hero-overlay"></div>
+<!-- corner brackets -->
+<div class="h-br h-br-tl"></div>
+<div class="h-br h-br-tr"></div>
+<div class="h-br h-br-bl"></div>
+<div class="h-br h-br-br"></div>
+<!-- body grid -->
+<div class="hero-body">
+<!-- LEFT -->
+<div class="hero-content">
+<div class="hero-eyebrow">
+<div class="h-eye-dot"></div>
+<div class="h-eye-line"></div>
+<span class="h-eye-txt">Indusecc â€” ConsultorÃ­a ISO</span>
+</div>
+<h1 class="hero-title">
+<span class="ht-l1">Soluciones</span>
+<span class="ht-l2">que elevan</span>
+<span class="ht-l3"><span class="ht-under">tu empresa.</span></span>
+</h1>
+<div class="hero-sub-block">
+<p class="hero-sub">
+          LÃ­deres en <strong>consultorÃ­a ISO, mejora continua</strong> y capacitaciÃ³n empresarial de alto impacto. Transformamos procesos en ventajas competitivas.
+        </p>
+<div class="hero-tags">
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 9001:2015</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>ISO 14001</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>Mejora Continua</span>
+<span class="hero-tag"><span class="h-tag-dot"></span>AuditorÃ­a</span>
+</div>
+</div>
+<div class="hero-actions">
+<a class="btn-primary shine-el" href="servicios">
+<span>Ver Servicios</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="btn-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">
+<div class="btn-ghost-line"></div>
+          Descargar Brochure
+        </a>
+</div>
+</div>
+<!-- RIGHT panel -->
+<div class="hero-right-panel">
+<!-- ISO rotating card -->
+<div class="hero-iso-card" style="animation:fadeUp .9s 1s ease both;">
+<div class="iso-ring-wrap">
+<div class="iso-ring-outer"></div>
+<div class="iso-ring-inner">
+<div class="iso-ring-text">ISO<br/>9001</div>
+<div class="iso-ring-sub">2015</div>
+</div>
+</div>
+<div class="iso-card-title">CertificaciÃ³n Internacional</div>
+<div class="iso-card-desc">AcompaÃ±amos a tu empresa desde el diagnÃ³stico hasta la obtenciÃ³n del sello ISO reconocido mundialmente.</div>
+<div class="iso-card-badge">
+<svg viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+<span class="iso-badge-txt">Organismo Acreditado</span>
+</div>
+</div>
+<!-- mini stats -->
+<div class="hero-mini-stats" style="animation:fadeUp .8s 1.1s ease both;">
+<div class="h-mini-stat">
+<div class="h-mini-num" data-count="10" data-suffix="+">10+</div>
+<div class="h-mini-lbl">AÃ±os</div>
+</div>
+<div class="h-mini-stat">
+<div class="h-mini-num" data-count="100" data-suffix="+">100+</div>
+<div class="h-mini-lbl">Empresas</div>
+</div>
+<div class="h-mini-stat">
+<div class="h-mini-num" data-count="100" data-suffix="%">100%</div>
+<div class="h-mini-lbl">Resultados</div>
+</div>
+</div>
+</div>
+</div>
+<!-- stats bar -->
+<div class="hero-stats-bar" style="opacity:0;animation:fadeUp .8s 1.2s ease forwards;animation-fill-mode:both;">
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><circle cx="12" cy="8" r="5"></circle><path d="M8 8h8M10 6l2 2 2-2M9 13l-3 8 6-2.5L18 21l-3-8"></path></svg>
+</div>
+<div>
+<div class="stat-num">ISO</div>
+<div class="stat-label">Certificados<br/>9001:2015</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><path d="M12 3a9 9 0 1 0 0 18A9 9 0 0 0 12 3z"></path><path d="M12 7v5l3 2"></path><path d="M4.2 4.2l1.5 1.5M18.3 4.2l-1.5 1.5"></path></svg>
+</div>
+<div>
+<div class="stat-num" data-count="10" data-suffix="+">10+</div>
+<div class="stat-label">AÃ±os de<br/>experiencia</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><rect height="11" rx="1" width="6" x="3" y="10"></rect><rect height="15" rx="1" width="6" x="9" y="6"></rect><rect height="8" rx="1" width="6" x="15" y="13"></rect><line x1="1" x2="23" y1="21" y2="21"></line></svg>
+</div>
+<div>
+<div class="stat-num" data-count="100" data-suffix="+">100+</div>
+<div class="stat-label">Empresas<br/>beneficiadas</div>
+</div>
+</div>
+<div class="hero-stat">
+<div class="h-stat-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><path d="M2 12h3l3-7 4 14 3-8 2 4 2-3h3"></path></svg>
+</div>
+<div>
+<div class="stat-num" data-count="10000" data-suffix="+">10000+</div>
+<div class="stat-label">Horas de<br/>capacitaciÃ³n</div>
+</div>
+</div>
+</div>
+<!-- ticker -->
+<div class="hero-ticker">
+<div class="hero-ticker-track">
+<span class="hero-ticker-item">CertificaciÃ³n ISO 9001</span>
+<span class="hero-ticker-item">Mejora Continua</span>
+<span class="hero-ticker-item">AuditorÃ­a Interna</span>
+<span class="hero-ticker-item">CapacitaciÃ³n Empresarial</span>
+<span class="hero-ticker-item">GestiÃ³n de Riesgos</span>
+<span class="hero-ticker-item">ISO 14001 Â· ISO 45001</span>
+<span class="hero-ticker-item">ConsultorÃ­a Integral</span>
+<span class="hero-ticker-item">+10 AÃ±os de Experiencia</span>
+<span class="hero-ticker-item">CertificaciÃ³n ISO 9001</span>
+<span class="hero-ticker-item">Mejora Continua</span>
+<span class="hero-ticker-item">AuditorÃ­a Interna</span>
+<span class="hero-ticker-item">CapacitaciÃ³n Empresarial</span>
+<span class="hero-ticker-item">GestiÃ³n de Riesgos</span>
+<span class="hero-ticker-item">ISO 14001 Â· ISO 45001</span>
+<span class="hero-ticker-item">ConsultorÃ­a Integral</span>
+<span class="hero-ticker-item">+10 AÃ±os de Experiencia</span>
+</div>
+</div>
+</section>
+<!-- â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• SERVICIOS â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<section class="servicios" id="servicios">
+<!-- dark intro header -->
+<div class="servicios-intro-band">
+<div class="sib-inner">
+<div class="sib-left">
+<div class="section-tag-dark reveal">
+<div class="std-line"></div>
+<span class="std-txt">Servicios Especializados</span>
+</div>
+<h2 class="section-title-light reveal reveal-delay-1">
+          ProtecciÃ³n<br/><em>integral</em><br/>para tu negocio.
+        </h2>
+<div class="section-rule-gold reveal reveal-delay-2">
+<div class="srg-wine"></div>
+<div class="srg-fade"></div>
+</div>
+</div>
+<div class="sib-right reveal reveal-delay-2">
+<p>Ofrecemos soluciones a la medida de tu empresa â€” desde la implementaciÃ³n de sistemas de gestiÃ³n hasta la certificaciÃ³n internacional. Selecciona un servicio para conocer todos los detalles.</p>
+<a class="sib-right-cta" href="contacto.html">
+          Solicitar diagnÃ³stico gratuito
+          <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
+</a>
+</div>
+</div>
+</div>
+<!-- interactive panel -->
+<div class="servicios-panel">
+<!-- Left nav -->
+<div class="svc-nav" id="svcNav">
+<div class="svc-nav-item active" data-pane="0">
+<span class="svc-nav-num">01</span>
+<span class="svc-nav-name">CertificaciÃ³n ISO</span>
+<span class="svc-nav-tag">Normativa</span>
+<div class="svc-nav-progress"></div>
+</div>
+<div class="svc-nav-item" data-pane="1">
+<span class="svc-nav-num">02</span>
+<span class="svc-nav-name">Mejora Continua</span>
+<span class="svc-nav-tag">Procesos</span>
+<div class="svc-nav-progress"></div>
+</div>
+<div class="svc-nav-item" data-pane="2">
+<span class="svc-nav-num">03</span>
+<span class="svc-nav-name">CapacitaciÃ³n</span>
+<span class="svc-nav-tag">FormaciÃ³n</span>
+<div class="svc-nav-progress"></div>
+</div>
+<div class="svc-nav-item" data-pane="3">
+<span class="svc-nav-num">04</span>
+<span class="svc-nav-name">GestiÃ³n de Riesgos</span>
+<span class="svc-nav-tag">Estrategia</span>
+<div class="svc-nav-progress"></div>
+</div>
+<div class="svc-nav-item" data-pane="4">
+<span class="svc-nav-num">05</span>
+<span class="svc-nav-name">AuditorÃ­a Interna</span>
+<span class="svc-nav-tag">DiagnÃ³stico</span>
+<div class="svc-nav-progress"></div>
+</div>
+</div>
+<!-- Right detail -->
+<div class="svc-detail-panel">
+<!-- PANE 0: CertificaciÃ³n ISO -->
+<div class="svc-pane active" id="pane-0">
+<div class="svc-pane-header">
+<div class="svc-pane-icon-wrap">
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 4l2.5 3.5 4.5-.5-1.5 4.5 3 3.5-4 1.5-.5 4.5-4-2-4 2-.5-4.5-4-1.5 3-3.5-1.5-4.5 4.5.5z"></path><path d="M13 15.5l2 2.5 5-6"></path></svg>
+</div>
+<div class="svc-pane-title-group">
+<div class="svc-pane-overtitle">01 â€” Normativa ISO</div>
+<h3 class="svc-pane-title">CertificaciÃ³n<br/><em>ISO</em></h3>
+</div>
+</div>
+<div class="svc-pane-rule"><div class="svc-rule-wine"></div><div class="svc-rule-gold"></div></div>
+<p class="svc-pane-desc">Implementamos y certificamos sistemas de gestiÃ³n bajo normas ISO 9001, 14001 y 45001. Nuestro equipo te acompaÃ±a desde el diagnÃ³stico inicial hasta la obtenciÃ³n del certificado internacional, con garantÃ­a de resultados y auditorÃ­a interna incluida.</p>
+<div class="svc-bullets">
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">DiagnÃ³stico inicial</div><p class="sb-text">Evaluamos el estado actual de tu sistema e identificamos brechas frente a la norma.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">ImplementaciÃ³n</div><p class="sb-text">DiseÃ±amos la documentaciÃ³n y procesos requeridos por la norma ISO aplicable.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">CertificaciÃ³n</div><p class="sb-text">AcompaÃ±amiento completo hasta la auditorÃ­a con organismo acreditado internacionalmente.</p></div>
+</div>
+<div class="svc-steps">
+<div class="svc-step"><div class="svc-step-num">01</div><div class="svc-step-txt">DiagnÃ³stico y anÃ¡lisis de brechas</div></div>
+<div class="svc-step"><div class="svc-step-num">02</div><div class="svc-step-txt">DiseÃ±o del sistema de gestiÃ³n</div></div>
+<div class="svc-step"><div class="svc-step-num">03</div><div class="svc-step-txt">ImplementaciÃ³n y documentaciÃ³n</div></div>
+<div class="svc-step"><div class="svc-step-num">04</div><div class="svc-step-txt">AuditorÃ­a interna y ajustes</div></div>
+<div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">CertificaciÃ³n oficial</div></div>
+</div>
+<div class="svc-pane-cta">
+<a class="svc-cta-primary shine-el" href="contacto.html">
+<span>Solicitar informaciÃ³n</span>
+<svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
+</a>
+<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">
+<div class="svc-cta-ghost-line"></div>Ver brochure
+          </a>
+</div>
+</div>
+<!-- PANE 1: Mejora Continua -->
+<div class="svc-pane" id="pane-1">
+<div class="svc-pane-header">
+<div class="svc-pane-icon-wrap">
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M6 22c2-6 6-10 10-10s8 4 10 4"></path><path d="M22 12l4 4-4 4"></path><path d="M10 28l-4-4 4-4"></path><path d="M8 16c0-4.4 3.6-8 8-8s8 3.6 8 8"></path></svg>
+</div>
+<div class="svc-pane-title-group">
+<div class="svc-pane-overtitle">02 â€” OptimizaciÃ³n</div>
+<h3 class="svc-pane-title">Mejora<br/><em>Continua</em></h3>
+</div>
+</div>
+<div class="svc-pane-rule"><div class="svc-rule-wine"></div><div class="svc-rule-gold"></div></div>
+<p class="svc-pane-desc">Optimizamos tus procesos operativos con metodologÃ­as probadas â€” Lean, Six Sigma, Kaizen â€” para aumentar la eficiencia, reducir costos y eliminar desperdicios. Resultados medibles desde la primera semana de intervenciÃ³n.</p>
+<div class="svc-bullets">
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Mapeo de procesos</div><p class="sb-text">Identificamos cuellos de botella y oportunidades de eficiencia en cada proceso clave.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Lean &amp; Six Sigma</div><p class="sb-text">Aplicamos metodologÃ­as probadas para eliminar desperdicios y reducir variabilidad.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">KPIs y tableros</div><p class="sb-text">Definimos indicadores clave y dashboards para monitorear la mejora en tiempo real.</p></div>
+</div>
+<div class="svc-steps">
+<div class="svc-step"><div class="svc-step-num">01</div><div class="svc-step-txt">AnÃ¡lisis del estado actual</div></div>
+<div class="svc-step"><div class="svc-step-num">02</div><div class="svc-step-txt">IdentificaciÃ³n de oportunidades</div></div>
+<div class="svc-step"><div class="svc-step-num">03</div><div class="svc-step-txt">Plan de acciÃ³n y metodologÃ­a</div></div>
+<div class="svc-step"><div class="svc-step-num">04</div><div class="svc-step-txt">ImplementaciÃ³n y seguimiento</div></div>
+<div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">MediciÃ³n de resultados</div></div>
+</div>
+<div class="svc-pane-cta">
+<a class="svc-cta-primary shine-el" href="contacto.html"><span>Solicitar informaciÃ³n</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank"><div class="svc-cta-ghost-line"></div>Ver brochure</a>
+</div>
+</div>
+<!-- PANE 2: CapacitaciÃ³n -->
+<div class="svc-pane" id="pane-2">
+<div class="svc-pane-header">
+<div class="svc-pane-icon-wrap">
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M4 12l12-6 12 6-12 6z"></path><path d="M8 14.5v6c0 2 3.6 4 8 4s8-2 8-4v-6"></path><path d="M28 12v7"></path><circle cx="28" cy="21" r="1.5"></circle></svg>
+</div>
+<div class="svc-pane-title-group">
+<div class="svc-pane-overtitle">03 â€” FormaciÃ³n</div>
+<h3 class="svc-pane-title">CapacitaciÃ³n<br/><em>Empresarial</em></h3>
+</div>
+</div>
+<div class="svc-pane-rule"><div class="svc-rule-wine"></div><div class="svc-rule-gold"></div></div>
+<p class="svc-pane-desc">Programas de formaciÃ³n especializada diseÃ±ados para desarrollar el talento de tu equipo y elevar el desempeÃ±o organizacional. MÃ¡s de 10,000 horas de capacitaciÃ³n impartidas con certificaciÃ³n incluida.</p>
+<div class="svc-bullets">
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Cursos in-company</div><p class="sb-text">FormaciÃ³n presencial o virtual adaptada a las necesidades especÃ­ficas de tu equipo.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Auditor interno ISO</div><p class="sb-text">CertificaciÃ³n como auditor interno de sistemas de gestiÃ³n bajo normas ISO internacionales.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Habilidades directivas</div><p class="sb-text">Liderazgo, comunicaciÃ³n y gestiÃ³n del cambio para mandos medios y directivos.</p></div>
+</div>
+<div class="svc-steps">
+<div class="svc-step"><div class="svc-step-num">01</div><div class="svc-step-txt">DiagnÃ³stico de necesidades</div></div>
+<div class="svc-step"><div class="svc-step-num">02</div><div class="svc-step-txt">DiseÃ±o del programa a medida</div></div>
+<div class="svc-step"><div class="svc-step-num">03</div><div class="svc-step-txt">ImparticiÃ³n del curso</div></div>
+<div class="svc-step"><div class="svc-step-num">04</div><div class="svc-step-txt">EvaluaciÃ³n y retroalimentaciÃ³n</div></div>
+<div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">CertificaciÃ³n y seguimiento</div></div>
+</div>
+<div class="svc-pane-cta">
+<a class="svc-cta-primary shine-el" href="contacto.html"><span>Solicitar informaciÃ³n</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank"><div class="svc-cta-ghost-line"></div>Ver brochure</a>
+</div>
+</div>
+<!-- PANE 3: GestiÃ³n de Riesgos -->
+<div class="svc-pane" id="pane-3">
+<div class="svc-pane-header">
+<div class="svc-pane-icon-wrap">
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 4l10 5v8c0 5.5-4.2 10.7-10 12C10.2 27.7 6 22.5 6 17V9z"></path><line x1="16" x2="16" y1="12" y2="17"></line><circle cx="16" cy="21" fill="#fff" r="1.2" stroke="none"></circle></svg>
+</div>
+<div class="svc-pane-title-group">
+<div class="svc-pane-overtitle">04 â€” Estrategia</div>
+<h3 class="svc-pane-title">GestiÃ³n de<br/><em>Riesgos</em></h3>
+</div>
+</div>
+<div class="svc-pane-rule"><div class="svc-rule-wine"></div><div class="svc-rule-gold"></div></div>
+<p class="svc-pane-desc">Identificamos y mitigamos amenazas operativas antes de que impacten tu negocio. Planes de acciÃ³n concretos, medibles y alineados a ISO 31000 con responsables y plazos definidos para cada riesgo identificado.</p>
+<div class="svc-bullets">
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Matriz de riesgos</div><p class="sb-text">IdentificaciÃ³n, evaluaciÃ³n y priorizaciÃ³n de riesgos crÃ­ticos para tu operaciÃ³n.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Planes de mitigaciÃ³n</div><p class="sb-text">Controles preventivos y correctivos con responsables y plazos definidos.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Monitoreo continuo</div><p class="sb-text">Seguimiento del nivel de riesgo residual y efectividad de los controles implementados.</p></div>
+</div>
+<div class="svc-steps">
+<div class="svc-step"><div class="svc-step-num">01</div><div class="svc-step-txt">Levantamiento de contexto</div></div>
+<div class="svc-step"><div class="svc-step-num">02</div><div class="svc-step-txt">IdentificaciÃ³n de riesgos</div></div>
+<div class="svc-step"><div class="svc-step-num">03</div><div class="svc-step-txt">EvaluaciÃ³n y priorizaciÃ³n</div></div>
+<div class="svc-step"><div class="svc-step-num">04</div><div class="svc-step-txt">DiseÃ±o de controles</div></div>
+<div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">Seguimiento y mejora</div></div>
+</div>
+<div class="svc-pane-cta">
+<a class="svc-cta-primary shine-el" href="contacto.html"><span>Solicitar informaciÃ³n</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank"><div class="svc-cta-ghost-line"></div>Ver brochure</a>
+</div>
+</div>
+<!-- PANE 4: AuditorÃ­a -->
+<div class="svc-pane" id="pane-4">
+<div class="svc-pane-header">
+<div class="svc-pane-icon-wrap">
+<svg fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><circle cx="13" cy="13" r="7"></circle><line x1="18.5" x2="26" y1="18.5" y2="26"></line><line x1="10" x2="16" y1="13" y2="13"></line><line x1="13" x2="13" y1="10" y2="16"></line></svg>
+</div>
+<div class="svc-pane-title-group">
+<div class="svc-pane-overtitle">05 â€” DiagnÃ³stico</div>
+<h3 class="svc-pane-title">AuditorÃ­a<br/><em>Interna</em></h3>
+</div>
+</div>
+<div class="svc-pane-rule"><div class="svc-rule-wine"></div><div class="svc-rule-gold"></div></div>
+<p class="svc-pane-desc">Realizamos auditorÃ­as internas exhaustivas que revelan el estado real de tu sistema de gestiÃ³n, identificando fortalezas, oportunidades de mejora y no conformidades antes de la auditorÃ­a oficial de certificaciÃ³n.</p>
+<div class="svc-bullets">
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">PlanificaciÃ³n</div><p class="sb-text">DiseÃ±o del programa de auditorÃ­a con criterios, alcance y metodologÃ­a definidos.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">EjecuciÃ³n</div><p class="sb-text">Entrevistas, revisiÃ³n documental y observaciÃ³n directa de procesos operativos.</p></div>
+<div class="svc-bullet"><div class="sb-diamond"></div><div class="sb-title">Informe ejecutivo</div><p class="sb-text">Reporte detallado con hallazgos, no conformidades y plan de acciones correctivas.</p></div>
+</div>
+<div class="svc-steps">
+<div class="svc-step"><div class="svc-step-num">01</div><div class="svc-step-txt">PlanificaciÃ³n del programa</div></div>
+<div class="svc-step"><div class="svc-step-num">02</div><div class="svc-step-txt">RevisiÃ³n documental</div></div>
+<div class="svc-step"><div class="svc-step-num">03</div><div class="svc-step-txt">AuditorÃ­a en campo</div></div>
+<div class="svc-step"><div class="svc-step-num">04</div><div class="svc-step-txt">Informe de hallazgos</div></div>
+<div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">Seguimiento de acciones</div></div>
+</div>
+<div class="svc-pane-cta">
+<a class="svc-cta-primary shine-el" href="contacto.html"><span>Solicitar informaciÃ³n</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank"><div class="svc-cta-ghost-line"></div>Ver brochure</a>
+</div>
+</div>
+</div><!-- /svc-detail-panel -->
+</div><!-- /servicios-panel -->
+<!-- bottom strip -->
+<div class="servicios-strip reveal">
+<div class="ss-label">
+<span class="ss-label-main">Servicios<br/>adicionales</span>
+<span class="ss-label-sub">Soluciones complementarias</span>
+</div>
+<div class="ss-items">
+<div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">ConsultorÃ­a estratÃ©gica empresarial</span></div>
+<div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">Servicios industriales especializados</span></div>
+<div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">Mantenimiento de sistemas ISO</span></div>
+<div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">DiagnÃ³stico organizacional integral</span></div>
+</div>
+</div>
+</section>
+<!-- â•â• QUIÃ‰NES SOMOS â•â• -->
+<section class="quienes" id="quienes">
+<div class="quienes-left">
+<div class="section-tag reveal">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">QuiÃ©nes Somos</span>
+</div>
+<h2 class="section-title reveal reveal-delay-1">
+      MÃ¡s que<br/>consultores,<br/><em>somos tu aliado.</em>
+</h2>
+<div class="section-rule reveal reveal-delay-2">
+<div class="rule-wine"></div>
+<div class="rule-gold"></div>
+</div>
+<div class="quienes-body reveal reveal-delay-3">
+<p class="quienes-p">
+        Somos un grupo de profesionales dedicados a ofrecer servicios de <strong>consultorÃ­a, capacitaciÃ³n, auditorÃ­a, implementaciÃ³n y certificaciÃ³n de normas ISO</strong>, asÃ­ como servicios especializados industriales.
+      </p>
+<p class="quienes-p">
+        Con mÃ¡s de <strong>10 aÃ±os de experiencia</strong>, hemos acompaÃ±ado a cientos de empresas en su camino hacia la excelencia operativa. Ofrecemos soluciones integrales personalizadas, adaptadas a las caracterÃ­sticas y necesidades de cada proyecto.
+      </p>
+<div class="hero-actions" style="margin-top: 40px;">
+<a class="btn-primary" href="contacto.html">
+<span>ContÃ¡ctanos</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="btn-ghost" href="servicios.html">
+<div class="btn-ghost-line"></div>
+          Ver servicios
+        </a>
+</div>
+</div>
+<div class="quienes-big-num" style="animation: fadeUp 1s .3s ease both; opacity:0;">10+</div>
+</div>
+<div class="quienes-right">
+<div class="quienes-right-img"></div>
+<div class="quienes-right-overlay"></div>
+<div class="quienes-right-content">
+<div class="quienes-pillars">
+<div class="quienes-pillar reveal">
+<div class="quienes-pillar-num">ISO</div>
+<div class="quienes-pillar-label">Certificados<br/>9001:2015</div>
+</div>
+<div class="quienes-pillar reveal reveal-delay-1">
+<div class="quienes-pillar-num" data-count="100" data-suffix="+">100+</div>
+<div class="quienes-pillar-label">Empresas<br/>beneficiadas</div>
+</div>
+<div class="quienes-pillar reveal reveal-delay-2">
+<div class="quienes-pillar-num" data-count="10000" data-suffix="+">10000+</div>
+<div class="quienes-pillar-label">Horas de<br/>capacitaciÃ³n</div>
+</div>
+<div class="quienes-pillar reveal reveal-delay-3">
+<div class="quienes-pillar-num" data-count="25" data-suffix="+">25+</div>
+<div class="quienes-pillar-label">Asociaciones<br/>activas</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- â•â• VALORES â•â• -->
+<section class="valores" id="valores">
+<div class="valores-header reveal">
+<div class="section-tag" style="justify-content:center">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Cultura Organizacional</span>
+</div>
+<h2 class="section-title" style="color:#fff; margin-top:12px;">Nuestros Valores <em style="color:var(--gold-light)">y Principios</em>.</h2>
+<div class="section-rule" style="justify-content:center; margin-top:20px;">
+<div class="rule-wine" style="background:var(--gold)"></div>
+</div>
+</div>
+<div class="valores-grid">
+<div class="valor-card reveal reveal-delay-1">
+<div class="valor-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M10 14c0-3.3 2.7-6 6-6s6 2.7 6 6"></path><rect height="13" rx="2" width="18" x="7" y="14"></rect><circle cx="16" cy="20" r="2"></circle><line x1="16" x2="16" y1="22" y2="24"></line></svg>
+</div>
+<span class="valor-name">Confianza.</span>
+<p class="valor-text">Fomentamos relaciones sÃ³lidas basadas en el respeto y la seguridad mutua entre clientes y colaboradores en cada proyecto.</p>
+</div>
+<div class="valor-card reveal reveal-delay-2">
+<div class="valor-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 27s-11-6.5-11-14a7 7 0 0 1 11-5.75A7 7 0 0 1 27 13c0 7.5-11 14-11 14z"></path><path d="M16 12v6M13 15h6"></path></svg>
+</div>
+<span class="valor-name">Gratitud.</span>
+<p class="valor-text">Valoramos profundamente la preferencia y confianza de nuestros clientes y colaboradores en cada proyecto que emprendemos.</p>
+</div>
+<div class="valor-card reveal reveal-delay-3">
+<div class="valor-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 6c5.5 0 10 4.5 10 10s-4.5 10-10 10S6 21.5 6 16 10.5 6 16 6z"></path><path d="M12 16c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path><line x1="16" x2="16" y1="6" y2="10"></line><line x1="16" x2="16" y1="22" y2="26"></line><line x1="6" x2="10" y1="16" y2="16"></line><line x1="22" x2="26" y1="16" y2="16"></line></svg>
+</div>
+<span class="valor-name">Transparencia.</span>
+<p class="valor-text">Actuamos con claridad y honestidad en todos nuestros procesos, decisiones y comunicaciones con cada cliente.</p>
+</div>
+<div class="valor-card reveal reveal-delay-4">
+<div class="valor-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 5l2.8 7.8 8.2.5-6.5 5 2.3 8L16 22l-6.8 4.3 2.3-8-6.5-5 8.2-.5z"></path></svg>
+</div>
+<span class="valor-name">Compromiso.</span>
+<p class="valor-text">Nos dedicamos a cumplir nuestros objetivos con excelencia y responsabilidad en cada entrega, superando expectativas.</p>
+</div>
+</div>
+</section>
+<!-- â•â• MISIÃ“N / VISIÃ“N â•â• -->
+<div class="mv">
+<div class="mv-panel">
+<div class="mv-panel-img" style="background-image:url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&amp;q=80')"></div>
+<div class="mv-panel-overlay"></div>
+<div class="mv-sep"></div>
+<div class="mv-content">
+<div class="mv-content-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7z"></path><circle cx="12" cy="12" r="3"></circle><circle cx="12" cy="12" fill="currentColor" r="1" stroke="none"></circle></svg>
+</div>
+<div class="mv-content-label">VisiÃ³n<span>.</span></div>
+<p class="mv-content-text">Ser lÃ­deres en soluciones integrales, adaptÃ¡ndonos al mercado y fomentando la colaboraciÃ³n para satisfacer a nuestros clientes con excelencia operativa.</p>
+</div>
+</div>
+<div class="mv-panel">
+<div class="mv-panel-img" style="background-image:url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&amp;q=80')"></div>
+<div class="mv-panel-overlay"></div>
+<div class="mv-content">
+<div class="mv-content-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><line x1="12" x2="12" y1="3" y2="1"></line><line x1="12" x2="12" y1="23" y2="21"></line><line x1="3" x2="1" y1="12" y2="12"></line><line x1="23" x2="21" y1="12" y2="12"></line><circle cx="12" cy="12" r="4"></circle><path d="M12 8v4l2.5 2.5"></path></svg>
+</div>
+<div class="mv-content-label">MisiÃ³n<span>.</span></div>
+<p class="mv-content-text">Ofrecer consultorÃ­a integral ISO y servicios especializados industriales para mejorar procesos con calidad, compromiso y enfoque en resultados medibles.</p>
+</div>
+</div>
+</div>
+<!-- â•â• PROCESO â•â• -->
+<section class="proceso">
+<div class="proceso-header reveal">
+<div class="section-tag" style="justify-content:center">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Nuestro Proceso</span>
+</div>
+<h2 class="section-title" style="margin-top:12px;">CÃ³mo <em>trabajamos</em> contigo.</h2>
+<div class="section-rule" style="justify-content:center; margin-top:20px;">
+<div class="rule-wine"></div>
+<div class="rule-gold"></div>
+</div>
+</div>
+<div class="proceso-steps">
+<div class="proceso-step reveal reveal-delay-1">
+<div class="proceso-step-circle">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><circle cx="16" cy="16" r="9"></circle><line x1="16" x2="16" y1="7" y2="5"></line><line x1="16" x2="16" y1="27" y2="25"></line><line x1="7" x2="5" y1="16" y2="16"></line><line x1="27" x2="25" y1="16" y2="16"></line><circle cx="16" cy="16" r="3"></circle></svg>
+</div>
+<span class="proceso-step-num">01</span>
+<div class="proceso-step-name">DiagnÃ³stico</div>
+<p class="proceso-step-desc">Evaluamos el estado actual de tu empresa y detectamos Ã¡reas de oportunidad.</p>
+</div>
+<div class="proceso-step reveal reveal-delay-2">
+<div class="proceso-step-circle">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><rect height="22" rx="2" width="18" x="7" y="5"></rect><line x1="11" x2="21" y1="11" y2="11"></line><line x1="11" x2="21" y1="15" y2="15"></line><line x1="11" x2="17" y1="19" y2="19"></line><path d="M20 20l2 2 3-3"></path></svg>
+</div>
+<span class="proceso-step-num">02</span>
+<div class="proceso-step-name">Plan de AcciÃ³n</div>
+<p class="proceso-step-desc">DiseÃ±amos una hoja de ruta personalizada y con objetivos claros y medibles.</p>
+</div>
+<div class="proceso-step reveal reveal-delay-3">
+<div class="proceso-step-circle">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><circle cx="16" cy="16" r="9"></circle><path d="M12 16a4 4 0 0 1 4-4"></path><path d="M16 12a4 4 0 0 1 4 4"></path><path d="M20 16a4 4 0 0 1-4 4"></path><path d="M16 20a4 4 0 0 1-4-4"></path><circle cx="16" cy="16" fill="currentColor" r="1.5" stroke="none"></circle></svg>
+</div>
+<span class="proceso-step-num">03</span>
+<div class="proceso-step-name">ImplementaciÃ³n</div>
+<p class="proceso-step-desc">Ejecutamos las estrategias acompaÃ±ando a tu equipo en cada etapa del proceso.</p>
+</div>
+<div class="proceso-step reveal reveal-delay-4">
+<div class="proceso-step-circle">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M5 12l11-6 11 6-11 6z"></path><path d="M9 14.5v6c0 2 3.2 4 7 4s7-2 7-4v-6"></path><path d="M27 12v6"></path><circle cx="27" cy="20" r="1.5"></circle></svg>
+</div>
+<span class="proceso-step-num">04</span>
+<div class="proceso-step-name">CapacitaciÃ³n</div>
+<p class="proceso-step-desc">Formamos a tu personal para garantizar la continuidad y el mantenimiento del sistema.</p>
+</div>
+<div class="proceso-step reveal reveal-delay-4">
+<div class="proceso-step-circle">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 32 32"><path d="M16 5l2.5 3.8 4.5-.5-1.5 4.5 3.2 3.7-4.5 1.2-.3 4.8-3.9-2.2-3.9 2.2-.3-4.8-4.5-1.2 3.2-3.7-1.5-4.5 4.5.5z"></path><path d="M13.5 16l2 2.5 4-5"></path></svg>
+</div>
+<span class="proceso-step-num">05</span>
+<div class="proceso-step-name">CertificaciÃ³n</div>
+<p class="proceso-step-desc">Gestionamos la auditorÃ­a de certificaciÃ³n y te acompaÃ±amos hasta obtener el sello internacional.</p>
+</div>
+</div>
+</section>
+<!-- â•â• IMPACTO â•â• -->
+<section class="impacto">
+<div class="impacto-item reveal reveal-delay-1">
+<div class="impacto-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><path d="M12 2l2.5 7H22l-6 4.5 2.5 7.5L12 17l-6.5 4 2.5-7.5L2 9h7.5z"></path></svg>
+</div>
+<div class="impacto-num" data-count="10000" data-suffix="+ Hrs">10000+ Hrs</div>
+<div class="impacto-label">De CapacitaciÃ³n</div>
+<p class="impacto-desc">Impartidas a equipos de alto desempeÃ±o en el sector industrial a nivel nacional.</p>
+</div>
+<div class="impacto-item reveal reveal-delay-2">
+<div class="impacto-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><path d="M17 20H7a5 5 0 0 1 0-10h.5A7 7 0 0 1 21 12v1a3 3 0 0 1-3 3h-1"></path><path d="M14 16l2 2 4-4"></path></svg>
+</div>
+<div class="impacto-num" data-count="25" data-suffix="+">25+</div>
+<div class="impacto-label">Asociaciones Activas</div>
+<p class="impacto-desc">Con cÃ¡maras industriales y de comercio a nivel nacional, fortaleciendo el ecosistema empresarial.</p>
+</div>
+<div class="impacto-item reveal reveal-delay-3">
+<div class="impacto-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3" viewbox="0 0 24 24"><path d="M12 22c5.5 0 10-4.5 10-10S17.5 2 12 2 2 6.5 2 12s4.5 10 10 10z"></path><path d="M8 12l3 3 5-6"></path></svg>
+</div>
+<div class="impacto-num" data-count="100" data-suffix="%">100%</div>
+<div class="impacto-label">Clientes Satisfechos</div>
+<p class="impacto-desc">Tasa de satisfacciÃ³n sostenida a lo largo de mÃ¡s de una dÃ©cada de servicio continuo y comprometido.</p>
+</div>
+</section>
+<!-- â•â• TESTIMONIOS â•â• -->
+<section class="testimonios" id="testimonios">
+<div class="testimonios-header">
+<div>
+<div class="section-tag reveal">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Testimonios</span>
+</div>
+<h2 class="section-title reveal reveal-delay-1">
+        Lo que dicen<br/>nuestros <em>clientes.</em>
+</h2>
+<div class="section-rule reveal reveal-delay-2">
+<div class="rule-wine"></div>
+<div class="rule-gold"></div>
+</div>
+<div class="testi-rating reveal reveal-delay-3">
+<div class="testi-stars">
+<svg class="testi-star" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<div>
+<div class="testi-score">5.0</div>
+<div class="testi-score-label">SatisfacciÃ³n<br/>de clientes</div>
+</div>
+</div>
+<div class="testi-nav reveal reveal-delay-4">
+<button aria-label="Anterior" class="testi-btn" id="tPrev">
+<svg viewbox="0 0 20 20"><polyline points="13,5 7,10 13,15"></polyline></svg>
+</button>
+<button aria-label="Siguiente" class="testi-btn" id="tNext">
+<svg viewbox="0 0 20 20"><polyline points="7,5 13,10 7,15"></polyline></svg>
+</button>
+</div>
+</div>
+<div><!-- spacer --></div>
+</div>
+<div class="testi-slider">
+<div class="testi-track" id="testiTrack">
+<div class="testi-card reveal">
+<div class="testi-card-inner">
+<span class="testi-quote-mark">"</span>
+<span class="testi-card-date">27 Marzo 2024</span>
+<div class="testi-stars-small">
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testi-quote">Excelente Ing. Danna, gracias a tu equipo, muy buen trabajo. El proceso de certificaciÃ³n fue impecable y el acompaÃ±amiento de primer nivel.</p>
+<div class="testi-divider"></div>
+<div class="testi-author">
+<div class="testi-author-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+</div>
+<div>
+<div class="testi-author-name">Director General</div>
+<div class="testi-author-role">Plus Secure de MÃ©xico</div>
+<div class="testi-author-company">Plus Secure</div>
+</div>
+</div>
+</div>
+</div>
+<div class="testi-card reveal">
+<div class="testi-card-inner">
+<span class="testi-quote-mark">"</span>
+<span class="testi-card-date">14 Junio 2024</span>
+<div class="testi-stars-small">
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testi-quote">El equipo de INDUSECC nos acompaÃ±Ã³ en todo el proceso de implementaciÃ³n ISO. Profesionales, puntuales y con un dominio extraordinario del tema.</p>
+<div class="testi-divider"></div>
+<div class="testi-author">
+<div class="testi-author-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+</div>
+<div>
+<div class="testi-author-name">CEO</div>
+<div class="testi-author-role">Innovatech MÃ©xico</div>
+<div class="testi-author-company">Innovatech</div>
+</div>
+</div>
+</div>
+</div>
+<div class="testi-card reveal">
+<div class="testi-card-inner">
+<span class="testi-quote-mark">"</span>
+<span class="testi-card-date">02 Septiembre 2024</span>
+<div class="testi-stars-small">
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+<svg class="testi-star-small" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
+</div>
+<p class="testi-quote">Gracias a INDUSECC logramos obtener nuestra certificaciÃ³n ISO 9001:2015 en tiempo rÃ©cord. Su metodologÃ­a y atenciÃ³n al cliente son de primer nivel.</p>
+<div class="testi-divider"></div>
+<div class="testi-author">
+<div class="testi-author-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" viewbox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+</div>
+<div>
+<div class="testi-author-name">Gerente de Calidad</div>
+<div class="testi-author-role">Grupo Industrial del Norte</div>
+<div class="testi-author-company">GIN</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="testi-dots" id="testiDots">
+<button class="testi-dot active" data-i="0"></button>
+<button class="testi-dot" data-i="1"></button>
+<button class="testi-dot" data-i="2"></button>
+</div>
+</section>
+<!-- â•â• CTA â•â• -->
+<section class="cta-section" id="contacto">
+<!-- IZQUIERDA: texto llamada a la acciÃ³n -->
+<div class="cta-left">
+<div class="section-tag reveal" style="position:relative;z-index:1;">
+<div class="section-tag-line"></div>
+<span class="section-tag-text" style="color:var(--gold-light);">Comienza Hoy</span>
+</div>
+<h2 class="section-title reveal reveal-delay-1" style="color:#fff;position:relative;z-index:1;">
+      Â¿Listo para <em style="color:var(--gold-light);">transformar</em><br/>tu empresa?
+    </h2>
+<div class="section-rule reveal reveal-delay-2" style="position:relative;z-index:1;">
+<div class="rule-wine" style="background:var(--gold);"></div>
+<div class="rule-gold"></div>
+</div>
+<p class="reveal reveal-delay-3" style="position:relative;z-index:1;font-size:15px;font-weight:300;color:rgba(255,255,255,.6);line-height:1.9;margin-top:24px;max-width:420px;">
+      Da el primer paso hacia la excelencia operativa. Nuestro equipo estÃ¡ listo para acompaÃ±arte en cada etapa â€” desde el diagnÃ³stico hasta la <strong style="color:rgba(255,255,255,.88);font-weight:600;">certificaciÃ³n internacional</strong>.
+    </p>
+<!-- mini KPIs en la izquierda -->
+<div class="reveal reveal-delay-4" style="position:relative;z-index:1;display:flex;gap:32px;margin-top:44px;">
+<div style="text-align:left;">
+<div data-count="10" data-suffix="+" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold-light);line-height:1;">10+</div>
+<div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;">AÃ±os</div>
+</div>
+<div style="width:1px;background:rgba(201,168,76,.2);"></div>
+<div style="text-align:left;">
+<div data-count="100" data-suffix="+" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold-light);line-height:1;">100+</div>
+<div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;">Empresas</div>
+</div>
+<div style="width:1px;background:rgba(201,168,76,.2);"></div>
+<div style="text-align:left;">
+<div data-count="100" data-suffix="%" style="font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:900;color:var(--gold-light);line-height:1;">100%</div>
+<div style="font-size:9px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;">Resultados</div>
+</div>
+</div>
+</div>
+<!-- DERECHA: formulario de contacto mejorado -->
+<div class="cta-right reveal reveal-delay-1">
+<!-- encabezado derecha -->
+<div style="position:relative;z-index:1;">
+<div style="font-size:9px;font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">ContÃ¡ctanos</div>
+<div style="font-family:'Playfair Display',serif;font-size:1.6rem;font-weight:700;color:#fff;line-height:1.15;margin-bottom:28px;">EscrÃ­benos, te respondemos<br/><em style="color:var(--gold-light);font-weight:300;">de inmediato</em></div>
+</div>
+<!-- datos de contacto -->
+<div class="cta-contact-info" style="position:relative;z-index:1;">
+<div class="cta-contact-item">
+<div class="cta-contact-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+</div>
+<div>
+<div class="cta-contact-label">TelÃ©fono directo</div>
+<a class="cta-contact-val" href="tel:5540152551">55 4015 2551</a>
+</div>
+</div>
+<div class="cta-contact-item">
+<div class="cta-contact-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+</div>
+<div>
+<div class="cta-contact-label">Correo electrÃ³nico</div>
+<a class="cta-contact-val" href="mailto:danna@indusecc.com.mx"><span class="__cf_email__" data-cfemail="03606c6d776260776c436a6d6776706660602d606c6e">danna@indusecc.com.mx</span></a>
+</div>
+</div>
+<div class="cta-contact-item">
+<div class="cta-contact-icon">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="1.5" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+</div>
+<div>
+<div class="cta-contact-label">UbicaciÃ³n</div>
+<div class="cta-contact-val">CDMX, MÃ©xico</div>
+</div>
+</div>
+</div>
+<!-- botones de acciÃ³n -->
+<div class="cta-cta-row" style="position:relative;z-index:1;">
+<a class="btn-primary shine-el" href="https://wa.me/525540152551" style="background:linear-gradient(135deg,#1a7a3c,#25a550,#2ecc71);" target="_blank">
+<svg fill="currentColor" style="width:17px;height:17px;" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path></svg>
+<span>WhatsApp</span>
+</a>
+
+
+</div>
+</div>
+</section>
+<!-- â•â• FOOTER â•â• -->
+<footer class="ind-footer-wrap">
+<div class="ind-f-top-accent"></div>
+<div class="ind-f-main">
+<div class="ind-f-grid reveal">
+<div class="ind-f-brand">
+<div class="ind-f-logo-container">
+<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</div>
+<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+<div class="ind-f-contact-strip">
+<a class="ind-f-contact-link" href="tel:5540152551">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+<div class="ind-f-contact-link">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, MÃ©xico
+          </div>
+</div>
+</div>
+<div>
+<h4 class="ind-f-title">NavegaciÃ³n</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+<li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+<li><a class="ind-f-item-link" href="nosotros.html">Â¿QuiÃ©nes Somos?</a></li>
+<li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="consultoria-asesoria.html">ConsultorÃ­a ISO</a></li>
+<li><a class="ind-f-item-link" href="implementacion-sistema.html">ImplementaciÃ³n de un sistema</a></li>
+<li><a class="ind-f-item-link" href="certificacion-iso_.html">CertificaciÃ³n ISO</a></li>
+<li><a class="ind-f-item-link" href="auditoria.html">AuditorÃ­as</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Legal y Soporte</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="contacto.html">ContÃ¡ctanos</a></li>
+<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+<li><a class="ind-f-item-link" href="#">TÃ©rminos y Condiciones</a></li>
+<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+</ul>
+ <div class="ind-f-social-wrap">
+          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="#">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+<div class="ind-f-bottom">
+<div class="ind-f-copy">Â© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+<div class="ind-f-office">Excelencia en GestiÃ³n Industrial y Normativa</div>
+</div>
+</footer>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• HERO CANVAS â€” Corporate network animation â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes, mouse = { x: -999, y: -999 };
+
+  const WINE = '123,30,34';
+  const GOLD = '201,168,76';
+  const NODE_COUNT = 60;
+  const CONNECT_DIST = 160;
+  const MOUSE_DIST = 150;
+
+  function resize() {
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function makeNode() {
+    return {
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - .5) * .45,
+      vy: (Math.random() - .5) * .45,
+      r: 1.5 + Math.random() * 2,
+      gold: Math.random() < .18   // ~18% are gold nodes
+    };
+  }
+
+  function initNodes() {
+    nodes = Array.from({ length: NODE_COUNT }, makeNode);
+  }
+
+  function drawFrame() {
+    ctx.clearRect(0, 0, W, H);
+
+    // Move
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    // Connect lines
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = a.x - b.x, dy = a.y - b.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          const alpha = (1 - dist / CONNECT_DIST) * .35;
+          const useGold = a.gold || b.gold;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = useGold
+            ? `rgba(${GOLD},${alpha * 1.6})`
+            : `rgba(${WINE},${alpha * .8})`;
+          ctx.lineWidth = useGold ? .8 : .5;
+          ctx.stroke();
+        }
+      }
+      // Mouse attraction lines
+      const n = nodes[i];
+      const mdx = n.x - mouse.x, mdy = n.y - mouse.y;
+      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+      if (mdist < MOUSE_DIST) {
+        const alpha = (1 - mdist / MOUSE_DIST) * .75;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(mouse.x, mouse.y);
+        ctx.strokeStyle = `rgba(${GOLD},${alpha})`;
+        ctx.lineWidth = .7;
+        ctx.stroke();
+        // slight attraction
+        n.vx += (-mdx / mdist) * .03;
+        n.vy += (-mdy / mdist) * .03;
+        const spd = Math.sqrt(n.vx * n.vx + n.vy * n.vy);
+        if (spd > .8) { n.vx = n.vx / spd * .8; n.vy = n.vy / spd * .8; }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      // Pulse rings on gold nodes
+      if (n.gold) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 3.5, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${GOLD},.1)`;
+        ctx.lineWidth = .6;
+        ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = n.gold ? `rgba(${GOLD},.8)` : `rgba(${WINE},.55)`;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(drawFrame);
+  }
+
+  window.addEventListener('resize', () => { resize(); initNodes(); });
+  document.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  document.addEventListener('mouseleave', () => { mouse.x = -999; mouse.y = -999; });
+
+  resize();
+  initNodes();
+  drawFrame();
+})();
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• PARTÃCULAS FLOTANTES HERO â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+(function(){
+  const canvas = document.getElementById('particlesCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  const N = 60;
+
+  function resize(){
+    W = canvas.width = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  function mkPt(born){
+    const gold = Math.random() < 0.38;
+    return {
+      x: Math.random() * (W || 1200),
+      y: born ? Math.random() * (H || 800) : (H || 800) + 6,
+      r: Math.random() * 2.0 + 0.3,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: -(Math.random() * 0.55 + 0.12),
+      a: Math.random() * 0.45 + 0.08,
+      da: (Math.random() - 0.5) * 0.007,
+      gold,
+      ph: Math.random() * Math.PI * 2,
+      ps: Math.random() * 0.025 + 0.008,
+      twk: Math.random() < 0.22
+    };
+  }
+
+  function init(){ pts = []; for(let i=0;i<N;i++) pts.push(mkPt(true)); }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for(let i=0; i<pts.length; i++){
+      const p = pts[i];
+      p.x += p.vx; p.y += p.vy; p.ph += p.ps;
+      p.a += p.da;
+      if(p.a > 0.6){ p.da = -Math.abs(p.da); }
+      if(p.a < 0.05){ p.da = Math.abs(p.da); }
+      if(p.y < -8) pts[i] = mkPt(false);
+
+      const twkMult = p.twk ? 0.4 + 0.6 * Math.abs(Math.sin(p.ph * 2.5)) : 1;
+      const alpha = Math.min(p.a * twkMult, 0.85);
+      const cr = p.gold ? '201,168,76' : '155,36,41';
+
+      if(p.gold && alpha > 0.15){
+        const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 6);
+        g.addColorStop(0, `rgba(${cr},${alpha * 0.55})`);
+        g.addColorStop(1, `rgba(${cr},0)`);
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 6, 0, Math.PI*2);
+        ctx.fillStyle = g;
+        ctx.fill();
+      }
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${cr},${alpha})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', ()=>{ resize(); init(); });
+  resize(); init(); draw();
+})();
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• NAVBAR â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• SCROLL REVEAL â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+(function() {
+  const all = document.querySelectorAll('.reveal');
+  all.forEach(el => el.classList.add('animate-ready'));
+
+  function checkReveal() {
+    document.querySelectorAll('.reveal.animate-ready:not(.revealed)').forEach(el => {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight + 80) el.classList.add('revealed');
+    });
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); io.unobserve(e.target); } });
+  }, { threshold: 0.01, rootMargin: '0px 0px 100px 0px' });
+  all.forEach(el => io.observe(el));
+  checkReveal();
+  window.addEventListener('scroll', checkReveal, { passive: true });
+  [50, 200, 500, 1000].forEach(t => setTimeout(checkReveal, t));
+})();
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• COUNTER ANIMATION â€” BULLETPROOF â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+function runCounter(el) {
+  if (el._done) return;
+  el._done = true;
+  const target = parseInt(el.getAttribute('data-count'));
+  const suffix = el.getAttribute('data-suffix') || '';
+  const dur = 2200;
+  const startTime = performance.now();
+  function frame(now) {
+    const p = Math.min((now - startTime) / dur, 1);
+    const eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (p < 1) requestAnimationFrame(frame);
+    else {
+      el.textContent = target + suffix;
+      el.classList.add('num-pop');
+      setTimeout(() => el.classList.remove('num-pop'), 400);
+    }
+  }
+  requestAnimationFrame(frame);
+}
+
+// Init
+document.querySelectorAll('[data-count]').forEach(el => { el._done = false; });
+
+// HERO counters: lanzar con timers, sin depender de visibility
+function fireHeroCounters() {
+  document.querySelectorAll('#hero [data-count]').forEach(el => runCounter(el));
+}
+setTimeout(fireHeroCounters, 300);
+setTimeout(fireHeroCounters, 800);
+setTimeout(fireHeroCounters, 1600);
+
+// NON-HERO counters: IntersectionObserver normal
+const obsCounter = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { runCounter(e.target); obsCounter.unobserve(e.target); }
+  });
+}, { rootMargin: '0px 0px 300px 0px', threshold: 0 });
+document.querySelectorAll('[data-count]').forEach(el => {
+  if (!el.closest('#hero')) obsCounter.observe(el);
+});
+
+// Fallback scroll
+window.addEventListener('scroll', function() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    if (el._done) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight + 200 && r.bottom > 0) runCounter(el);
+  });
+}, { passive: true });
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• SERVICES TABS â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+const navItems = document.querySelectorAll('.svc-nav-item');
+const panes = document.querySelectorAll('.svc-pane');
+
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const idx = item.dataset.pane;
+    navItems.forEach(n => n.classList.remove('active'));
+    panes.forEach(p => p.classList.remove('active'));
+    item.classList.add('active');
+    const target = document.getElementById('pane-' + idx);
+    if (target) target.classList.add('active');
+    // On mobile, scroll to panel
+    if (window.innerWidth <= 1024) {
+      document.querySelector('.svc-detail-panel').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  });
+});
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• TESTIMONIOS SLIDER â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+let cur = 0;
+const track = document.getElementById('testiTrack');
+const cards = track.querySelectorAll('.testi-card');
+const dots = document.querySelectorAll('#testiDots .testi-dot');
+const total = cards.length;
+let autoplay;
+function goTo(n) {
+  cur = (n + total) % total;
+  const show2 = window.innerWidth > 900;
+  const pct = show2 ? cur * 50 : cur * 100;
+  track.style.transform = `translateX(-${pct}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === cur));
+}
+function startAuto() { autoplay = setInterval(() => goTo(cur + 1), 5000); }
+function stopAuto() { clearInterval(autoplay); }
+document.getElementById('tPrev').addEventListener('click', () => { stopAuto(); goTo(cur - 1); startAuto(); });
+document.getElementById('tNext').addEventListener('click', () => { stopAuto(); goTo(cur + 1); startAuto(); });
+dots.forEach(d => d.addEventListener('click', () => { stopAuto(); goTo(parseInt(d.dataset.i)); startAuto(); }));
+let startX2 = 0;
+track.addEventListener('touchstart', e => { startX2 = e.touches[0].clientX; stopAuto(); });
+track.addEventListener('touchend', e => {
+  const diff = startX2 - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) goTo(diff > 0 ? cur + 1 : cur - 1);
+  startAuto();
+});
+function setCardWidths() {
+  const show2 = window.innerWidth > 900;
+  cards.forEach(c => c.style.minWidth = show2 ? 'calc(50% - 1px)' : '100%');
+}
+window.addEventListener('resize', () => { setCardWidths(); goTo(cur); });
+setCardWidths();
+startAuto();
+
+
+/* â•â•â•â•â•â•â•â•â•â•â•â•â•â• SMOOTH SCROLL â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href && href !== '#') {
+      const target = document.querySelector(href);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    }
+  });
+});
+
+/* â•â• SHARED STATE â•â• */
+let isMidnight   = localStorage.getItem('ind-theme')    === 'midnight';
+let fontLevel    = parseInt(localStorage.getItem('ind-font') || '0');
+let highContrast = localStorage.getItem('ind-contrast') === '1';
+let reducedMo    = localStorage.getItem('ind-motion')   === '1';
+let currentLang  = 'es';
+
+/* â•â• TRANSLATIONS â•â• */
+const translations = {
+  es: {
+    nav_home:'Inicio', nav_about:'Nosotros', nav_services:'Servicios',
+    nav_iso:'CertificaciÃ³n ISO', nav_mejora:'Mejora Continua',
+    nav_cap:'CapacitaciÃ³n Empresarial', nav_audit:'AuditorÃ­as Especializadas',
+    nav_valores:'Valores', nav_clients:'Clientes', nav_cta:'Consulta Online',
+    nav_cta_short:'Contacto', mob_controls:'Ajustes', mob_controls_title:'Ajustes',
+    mob_lang_label:'Idioma', mob_theme_label:'Tema',
+    mob_theme_off:'Activar Oscuro', mob_theme_on:'Volver a Claro',
+    theme_midnight:'Oscuro', theme_normal:'Claro',
+    a11y_title:'Accesibilidad', a11y_font:'TamaÃ±o de texto',
+    a11y_contrast:'Alto contraste', a11y_motion:'Reducir movimiento', a11y_reset:'â†º Restablecer',
+    hero_eyebrow:'Indusecc â€” ConsultorÃ­a ISO',
+    hero_line1:'Soluciones', hero_line2:'que elevan', hero_line3:'tu empresa.',
+    hero_sub:'LÃ­deres en <strong>consultorÃ­a ISO, mejora continua</strong> y capacitaciÃ³n empresarial de alto impacto. Transformamos procesos en ventajas competitivas.',
+    hero_cta1:'Ver Servicios', hero_cta2:'Descargar Brochure',
+    stat_cert:'Certificados<br>9001:2015', stat_anos:'AÃ±os de<br>experiencia',
+    stat_empresas:'Empresas<br>beneficiadas', stat_horas:'Horas de<br>capacitaciÃ³n',
+    mini_anos:'AÃ±os', mini_empresas:'Empresas', mini_resultados:'Resultados',
+    svc_tag:'Servicios Especializados', svc_title:'ProtecciÃ³n<br><em>integral</em><br>para tu negocio.',
+    svc_desc:'Ofrecemos soluciones a la medida de tu empresa â€” desde la implementaciÃ³n de sistemas de gestiÃ³n hasta la certificaciÃ³n internacional.',
+    svc_cta_diag:'Solicitar diagnÃ³stico gratuito',
+    qs_tag:'QuiÃ©nes Somos', qs_title:'MÃ¡s que<br>consultores,<br><em>somos tu aliado.</em>',
+    qs_p1:'Somos un grupo de profesionales dedicados a ofrecer servicios de <strong>consultorÃ­a, capacitaciÃ³n, auditorÃ­a, implementaciÃ³n y certificaciÃ³n de normas ISO</strong>, asÃ­ como servicios especializados industriales.',
+    qs_p2:'Con mÃ¡s de <strong>10 aÃ±os de experiencia</strong>, hemos acompaÃ±ado a cientos de empresas en su camino hacia la excelencia operativa.',
+    qs_btn1:'ContÃ¡ctanos', qs_btn2:'Ver servicios',
+    val_tag:'Cultura Organizacional', val_title:'Nuestros Valores <em style="color:var(--gold-light)">y Principios</em>.',
+    val1_name:'Confianza.', val1_text:'Fomentamos relaciones sÃ³lidas basadas en el respeto y la seguridad mutua entre clientes y colaboradores en cada proyecto.',
+    val2_name:'Gratitud.',  val2_text:'Valoramos profundamente la preferencia y confianza de nuestros clientes y colaboradores en cada proyecto que emprendemos.',
+    val3_name:'Transparencia.', val3_text:'Actuamos con claridad y honestidad en todos nuestros procesos, decisiones y comunicaciones con cada cliente.',
+    val4_name:'Compromiso.', val4_text:'Nos dedicamos a cumplir nuestros objetivos con excelencia y responsabilidad en cada entrega, superando expectativas.',
+    vision_label:'VisiÃ³n', vision_text:'Ser lÃ­deres en soluciones integrales, adaptÃ¡ndonos al mercado y fomentando la colaboraciÃ³n para satisfacer a nuestros clientes con excelencia operativa.',
+    mision_label:'MisiÃ³n', mision_text:'Ofrecer consultorÃ­a integral ISO y servicios especializados industriales para mejorar procesos con calidad, compromiso y enfoque en resultados medibles.',
+    proc_tag:'Nuestro Proceso', proc_title:'CÃ³mo <em>trabajamos</em> contigo.',
+    iso_card_title:'CertificaciÃ³n Internacional',
+    iso_card_desc:'AcompaÃ±amos a tu empresa desde el diagnÃ³stico hasta la obtenciÃ³n del sello ISO reconocido mundialmente.',
+    iso_badge:'Organismo Acreditado',
+  },
+  en: {
+    nav_home:'Home', nav_about:'About Us', nav_services:'Services',
+    nav_iso:'ISO Certification', nav_mejora:'Continuous Improvement',
+    nav_cap:'Business Training', nav_audit:'Specialized Audits',
+    nav_valores:'Values', nav_clients:'Clients', nav_cta:'Online Consultation',
+    nav_cta_short:'Contact', mob_controls:'Settings', mob_controls_title:'Settings',
+    mob_lang_label:'Language', mob_theme_label:'Tema',
+    mob_theme_off:'Activar Oscuro', mob_theme_on:'Volver a Claro',
+    theme_midnight:'Oscuro', theme_normal:'Claro',
+    a11y_title:'Accessibility', a11y_font:'Font Size',
+    a11y_contrast:'High Contrast', a11y_motion:'Reduce Motion', a11y_reset:'â†º Reset',
+    hero_eyebrow:'Indusecc â€” ISO Consulting',
+    hero_line1:'Solutions', hero_line2:'that elevate', hero_line3:'your business.',
+    hero_sub:'Leaders in <strong>ISO consulting, continuous improvement</strong> and high-impact business training. We transform processes into competitive advantages.',
+    hero_cta1:'View Services', hero_cta2:'Download Brochure',
+    stat_cert:'Certified<br>9001:2015', stat_anos:'Years of<br>Experience',
+    stat_empresas:'Companies<br>Served', stat_horas:'Training<br>Hours',
+    mini_anos:'Years', mini_empresas:'Companies', mini_resultados:'Results',
+    svc_tag:'Specialized Services', svc_title:'Comprehensive<br><em>protection</em><br>for your business.',
+    svc_desc:'We offer tailored solutions for your company â€” from management system implementation to international certification.',
+    svc_cta_diag:'Request free diagnosis',
+    qs_tag:'Who We Are', qs_title:'More than<br>consultants,<br><em>we are your ally.</em>',
+    qs_p1:'We are a group of professionals dedicated to providing <strong>consulting, training, auditing, implementation and ISO certification</strong> services, as well as specialized industrial services.',
+    qs_p2:'With over <strong>10 years of experience</strong>, we have guided hundreds of companies on their path to operational excellence.',
+    qs_btn1:'Contact Us', qs_btn2:'View Services',
+    val_tag:'Organizational Culture', val_title:'Our Values <em style="color:var(--gold-light)">and Principles</em>.',
+    val1_name:'Trust.',       val1_text:'We foster solid relationships based on mutual respect and security between clients and collaborators in every project.',
+    val2_name:'Gratitude.',   val2_text:'We deeply value the preference and trust of our clients and collaborators in every project we undertake.',
+    val3_name:'Transparency.',val3_text:'We act with clarity and honesty in all our processes, decisions and communications with each client.',
+    val4_name:'Commitment.',  val4_text:'We dedicate ourselves to achieving our objectives with excellence and responsibility in every delivery.',
+    vision_label:'Vision', vision_text:'To be leaders in comprehensive solutions, adapting to the market and fostering collaboration to satisfy our clients with operational excellence.',
+    mision_label:'Mission', mision_text:'To offer comprehensive ISO consulting and specialized industrial services to improve processes with quality, commitment and measurable results.',
+    proc_tag:'Our Process', proc_title:'How we <em>work</em> with you.',
+    iso_card_title:'International Certification',
+    iso_card_desc:'We accompany your company from diagnosis to obtaining the globally recognized ISO seal.',
+    iso_badge:'Accredited Organization',
+  }
+};
+
+/* â•â• THEME â•â• */
+function applyTheme() {
+  document.body.classList.toggle('midnight', isMidnight);
+  const sunSVG  = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moonSVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  const t = translations[currentLang];
+  const dtIcon = document.getElementById('themeIcon');
+  const dtLabel = document.getElementById('themeLabel');
+  const mbIcon  = document.getElementById('mobThemeIcon');
+  const mbLabel = document.getElementById('mobThemeLabel');
+  if (isMidnight) {
+    if (dtIcon)  dtIcon.innerHTML = sunSVG;
+    if (dtLabel) dtLabel.textContent = t ? (t.theme_normal || 'Claro') : 'Claro';
+    if (mbIcon)  mbIcon.innerHTML = sunSVG;
+    if (mbLabel) mbLabel.textContent = t ? (t.mob_theme_on || 'Volver a Claro') : 'Volver a Claro';
+  } else {
+    if (dtIcon)  dtIcon.innerHTML = moonSVG;
+    if (dtLabel) dtLabel.textContent = t ? (t.theme_midnight || 'Oscuro') : 'Oscuro';
+    if (mbIcon)  mbIcon.innerHTML = moonSVG;
+    if (mbLabel) mbLabel.textContent = t ? (t.mob_theme_off || 'Activar Oscuro') : 'Activar Oscuro';
+  }
+}
+function toggleTheme() {
+  isMidnight = !isMidnight;
+  localStorage.setItem('ind-theme', isMidnight ? 'midnight' : 'normal');
+  applyTheme();
+}
+
+/* â•â• FONT LEVEL â•â• */
+function applyFontLevel() {
+  document.body.classList.remove('a11y-large');
+  if      (fontLevel ===  1) { document.body.classList.add('a11y-large'); document.body.style.fontSize = ''; }
+  else if (fontLevel === -1) { document.body.style.fontSize = '14px'; }
+  else                       { document.body.style.fontSize = ''; }
+  ['fontUp','mobFontUp'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', fontLevel===1); });
+  ['fontDown','mobFontDown'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', fontLevel===-1); });
+}
+
+/* â•â• CONTRAST â•â• */
+function applyContrast() {
+  document.body.classList.toggle('a11y-high-contrast', highContrast);
+  ['contrastBtn','mobContrastBtn'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', highContrast); });
+}
+
+/* â•â• MOTION â•â• */
+function applyMotion() {
+  document.body.classList.toggle('a11y-reduced-motion', reducedMo);
+  ['motionBtn','mobMotionBtn'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', reducedMo); });
+}
+
+/* â•â• WIRE BUTTON HELPER â•â• */
+function wireBtn(id, fn) { const el=document.getElementById(id); if(el) el.addEventListener('click', fn); }
+
+/* â•â• DESKTOP A11Y PANEL â•â• */
+const a11yTrigger = document.getElementById('a11yTrigger');
+const a11yPanel   = document.getElementById('a11yPanel');
+if (a11yTrigger && a11yPanel) {
+  a11yTrigger.addEventListener('click', e => { e.stopPropagation(); a11yPanel.classList.toggle('open'); });
+  document.addEventListener('click', e => {
+    if (!a11yPanel.contains(e.target) && e.target !== a11yTrigger) a11yPanel.classList.remove('open');
+  });
+}
+wireBtn('fontUp',      () => { fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('fontDown',    () => { fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('contrastBtn', () => { highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('motionBtn',   () => { reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('a11yReset',   () => { fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* â•â• MOBILE CONTROLS SHEET â•â• */
+const mobCtrlSheet   = document.getElementById('mobCtrlSheet');
+const mobCtrlOverlay = document.getElementById('mobCtrlOverlay');
+const btnMobControls = document.getElementById('btnMobControls');
+const closeMobCtrl   = document.getElementById('closeMobCtrl');
+function openMobCtrl()   { if(mobCtrlSheet) mobCtrlSheet.classList.add('active');    if(mobCtrlOverlay) mobCtrlOverlay.classList.add('active'); }
+function closeMobCtrlFn(){ if(mobCtrlSheet) mobCtrlSheet.classList.remove('active'); if(mobCtrlOverlay) mobCtrlOverlay.classList.remove('active'); }
+if (btnMobControls) btnMobControls.addEventListener('click', openMobCtrl);
+if (closeMobCtrl)   closeMobCtrl.addEventListener('click', closeMobCtrlFn);
+if (mobCtrlOverlay) mobCtrlOverlay.addEventListener('click', closeMobCtrlFn);
+wireBtn('mobFontUp',      () => { fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobFontDown',    () => { fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobContrastBtn', () => { highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('mobMotionBtn',   () => { reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('mobA11yReset',   () => { fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* â•â• SERVICES SHEET â•â• */
+const btnServicesMobile = document.getElementById('btnServicesMobile');
+const servicesSheet     = document.getElementById('servicesSheet');
+const sheetOverlay      = document.getElementById('sheetOverlay');
+const closeSheetBtn     = document.getElementById('closeSheet');
+function openServicesSheet()  { if(servicesSheet) servicesSheet.classList.add('active'); if(sheetOverlay) sheetOverlay.classList.add('active'); }
+function closeServicesSheet() { if(servicesSheet) servicesSheet.classList.remove('active'); if(sheetOverlay) sheetOverlay.classList.remove('active'); }
+if (btnServicesMobile) btnServicesMobile.addEventListener('click', openServicesSheet);
+if (closeSheetBtn)     closeSheetBtn.addEventListener('click', closeServicesSheet);
+if (sheetOverlay)      sheetOverlay.addEventListener('click', closeServicesSheet);
+
+/* â•â• LANGUAGE â•â• */
+function setLang(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  localStorage.setItem('ind-lang', lang);
+  ['langES','mobLangES'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', lang==='es'); });
+  ['langEN','mobLangEN'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', lang==='en'); });
+  applyTranslations(lang);
+  applyTheme();
+}
+
+function applyTranslations(lang) {
+  const t = translations[lang];
+  if (!t) return;
+  const safe = (sel, html) => { const el=document.querySelector(sel); if(el) el.innerHTML=html; };
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] === undefined) return;
+    const svgs = [...el.querySelectorAll('svg')].map(s => s.cloneNode(true));
+    el.innerHTML = t[key];
+    svgs.forEach(s => el.appendChild(s));
+  });
+
+  const eyeTxt = document.querySelector('.h-eye-txt');
+  if (eyeTxt) eyeTxt.textContent = t.hero_eyebrow;
+  const l1=document.querySelector('.hero-title .ht-l1'), l2=document.querySelector('.hero-title .ht-l2'), under=document.querySelector('.hero-title .ht-under');
+  if(l1) l1.textContent=t.hero_line1; if(l2) l2.textContent=t.hero_line2; if(under) under.textContent=t.hero_line3;
+  safe('.hero-sub', t.hero_sub);
+
+  const heroPrimary = document.querySelector('.hero-content .btn-primary span');
+  if (heroPrimary) heroPrimary.textContent = t.hero_cta1;
+  const heroGhost = document.querySelector('.hero-content .btn-ghost');
+  if (heroGhost) { const ln=heroGhost.querySelector('.btn-ghost-line'); heroGhost.innerHTML=''; if(ln) heroGhost.appendChild(ln); heroGhost.appendChild(document.createTextNode(' '+t.hero_cta2)); }
+
+  const statLabels=document.querySelectorAll('.hero-stat .stat-label');
+  ['stat_cert','stat_anos','stat_empresas','stat_horas'].forEach((k,i)=>{ if(statLabels[i]&&t[k]) statLabels[i].innerHTML=t[k]; });
+  const miniLbls=document.querySelectorAll('.h-mini-lbl');
+  ['mini_anos','mini_empresas','mini_resultados'].forEach((k,i)=>{ if(miniLbls[i]&&t[k]) miniLbls[i].textContent=t[k]; });
+
+  safe('.iso-card-title', t.iso_card_title); safe('.iso-card-desc', t.iso_card_desc); safe('.iso-badge-txt', t.iso_badge);
+  safe('.servicios .std-txt', t.svc_tag); safe('.section-title-light', t.svc_title); safe('.sib-right p', t.svc_desc);
+  const svcCta=document.querySelector('.sib-right-cta');
+  if(svcCta){ const sv=svcCta.querySelector('svg'); svcCta.innerHTML=t.svc_cta_diag; if(sv) svcCta.appendChild(sv); }
+
+  safe('.quienes .section-tag-text', t.qs_tag); safe('.quienes .section-title', t.qs_title);
+  const qps=document.querySelectorAll('.quienes-p');
+  if(qps[0]) qps[0].innerHTML=t.qs_p1; if(qps[1]) qps[1].innerHTML=t.qs_p2;
+  const qPrimary=document.querySelector('.quienes-body .btn-primary span'); if(qPrimary) qPrimary.textContent=t.qs_btn1;
+  const qGhost=document.querySelector('.quienes-body .btn-ghost');
+  if(qGhost){ const ln=qGhost.querySelector('.btn-ghost-line'); qGhost.innerHTML=''; if(ln) qGhost.appendChild(ln); qGhost.appendChild(document.createTextNode(' '+t.qs_btn2)); }
+
+  safe('.valores .section-tag-text', t.val_tag); safe('.valores .section-title', t.val_title);
+  const vN=document.querySelectorAll('.valor-name'), vT=document.querySelectorAll('.valor-text');
+  [['val1_name','val1_text'],['val2_name','val2_text'],['val3_name','val3_text'],['val4_name','val4_text']].forEach(([nk,tk],i)=>{ if(vN[i]) vN[i].textContent=t[nk]; if(vT[i]) vT[i].textContent=t[tk]; });
+
+  const mvL=document.querySelectorAll('.mv-content-label'), mvT=document.querySelectorAll('.mv-content-text');
+  if(mvL[0]) mvL[0].innerHTML=t.vision_label+'<span>.</span>'; if(mvL[1]) mvL[1].innerHTML=t.mision_label+'<span>.</span>';
+  if(mvT[0]) mvT[0].textContent=t.vision_text; if(mvT[1]) mvT[1].textContent=t.mision_text;
+
+  safe('.proceso .section-tag-text', t.proc_tag); safe('.proceso .section-title', t.proc_title);
+}
+
+/* â•â• INIT â•â• */
+// Siempre espaÃ±ol â€” eliminar cualquier idioma guardado en cachÃ©
+localStorage.removeItem('ind-lang');
+currentLang = 'es';
+applyTheme();
+applyFontLevel();
+applyContrast();
+applyMotion();
+applyTranslations('es');
+</script>
+</body>
+</html>

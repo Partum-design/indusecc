@@ -1,0 +1,1695 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Servicios — INDUSECC</title>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&amp;family=Outfit:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --wine:        #7B1E22;
+  --wine-dark:   #550F13;
+  --wine-deep:   #360A0D;
+  --wine-hi:     #9B2429;
+  --wine-soft:   #A84147;
+  --gold:        #C9A84C;
+  --gold-light:  #E8C97A;
+  --gold-dark:   #8B6914;
+  --gold-pale:   #F5EDD6;
+  --white:       #FFFFFF;
+  --cream:       #FBF8F3;
+  --parchment:   #F2EDE4;
+  --ink:         #1C1008;
+  --text:        #2A1A1B;
+  --muted:       #7A6060;
+  --border:      rgba(123,30,34,0.12);
+  --border-gold: rgba(201,168,76,0.25);
+  --shadow:      rgba(123,30,34,0.15);
+}
+
+/* ══ MIDNIGHT THEME ══ */
+body.midnight {
+  --cream:#0D0D12; --white:#13131A; --parchment:#181820;
+  --ink:#F0ECE4; --text:#E8E0D8; --muted:#A09898;
+  --border:rgba(201,168,76,0.18); --border-gold:rgba(201,168,76,0.22);
+  --shadow:rgba(0,0,0,0.6); background:#0D0D12; color:#E8E0D8;
+}
+body.midnight .svc-catalog      { background:#0D0D12; }
+body.midnight .svc-card         { background:#181820; border-color:rgba(201,168,76,.12); }
+body.midnight .svc-card:hover   { background:#1E1E28; }
+body.midnight .svc-detail-wrap  { background:#13131A; }
+body.midnight .svc-detail-card  { background:#1E1E28; border-color:rgba(201,168,76,.1); }
+body.midnight .diag-section     { background:#0D0D12; }
+body.midnight .diag-card        { background:#181820; border-color:rgba(201,168,76,.12); }
+body.midnight .diag-opt         { background:#1E1E28; border-color:rgba(201,168,76,.1); color:#E8E0D8; }
+body.midnight .diag-opt:hover,.diag-opt.selected { background:rgba(123,30,34,.4); border-color:var(--wine); }
+body.midnight .diag-result-card { background:#1E1E28; }
+body.midnight .section-title    { color:#F0ECE4; }
+body.midnight .ind-header-wrapper { background:#050508 !important; }
+body.midnight .ind-top-bar      { background:#02020A; }
+body.midnight .ind-main-header  { background:rgba(5,5,8,.98); }
+body.midnight .svc-strip        { background:#13131A; }
+body.midnight .svc-strip-num    { color:#E8C97A; }
+
+html { scroll-behavior: smooth; }
+body {
+  font-family:'Outfit',sans-serif;
+  background:var(--cream); color:var(--text);
+  overflow-x:hidden; padding-top:115px;
+  transition:background .4s ease, color .4s ease;
+  font-size: 16px;
+}
+@media(max-width:1150px){ body{ padding-top:70px; } }
+img,video { max-width:100%; }
+html, body { max-width:100%; overflow-x:hidden; }
+
+/* ══ SCROLL REVEAL ══ */
+.reveal { opacity:1; transform:none; }
+.reveal.animate-ready { opacity:0; transform:translateY(22px); transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1); }
+.reveal.animate-ready.revealed { opacity:1; transform:none; }
+.reveal-delay-1 { transition-delay:.08s; }
+.reveal-delay-2 { transition-delay:.18s; }
+.reveal-delay-3 { transition-delay:.28s; }
+.reveal-delay-4 { transition-delay:.4s; }
+
+/* ══ KEYFRAMES ══ */
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+@keyframes shineSweep { 0%{left:-100%} 18%{left:120%} 100%{left:120%} }
+
+.shine-el { position:relative; overflow:hidden; }
+.shine-el::after {
+  content:''; position:absolute; top:0; left:-100%; width:55%; height:100%;
+  background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.30) 50%,rgba(255,255,255,0) 100%);
+  transform:skewX(-20deg); animation:shineSweep 3.8s ease-in-out infinite; pointer-events:none; z-index:10;
+}
+
+/* ══ SECTION TAGS ══ */
+.section-tag { display:inline-flex; align-items:center; gap:12px; margin-bottom:20px; }
+.section-tag-line { width:32px; height:1px; background:var(--gold); }
+.section-tag-text { font-size:12px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:var(--wine); }
+.section-title { font-family:'Playfair Display',serif; font-size:clamp(2.4rem,4vw,4rem); font-weight:900; line-height:1.02; letter-spacing:-.03em; color:var(--ink); }
+.section-title em { font-style:italic; color:var(--wine); }
+.section-rule { display:flex; align-items:center; gap:0; margin:20px 0 0; }
+.rule-wine { width:72px; height:2px; background:var(--wine); }
+.rule-gold { width:36px; height:1px; background:linear-gradient(to right,var(--gold),transparent); margin-left:4px; }
+
+/* ══ BUTTONS ══ */
+.btn-primary {
+  display:inline-flex; align-items:center; gap:14px;
+  background:linear-gradient(135deg,var(--gold-dark),var(--gold),var(--gold-light));
+  color:var(--wine-deep); padding:18px 44px;
+  font-size:11px; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  text-decoration:none; border:none; position:relative; overflow:hidden;
+  clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);
+  transition:all .35s; cursor:pointer;
+}
+.btn-primary::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,var(--gold),var(--gold-light)); opacity:0; transition:opacity .3s; }
+.btn-primary:hover::before { opacity:1; }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 20px 60px rgba(201,168,76,.35); }
+.btn-primary span,.btn-primary svg { position:relative; z-index:1; }
+.btn-primary svg { width:16px; height:16px; transition:transform .3s; }
+.btn-primary:hover svg { transform:translateX(4px); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:10px;
+  font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  color:rgba(255,255,255,.5); text-decoration:none; transition:color .3s;
+}
+.btn-ghost-line { width:24px; height:1px; background:currentColor; transition:width .3s; }
+.btn-ghost:hover { color:var(--gold-light); }
+.btn-ghost:hover .btn-ghost-line { width:44px; }
+
+/* ══════════════════════════════════════
+   HEADER SISTEMA COMPLETO
+══════════════════════════════════════ */
+.ind-header-wrapper {
+  position: fixed; top: 0; width: 100%; z-index: 1000;
+  background: #0A0A0A;
+  box-shadow: 0 2px 15px rgba(0,0,0,.5);
+  transition: box-shadow 0.4s ease, background 0.4s ease;
+}
+.ind-header-wrapper.scrolled {
+  background: rgba(5,5,5,0.98);
+  box-shadow: 0 4px 30px rgba(0,0,0,.8), 0 1px 0 rgba(201,168,76,.18);
+}
+.ind-top-bar {
+  background: #000;
+  border-bottom: 1px solid rgba(201,168,76,.1);
+  padding: 0 60px;
+  display: flex; justify-content: space-between; align-items: center;
+  height: 35px;
+}
+.ind-top-info { display: flex; gap: 25px; }
+.ind-top-item {
+  display: flex; align-items: center; gap: 8px;
+  color: #A89880; font-size: 10px; font-weight: 500;
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.ind-top-item svg { width: 12px; height: 12px; color: var(--gold); }
+.ind-top-item a { color: inherit; text-decoration: none; transition: color .3s; }
+.ind-top-item a:hover { color: var(--gold-light); }
+.ind-main-header {
+  background: rgba(10,10,10,.98);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.ind-container {
+  max-width: 1400px; margin: 0 auto; padding: 0 60px;
+  height: 80px; display: flex; align-items: center; justify-content: space-between;
+}
+.ind-logo-group { display: flex; align-items: center; gap: 20px; }
+.ind-logo-wrap { text-decoration: none; display: flex; align-items: center; }
+.ind-logo-img { max-height: 48px; width: auto; display: block; }
+.ind-logo-sep { width: 1px; height: 30px; background: rgba(201,168,76,.2); }
+.ind-header-tagline {
+  font-family: 'Playfair Display', serif;
+  color: #A89880; font-size: 15px; font-style: italic;
+  max-width: 200px; line-height: 1.3;
+}
+.ind-nav { display: flex; align-items: center; gap: 30px; height: 100%; }
+.ind-menu-item { position: relative; height: 100%; display: flex; align-items: center; }
+.ind-link {
+  text-decoration: none; color: rgba(255,255,255,.9);
+  font-size: 12px !important; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1.2px; transition: .3s;
+  display: flex; align-items: center;
+}
+.ind-link:hover, .ind-link.active { color: var(--gold-light); }
+.ind-dropdown {
+  position: absolute; top: 100%; left: 50%;
+  transform: translateX(-50%);
+  width: 280px; background: #0D0D0D;
+  border: 1px solid rgba(201,168,76,.2);
+  padding: 10px 0;
+  opacity: 0; visibility: hidden;
+  transition: all .3s ease; z-index: 200;
+}
+.ind-menu-item:hover .ind-dropdown { opacity: 1; visibility: visible; }
+.ind-drop-link {
+  display: block; padding: 12px 20px;
+  color: rgba(255,255,255,.6); text-decoration: none;
+  font-size: 12px !important; font-weight: 600; text-transform: uppercase;
+  transition: .3s;
+}
+.ind-drop-link:hover {
+  background: rgba(139,26,26,.15); color: #fff;
+  padding-left: 25px; border-left: 3px solid var(--wine);
+}
+
+/* ─ Actions area ─ */
+.ind-actions { display: flex; align-items: center; gap: 8px; position: relative; flex-shrink: 0; }
+.ind-a11y-wrap { position: relative; display: flex; align-items: center; }
+
+.ind-btn-cta {
+  background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+  color: #fff; text-decoration: none;
+  font-size: 9.5px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; padding: 12px 22px;
+  clip-path: polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition: .3s; border: none; cursor: pointer;
+  position: relative; overflow: hidden;
+}
+.ind-btn-cta:hover { opacity: .9; }
+
+/* ─ Theme Toggle ─ */
+.theme-toggle-btn {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(201,168,76,.3);
+  padding: 7px 12px; cursor: pointer; transition: all .3s;
+  font-size: 10px; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; color: rgba(255,255,255,.8);
+  white-space: nowrap; flex-shrink: 0;
+}
+.theme-toggle-btn:hover { border-color: var(--gold); color: var(--gold-light); background: rgba(201,168,76,.12); }
+.theme-toggle-btn svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.8; flex-shrink: 0; }
+
+/* ─ Accessibility Trigger ─ */
+.a11y-trigger {
+  width: 34px; height: 34px; flex-shrink: 0;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(201,168,76,.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .3s;
+}
+.a11y-trigger:hover { border-color: var(--gold); background: rgba(201,168,76,.12); }
+.a11y-trigger svg { width: 17px; height: 17px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+
+/* ─ Accessibility Panel ─ */
+.a11y-panel {
+  position: absolute; top: calc(100% + 12px); right: 0;
+  width: 252px; background: #111;
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 24px 64px rgba(0,0,0,.7);
+  z-index: 9999; padding: 18px;
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .22s ease, transform .22s ease, visibility .22s;
+  pointer-events: none;
+}
+.a11y-panel.open {
+  opacity: 1; visibility: visible;
+  transform: translateY(0); pointer-events: auto;
+}
+.a11y-panel-title {
+  font-size: 9px; font-weight: 700; letter-spacing: .32em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.a11y-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.a11y-label { font-size: 12px; color: rgba(255,255,255,.72); font-weight: 400; }
+.a11y-controls { display: flex; gap: 5px; align-items: center; }
+.a11y-ctrl-btn {
+  min-width: 32px; height: 32px; padding: 0 6px;
+  background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85); font-size: 13px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s; white-space: nowrap;
+}
+.a11y-ctrl-btn:hover { background: rgba(201,168,76,.22); border-color: var(--gold); color: #fff; }
+.a11y-ctrl-btn.active { background: rgba(201,168,76,.32); border-color: var(--gold); color: var(--gold-light); }
+.a11y-sep { height: 1px; background: rgba(255,255,255,.08); margin: 14px 0; }
+.a11y-reset {
+  width: 100%; padding: 9px; background: rgba(123,30,34,.32); border: 1px solid rgba(123,30,34,.5);
+  color: rgba(255,255,255,.75); font-size: 10px; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; cursor: pointer; transition: all .2s;
+}
+.a11y-reset:hover { background: var(--wine); color: #fff; }
+
+/* ─ Accessibility body states ─ */
+body.a11y-large { font-size: 18px !important; }
+body.a11y-large .section-title { font-size: clamp(2.8rem,4.2vw,4.5rem) !important; }
+body.a11y-high-contrast { filter: contrast(1.5) brightness(1.05); }
+body.a11y-reduced-motion *,
+body.a11y-reduced-motion *::before,
+body.a11y-reduced-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ══ BOTTOM NAV MOBILE ══ */
+.ind-bottom-nav {
+  display: none; position: fixed; bottom: 0; left: 0;
+  width: 100%; height: 65px; background: #000;
+  border-top: 1px solid rgba(201,168,76,.2); z-index: 2000;
+  overflow: hidden;
+}
+.ind-bnav-container {
+  display: flex; justify-content: space-around; align-items: center;
+  height: 100%; max-width: 600px; margin: 0 auto;
+}
+.ind-bnav-item {
+  text-decoration: none; display: flex; flex-direction: column;
+  align-items: center; gap: 4px; color: rgba(255,255,255,.5);
+  transition: .3s; flex: 1; padding: 0 4px; border: none;
+  background: transparent; cursor: pointer;
+}
+.ind-bnav-item svg { width: 20px; height: 20px; }
+.ind-bnav-item span { font-size: 8px; font-weight: 600; text-transform: uppercase; white-space: nowrap; }
+.ind-bnav-item.active { color: var(--gold); }
+.ind-bnav-item.wa-item { color: #25D366; }
+.ind-bnav-item.ctrl-item { color: rgba(255,255,255,.5); }
+.ind-bnav-item.ctrl-item:hover { color: var(--gold); }
+
+/* ══ OVERLAYS ══ */
+.ind-sheet-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.85);
+  backdrop-filter: blur(5px); z-index: 2001;
+  opacity: 0; visibility: hidden; transition: .3s;
+}
+.ind-sheet-overlay.active { opacity: 1; visibility: visible; }
+
+/* ══ SERVICES SHEET MOBILE ══ */
+.ind-bottom-sheet {
+  position: fixed; bottom: -100%; left: 0; width: 100%;
+  background: #0a0a0a; z-index: 2002;
+  border-radius: 20px 20px 0 0;
+  padding: 25px 20px 80px;
+  transition: bottom .4s cubic-bezier(.4,0,.2,1);
+  border-top: 2px solid var(--gold);
+}
+.ind-bottom-sheet.active { bottom: 0; }
+.ind-sheet-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.ind-sheet-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 20px; font-weight: 700; font-style: italic;
+}
+.ind-sheet-close {
+  background: rgba(255,255,255,.05); border: none;
+  width: 32px; height: 32px; border-radius: 50%;
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+}
+.ind-sheet-grid { display: grid; gap: 8px; }
+.ind-sheet-link {
+  padding: 14px 18px; background: rgba(255,255,255,.02);
+  border-radius: 10px; color: #fff; text-decoration: none;
+  font-size: 10px; font-weight: 600; text-transform: uppercase;
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+/* ══ MOBILE CONTROLS SHEET ══ */
+.mob-ctrl-sheet {
+  position: fixed; bottom: -100%; left: 0; width: 100%;
+  background: #0a0a0a; z-index: 3000;
+  border-radius: 20px 20px 0 0;
+  padding: 24px 20px 90px;
+  transition: bottom .4s cubic-bezier(.4,0,.2,1);
+  border-top: 2px solid var(--gold);
+}
+.mob-ctrl-sheet.active { bottom: 0; }
+.mob-ctrl-header {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 22px;
+  padding-bottom: 16px; border-bottom: 1px solid rgba(201,168,76,.15);
+}
+.mob-ctrl-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--gold); font-size: 18px; font-weight: 700; font-style: italic;
+}
+.mob-ctrl-close {
+  background: rgba(255,255,255,.06); border: none;
+  width: 34px; height: 34px; border-radius: 50%;
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 18px; line-height: 1;
+}
+.mob-ctrl-section { margin-bottom: 20px; }
+.mob-ctrl-section-label {
+  font-size: 9px; font-weight: 700; letter-spacing: .28em;
+  text-transform: uppercase; color: rgba(201,168,76,.6);
+  margin-bottom: 10px;
+}
+.mob-theme-btn {
+  width: 100%; padding: 13px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(201,168,76,.25);
+  color: rgba(255,255,255,.8); font-size: 13px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; cursor: pointer; transition: all .3s;
+}
+.mob-theme-btn:hover { background: rgba(201,168,76,.1); border-color: var(--gold); }
+.mob-theme-btn svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.8; }
+.mob-a11y-grid { display: grid; gap: 10px; }
+.mob-a11y-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 14px; background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.06);
+}
+.mob-a11y-label { font-size: 13px; color: rgba(255,255,255,.75); }
+.mob-a11y-controls { display: flex; gap: 6px; }
+.mob-a11y-btn {
+  min-width: 36px; height: 36px; padding: 0 8px;
+  background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.12);
+  color: rgba(255,255,255,.85); font-size: 14px; font-weight: 700;
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.mob-a11y-btn.active { background: rgba(201,168,76,.3); border-color: var(--gold); color: var(--gold-light); }
+.mob-a11y-btn:hover { background: rgba(201,168,76,.2); border-color: var(--gold); color: #fff; }
+.mob-a11y-reset {
+  width: 100%; margin-top: 12px; padding: 12px;
+  background: rgba(123,30,34,.3); border: 1px solid rgba(123,30,34,.4);
+  color: rgba(255,255,255,.75); font-size: 11px; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; cursor: pointer; transition: all .2s;
+}
+.mob-a11y-reset:hover { background: var(--wine); color: #fff; }
+
+/* ══ HEADER RESPONSIVE ══ */
+@media (max-width: 1150px) {
+  .ind-nav, .ind-actions, .ind-top-bar,
+  .ind-logo-sep, .ind-header-tagline { display: none !important; }
+  .ind-bottom-nav { display: block; }
+  .ind-container { height: 60px; justify-content: center; padding: 0 20px; }
+  .ind-logo-img { max-height: 40px; }
+  body { padding-bottom: 65px; }
+}
+
+/* ══ PAGE HERO BANNER ══ */
+.svc-hero {
+  position:relative; min-height:500px; display:flex; align-items:center; overflow:hidden;
+  background:#1a0508;
+}
+.svc-hero-img {
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit:cover; filter:brightness(.13) saturate(.35) contrast(1.3);
+}
+.svc-hero-overlay {
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 70% 100% at 30% 50%,rgba(123,30,34,.7) 0%,transparent 65%),
+    linear-gradient(160deg,rgba(10,2,3,.8) 0%,rgba(30,6,8,.5) 60%,rgba(10,2,3,.92) 100%),
+    linear-gradient(to top,rgba(10,2,3,.95) 0%,transparent 45%);
+}
+.svc-hero::before {
+  content:''; position:absolute; left:0; top:0; bottom:0; width:3px; z-index:20;
+  background:linear-gradient(to bottom,transparent,rgba(201,168,76,.2) 10%,var(--gold) 35%,var(--gold-light) 55%,var(--gold-dark) 85%,transparent);
+}
+.svc-hero-body {
+  position:relative; z-index:10;
+  max-width:1280px; margin:0 auto; padding:90px 80px 100px;
+  width:100%;
+}
+.svc-hero-eyebrow {
+  display:inline-flex; align-items:center; gap:14px; margin-bottom:28px;
+  opacity:0; animation:fadeUp .7s .1s ease forwards;
+}
+.svc-eye-line { width:36px; height:1px; background:var(--gold); }
+.svc-eye-txt { font-size:10px; font-weight:700; letter-spacing:.35em; text-transform:uppercase; color:rgba(201,168,76,.75); }
+.svc-hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:900; line-height:1; letter-spacing:-.03em;
+  color:#fff; margin-bottom:28px;
+  opacity:0; animation:fadeUp .8s .25s ease forwards;
+}
+.svc-hero h1 em {
+  font-style:italic; font-weight:300;
+  background:linear-gradient(108deg,var(--gold-dark) 0%,var(--gold) 40%,var(--gold-light) 70%,var(--gold) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  animation:shimmer 5s linear infinite;
+}
+.svc-hero-sub {
+  font-size:1rem; font-weight:300; color:rgba(255,255,255,.55); line-height:1.9;
+  max-width:560px; margin-bottom:44px;
+  opacity:0; animation:fadeUp .8s .4s ease forwards;
+}
+.svc-hero-sub strong { color:rgba(255,255,255,.8); font-weight:500; }
+.svc-hero-actions {
+  display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+  opacity:0; animation:fadeUp .8s .55s ease forwards;
+}
+.svc-breadcrumb {
+  position:absolute; bottom:28px; left:0; right:0; z-index:5;
+  display:flex; align-items:center; gap:10px;
+  max-width:1280px; margin:0 auto; padding:0 80px;
+}
+.svc-bc-item { font-size:10px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:rgba(255,255,255,.35); text-decoration:none; transition:color .3s; }
+.svc-bc-item:hover { color:var(--gold); }
+.svc-bc-item.current { color:rgba(201,168,76,.7); }
+.svc-bc-sep { width:4px; height:4px; background:rgba(201,168,76,.4); transform:rotate(45deg); }
+
+/* ══ STAT STRIP ══ */
+.svc-strip {
+  background:var(--wine-deep); display:flex; align-items:stretch;
+  border-top:1px solid rgba(201,168,76,.15); position:relative; overflow:hidden;
+}
+.svc-strip::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23C9A84C' stroke-width='.4' opacity='.05'/%3E%3C/svg%3E") repeat; background-size:60px 60px; pointer-events:none; }
+.svc-strip-item { flex:1; padding:28px 24px; border-right:1px solid rgba(201,168,76,.1); display:flex; align-items:center; gap:16px; position:relative; z-index:1; transition:background .3s; }
+.svc-strip-item:last-child { border-right:none; }
+.svc-strip-item:hover { background:rgba(201,168,76,.06); }
+.svc-strip-icon { width:40px; height:40px; flex-shrink:0; border:1px solid rgba(201,168,76,.25); display:flex; align-items:center; justify-content:center; }
+.svc-strip-icon svg { width:16px; height:16px; stroke:var(--gold); fill:none; stroke-width:1.5; stroke-linecap:round; }
+.svc-strip-num { font-family:'Playfair Display',serif; font-size:1.6rem; font-weight:700; color:var(--gold-light); line-height:1; margin-bottom:2px; }
+.svc-strip-lbl { font-size:9px; font-weight:600; letter-spacing:.15em; text-transform:uppercase; color:rgba(255,255,255,.32); }
+
+/* ══ SERVICE CATALOG ══ */
+.svc-catalog {
+  background:var(--cream); padding:100px 80px; position:relative;
+}
+.svc-catalog::before {
+  content:'SERVICIOS'; position:absolute; right:-20px; top:50%; transform:translateY(-50%);
+  font-family:'Playfair Display',serif; font-size:clamp(6rem,12vw,14rem); font-weight:900;
+  color:rgba(123,30,34,.04); letter-spacing:-.04em; pointer-events:none; user-select:none; line-height:1;
+}
+.svc-catalog-header { text-align:center; margin-bottom:72px; position:relative; z-index:1; }
+.svc-catalog-header .section-tag { justify-content:center; }
+.svc-catalog-header .section-rule { justify-content:center; }
+.svc-catalog-header p { font-size:16px; font-weight:300; color:var(--muted); line-height:1.9; max-width:560px; margin:24px auto 0; }
+
+.svc-filter-row {
+  display:flex; align-items:center; gap:8px; flex-wrap:wrap; justify-content:center;
+  margin-bottom:56px; position:relative; z-index:1;
+}
+.svc-filter-btn {
+  padding:9px 22px; border:1px solid var(--border); background:transparent; cursor:pointer;
+  font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted);
+  transition:all .3s; clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);
+}
+.svc-filter-btn:hover { border-color:var(--wine); color:var(--wine); }
+.svc-filter-btn.active { background:var(--wine); border-color:var(--wine); color:#fff; }
+
+.svc-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:2px;
+  background:rgba(123,30,34,.08); position:relative; z-index:1;
+}
+.svc-card {
+  background:var(--white); padding:48px 36px; position:relative; overflow:hidden;
+  transition:all .4s; cursor:pointer; text-decoration:none; color:inherit;
+  display:flex; flex-direction:column;
+}
+.svc-card::before {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:3px;
+  background:linear-gradient(to right,var(--wine-dark),var(--wine),var(--wine-soft));
+  transform:scaleX(0); transition:transform .4s; transform-origin:left;
+}
+.svc-card:hover::before { transform:scaleX(1); }
+.svc-card:hover { transform:translateY(-4px); box-shadow:0 24px 60px var(--shadow); z-index:2; }
+.svc-card-icon {
+  width:56px; height:56px; border:1px solid var(--border-gold);
+  display:flex; align-items:center; justify-content:center; margin-bottom:28px;
+  background:linear-gradient(135deg,rgba(201,168,76,.06),rgba(201,168,76,.02));
+  transition:all .4s; flex-shrink:0;
+}
+.svc-card:hover .svc-card-icon { border-color:var(--gold); background:linear-gradient(135deg,rgba(123,30,34,.1),rgba(201,168,76,.08)); }
+.svc-card-icon svg { width:24px; height:24px; stroke:var(--wine); fill:none; stroke-width:1.5; stroke-linecap:round; transition:stroke .4s; }
+.svc-card:hover .svc-card-icon svg { stroke:var(--gold-dark); }
+.svc-card-tag { font-size:9px; font-weight:700; letter-spacing:.28em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:10px; }
+.svc-card-name { font-family:'Playfair Display',serif; font-size:1.35rem; font-weight:700; color:var(--ink); line-height:1.2; margin-bottom:14px; }
+.svc-card-desc { font-size:14px; font-weight:300; color:var(--muted); line-height:1.8; flex:1; margin-bottom:28px; }
+.svc-card-pills { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:24px; }
+.svc-card-pill { padding:4px 12px; background:rgba(123,30,34,.06); border:1px solid rgba(123,30,34,.12); font-size:9px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--wine); }
+.svc-card-cta { display:flex; align-items:center; gap:10px; font-size:10px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--wine); margin-top:auto; transition:color .3s; }
+.svc-card-cta-line { width:20px; height:1px; background:var(--wine); transition:width .3s; }
+.svc-card:hover .svc-card-cta { color:var(--gold-dark); }
+.svc-card:hover .svc-card-cta-line { width:36px; background:var(--gold-dark); }
+.svc-card-num { position:absolute; bottom:24px; right:28px; font-family:'Playfair Display',serif; font-size:3.5rem; font-weight:900; color:rgba(123,30,34,.05); line-height:1; }
+
+/* ══ DETAIL EXPAND ══ */
+.svc-detail-wrap {
+  background:var(--parchment); padding:0; overflow:hidden;
+  max-height:0; transition:max-height .6s cubic-bezier(.4,0,.2,1), padding .4s;
+}
+.svc-detail-wrap.open { max-height:1200px; padding:60px 80px; }
+.svc-detail-inner { max-width:1120px; margin:0 auto; display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:start; }
+.svc-detail-title { font-family:'Playfair Display',serif; font-size:2rem; font-weight:700; color:var(--ink); margin-bottom:16px; }
+.svc-detail-title em { font-style:italic; color:var(--wine); }
+.svc-detail-p { font-size:15px; font-weight:300; color:var(--muted); line-height:1.95; margin-bottom:18px; }
+.svc-detail-list { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+.svc-detail-list li { display:flex; align-items:flex-start; gap:14px; font-size:14px; color:var(--text); }
+.svc-detail-list li::before { content:''; width:6px; height:6px; background:var(--wine); transform:rotate(45deg); flex-shrink:0; margin-top:6px; }
+.svc-detail-card {
+  background:var(--wine-deep); border:1px solid rgba(201,168,76,.18); padding:36px 32px;
+  position:relative; overflow:hidden;
+}
+.svc-detail-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--gold-dark),var(--gold-light),var(--gold-dark)); }
+.svc-dc-label { font-size:9px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:rgba(201,168,76,.6); margin-bottom:16px; }
+.svc-dc-norms { display:flex; flex-direction:column; gap:8px; margin-bottom:28px; }
+.svc-dc-norm { padding:12px 16px; background:rgba(255,255,255,.04); border:1px solid rgba(201,168,76,.1); display:flex; align-items:center; gap:12px; }
+.svc-dc-norm-dot { width:6px; height:6px; background:var(--gold); flex-shrink:0; }
+.svc-dc-norm-txt { font-size:13px; color:rgba(255,255,255,.75); font-weight:400; }
+.svc-detail-close { margin-top:32px; padding:10px 24px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.12); color:rgba(255,255,255,.6); font-size:10px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; cursor:pointer; transition:all .3s; width:100%; }
+.svc-detail-close:hover { background:rgba(123,30,34,.3); color:#fff; }
+
+/* ══ MID CTA ══ */
+.svc-mid-cta {
+  background:linear-gradient(135deg,var(--wine-deep) 0%,var(--wine-dark) 50%,#1a0508 100%);
+  padding:80px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:space-between; gap:40px;
+}
+.svc-mid-cta::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Crect x='0' y='0' width='40' height='40' fill='none' stroke='%23C9A84C' stroke-width='.3' opacity='.06'/%3E%3C/svg%3E") repeat; background-size:80px 80px; }
+.svc-mid-cta-left { position:relative; z-index:1; }
+.svc-mid-cta-left h2 { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:700; color:#fff; line-height:1.15; margin-bottom:12px; }
+.svc-mid-cta-left h2 em { font-style:italic; color:var(--gold-light); }
+.svc-mid-cta-left p { font-size:15px; color:rgba(255,255,255,.5); font-weight:300; max-width:440px; line-height:1.8; }
+.svc-mid-cta-right { position:relative; z-index:1; display:flex; gap:16px; flex-wrap:wrap; }
+
+/* ══ AUTODIAGNÓSTICO ══ */
+.diag-section {
+  background:var(--cream); padding:100px 80px; position:relative;
+}
+.diag-section::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 10% 50%,rgba(123,30,34,.04) 0%,transparent 70%),
+    radial-gradient(ellipse 40% 60% at 90% 20%,rgba(201,168,76,.04) 0%,transparent 70%);
+}
+.diag-header { text-align:center; margin-bottom:64px; position:relative; z-index:1; }
+.diag-header .section-tag { justify-content:center; }
+.diag-header .section-rule { justify-content:center; }
+.diag-header p { font-size:16px; font-weight:300; color:var(--muted); line-height:1.9; max-width:540px; margin:24px auto 0; }
+
+.diag-progress-wrap { max-width:700px; margin:0 auto 52px; position:relative; z-index:1; }
+.diag-progress-track { height:3px; background:rgba(123,30,34,.1); position:relative; margin-bottom:18px; }
+.diag-progress-bar { position:absolute; top:0; left:0; height:100%; background:linear-gradient(to right,var(--wine),var(--gold)); transition:width .5s cubic-bezier(.4,0,.2,1); }
+.diag-progress-labels { display:flex; justify-content:space-between; }
+.diag-prog-step { font-size:9px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); transition:color .3s; }
+.diag-prog-step.done { color:var(--wine); }
+.diag-prog-step.active { color:var(--gold-dark); }
+
+.diag-card {
+  max-width:780px; margin:0 auto; background:var(--white);
+  border:1px solid var(--border); position:relative; z-index:1;
+  min-height:400px; display:flex; flex-direction:column;
+}
+.diag-card-head {
+  padding:36px 44px 28px; border-bottom:1px solid var(--border);
+  background:linear-gradient(135deg,rgba(123,30,34,.02),rgba(201,168,76,.02));
+}
+.diag-q-num { font-size:10px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--gold-dark); margin-bottom:10px; }
+.diag-q-text { font-family:'Playfair Display',serif; font-size:1.4rem; font-weight:700; color:var(--ink); line-height:1.3; }
+.diag-card-body { padding:32px 44px; flex:1; display:flex; flex-direction:column; }
+.diag-opts { display:grid; gap:10px; flex:1; }
+.diag-opt {
+  padding:16px 22px; border:1px solid var(--border); background:var(--cream); cursor:pointer;
+  font-size:14px; font-weight:400; color:var(--text); text-align:left;
+  transition:all .25s; display:flex; align-items:center; gap:14px; position:relative;
+}
+.diag-opt::before { content:''; width:18px; height:18px; flex-shrink:0; border:1px solid rgba(123,30,34,.25); background:#fff; transition:all .25s; }
+.diag-opt.selected { border-color:var(--wine); background:rgba(123,30,34,.04); color:var(--wine); }
+.diag-opt.selected::before { background:var(--wine); border-color:var(--wine); box-shadow:inset 0 0 0 3px #fff; }
+.diag-opt:hover:not(.selected) { border-color:var(--wine-soft); background:rgba(123,30,34,.02); }
+.diag-card-foot {
+  padding:24px 44px 32px; border-top:1px solid var(--border);
+  display:flex; justify-content:space-between; align-items:center;
+}
+.diag-btn-prev { padding:12px 24px; background:transparent; border:1px solid var(--border); cursor:pointer; font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); transition:all .3s; }
+.diag-btn-prev:hover { border-color:var(--wine); color:var(--wine); }
+.diag-btn-next {
+  padding:14px 36px; background:linear-gradient(135deg,var(--wine-dark),var(--wine));
+  border:none; cursor:pointer; font-size:10px; font-weight:800; letter-spacing:.2em; text-transform:uppercase; color:#fff;
+  clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);
+  transition:all .35s; display:flex; align-items:center; gap:10px;
+}
+.diag-btn-next:hover { background:linear-gradient(135deg,var(--wine),var(--wine-hi)); transform:translateY(-1px); box-shadow:0 12px 40px rgba(123,30,34,.35); }
+.diag-btn-next svg { width:14px; height:14px; transition:transform .3s; }
+.diag-btn-next:hover svg { transform:translateX(4px); }
+.diag-btn-next:disabled { opacity:.4; cursor:not-allowed; }
+
+.diag-result { max-width:780px; margin:0 auto; position:relative; z-index:1; display:none; }
+.diag-result.show { display:block; }
+.diag-result-header {
+  background:linear-gradient(135deg,var(--wine-deep),var(--wine-dark));
+  padding:44px 52px; border-top:3px solid var(--gold); position:relative; overflow:hidden;
+}
+.diag-result-header::before { content:''; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='28' fill='none' stroke='%23C9A84C' stroke-width='.4' opacity='.06'/%3E%3C/svg%3E") repeat; pointer-events:none; }
+.diag-res-tag { font-size:10px; font-weight:700; letter-spacing:.3em; text-transform:uppercase; color:rgba(201,168,76,.65); margin-bottom:12px; position:relative; z-index:1; }
+.diag-res-title { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:700; color:#fff; line-height:1.2; margin-bottom:12px; position:relative; z-index:1; }
+.diag-res-title em { font-style:italic; color:var(--gold-light); }
+.diag-res-sub { font-size:14px; color:rgba(255,255,255,.5); font-weight:300; position:relative; z-index:1; }
+.diag-result-body { background:var(--white); border:1px solid var(--border); border-top:none; padding:40px 52px; }
+.diag-result-recs { margin-bottom:32px; }
+.diag-recs-label { font-size:10px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--wine); margin-bottom:20px; }
+.diag-rec-item { display:flex; align-items:flex-start; gap:16px; padding:16px 0; border-bottom:1px solid var(--border); }
+.diag-rec-item:last-child { border-bottom:none; }
+.diag-rec-num { width:32px; height:32px; background:linear-gradient(135deg,var(--wine-dark),var(--wine)); flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'Playfair Display',serif; font-size:13px; font-weight:700; color:#fff; }
+.diag-rec-name { font-weight:600; font-size:14px; color:var(--ink); margin-bottom:4px; }
+.diag-rec-desc { font-size:13px; color:var(--muted); font-weight:300; line-height:1.7; }
+.diag-result-summary { background:rgba(123,30,34,.04); border:1px solid rgba(123,30,34,.08); padding:24px 28px; margin-bottom:32px; }
+.diag-sum-label { font-size:9px; font-weight:700; letter-spacing:.25em; text-transform:uppercase; color:var(--wine); margin-bottom:14px; }
+.diag-sum-text { font-size:14px; color:var(--text); line-height:1.8; white-space:pre-wrap; }
+.diag-result-actions { display:flex; gap:14px; flex-wrap:wrap; }
+.diag-wa-btn {
+  display:inline-flex; align-items:center; gap:14px; padding:18px 36px;
+  background:#25D366; color:#fff; border:none; cursor:pointer;
+  font-size:10px; font-weight:800; letter-spacing:.18em; text-transform:uppercase;
+  clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);
+  transition:all .35s; text-decoration:none;
+}
+.diag-wa-btn:hover { background:#128C7E; transform:translateY(-2px); box-shadow:0 16px 48px rgba(37,211,102,.3); }
+.diag-wa-btn svg { width:18px; height:18px; }
+.diag-restart-btn {
+  display:inline-flex; align-items:center; gap:10px; padding:18px 28px;
+  background:transparent; border:1px solid var(--border); color:var(--muted); cursor:pointer;
+  font-size:10px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; transition:all .3s;
+}
+.diag-restart-btn:hover { border-color:var(--wine); color:var(--wine); }
+
+/* ══ FOOTER ══ */
+.ind-footer-wrap {
+  background-color: #0D0D0D; color: #F5F0E8;
+  font-family: 'Outfit', sans-serif;
+  position: relative; overflow: hidden;
+  border-top: 1px solid rgba(201,168,76,.12);
+}
+.ind-f-top-accent {
+  height: 4px; width: 100%;
+  background: linear-gradient(to right, #5C0E0E, #8B1A1A, #C9A84C, #5C0E0E);
+  opacity: .85;
+}
+.ind-f-main { max-width: 1300px; margin: 0 auto; padding: 80px 60px 40px; position: relative; z-index: 1; }
+.ind-f-grid { display: grid; grid-template-columns: 1.4fr .8fr .8fr 1fr; gap: 50px; margin-bottom: 60px; }
+.ind-f-brand { display: flex; flex-direction: column; gap: 25px; }
+.ind-f-logo-container { position: relative; display: inline-block; max-width: 200px; overflow: hidden; }
+.ind-f-logo-img { max-width: 100%; height: auto; display: block; }
+.ind-f-slogan { font-family: 'Playfair Display', serif; font-size: 18px; font-style: italic; font-weight: 400; color: var(--gold-light); line-height: 1.3; max-width: 280px; letter-spacing: .5px; }
+.ind-f-contact-strip { display: flex; flex-direction: column; gap: 15px; }
+.ind-f-contact-link { display: flex; align-items: center; gap: 12px; color: #A89880; text-decoration: none; font-size: 13px; transition: color .3s; }
+.ind-f-contact-link:hover { color: #F5F0E8; }
+.ind-f-contact-link svg { width: 16px; height: 16px; color: var(--wine); stroke-width: 2; }
+.ind-f-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: #F5F0E8; margin-bottom: 30px; position: relative; }
+.ind-f-title::after { content: ''; position: absolute; left: 0; bottom: -10px; width: 20px; height: 1px; background: var(--gold); }
+.ind-f-list { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.ind-f-item-link { text-decoration: none; color: #A89880; font-size: 13px; transition: all .3s ease; display: inline-block; }
+.ind-f-item-link:hover { color: var(--gold-light); transform: translateX(5px); }
+.ind-f-social-wrap { display: flex; gap: 15px; margin-top: 25px; }
+.ind-f-social-icon { width: 42px; height: 42px; border-radius: 6px; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: transform .4s cubic-bezier(.175,.885,.32,1.275), filter .3s, box-shadow .3s; box-shadow: 0 4px 10px rgba(0,0,0,.3); }
+.ind-f-social-icon.linkedin  { background-color: #0077B5; }
+.ind-f-social-icon.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.ind-f-social-icon.facebook  { background-color: #1877F2; }
+.ind-f-social-icon:hover { transform: scale(1.2) translateY(-5px); filter: brightness(1.1); box-shadow: 0 8px 20px rgba(0,0,0,.5); z-index: 2; }
+.ind-f-bottom { border-top: 1px solid rgba(255,255,255,.05); padding: 30px 60px; max-width: 1300px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,.3); }
+.ind-f-copy span { color: var(--gold); }
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1200px){
+  .svc-catalog { padding:72px 44px; }
+  .svc-grid { grid-template-columns:repeat(2,1fr); }
+  .svc-detail-wrap.open { padding:48px 44px; }
+  .svc-detail-inner { grid-template-columns:1fr; gap:36px; }
+  .svc-mid-cta { padding:60px 44px; flex-direction:column; }
+  .diag-section { padding:72px 44px; }
+  .ind-f-grid { grid-template-columns:1fr 1fr; gap:40px; }
+  .ind-f-main { padding:60px 44px; }
+  .ind-f-bottom { padding:22px 44px; }
+}
+@media(max-width:900px){
+  .svc-hero-body { padding:72px 28px 90px; }
+  .svc-breadcrumb { padding:0 28px; }
+  .svc-catalog { padding:60px 24px; }
+  .svc-grid { grid-template-columns:1fr; }
+  .svc-strip { flex-direction:column; }
+  .svc-strip-item { border-right:none; border-bottom:1px solid rgba(201,168,76,.1); }
+  .svc-strip-item:last-child { border-bottom:none; }
+  .svc-mid-cta { padding:48px 24px; }
+  .diag-section { padding:60px 24px; }
+  .diag-card-head,.diag-card-body,.diag-card-foot,.diag-result-header,.diag-result-body { padding-left:24px; padding-right:24px; }
+  .diag-result-actions { flex-direction:column; }
+  .diag-wa-btn,.diag-restart-btn { justify-content:center; }
+  .ind-f-grid { grid-template-columns:1fr; }
+  .ind-f-main { padding:48px 24px 40px; }
+  .ind-f-bottom { padding:18px 24px; flex-direction:column; gap:8px; text-align:center; }
+  .svc-detail-wrap.open { padding:40px 24px; }
+}
+@media(max-width:650px){
+  .ind-f-main { padding: 60px 25px 100px; }
+  .ind-f-grid { grid-template-columns: 1fr; gap: 45px; text-align: center; }
+  .ind-f-brand { align-items: center; }
+  .ind-f-title::after { left: 50%; transform: translateX(-50%); }
+  .ind-f-contact-strip { align-items: center; }
+  .ind-f-social-wrap { justify-content: center; }
+  .ind-f-bottom { flex-direction: column; gap: 15px; text-align: center; padding: 30px 20px 120px; }
+}
+@media(max-width:600px){
+  .svc-hero h1 { font-size:clamp(2.4rem,8vw,3.2rem); }
+  .svc-hero-sub { font-size:.9rem; }
+  .svc-filter-row { gap:6px; }
+  .svc-filter-btn { padding:7px 14px; font-size:9px; }
+}
+</style>
+</head>
+<body>
+<!-- ══ HEADER ══ -->
+<div class="ind-header-wrapper" id="navbar">
+<div class="ind-top-bar">
+<div class="ind-top-info">
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>55 4015 2551</span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+</div>
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+</div>
+
+
+<div class="ind-top-item">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+<span>56 1604 4547</span>
+</div>
+
+
+
+
+</div>
+<div class="ind-top-item" style="opacity:0.6;">INDUSECC</div>
+</div>
+<header class="ind-main-header">
+<div class="ind-container">
+<div class="ind-logo-group">
+<a class="ind-logo-wrap" href="index.html">
+<img alt="Logo INDUSECC" class="ind-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</a>
+<div class="ind-logo-sep"></div>
+<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+</div>
+<nav class="ind-nav">
+<div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+<div class="ind-menu-item"><a class="ind-link" href="nosotros.html">¿Quiénes Somos?</a></div>
+<div class="ind-menu-item">
+<a class="ind-link active" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+</a>
+<div class="ind-dropdown">
+<a class="ind-drop-link" href="implementacion-sistema.html">Implementación de un Sistema de Gestión</a>
+<a class="ind-drop-link" href="certificacion-iso_.html">Certificación de Normas ISO</a>
+<a class="ind-drop-link" href="consultoria-asesoria.html">Consultoría y Asesoría en Normatividad ISO</a>
+<a class="ind-drop-link" href="auditorias.html">Auditorías</a>
+</div>
+</div>
+<div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+</nav>
+<div class="ind-actions">
+<!-- Accesibilidad -->
+<div class="ind-a11y-wrap">
+<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+</button>
+<div class="a11y-panel" id="a11yPanel">
+<div class="a11y-panel-title">Accesibilidad</div>
+<div class="a11y-row">
+<span class="a11y-label">Tamaño de fuente</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="fontDown">A−</button>
+<button class="a11y-ctrl-btn" id="fontUp">A+</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Alto contraste</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="contrastBtn">◑</button>
+</div>
+</div>
+<div class="a11y-row">
+<span class="a11y-label">Reducir movimiento</span>
+<div class="a11y-controls">
+<button class="a11y-ctrl-btn" id="motionBtn">⏸</button>
+</div>
+</div>
+<div class="a11y-sep"></div>
+<button class="a11y-reset" id="a11yReset">↺ Restablecer</button>
+</div>
+</div>
+<!-- Theme Toggle -->
+<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
+<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+<span id="themeLabel">Oscuro</span>
+</button>
+<!-- CTA -->
+<a class="ind-btn-cta shine-el" href="contacto.html">Consulta Online</a>
+</div>
+</div>
+</header>
+</div>
+<!-- Bottom Nav Mobile -->
+<nav class="ind-bottom-nav">
+<div class="ind-bnav-container">
+<a class="ind-bnav-item" href="index.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+<span>Inicio</span>
+</a>
+<a class="ind-bnav-item active" href="servicios.html" id="btnServicesMobile">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
+<span>Servicios</span>
+</a>
+<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
+<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
+<span>WhatsApp</span>
+</a>
+<a class="ind-bnav-item" href="contacto.html">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+<span>Contacto</span>
+</a>
+<button class="ind-bnav-item ctrl-item" id="btnMobControls">
+<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
+<span>Ajustes</span>
+</button>
+</div>
+</nav>
+<!-- Overlays -->
+<div class="ind-sheet-overlay" id="sheetOverlay"></div>
+<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
+<!-- Services Sheet Mobile -->
+<div class="ind-bottom-sheet" id="servicesSheet">
+<div class="ind-sheet-header">
+<h3 class="ind-sheet-title">Servicios</h3>
+<button class="ind-sheet-close" id="closeSheet">
+<svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+</button>
+</div>
+<div class="ind-sheet-grid">
+<a class="ind-sheet-link" data-i18n="nav_cap" href="implementacion-sistema.html">Implementación de un sistema de gestión <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_iso" href="certificacion-iso_.html">Certificación ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_mejora" href="consultoria-asesoria.html">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+<a class="ind-sheet-link" data-i18n="nav_audit" href="auditorias.html">Auditorías <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
+</div>
+</div>
+<!-- Mobile Controls Sheet -->
+<div class="mob-ctrl-sheet" id="mobCtrlSheet">
+<div class="mob-ctrl-header">
+<span class="mob-ctrl-title">Ajustes</span>
+<button class="mob-ctrl-close" id="closeMobCtrl">✕</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Tema</div>
+<button class="mob-theme-btn" onclick="toggleTheme()">
+<span id="mobThemeLabel">Modo Oscuro</span>
+<svg fill="none" id="mobThemeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
+</div>
+<div class="mob-ctrl-section">
+<div class="mob-ctrl-section-label">Accesibilidad</div>
+<div class="mob-a11y-grid">
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Tamaño de texto</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobFontDown">A−</button>
+<button class="mob-a11y-btn" id="mobFontUp">A+</button>
+</div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Alto contraste</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobContrastBtn">◑</button>
+</div>
+</div>
+<div class="mob-a11y-row">
+<span class="mob-a11y-label">Reducir movimiento</span>
+<div class="mob-a11y-controls">
+<button class="mob-a11y-btn" id="mobMotionBtn">⏸</button>
+</div>
+</div>
+</div>
+<button class="mob-a11y-reset" id="mobA11yReset">↺ Restablecer todo</button>
+</div>
+</div>
+<!-- ══ HERO ══ -->
+<section class="svc-hero">
+<img alt="Servicios INDUSECC" class="svc-hero-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1600&amp;q=80"/>
+<div class="svc-hero-overlay"></div>
+<div class="svc-hero-body">
+<div class="svc-hero-eyebrow">
+<div class="svc-eye-line"></div>
+<span class="svc-eye-txt">Portafolio Integral</span>
+</div>
+<h1>Nuestros <em>Servicios</em><br/>de Excelencia</h1>
+<p class="svc-hero-sub">
+      Soluciones especializadas en <strong>sistemas de gestión, certificación ISO, consultoría y capacitación</strong> empresarial. Acompañamos a cada organización en su camino hacia la mejora continua.
+    </p>
+<div class="svc-hero-actions">
+<a class="btn-primary shine-el" href="#autodiagnostico">
+<span>Iniciar Autodiagnóstico</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<a class="btn-ghost" href="https://wa.me/525540152551?text=Hola%20INDUSECC,%20quiero%20conocer%20m%C3%A1s%20sobre%20sus%20servicios." target="_blank">
+<div class="btn-ghost-line"></div>
+        Hablar con un experto
+      </a>
+</div>
+</div>
+<div class="svc-breadcrumb">
+<a class="svc-bc-item" href="index.html">Inicio</a>
+<div class="svc-bc-sep"></div>
+<span class="svc-bc-item current">Servicios</span>
+</div>
+</section>
+<!-- ══ STAT STRIP ══ -->
+<div class="svc-strip">
+<div class="svc-strip-item">
+<div class="svc-strip-icon"><svg viewbox="0 0 24 24"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+<div><div class="svc-strip-num">6+</div><div class="svc-strip-lbl">Normas ISO<br/>que dominamos</div></div>
+</div>
+<div class="svc-strip-item">
+<div class="svc-strip-icon"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+<div><div class="svc-strip-num">100+</div><div class="svc-strip-lbl">Empresas<br/>certificadas</div></div>
+</div>
+<div class="svc-strip-item">
+<div class="svc-strip-icon"><svg viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg></div>
+<div><div class="svc-strip-num">10K+</div><div class="svc-strip-lbl">Horas de<br/>capacitación</div></div>
+</div>
+<div class="svc-strip-item">
+<div class="svc-strip-icon"><svg viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+<div><div class="svc-strip-num">100%</div><div class="svc-strip-lbl">Satisfacción<br/>garantizada</div></div>
+</div>
+</div>
+<!-- ══ CATÁLOGO ══ -->
+<section class="svc-catalog" id="catalogo">
+<div class="svc-catalog-header">
+<div class="section-tag reveal">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Portafolio Completo</span>
+</div>
+<h2 class="section-title reveal reveal-delay-1">Todo lo que tu empresa<br/><em>necesita crecer.</em></h2>
+<div class="section-rule reveal reveal-delay-2" style="justify-content:center;"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p class="reveal reveal-delay-3">Ofrecemos soluciones integrales adaptadas a las necesidades específicas de cada organización, desde la implementación inicial hasta la certificación y el seguimiento continuo.</p>
+</div>
+<div class="svc-filter-row reveal">
+<button class="svc-filter-btn active" data-filter="all">Todos</button>
+<button class="svc-filter-btn" data-filter="iso">Normas ISO</button>
+<button class="svc-filter-btn" data-filter="capacitacion">Capacitación</button>
+<button class="svc-filter-btn" data-filter="seguridad">Seguridad</button>
+<button class="svc-filter-btn" data-filter="consultoria">Consultoría</button>
+</div>
+<div class="svc-grid" id="svcGrid">
+<a class="svc-card reveal reveal-delay-1" data-category="iso" href="#" id="sistemas" onclick="toggleDetail('det-sistemas');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><rect height="18" rx="2" width="18" x="3" y="3"></rect><polyline points="9 3 9 21"></polyline><polyline points="3 9 21 9"></polyline></svg></div>
+<div class="svc-card-tag">ISO 9001 · ISO 14001 · ISO 45001</div>
+<div class="svc-card-name">Sistemas de Gestión</div>
+<p class="svc-card-desc">Diseño, implementación y mantenimiento de sistemas de gestión de calidad, ambiental y de seguridad ocupacional bajo normas internacionales ISO vigentes.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">Calidad</span><span class="svc-card-pill">Ambiente</span><span class="svc-card-pill">Seguridad</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">01</div>
+</a>
+<a class="svc-card reveal reveal-delay-2" data-category="iso" href="#" id="certificacion" onclick="toggleDetail('det-certificacion');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path></svg></div>
+<div class="svc-card-tag">Certificación · Auditoría · Seguimiento</div>
+<div class="svc-card-name">Certificación ISO</div>
+<p class="svc-card-desc">Proceso integral de preparación y acompañamiento para obtener la certificación ISO ante organismos acreditados. Desde el diagnóstico inicial hasta el certificado en mano.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">9001:2015</span><span class="svc-card-pill">14001:2015</span><span class="svc-card-pill">45001:2018</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">02</div>
+</a>
+<a class="svc-card reveal reveal-delay-3" data-category="consultoria" href="#" id="consultoria" onclick="toggleDetail('det-consultoria');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg></div>
+<div class="svc-card-tag">Diagnóstico · Estrategia · Implementación</div>
+<div class="svc-card-name">Consultoría Especializada</div>
+<p class="svc-card-desc">Asesoría experta para identificar áreas de mejora, diseñar estrategias normativas y acompañar la implementación de cambios organizacionales orientados a la excelencia.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">Procesos</span><span class="svc-card-pill">Normativa</span><span class="svc-card-pill">Estrategia</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">03</div>
+</a>
+<a class="svc-card reveal reveal-delay-1" data-category="iso" href="#" id="auditoria" onclick="toggleDetail('det-auditoria');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg></div>
+<div class="svc-card-tag">Interna · Externa · Segunda parte</div>
+<div class="svc-card-name">Auditorías</div>
+<p class="svc-card-desc">Realización de auditorías internas y de segunda parte para evaluar la conformidad de los sistemas de gestión, identificar no conformidades y oportunidades de mejora.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">Interna</span><span class="svc-card-pill">Segunda Parte</span><span class="svc-card-pill">Diagnóstico</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">04</div>
+</a>
+<a class="svc-card reveal reveal-delay-2" data-category="capacitacion" href="#" id="capacitacion" onclick="toggleDetail('det-capacitacion');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg></div>
+<div class="svc-card-tag">In-house · Online · Certificada</div>
+<div class="svc-card-name">Capacitación Empresarial</div>
+<p class="svc-card-desc">Programas de formación presenciales y en línea para equipos operativos, mandos medios y alta dirección en sistemas de gestión, normas ISO, liderazgo y mejora continua.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">In-House</span><span class="svc-card-pill">E-Learning</span><span class="svc-card-pill">Diplomados</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">05</div>
+</a>
+<a class="svc-card reveal reveal-delay-3" data-category="seguridad" href="#" id="seguridad" onclick="toggleDetail('det-seguridad');return false;">
+<div class="svc-card-icon"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+<div class="svc-card-tag">NOM · IMSS · STPS · ISO 45001</div>
+<div class="svc-card-name">Seguridad e Higiene</div>
+<p class="svc-card-desc">Diagnóstico y cumplimiento en materia de seguridad e higiene industrial conforme a las NOM de la STPS, IMSS y lineamientos de la norma ISO 45001 para entornos seguros.</p>
+<div class="svc-card-pills"><span class="svc-card-pill">STPS</span><span class="svc-card-pill">IMSS</span><span class="svc-card-pill">ISO 45001</span></div>
+<div class="svc-card-cta"><div class="svc-card-cta-line"></div>Ver detalle</div>
+<div class="svc-card-num">06</div>
+</a>
+</div>
+<!-- Detalles expandibles -->
+<div class="svc-detail-wrap" id="det-sistemas">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Sistemas de <em>Gestión ISO</em></h3>
+<p class="svc-detail-p">Implementamos sistemas de gestión basados en las normas ISO más relevantes para tu industria. Nuestro enfoque combina metodología rigurosa con acompañamiento personalizado, garantizando que el sistema se integre naturalmente a la cultura y operación de tu empresa.</p>
+<p class="svc-detail-p">Trabajamos bajo un enfoque por procesos y pensamiento basado en riesgos, asegurando la sostenibilidad del sistema a largo plazo y su capacidad de adaptación al cambio.</p>
+<ul class="svc-detail-list">
+<li>Diagnóstico inicial y análisis de brechas (Gap Analysis)</li>
+<li>Diseño y documentación del sistema de gestión</li>
+<li>Capacitación del equipo interno en las normas aplicables</li>
+<li>Implementación por fases con seguimiento continuo</li>
+<li>Revisión por dirección y mejora continua</li>
+<li>Preparación para auditoría de certificación externa</li>
+</ul>
+<a class="btn-primary shine-el" href="#autodiagnostico" onclick="closeDetail('det-sistemas')" style="margin-top:8px;display:inline-flex;">
+<span>Iniciar Autodiagnóstico</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Normas que abarcamos</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 9001:2015 — Gestión de la Calidad</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 14001:2015 — Gestión Ambiental</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 45001:2018 — Seguridad y Salud</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 27001 — Seguridad de Información</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 50001 — Gestión de la Energía</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-sistemas')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+<div class="svc-detail-wrap" id="det-certificacion">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Proceso de <em>Certificación ISO</em></h3>
+<p class="svc-detail-p">Te acompañamos en cada etapa del proceso de certificación ISO, desde la preparación documental hasta la auditoría de certificación con el organismo acreditado. Nuestro equipo tiene experiencia probada en obtener certificaciones a la primera.</p>
+<ul class="svc-detail-list">
+<li>Selección del organismo certificador adecuado para tu empresa</li>
+<li>Preparación y revisión del expediente documental</li>
+<li>Auditoría interna previa como simulacro de la oficial</li>
+<li>Atención de no conformidades detectadas</li>
+<li>Acompañamiento durante la auditoría externa</li>
+<li>Plan de mantenimiento y renovación del certificado</li>
+</ul>
+<a class="btn-primary shine-el" href="https://wa.me/525540152551?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20el%20proceso%20de%20certificaci%C3%B3n%20ISO." style="margin-top:8px;display:inline-flex;" target="_blank">
+<span>Solicitar información</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Etapas del proceso</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">1. Diagnóstico y gap analysis</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">2. Implementación del sistema</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">3. Auditoría interna (simulacro)</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">4. Revisión por la dirección</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">5. Auditoría de certificación</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">6. Mantenimiento del certificado</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-certificacion')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+<div class="svc-detail-wrap" id="det-consultoria">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Consultoría <em>Especializada</em></h3>
+<p class="svc-detail-p">Nuestros consultores analizan en profundidad la situación actual de tu organización para diseñar estrategias normativas y de mejora continua adaptadas a tu sector, tamaño y objetivos específicos.</p>
+<ul class="svc-detail-list">
+<li>Diagnóstico organizacional integral (procesos, personas, tecnología)</li>
+<li>Mapeo de procesos y análisis de riesgos y oportunidades</li>
+<li>Diseño de indicadores y tableros de desempeño (KPIs)</li>
+<li>Plan de acción y hoja de ruta normativa personalizada</li>
+<li>Acompañamiento durante la implementación de cambios</li>
+<li>Consultoría en fusiones, adquisiciones y auditorías de due diligence normativo</li>
+</ul>
+<a class="btn-primary shine-el" href="https://wa.me/525540152551?text=Hola%2C%20me%20interesa%20la%20consultor%C3%ADa%20especializada%20de%20INDUSECC." style="margin-top:8px;display:inline-flex;" target="_blank">
+<span>Hablar con un consultor</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Sectores que atendemos</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Manufactura e Industria</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Construcción e Ingeniería</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Servicios y Comercio</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Gobierno y Sector Público</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Tecnología y TI</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Salud y Farmacéutica</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-consultoria')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+<div class="svc-detail-wrap" id="det-auditoria">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Auditorías <em>Profesionales</em></h3>
+<p class="svc-detail-p">Nuestros auditores certificados realizan evaluaciones objetivas e independientes de los sistemas de gestión, procesos y controles de tu organización, proporcionando hallazgos claros y planes de acción concretos.</p>
+<ul class="svc-detail-list">
+<li>Auditorías internas de primera parte (sistema de gestión)</li>
+<li>Auditorías de segunda parte a proveedores y cadena de suministro</li>
+<li>Auditorías de diagnóstico previas a la certificación</li>
+<li>Auditorías de seguimiento y mantenimiento</li>
+<li>Reportes detallados con hallazgos y oportunidades de mejora</li>
+<li>Seguimiento de acciones correctivas y preventivas</li>
+</ul>
+<a class="btn-primary shine-el" href="https://wa.me/525540152551?text=Hola%2C%20quiero%20solicitar%20una%20auditor%C3%ADa%20con%20INDUSECC." style="margin-top:8px;display:inline-flex;" target="_blank">
+<span>Solicitar auditoría</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Tipos de auditoría</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Auditoría interna ISO 9001</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Auditoría interna ISO 14001</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Auditoría interna ISO 45001</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Auditoría a proveedores</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Auditoría combinada (sistemas integrados)</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-auditoria')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+<div class="svc-detail-wrap" id="det-capacitacion">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Capacitación <em>Empresarial</em></h3>
+<p class="svc-detail-p">Desarrollamos el talento de tu organización a través de programas de formación diseñados a medida. Combinamos teoría y práctica con metodologías activas para garantizar el aprendizaje aplicado y medible.</p>
+<ul class="svc-detail-list">
+<li>Cursos y talleres de normas ISO (9001, 14001, 45001)</li>
+<li>Formación de auditores internos (IRCA, RABQSA)</li>
+<li>Liderazgo, trabajo en equipo y mejora continua</li>
+<li>Diplomados en Sistemas Integrados de Gestión</li>
+<li>Capacitación en línea (plataforma LMS propia)</li>
+<li>Talleres de 5S, Lean y Kaizen</li>
+</ul>
+<a class="btn-primary shine-el" href="https://wa.me/525540152551?text=Hola%2C%20me%20interesa%20un%20programa%20de%20capacitaci%C3%B3n%20empresarial." style="margin-top:8px;display:inline-flex;" target="_blank">
+<span>Ver programas</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Modalidades disponibles</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">In-house (en tu empresa)</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Abierto (calendario público)</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Online en vivo (Zoom/Teams)</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">E-learning (asincrónico)</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">Blended (combinado)</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-capacitacion')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+<div class="svc-detail-wrap" id="det-seguridad">
+<div class="svc-detail-inner">
+<div>
+<h3 class="svc-detail-title">Seguridad e <em>Higiene Industrial</em></h3>
+<p class="svc-detail-p">Ayudamos a las empresas a cumplir con la normatividad en materia de seguridad e higiene establecida por la STPS y el IMSS, reduciendo riesgos laborales y creando entornos de trabajo seguros y saludables.</p>
+<ul class="svc-detail-list">
+<li>Diagnóstico NOM-STPS y plan de cumplimiento normativo</li>
+<li>Elaboración y actualización del programa de seguridad</li>
+<li>Integración y capacitación de comisiones de seguridad e higiene</li>
+<li>Identificación y evaluación de riesgos laborales</li>
+<li>Atención a visitas de inspección STPS e IMSS</li>
+<li>Implementación ISO 45001:2018</li>
+</ul>
+<a class="btn-primary shine-el" href="https://wa.me/525540152551?text=Hola%2C%20necesito%20apoyo%20en%20seguridad%20e%20higiene%20industrial." style="margin-top:8px;display:inline-flex;" target="_blank">
+<span>Solicitar diagnóstico</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</div>
+<div>
+<div class="svc-detail-card">
+<div class="svc-dc-label">Normas que aplicamos</div>
+<div class="svc-dc-norms">
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">ISO 45001:2018 — SST</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">NOM-030-STPS — Servicios preventivos</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">NOM-019-STPS — Comisiones de seguridad</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">NOM-035-STPS — Factores psicosociales</span></div>
+<div class="svc-dc-norm"><div class="svc-dc-norm-dot"></div><span class="svc-dc-norm-txt">IMSS — Programa SIPA</span></div>
+</div>
+<button class="svc-detail-close" onclick="closeDetail('det-seguridad')">Cerrar detalle ×</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ MID CTA ══ -->
+<div class="svc-mid-cta">
+<div class="svc-mid-cta-left reveal">
+<h2>¿No sabes por dónde<br/><em>empezar?</em></h2>
+<p>Usa nuestro autodiagnóstico gratuito y recibe en WhatsApp una recomendación personalizada para tu empresa en menos de 2 minutos.</p>
+</div>
+<div class="svc-mid-cta-right reveal reveal-delay-2">
+<a class="btn-primary shine-el" href="#autodiagnostico">
+<span>Iniciar Diagnóstico</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+<a class="btn-ghost" href="https://wa.me/525540152551?text=Hola%20INDUSECC,%20quiero%20una%20cotización." target="_blank">
+<div class="btn-ghost-line"></div>
+      Hablar con experto
+    </a>
+</div>
+</div>
+<!-- ══ AUTODIAGNÓSTICO ══ -->
+<section class="diag-section" id="autodiagnostico">
+<div class="diag-header">
+<div class="section-tag reveal">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Herramienta Gratuita</span>
+</div>
+<h2 class="section-title reveal reveal-delay-1">Autodiagnóstico<br/><em>Empresarial</em></h2>
+<div class="section-rule reveal reveal-delay-2" style="justify-content:center;"><div class="rule-wine"></div><div class="rule-gold"></div></div>
+<p class="reveal reveal-delay-3">Responde 6 preguntas sobre tu empresa y recibirás una recomendación personalizada directamente en WhatsApp. Sin costo, sin compromiso.</p>
+</div>
+<div class="diag-progress-wrap reveal">
+<div class="diag-progress-track">
+<div class="diag-progress-bar" id="diagProgressBar" style="width:16.6%"></div>
+</div>
+<div class="diag-progress-labels">
+<span class="diag-prog-step active" id="ps1">Sector</span>
+<span class="diag-prog-step" id="ps2">Tamaño</span>
+<span class="diag-prog-step" id="ps3">Objetivo</span>
+<span class="diag-prog-step" id="ps4">Estado actual</span>
+<span class="diag-prog-step" id="ps5">Urgencia</span>
+<span class="diag-prog-step" id="ps6">Presupuesto</span>
+</div>
+</div>
+<div class="diag-card reveal" id="diagCard">
+<div class="diag-card-head">
+<div class="diag-q-num" id="diagQNum">Pregunta 1 de 6</div>
+<div class="diag-q-text" id="diagQText">¿En qué sector opera tu empresa?</div>
+</div>
+<div class="diag-card-body">
+<div class="diag-opts" id="diagOpts"></div>
+</div>
+<div class="diag-card-foot">
+<button class="diag-btn-prev" id="diagPrev" onclick="diagPrev()" style="visibility:hidden">← Anterior</button>
+<button class="diag-btn-next" disabled="" id="diagNext" onclick="diagNext()">
+        Siguiente
+        <svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24"><path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</button>
+</div>
+</div>
+<div class="diag-result" id="diagResult">
+<div class="diag-result-header">
+<div class="diag-res-tag">Resultado de tu diagnóstico</div>
+<h3 class="diag-res-title" id="diagResTitle">Tu diagnóstico <em>personalizado</em></h3>
+<p class="diag-res-sub" id="diagResSub">Basado en tus respuestas, te recomendamos los siguientes servicios:</p>
+</div>
+<div class="diag-result-body">
+<div class="diag-result-recs">
+<div class="diag-recs-label">Servicios recomendados para tu empresa</div>
+<div id="diagRecsList"></div>
+</div>
+<div class="diag-result-summary">
+<div class="diag-sum-label">Resumen de tu perfil</div>
+<div class="diag-sum-text" id="diagSumText"></div>
+</div>
+<div class="diag-result-actions">
+<a class="diag-wa-btn" href="#" id="diagWaBtn" target="_blank">
+<svg fill="currentColor" viewbox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg>
+          Enviar resultado por WhatsApp
+        </a>
+<button class="diag-restart-btn" onclick="diagRestart()">↺ Reiniciar diagnóstico</button>
+</div>
+</div>
+</div>
+</section>
+<!-- ══ FOOTER ══ -->
+<footer class="ind-footer-wrap">
+<div class="ind-f-top-accent"></div>
+<div class="ind-f-main">
+<div class="ind-f-grid reveal">
+<div class="ind-f-brand">
+<div class="ind-f-logo-container">
+<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+</div>
+<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
+<div class="ind-f-contact-strip">
+<a class="ind-f-contact-link" href="tel:5540152551">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            55 4015 2551
+          </a>
+<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            danna@indusecc.com.mx
+          </a>
+<div class="ind-f-contact-link">
+<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            CDMX, México
+          </div>
+</div>
+</div>
+<div>
+<h4 class="ind-f-title">Navegación</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+<li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+<li><a class="ind-f-item-link" href="nosotros.html">¿Quiénes Somos?</a></li>
+<li><a class="ind-f-item-link" href="index.html#testimonios">Clientes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Servicios</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="implementacion-sistema.html">Implementción de un sistema de gestión</a></li>
+<li><a class="ind-f-item-link" href="consultoria-asesoria.html">Consultoria y asesoria</a></li>
+<li><a class="ind-f-item-link" href="certificacion-iso_.html">Certificación ISO</a></li>
+<li><a class="ind-f-item-link" href="auditorias.html">Auditorías</a></li>
+</ul>
+</div>
+<div>
+<h4 class="ind-f-title">Legal y Soporte</h4>
+<ul class="ind-f-list">
+<li><a class="ind-f-item-link" href="contacto.html">Contáctanos</a></li>
+<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
+<li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
+<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
+</ul>
+ <div class="ind-f-social-wrap">
+          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="#">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          </a>
+          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+          </a>
+          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
+            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+<div class="ind-f-bottom">
+<div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+<div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
+</div>
+</footer>
+<script>
+/* ══ ESTADO COMPARTIDO ══ */
+let isMidnight   = localStorage.getItem('ind-theme') === 'midnight';
+let fontLevel    = parseInt(localStorage.getItem('ind-font') || '0');
+let highContrast = localStorage.getItem('ind-contrast') === '1';
+let reducedMo    = localStorage.getItem('ind-motion') === '1';
+
+/* ══ TEMA ══ */
+function applyTheme() {
+  document.body.classList.toggle('midnight', isMidnight);
+  const sunSVG  = '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  const moonSVG = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  const di = document.getElementById('themeIcon'), dl = document.getElementById('themeLabel');
+  const mi = document.getElementById('mobThemeIcon'), ml = document.getElementById('mobThemeLabel');
+  if (isMidnight) {
+    if (di) di.innerHTML = sunSVG; if (dl) dl.textContent = 'Claro';
+    if (mi) mi.innerHTML = sunSVG; if (ml) ml.textContent = 'Volver a Normal';
+  } else {
+    if (di) di.innerHTML = moonSVG; if (dl) dl.textContent = 'Oscuro';
+    if (mi) mi.innerHTML = moonSVG; if (ml) ml.textContent = 'Activar Oscuro';
+  }
+}
+function toggleTheme() {
+  isMidnight = !isMidnight;
+  localStorage.setItem('ind-theme', isMidnight ? 'midnight' : 'normal');
+  applyTheme();
+}
+
+/* ══ ACCESIBILIDAD ══ */
+function applyFontLevel() {
+  document.body.classList.remove('a11y-large');
+  if (fontLevel === 1) { document.body.classList.add('a11y-large'); document.body.style.fontSize = ''; }
+  else if (fontLevel === -1) { document.body.style.fontSize = '14px'; }
+  else { document.body.style.fontSize = ''; }
+  ['fontUp','mobFontUp'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', fontLevel===1); });
+  ['fontDown','mobFontDown'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', fontLevel===-1); });
+}
+function applyContrast() {
+  document.body.classList.toggle('a11y-high-contrast', highContrast);
+  ['contrastBtn','mobContrastBtn'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', highContrast); });
+}
+function applyMotion() {
+  document.body.classList.toggle('a11y-reduced-motion', reducedMo);
+  ['motionBtn','mobMotionBtn'].forEach(id => { const el=document.getElementById(id); if(el) el.classList.toggle('active', reducedMo); });
+}
+
+function wireBtn(id, fn) { const el=document.getElementById(id); if(el) el.addEventListener('click', fn); }
+
+/* Panel a11y desktop */
+const a11yTrigger = document.getElementById('a11yTrigger'), a11yPanel = document.getElementById('a11yPanel');
+if (a11yTrigger && a11yPanel) {
+  a11yTrigger.addEventListener('click', e => { e.stopPropagation(); a11yPanel.classList.toggle('open'); });
+  document.addEventListener('click', e => { if (!a11yPanel.contains(e.target) && e.target !== a11yTrigger) a11yPanel.classList.remove('open'); });
+}
+wireBtn('fontUp',      () => { fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('fontDown',    () => { fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('contrastBtn', () => { highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('motionBtn',   () => { reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('a11yReset',   () => { fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* Mobile Controls Sheet */
+const mobCtrlSheet = document.getElementById('mobCtrlSheet'), mobCtrlOverlay = document.getElementById('mobCtrlOverlay');
+function openMobCtrl()    { if(mobCtrlSheet) mobCtrlSheet.classList.add('active');    if(mobCtrlOverlay) mobCtrlOverlay.classList.add('active'); }
+function closeMobCtrlFn() { if(mobCtrlSheet) mobCtrlSheet.classList.remove('active'); if(mobCtrlOverlay) mobCtrlOverlay.classList.remove('active'); }
+wireBtn('btnMobControls', openMobCtrl);
+wireBtn('closeMobCtrl',   closeMobCtrlFn);
+if (mobCtrlOverlay) mobCtrlOverlay.addEventListener('click', closeMobCtrlFn);
+wireBtn('mobFontUp',      () => { fontLevel=Math.min(1,fontLevel+1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobFontDown',    () => { fontLevel=Math.max(-1,fontLevel-1); applyFontLevel(); localStorage.setItem('ind-font',fontLevel); });
+wireBtn('mobContrastBtn', () => { highContrast=!highContrast; applyContrast(); localStorage.setItem('ind-contrast',highContrast?'1':'0'); });
+wireBtn('mobMotionBtn',   () => { reducedMo=!reducedMo; applyMotion(); localStorage.setItem('ind-motion',reducedMo?'1':'0'); });
+wireBtn('mobA11yReset',   () => { fontLevel=0; highContrast=false; reducedMo=false; ['ind-font','ind-contrast','ind-motion'].forEach(k=>localStorage.removeItem(k)); document.body.style.fontSize=''; applyFontLevel(); applyContrast(); applyMotion(); });
+
+/* Services Sheet Mobile */
+const btnServicesMobile = document.getElementById('btnServicesMobile');
+const servicesSheet     = document.getElementById('servicesSheet');
+const sheetOverlay      = document.getElementById('sheetOverlay');
+const closeSheetBtn     = document.getElementById('closeSheet');
+function openServicesSheet()  { if(servicesSheet) servicesSheet.classList.add('active'); if(sheetOverlay) sheetOverlay.classList.add('active'); }
+function closeServicesSheet() { if(servicesSheet) servicesSheet.classList.remove('active'); if(sheetOverlay) sheetOverlay.classList.remove('active'); }
+if (btnServicesMobile) btnServicesMobile.addEventListener('click', openServicesSheet);
+if (closeSheetBtn)     closeSheetBtn.addEventListener('click', closeServicesSheet);
+if (sheetOverlay)      sheetOverlay.addEventListener('click', closeServicesSheet);
+
+/* ══ NAVBAR SCROLL ══ */
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+/* ══ SCROLL REVEAL ══ */
+(function(){
+  const all = document.querySelectorAll('.reveal');
+  all.forEach(el => el.classList.add('animate-ready'));
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+  },{ threshold:0.01, rootMargin:'0px 0px 80px 0px' });
+  all.forEach(el => io.observe(el));
+})();
+
+/* ══ SMOOTH SCROLL ══ */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href && href !== '#') {
+      const t = document.querySelector(href);
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth' }); }
+    }
+  });
+});
+
+/* ══ FILTER TABS ══ */
+document.querySelectorAll('.svc-filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.svc-filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.getAttribute('data-filter');
+    document.querySelectorAll('.svc-card').forEach(card => {
+      card.style.display = (filter === 'all' || card.getAttribute('data-category') === filter) ? 'flex' : 'none';
+    });
+    document.querySelectorAll('.svc-detail-wrap').forEach(d => d.classList.remove('open'));
+  });
+});
+
+/* ══ DETAIL EXPAND ══ */
+function toggleDetail(id) {
+  document.querySelectorAll('.svc-detail-wrap').forEach(d => { if(d.id !== id) d.classList.remove('open'); });
+  const el = document.getElementById(id);
+  const isOpen = el.classList.contains('open');
+  el.classList.toggle('open');
+  if (!isOpen) setTimeout(() => el.scrollIntoView({ behavior:'smooth', block:'nearest' }), 100);
+}
+function closeDetail(id) { document.getElementById(id).classList.remove('open'); }
+
+/* ══ AUTODIAGNÓSTICO ══ */
+const QUESTIONS = [
+  { id:'sector', text:'¿En qué sector opera tu empresa?', opts:['Manufactura e Industria','Construcción e Ingeniería','Servicios y Comercio','Salud / Farmacéutica','Tecnología y TI','Otro / Múltiples sectores'] },
+  { id:'size', text:'¿Cuántos empleados tiene tu empresa?', opts:['1 – 10 (Microempresa)','11 – 50 (Pequeña empresa)','51 – 250 (Mediana empresa)','251 – 1,000 (Grande empresa)','Más de 1,000 empleados'] },
+  { id:'goal', text:'¿Cuál es tu principal objetivo ahora mismo?', opts:['Obtener una certificación ISO','Mejorar mis procesos internos','Cumplir con requisitos de clientes','Reducir accidentes / riesgos laborales','Capacitar a mi equipo','No sé, necesito orientación'] },
+  { id:'status', text:'¿Cuál es el estado actual de tus sistemas de gestión?', opts:['No tenemos ningún sistema implementado','Tenemos procesos informales sin documentar','Tenemos algo documentado pero sin certificar','Estamos certificados y queremos mejorar/renovar','Tenemos varias normas implementadas'] },
+  { id:'urgency', text:'¿Con qué urgencia necesitas iniciar?', opts:['Lo necesito ahora mismo (urgente)','En el próximo mes','En los próximos 3 meses','En los próximos 6 meses','Solo estoy explorando opciones'] },
+  { id:'budget', text:'¿Cuál es tu disponibilidad de presupuesto aproximada?', opts:['Menos de $20,000 MXN','$20,000 – $60,000 MXN','$60,000 – $150,000 MXN','Más de $150,000 MXN','No lo he definido aún'] }
+];
+
+let diagStep = 0;
+let diagAnswers = {};
+
+function renderDiagQuestion() {
+  const q = QUESTIONS[diagStep];
+  document.getElementById('diagQNum').textContent = `Pregunta ${diagStep+1} de ${QUESTIONS.length}`;
+  document.getElementById('diagQText').textContent = q.text;
+  const optsEl = document.getElementById('diagOpts');
+  optsEl.innerHTML = '';
+  q.opts.forEach(opt => {
+    const btn = document.createElement('button');
+    btn.className = 'diag-opt' + (diagAnswers[q.id] === opt ? ' selected' : '');
+    btn.textContent = opt;
+    btn.onclick = () => {
+      diagAnswers[q.id] = opt;
+      document.querySelectorAll('.diag-opt').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('diagNext').disabled = false;
+    };
+    optsEl.appendChild(btn);
+  });
+  const pct = ((diagStep+1) / QUESTIONS.length * 100).toFixed(1);
+  document.getElementById('diagProgressBar').style.width = pct + '%';
+  ['ps1','ps2','ps3','ps4','ps5','ps6'].forEach((sid, idx) => {
+    const el = document.getElementById(sid);
+    el.className = 'diag-prog-step';
+    if (idx < diagStep) el.classList.add('done');
+    else if (idx === diagStep) el.classList.add('active');
+  });
+  document.getElementById('diagPrev').style.visibility = diagStep > 0 ? 'visible' : 'hidden';
+  const nextBtn = document.getElementById('diagNext');
+  const svg = '<svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2" style="width:14px;height:14px"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>';
+  nextBtn.innerHTML = (diagStep === QUESTIONS.length - 1 ? 'Ver resultado' : 'Siguiente') + ' ' + svg;
+  nextBtn.disabled = !diagAnswers[q.id];
+}
+
+function diagNext() {
+  const q = QUESTIONS[diagStep];
+  if (!diagAnswers[q.id]) return;
+  if (diagStep < QUESTIONS.length - 1) {
+    diagStep++;
+    renderDiagQuestion();
+  } else {
+    showDiagResult();
+  }
+}
+
+function diagPrev() {
+  if (diagStep > 0) { diagStep--; renderDiagQuestion(); }
+}
+
+function diagRestart() {
+  diagStep = 0; diagAnswers = {};
+  document.getElementById('diagCard').style.display = 'flex';
+  document.getElementById('diagResult').classList.remove('show');
+  document.querySelector('.diag-progress-wrap').style.display = 'block';
+  renderDiagQuestion();
+  document.getElementById('autodiagnostico').scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+function buildRecs() {
+  const a = diagAnswers; const recs = [];
+  if (a.goal === 'Obtener una certificación ISO') { recs.push({name:'Certificación ISO',desc:'Proceso completo de preparación y acompañamiento para obtener tu certificado ISO con el organismo acreditado.'}); recs.push({name:'Sistemas de Gestión ISO',desc:'Implementación del sistema de gestión requerido como base para la certificación.'}); }
+  else if (a.goal === 'Mejorar mis procesos internos') { recs.push({name:'Consultoría Especializada',desc:'Análisis de procesos, identificación de áreas de mejora y diseño de un plan de acción personalizado.'}); recs.push({name:'Sistemas de Gestión ISO',desc:'Estandarización y documentación de procesos bajo normas internacionales.'}); }
+  else if (a.goal === 'Cumplir con requisitos de clientes') { recs.push({name:'Certificación ISO 9001:2015',desc:'La certificación más reconocida globalmente que avala la calidad de tus productos y servicios ante clientes.'}); recs.push({name:'Auditorías de Segunda Parte',desc:'Preparación para auditorías de clientes y gestión de la cadena de suministro.'}); }
+  else if (a.goal === 'Reducir accidentes / riesgos laborales') { recs.push({name:'Seguridad e Higiene Industrial',desc:'Diagnóstico y cumplimiento NOM-STPS, programa de seguridad e implementación ISO 45001.'}); recs.push({name:'Capacitación en Seguridad',desc:'Formación de comisiones de seguridad, brigadas y cultura de prevención.'}); }
+  else if (a.goal === 'Capacitar a mi equipo') { recs.push({name:'Capacitación Empresarial',desc:'Programas formativos en normas ISO, liderazgo, mejora continua y formación de auditores internos.'}); }
+  else { recs.push({name:'Consultoría de Diagnóstico',desc:'Sesión gratuita de orientación con nuestros expertos para identificar el camino más adecuado para tu empresa.'}); }
+  if (a.status === 'Estamos certificados y queremos mejorar/renovar') recs.push({name:'Auditoría Interna de Seguimiento',desc:'Evaluación del sistema existente y preparación para la auditoría de renovación del certificado.'});
+  if (recs.length === 0) { recs.push({name:'Consultoría Especializada',desc:'Te ayudamos a identificar el mejor camino hacia la excelencia operativa.'}); recs.push({name:'Capacitación Empresarial',desc:'Fortalece las capacidades de tu equipo con nuestros programas certificados.'}); }
+  return recs.slice(0, 3);
+}
+
+function showDiagResult() {
+  document.getElementById('diagCard').style.display = 'none';
+  document.querySelector('.diag-progress-wrap').style.display = 'none';
+  const recs = buildRecs();
+  const a = diagAnswers;
+  document.getElementById('diagResTitle').innerHTML = `Diagnóstico para tu empresa <em>${a.sector || ''}</em>`;
+  document.getElementById('diagResSub').textContent = 'Con base en tus respuestas, hemos identificado los servicios que mejor se adaptan a tu situación actual:';
+  const listEl = document.getElementById('diagRecsList');
+  listEl.innerHTML = '';
+  recs.forEach((r, i) => { listEl.innerHTML += `<div class="diag-rec-item"><div class="diag-rec-num">${i+1}</div><div><div class="diag-rec-name">${r.name}</div><p class="diag-rec-desc">${r.desc}</p></div></div>`; });
+  const summary = `Empresa del sector ${a.sector||'–'} · ${a.size||'–'}\nObjetivo principal: ${a.goal||'–'}\nEstado actual: ${a.status||'–'}\nUrgencia: ${a.urgency||'–'}\nPresupuesto aprox.: ${a.budget||'–'}\n\nServicios recomendados: ${recs.map(r=>r.name).join(', ')}`;
+  document.getElementById('diagSumText').textContent = summary;
+  const waMsg = `¡Hola INDUSECC! 👋 Acabo de completar el autodiagnóstico en su página web.\n\n📊 *Mis respuestas:*\n• Sector: ${a.sector||'–'}\n• Tamaño: ${a.size||'–'}\n• Objetivo: ${a.goal||'–'}\n• Estado actual: ${a.status||'–'}\n• Urgencia: ${a.urgency||'–'}\n• Presupuesto: ${a.budget||'–'}\n\n✅ *Servicios recomendados:*\n${recs.map((r,i)=>`${i+1}. ${r.name}`).join('\n')}\n\n¿Podríamos agendar una sesión para recibir una propuesta personalizada?`;
+  document.getElementById('diagWaBtn').href = 'https://wa.me/525540152551?text=' + encodeURIComponent(waMsg);
+  document.getElementById('diagResult').classList.add('show');
+  setTimeout(() => document.getElementById('diagResult').scrollIntoView({ behavior:'smooth', block:'start' }), 100);
+}
+
+/* ══ INIT ══ */
+applyTheme();
+applyFontLevel();
+applyContrast();
+applyMotion();
+renderDiagQuestion();
+</script>
+</body>
+</html>
