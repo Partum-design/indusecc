@@ -420,6 +420,182 @@ a { color: inherit; }
   line-height: 1.84;
 }
 
+.hub-tools {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.hub-search-block {
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 92% 8%, rgba(201,168,76,.16), transparent 36%),
+    linear-gradient(145deg, #fff, #f8f2e8);
+  padding: 18px;
+}
+.hub-search-label {
+  display: block;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.hub-search-wrap {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+}
+.hub-search-input {
+  width: 100%;
+  border: 1px solid rgba(123,30,34,.26);
+  background: rgba(255,255,255,.95);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 14px;
+  line-height: 1.2;
+  padding: 12px 14px;
+}
+.hub-search-input:focus {
+  outline: 2px solid rgba(201,168,76,.45);
+  border-color: rgba(123,30,34,.45);
+}
+.hub-search-clear {
+  border: 1px solid rgba(123,30,34,.45);
+  background: rgba(123,30,34,.9);
+  color: var(--gold-light);
+  min-width: 102px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 0 12px;
+}
+.hub-search-help {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 10px;
+  line-height: 1.7;
+}
+.hub-topic-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.hub-topic {
+  border: 1px solid rgba(123,30,34,.22);
+  background: #fff;
+  color: var(--wine);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+.hub-topic.active,
+.hub-topic:hover {
+  border-color: rgba(123,30,34,.42);
+  background: rgba(123,30,34,.9);
+  color: var(--gold-light);
+}
+.hub-live {
+  margin-top: 10px;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.hub-suggest {
+  margin-top: 12px;
+  border-top: 1px solid rgba(123,30,34,.18);
+  padding-top: 12px;
+}
+.hub-suggest h3 {
+  color: var(--ink);
+  font-size: 10px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.hub-suggest-list {
+  display: grid;
+  gap: 8px;
+}
+.hub-suggest-item {
+  border: 1px solid rgba(123,30,34,.16);
+  background: #fff;
+  padding: 12px;
+}
+.hub-suggest-item h4 {
+  color: var(--ink);
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  line-height: 1.2;
+}
+.hub-suggest-meta {
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+.hub-suggest-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--wine);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(123,30,34,.28);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding-bottom: 4px;
+}
+.hub-suggest-link.secondary {
+  color: #7f6668;
+  border-color: rgba(127,102,104,.35);
+}
+.hub-quick {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 16px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+.hub-quick h3 {
+  color: var(--wine);
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.hub-quick-link {
+  text-decoration: none;
+  border: 1px solid rgba(123,30,34,.16);
+  background: #fff;
+  color: var(--ink);
+  padding: 11px 12px;
+  line-height: 1.55;
+}
+.hub-quick-link strong {
+  display: block;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.hub-quick-link span {
+  color: var(--muted);
+  font-size: 13px;
+}
+.hub-quick-link:hover { background: #fbf6ee; }
+
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -431,6 +607,7 @@ a { color: inherit; }
   overflow: hidden;
   transition: transform .24s ease, box-shadow .24s ease;
 }
+.hub-card.is-hidden { display: none; }
 .hub-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 42px rgba(80,20,24,.11);
@@ -518,6 +695,14 @@ a { color: inherit; }
   line-height: 1.8;
 }
 .hub-note strong { color: var(--wine); }
+.hub-empty {
+  margin-top: 14px;
+  border: 1px dashed rgba(123,30,34,.36);
+  background: #fff;
+  padding: 15px;
+  color: var(--muted);
+  line-height: 1.75;
+}
 
 /* A11Y states */
 body.a11y-high-contrast { filter: contrast(1.25) saturate(1.05); }
@@ -531,6 +716,7 @@ body.a11y-reduced-motion *::after {
 
 /* Responsive */
 @media (max-width: 1080px) {
+  .hub-tools { grid-template-columns: 1fr; }
   .hub-card--featured,
   .hub-card--next { grid-column: span 12; }
 }
@@ -556,6 +742,10 @@ body.a11y-reduced-motion *::after {
   .blog-hero p { font-size: 14px; }
   .hub-main { padding: 48px 14px 70px; }
   .hub-head p { font-size: 14px; }
+  .hub-search-block,
+  .hub-quick { padding: 14px; }
+  .hub-search-wrap { grid-template-columns: 1fr; }
+  .hub-search-clear { height: 40px; }
   .ind-f-main { padding: 56px 20px 24px; }
   .ind-f-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
   .ind-f-contact-strip { align-items: center; }
@@ -671,8 +861,47 @@ body.a11y-reduced-motion *::after {
     </p>
   </div>
 
+  <section class="hub-tools" aria-label="Buscador y sugerencias de blogs">
+    <div class="hub-search-block">
+      <label class="hub-search-label" for="blogSearch">Buscador de blogs</label>
+      <div class="hub-search-wrap">
+        <input class="hub-search-input" id="blogSearch" type="search" placeholder="Buscar por norma, cl&aacute;usula, tema o palabra clave" autocomplete="off" aria-describedby="blogSearchHelp blogSearchCount"/>
+        <button class="hub-search-clear" id="blogSearchClear" type="button" aria-label="Limpiar b&uacute;squeda">Limpiar</button>
+      </div>
+      <p class="hub-search-help" id="blogSearchHelp">
+        Escribe algo como: 14001, transici&oacute;n, auditor&iacute;a, cadena de suministro, riesgo clim&aacute;tico.
+      </p>
+      <div class="hub-topic-row" role="list" aria-label="Temas recomendados">
+        <button class="hub-topic" type="button" data-topic="ISO 14001:2026">ISO 14001:2026</button>
+        <button class="hub-topic" type="button" data-topic="Transici&oacute;n 2029">Transici&oacute;n 2029</button>
+        <button class="hub-topic" type="button" data-topic="Cadena de suministro">Cadena de suministro</button>
+        <button class="hub-topic" type="button" data-topic="Auditor&iacute;a interna">Auditor&iacute;a interna</button>
+      </div>
+      <p class="hub-live" id="blogSearchCount" aria-live="polite">Mostrando 3 blogs</p>
+      <div class="hub-suggest" id="blogSuggest" hidden>
+        <h3>Sugerencias de lectura</h3>
+        <div class="hub-suggest-list" id="blogSuggestList"></div>
+      </div>
+    </div>
+    <aside class="hub-quick" aria-label="Recomendaciones para ver blogs">
+      <h3>Explorar ahora</h3>
+      <a class="hub-quick-link" href="blog-iso-14001-2026-mexico-guia-transicion.html">
+        <strong>Blog destacado</strong>
+        <span>ISO 14001:2026 en M&eacute;xico: cambios, cl&aacute;usulas y transici&oacute;n oficial.</span>
+      </a>
+      <a class="hub-quick-link" href="contacto.html">
+        <strong>Recibir avisos</strong>
+        <span>Solicita notificaciones cuando publiquemos nuevos blogs t&eacute;cnicos ISO.</span>
+      </a>
+      <a class="hub-quick-link" href="contacto.html">
+        <strong>Quiero asesor&iacute;a</strong>
+        <span>Agenda diagn&oacute;stico para preparar la migraci&oacute;n de tu sistema.</span>
+      </a>
+    </aside>
+  </section>
+
   <section class="hub-grid" aria-label="Listado de blogs">
-    <article class="hub-card hub-card--featured">
+    <article class="hub-card hub-card--featured" data-blog-card data-title="Gu&iacute;a general ISO 14001:2026 para empresas en M&eacute;xico" data-link="blog-iso-14001-2026-mexico-guia-transicion.html" data-available="true" data-status="Publicado" data-search="ISO 14001:2026 M&eacute;xico transici&oacute;n 2029 cl&aacute;usulas auditor&iacute;a cadena de suministro gesti&oacute;n ambiental">
       <div class="hub-media">
         <img src="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg" alt="Art&iacute;culo ISO 14001:2026"/>
         <span class="hub-tag">Nuevo &middot; ISO 14001:2026</span>
@@ -688,7 +917,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </article>
 
-    <article class="hub-card hub-card--next">
+    <article class="hub-card hub-card--next" data-blog-card data-title="Integraci&oacute;n ISO 9001 + ISO 14001 en sistemas de gesti&oacute;n" data-link="contacto.html" data-available="false" data-status="Pr&oacute;ximamente" data-search="ISO 9001 ISO 14001 integraci&oacute;n sistemas de gesti&oacute;n auditor&iacute;as internas revisi&oacute;n directiva">
       <div class="hub-media">
         <img src="img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg" alt="Pr&oacute;ximo art&iacute;culo ISO"/>
         <span class="hub-tag">Pr&oacute;ximamente</span>
@@ -701,7 +930,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </article>
 
-    <article class="hub-card hub-card--next">
+    <article class="hub-card hub-card--next" data-blog-card data-title="Control ambiental de proveedores y evidencia auditada" data-link="contacto.html" data-available="false" data-status="Pr&oacute;ximamente" data-search="control ambiental proveedores cadena de suministro evidencia auditada cl&aacute;usula 8.1 criterios medibles seguimiento">
       <div class="hub-media">
         <img src="img_blogs/bulb-is-located-inside-with-leaves-forest-trees-are-light-concepts-environmental-conservation-global-warming-plant-growing-inside-lamp-bulb-dry.jpg.jpeg" alt="Pr&oacute;ximo art&iacute;culo sobre cadena de suministro"/>
         <span class="hub-tag">Pr&oacute;ximamente</span>
@@ -714,10 +943,13 @@ body.a11y-reduced-motion *::after {
       </div>
     </article>
   </section>
+  <p class="hub-empty" id="hubEmpty" hidden>
+    No encontramos blogs con ese criterio. Prueba con otro t&eacute;rmino o usa las sugerencias de temas.
+  </p>
 
   <div class="hub-note">
-    <strong>Secci&oacute;n escalable:</strong> esta parrilla ya est&aacute; lista para agregar nuevos blogs ISO sin rehacer dise&ntilde;o.
-    Se pueden incorporar paginaci&oacute;n, filtros por norma y buscador cuando lo quieras.
+    <strong>Secci&oacute;n escalable:</strong> este hub ya integra buscador, sugerencias y recomendaciones para crecer sin rehacer dise&ntilde;o.
+    Cuando quieras, podemos sumar paginaci&oacute;n, filtros avanzados por norma y etiquetas por sector.
   </div>
 </main>
 
@@ -827,7 +1059,139 @@ body.a11y-reduced-motion *::after {
     apply();
   });
 
+  function normalizeText(value) {
+    return (value || '')
+      .toString()
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .trim();
+  }
+
+  function setupBlogSearch() {
+    const search = document.getElementById('blogSearch');
+    if (!search) return;
+
+    const clear = document.getElementById('blogSearchClear');
+    const cards = Array.from(document.querySelectorAll('[data-blog-card]'));
+    const topics = Array.from(document.querySelectorAll('.hub-topic'));
+    const count = document.getElementById('blogSearchCount');
+    const empty = document.getElementById('hubEmpty');
+    const suggest = document.getElementById('blogSuggest');
+    const suggestList = document.getElementById('blogSuggestList');
+
+    const cardData = cards.map(function (card) {
+      const title = (card.dataset.title || (card.querySelector('.hub-title') ? card.querySelector('.hub-title').textContent : '') || '').trim();
+      const description = (card.querySelector('.hub-desc') ? card.querySelector('.hub-desc').textContent : '').trim();
+      const meta = (card.querySelector('.hub-meta') ? card.querySelector('.hub-meta').textContent : '').trim();
+      return {
+        card: card,
+        title: title,
+        description: description,
+        meta: meta,
+        link: card.dataset.link || '#',
+        available: card.dataset.available !== 'false',
+        status: card.dataset.status || 'Próximamente',
+        searchText: normalizeText([card.dataset.search || '', title, description, meta].join(' '))
+      };
+    });
+
+    function renderSuggestions(query, matches) {
+      suggestList.innerHTML = '';
+      if (!matches.length) {
+        suggest.hidden = true;
+        return;
+      }
+
+      const ranked = matches.slice().sort(function (a, b) {
+        const aTitle = normalizeText(a.title);
+        const bTitle = normalizeText(b.title);
+        const aStarts = query && aTitle.startsWith(query) ? 1 : 0;
+        const bStarts = query && bTitle.startsWith(query) ? 1 : 0;
+        if (aStarts !== bStarts) return bStarts - aStarts;
+        if (a.available !== b.available) return a.available ? -1 : 1;
+        return 0;
+      }).slice(0, 3);
+
+      ranked.forEach(function (item) {
+        const article = document.createElement('article');
+        article.className = 'hub-suggest-item';
+
+        const title = document.createElement('h4');
+        title.textContent = item.title;
+        article.appendChild(title);
+
+        const meta = document.createElement('p');
+        meta.className = 'hub-suggest-meta';
+        meta.textContent = item.status + ' · ' + item.meta;
+        article.appendChild(meta);
+
+        const link = document.createElement('a');
+        link.className = 'hub-suggest-link';
+        if (!item.available) link.classList.add('secondary');
+        link.href = item.link;
+        link.textContent = item.available ? 'Ver blog' : 'Ver más';
+        article.appendChild(link);
+
+        suggestList.appendChild(article);
+      });
+
+      suggest.hidden = false;
+    }
+
+    function filterCards(rawValue) {
+      const query = normalizeText(rawValue);
+      const matches = [];
+      let visibleCount = 0;
+
+      cardData.forEach(function (item) {
+        const match = !query || item.searchText.includes(query);
+        item.card.classList.toggle('is-hidden', !match);
+        if (match) {
+          visibleCount += 1;
+          matches.push(item);
+        }
+      });
+
+      count.textContent = visibleCount === 1 ? 'Mostrando 1 blog' : ('Mostrando ' + visibleCount + ' blogs');
+      empty.hidden = visibleCount !== 0;
+      renderSuggestions(query, matches);
+
+      topics.forEach(function (button) {
+        const topicText = normalizeText(button.dataset.topic || '');
+        button.classList.toggle('active', query !== '' && query === topicText);
+      });
+    }
+
+    search.addEventListener('input', function () {
+      filterCards(search.value);
+    });
+
+    clear.addEventListener('click', function () {
+      search.value = '';
+      search.focus();
+      filterCards('');
+    });
+
+    topics.forEach(function (button) {
+      button.addEventListener('click', function () {
+        search.value = button.dataset.topic || '';
+        filterCards(search.value);
+        search.focus();
+      });
+    });
+
+    search.addEventListener('keydown', function (e) {
+      if (e.key !== 'Enter') return;
+      const first = cardData.find(function (item) { return !item.card.classList.contains('is-hidden'); });
+      if (first && first.link && first.link !== '#') window.location.href = first.link;
+    });
+
+    filterCards('');
+  }
+
   apply();
+  setupBlogSearch();
 })();
 </script>
 </body>
