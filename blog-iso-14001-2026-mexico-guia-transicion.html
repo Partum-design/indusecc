@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>ISO 14001:2026 | Gu&iacute;a General de Cambios, Cronograma de Transici&oacute;n y Requisitos Clave en M&eacute;xico</title>
-<meta name="description" content="An&aacute;lisis general de ISO 14001:2026 para empresas: cambios por cl&aacute;usula, cronograma 2026-2029, impacto operativo y lineamientos de implementaci&oacute;n en M&eacute;xico."/>
+<title>ISO 14001:2026 en M&eacute;xico | Cambios, Cl&aacute;usulas, Transici&oacute;n 2026-2029 y Gu&iacute;a de Implementaci&oacute;n</title>
+<meta name="description" content="Gu&iacute;a completa y actualizada de ISO 14001:2026 en M&eacute;xico: cambios estructurales, an&aacute;lisis por cl&aacute;usula, cronograma oficial 2026-2029, impacto en cadena de suministro y ruta pr&aacute;ctica de transici&oacute;n."/>
 <link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Outfit:wght@300;400;500;600;700;800&display=swap"/>
@@ -649,6 +649,43 @@ body.a11y-reduced-motion *::after {
   line-height: 1.85;
   margin-bottom: 12px;
 }
+.iso-subtitle {
+  color: var(--wine);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.iso-list {
+  list-style: none;
+  display: grid;
+  gap: 9px;
+  margin: 10px 0 0;
+}
+.iso-list li {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: 14px;
+  padding-left: 13px;
+  position: relative;
+}
+.iso-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.iso-emphasis {
+  border-left: 4px solid var(--wine);
+  background: #faf6ef;
+  padding: 14px 14px 14px 16px;
+  color: #4a3436;
+}
 .iso-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
@@ -727,6 +764,112 @@ body.a11y-reduced-motion *::after {
   font-family: 'Playfair Display', serif;
 }
 .iso-step p { margin: 0; }
+.iso-faq {
+  display: grid;
+  gap: 10px;
+}
+.iso-faq details {
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.iso-faq summary {
+  cursor: pointer;
+  padding: 13px 14px;
+  color: var(--wine);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-weight: 700;
+}
+.iso-faq-body {
+  border-top: 1px solid var(--line);
+  padding: 14px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.iso-faq-body p:last-child { margin-bottom: 0; }
+.iso-highlight {
+  border: 1px solid var(--line);
+  background: linear-gradient(140deg, rgba(123,30,34,.97), rgba(59,12,15,.97));
+  padding: 18px;
+}
+.iso-highlight h3 {
+  color: var(--gold-light);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  margin-bottom: 8px;
+}
+.iso-highlight p {
+  color: rgba(255,255,255,.86);
+  margin: 0;
+}
+.iso-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--line);
+}
+.iso-pillar {
+  background: #fff;
+  padding: 16px 14px;
+}
+.iso-pillar strong {
+  display: block;
+  color: var(--wine);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  margin-bottom: 8px;
+}
+.iso-pillar p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.iso-source-list {
+  display: grid;
+  gap: 8px;
+}
+.iso-source-list a {
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--wine);
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.58;
+}
+.iso-source-list a:hover { background: #f8f0e4; }
+.iso-next {
+  margin-top: 12px;
+  border: 1px solid var(--line);
+  background: linear-gradient(135deg, rgba(123,30,34,.98), rgba(58,12,15,.98));
+  padding: 20px;
+}
+.iso-next h3 {
+  color: var(--gold-light);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  margin-bottom: 10px;
+}
+.iso-next p {
+  color: rgba(255,255,255,.84);
+  margin-bottom: 14px;
+}
+.iso-next-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+.iso-next-btn {
+  text-decoration: none;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 700;
+  padding: 10px 13px;
+}
+.iso-next-btn.gold { background: var(--gold); color: var(--wine-deep); }
+.iso-next-btn.line { color: #fff; border: 1px solid rgba(255,255,255,.42); }
 .iso-side {
   position: sticky;
   top: 92px;
@@ -793,7 +936,8 @@ body.a11y-reduced-motion *::after {
 @media (max-width: 700px) {
   .iso-layout { padding: 44px 14px 70px; }
   .iso-panel-body { padding: 18px; }
-  .iso-kpis, .iso-grid, .iso-split { grid-template-columns: 1fr; }
+  .iso-kpis, .iso-grid, .iso-split, .iso-pillars { grid-template-columns: 1fr; }
+  .iso-faq summary { font-size: 11px; letter-spacing: .1em; }
 }
 </style>
 </head>
@@ -882,10 +1026,11 @@ body.a11y-reduced-motion *::after {
   <img src="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg" alt="Actualizaci&oacute;n ISO 14001:2026"/>
   <div class="blog-hero-body">
     <span class="blog-kicker">An&aacute;lisis general ISO · 15 abril 2026</span>
-    <h1 class="iso-hero-title">ISO 14001:2026<br/>Gu&iacute;a general de cambios y transici&oacute;n para empresas</h1>
+    <h1 class="iso-hero-title">ISO 14001:2026 en M&eacute;xico<br/>Cambios, cl&aacute;usulas y transici&oacute;n oficial 2026-2029</h1>
     <p class="iso-hero-sub">
-      Revisi&oacute;n ejecutiva de los ajustes m&aacute;s importantes: nuevo rigor de desempe&ntilde;o ambiental, cambios por
-      cl&aacute;usula, control de proveedores y plazo oficial de migraci&oacute;n hasta mayo de 2029.
+      Informe t&eacute;cnico integral para direcci&oacute;n, responsables del SGA y equipos de auditor&iacute;a:
+      cambios estructurales, impacto operativo real, gobernanza de proveedores y ruta de migraci&oacute;n
+      antes del l&iacute;mite internacional de mayo de 2029.
     </p>
     <div class="iso-chip-row">
       <span class="iso-chip">+670,000 organizaciones</span>
@@ -909,19 +1054,51 @@ body.a11y-reduced-motion *::after {
       <div class="iso-panel-body">
         <h2>Panorama de la norma <em>ISO 14001:2026</em></h2>
         <p>
-          La versi&oacute;n 2026 eleva el rigor del sistema de gesti&oacute;n ambiental y exige evidencia m&aacute;s robusta de resultados
-          medibles. Fortalece liderazgo, contexto ambiental, perspectiva de ciclo de vida y control de externos.
+          La publicaci&oacute;n oficial de ISO 14001:2026, el <strong>15 de abril de 2026</strong>, redefine el est&aacute;ndar ambiental
+          m&aacute;s adoptado a nivel global. No se trata de una simple actualizaci&oacute;n documental; el nuevo texto exige
+          resultados verificables, trazabilidad de decisiones y evidencia cuantificable de desempe&ntilde;o.
         </p>
         <p>
-          El cambio no es solo documental: impacta planeaci&oacute;n estrat&eacute;gica, compras, auditor&iacute;as internas y gobernanza
-          directiva para convertir cumplimiento en desempe&ntilde;o verificable.
+          La edici&oacute;n 2026 sustituye a ISO 14001:2015 e integra el enfoque reforzado de cambio clim&aacute;tico introducido en
+          2024, ampliando el an&aacute;lisis sobre biodiversidad, salud de ecosistemas, contaminaci&oacute;n y disponibilidad de recursos.
+          El impacto atraviesa planeaci&oacute;n estrat&eacute;gica, compras, evaluaci&oacute;n de riesgos y revisi&oacute;n por la direcci&oacute;n.
         </p>
+        <div class="iso-emphasis">
+          El eje del cambio es claro: pasar de un SGA centrado en documentos a un SGA capaz de demostrar
+          <strong>eficacia ambiental real</strong> y resiliencia operativa en toda la cadena de valor.
+        </div>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Fundamento estructural: de HLS a HS <em>sin romper integraci&oacute;n</em></h2>
+        <p>
+          ISO 14001:2026 conserva la arquitectura de 10 cl&aacute;usulas, pero consolida la evoluci&oacute;n hacia la
+          <strong>Estructura Armonizada (HS)</strong>. Esto facilita la integraci&oacute;n con sistemas como ISO 9001, ISO 45001,
+          ISO 50001 e ISO 27001, reduciendo duplicidades metodol&oacute;gicas.
+        </p>
+        <p>
+          La continuidad de estructura no significa continuidad de exigencia. En auditor&iacute;a, la profundidad de evidencia
+          requerida sube de forma importante: m&aacute;s datos, mayor correlaci&oacute;n causa-efecto y decisiones directivas sustentadas
+          en indicadores ambientales de negocio.
+        </p>
+        <ul class="iso-list">
+          <li>Compatibilidad elevada para sistemas de gesti&oacute;n integrados (SGI).</li>
+          <li>Mayor coherencia terminol&oacute;gica en informaci&oacute;n documentada.</li>
+          <li>Enfoque reforzado en desempe&ntilde;o, no solo en cumplimiento formal.</li>
+        </ul>
       </div>
     </section>
 
     <section class="iso-panel">
       <div class="iso-panel-body">
         <h2>Cronograma oficial de transici&oacute;n <em>2025-2029</em></h2>
+        <p>
+          Tras la publicaci&oacute;n de la norma, el esquema internacional de acreditaci&oacute;n activa una ventana de transici&oacute;n de
+          tres a&ntilde;os. Durante este periodo, los certificados 2015 mantienen validez transitoria, pero deben migrar oportunamente
+          para no perder reconocimiento comercial ni contractual.
+        </p>
         <div class="iso-table-wrap">
           <table class="iso-table">
             <thead>
@@ -941,6 +1118,11 @@ body.a11y-reduced-motion *::after {
             </tbody>
           </table>
         </div>
+        <ul class="iso-list">
+          <li>El periodo final 2028-2029 concentrar&aacute; alta demanda de auditor&iacute;as y recursos de certificaci&oacute;n.</li>
+          <li>La planificaci&oacute;n temprana evita cuellos de botella y presi&oacute;n operativa interna.</li>
+          <li>La fecha de corte global operativa para migraci&oacute;n se mantiene en mayo de 2029.</li>
+        </ul>
       </div>
     </section>
 
@@ -948,12 +1130,60 @@ body.a11y-reduced-motion *::after {
       <div class="iso-panel-body">
         <h2>Cambios por cl&aacute;usula <em>de mayor impacto</em></h2>
         <div class="iso-grid">
-          <article class="iso-card"><h4>Cl&aacute;usula 4</h4><p>Contexto ambiental expl&iacute;cito en clima, biodiversidad y recursos.</p></article>
-          <article class="iso-card"><h4>Cl&aacute;usula 5</h4><p>Liderazgo activo con evidencia de recursos y decisiones estrat&eacute;gicas.</p></article>
-          <article class="iso-card"><h4>Cl&aacute;usula 6.3</h4><p>Gesti&oacute;n del cambio obligatoria antes de ejecutar modificaciones cr&iacute;ticas.</p></article>
-          <article class="iso-card"><h4>Cl&aacute;usula 8.1</h4><p>Control ampliado sobre procesos, productos y servicios externos.</p></article>
-          <article class="iso-card"><h4>Cl&aacute;usula 9.2.2</h4><p>Objetivos definidos en auditor&iacute;as internas para validar eficacia real.</p></article>
-          <article class="iso-card"><h4>Cl&aacute;usula 10</h4><p>Trazabilidad m&aacute;s estricta entre hallazgos, causa ra&iacute;z y mejora continua.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 4</h4><p>Contexto ambiental con exigencia expl&iacute;cita en clima, biodiversidad, ecosistemas y capital natural.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 5</h4><p>Liderazgo visible y transversal, con asignaci&oacute;n de recursos y evidencia de decisi&oacute;n estrat&eacute;gica.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 6.3</h4><p>Gesti&oacute;n del cambio obligatoria y documentada antes de cualquier modificaci&oacute;n relevante.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 8.1</h4><p>Control operativo ampliado a procesos, productos y servicios suministrados externamente.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 9.2.2</h4><p>Auditor&iacute;a interna con objetivos espec&iacute;ficos orientados a eficacia y no solo checklist.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 10</h4><p>Mayor trazabilidad entre hallazgos, an&aacute;lisis de causa ra&iacute;z y mejora ambiental comprobable.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Lectura profunda por cl&aacute;usula <em>enfoque operativo para auditor&iacute;a</em></h2>
+        <div class="iso-faq">
+          <details open>
+            <summary>Cl&aacute;usulas 4.1, 4.2 y 4.3: contexto y alcance con criterio clim&aacute;tico</summary>
+            <div class="iso-faq-body">
+              <p>
+                El SGA debe integrar escenarios de riesgo f&iacute;sico y de transici&oacute;n: eventos extremos, escasez de recursos,
+                presi&oacute;n regulatoria de carbono y expectativas ESG de clientes e inversionistas.
+              </p>
+              <p>
+                El alcance ya no puede restringirse artificialmente al per&iacute;metro de planta; se exige perspectiva de ciclo de vida.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>Cl&aacute;usula 5: liderazgo, estrategia y gobernanza ambiental</summary>
+            <div class="iso-faq-body">
+              <p>
+                La alta direcci&oacute;n debe demostrar participaci&oacute;n activa y apoyo a roles operativos clave, conectando metas
+                ambientales con decisiones de inversi&oacute;n, continuidad y competitividad.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>Cl&aacute;usulas 6.1.4, 6.1.5 y 6.3: planificaci&oacute;n y gesti&oacute;n del cambio</summary>
+            <div class="iso-faq-body">
+              <p>
+                La norma separa con mayor claridad riesgos/oportunidades y planificaci&oacute;n de acciones. Adem&aacute;s, obliga a
+                institucionalizar un proceso MoC para evaluar impactos ambientales antes de ejecutar cambios en procesos,
+                infraestructura, formulaciones o proveedores cr&iacute;ticos.
+              </p>
+            </div>
+          </details>
+          <details>
+            <summary>Cl&aacute;usulas 8.1, 9 y 10: cadena de suministro, auditor&iacute;a y mejora trazable</summary>
+            <div class="iso-faq-body">
+              <p>
+                Se ampl&iacute;a el control ambiental sobre externos y se profesionaliza la auditor&iacute;a interna con objetivos concretos.
+                La mejora continua debe vincularse de forma demostrable con no conformidades, causa ra&iacute;z y resultados.
+              </p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
@@ -968,9 +1198,14 @@ body.a11y-reduced-motion *::after {
               con evidencia peri&oacute;dica y seguimiento de desempe&ntilde;o.
             </p>
             <p>
-              La implementaci&oacute;n exige m&aacute;s madurez digital: datos trazables, flujos MoC y reportes consistentes
-              para auditor&iacute;as internas y externas.
+              La implementaci&oacute;n exige m&aacute;s madurez digital: datos trazables, flujos MoC y reportes consistentes para
+              auditor&iacute;as internas y externas, incluyendo integridad de informaci&oacute;n documentada.
             </p>
+            <ul class="iso-list">
+              <li>Telemetr&iacute;a para energ&iacute;a, agua, emisiones y residuos.</li>
+              <li>Portales de proveedores para documentaci&oacute;n y transparencia de datos.</li>
+              <li>Workflows de aprobaci&oacute;n ambiental previos a cambios operativos.</li>
+            </ul>
           </div>
           <div class="iso-photo">
             <img src="img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg" alt="Equipo revisando plan de implementaci&oacute;n"/>
@@ -990,6 +1225,149 @@ body.a11y-reduced-motion *::after {
           <div class="iso-step"><b>05</b><p><strong>MoC:</strong> formalizar gesti&oacute;n del cambio previa a cada modificaci&oacute;n mayor.</p></div>
           <div class="iso-step"><b>06</b><p><strong>Auditor&iacute;a de transici&oacute;n:</strong> programar con anticipaci&oacute;n antes de 2029.</p></div>
         </div>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Diferencias ISO 14001:2015 vs 14001:2026 <em>con lectura operativa</em></h2>
+        <div class="iso-table-wrap">
+          <table class="iso-table">
+            <thead>
+              <tr>
+                <th>Cl&aacute;usula / Tema</th>
+                <th>Enfoque 2015</th>
+                <th>Enfoque 2026</th>
+                <th>Impacto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>4.1 Contexto</td>
+                <td>Evaluaci&oacute;n general de factores internos y externos.</td>
+                <td>Integraci&oacute;n expl&iacute;cita de clima, biodiversidad, ecosistemas, contaminaci&oacute;n y recursos.</td>
+                <td>Alto: exige anal&iacute;tica y escenarios.</td>
+              </tr>
+              <tr>
+                <td>5.1 Liderazgo</td>
+                <td>Participaci&oacute;n directiva mayormente formal.</td>
+                <td>Liderazgo visible con soporte a roles relevantes de toda la organizaci&oacute;n.</td>
+                <td>Medio-Alto: requiere evidencia de recursos.</td>
+              </tr>
+              <tr>
+                <td>6.1.4 / 6.1.5</td>
+                <td>Riesgos y acciones agrupados en metodolog&iacute;as poco claras.</td>
+                <td>Separaci&oacute;n formal de riesgos/oportunidades y planificaci&oacute;n de acciones.</td>
+                <td>Alto: redise&ntilde;o metodol&oacute;gico.</td>
+              </tr>
+              <tr>
+                <td>6.3 Gesti&oacute;n del cambio</td>
+                <td>Requisito impl&iacute;cito y disperso.</td>
+                <td>Cl&aacute;usula independiente con proceso documentado obligatorio.</td>
+                <td>Cr&iacute;tico: nuevo flujo inter&aacute;reas.</td>
+              </tr>
+              <tr>
+                <td>8.1 Control operacional</td>
+                <td>Enfoque principal en subcontrataci&oacute;n directa.</td>
+                <td>Alcance ampliado a procesos, productos y servicios externos.</td>
+                <td>Cr&iacute;tico: transforma compras y proveedores.</td>
+              </tr>
+              <tr>
+                <td>9.2.2 Auditor&iacute;a interna</td>
+                <td>Alcance y criterios metodol&oacute;gicos.</td>
+                <td>Objetivos de auditor&iacute;a espec&iacute;ficos por ejercicio.</td>
+                <td>Medio: eleva competencia del equipo auditor.</td>
+              </tr>
+              <tr>
+                <td>10 Mejora</td>
+                <td>Estructura 10.1, 10.2 y 10.3.</td>
+                <td>Integraci&oacute;n de 10.1 en 10.2 y 10.3 para mayor trazabilidad.</td>
+                <td>Bajo-Medio: foco en cierre efectivo.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Ecosistema de adopci&oacute;n en M&eacute;xico <em>DGN · IMNC · EMA · MAAC</em></h2>
+        <p>
+          En M&eacute;xico, la implementaci&oacute;n de una norma ISO para certificaci&oacute;n operativa se articula mediante su adopci&oacute;n
+          como NMX, dentro del marco de la Ley de Infraestructura de la Calidad y los procedimientos de normalizaci&oacute;n
+          nacional.
+        </p>
+        <p>
+          Operativamente, la ruta implica traducci&oacute;n y adopci&oacute;n t&eacute;cnica nacional, consulta p&uacute;blica, declaratoria de
+          vigencia en DOF y posterior evaluaci&oacute;n por organismos de certificaci&oacute;n acreditados. La coordinaci&oacute;n temprana con
+          el organismo certificador reduce riesgo de desalineaci&oacute;n en el cierre de transici&oacute;n.
+        </p>
+        <div class="iso-pillars">
+          <article class="iso-pillar">
+            <strong>1) Adopci&oacute;n t&eacute;cnica</strong>
+            <p>El comit&eacute; nacional analiza, traduce y adapta la norma para uso formal en el mercado local.</p>
+          </article>
+          <article class="iso-pillar">
+            <strong>2) Consulta y DOF</strong>
+            <p>El PROY-NMX pasa por consulta p&uacute;blica y publicaci&oacute;n oficial para entrada en vigor.</p>
+          </article>
+          <article class="iso-pillar">
+            <strong>3) Certificaci&oacute;n acreditada</strong>
+            <p>Organismos certificados operan bajo acreditaci&oacute;n EMA/MAAC y reconocimiento internacional.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Transformaci&oacute;n digital del SGA <em>como habilitador real</em></h2>
+        <p>
+          La nueva profundidad de evidencias vuelve insuficiente la gesti&oacute;n manual en hojas sueltas o repositorios aislados.
+          Para sostener auditor&iacute;as de transici&oacute;n consistentes se recomienda implementar trazabilidad digital por proceso.
+        </p>
+        <div class="iso-highlight">
+          <h3>Pr&aacute;cticas que aceleran cumplimiento 2026</h3>
+          <p>
+            Telemetr&iacute;a ambiental, portales de proveedores, flujos MoC con aprobaci&oacute;n previa y tableros de indicadores para
+            revisi&oacute;n directiva reducen no conformidades y mejoran calidad de evidencia en auditor&iacute;a.
+          </p>
+        </div>
+        <ul class="iso-list">
+          <li>Conectar datos operativos con revisi&oacute;n directiva y decisiones de inversi&oacute;n.</li>
+          <li>Automatizar trazabilidad de hallazgos, acciones correctivas y verificaci&oacute;n de eficacia.</li>
+          <li>Unificar reporteo para auditor&iacute;a, clientes y requerimientos ESG.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Fuentes de referencia <em>para seguimiento continuo</em></h2>
+        <div class="iso-source-list">
+          <a href="https://blog.ansi.org/" target="_blank" rel="noopener">ANSI Blog · ISO 14001:2026 Transition</a>
+          <a href="https://www.iaf.nu/" target="_blank" rel="noopener">IAF · Documentos y resoluciones de transici&oacute;n</a>
+          <a href="https://www.bsigroup.com/" target="_blank" rel="noopener">BSI · Gu&iacute;as de cambios ISO 14001:2026</a>
+          <a href="https://www.sgs.com/" target="_blank" rel="noopener">SGS · Key updates and transition guidance</a>
+          <a href="https://www.dnv.com/" target="_blank" rel="noopener">DNV · Revisi&oacute;n ISO 14001:2026</a>
+          <a href="https://www.lrqa.com/" target="_blank" rel="noopener">LRQA · Actualizaciones y gu&iacute;as de transici&oacute;n</a>
+          <a href="https://www.intertek.com/" target="_blank" rel="noopener">Intertek · Orientaci&oacute;n de transici&oacute;n ISO 14001:2026</a>
+          <a href="https://www.dof.gob.mx/" target="_blank" rel="noopener">DOF · Publicaciones oficiales en M&eacute;xico</a>
+          <a href="https://platiica.economia.gob.mx/" target="_blank" rel="noopener">Plataforma de Econom&iacute;a · Cat&aacute;logo mexicano de normas</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="iso-next">
+      <h3>Conclusi&oacute;n estrat&eacute;gica</h3>
+      <p>
+        Las organizaciones que empiecen temprano tendr&aacute;n ventaja en continuidad de certificaci&oacute;n, menor fricci&oacute;n de auditor&iacute;a
+        y mejor integraci&oacute;n con exigencias ESG y de cadena de suministro internacional.
+      </p>
+      <div class="iso-next-actions">
+        <a class="iso-next-btn gold" href="contacto.html">Agendar diagn&oacute;stico</a>
+        <a class="iso-next-btn line" href="blogs.html">Volver a blogs</a>
       </div>
     </section>
   </article>
