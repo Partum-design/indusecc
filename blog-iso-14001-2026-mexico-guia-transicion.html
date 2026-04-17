@@ -32,6 +32,26 @@ body {
   font-size: calc(16px * var(--font-scale, 1));
 }
 a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+body.a11y-spacious p,
+body.a11y-spacious li,
+body.a11y-spacious .iso-panel p,
+body.a11y-spacious .iso-list li { line-height: 2 !important; }
+body.a11y-reading .iso-layout { max-width: 1020px; }
+body.a11y-reading .iso-side { display: none; }
+.read-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 0;
+  z-index: 2200;
+  background: linear-gradient(90deg, var(--gold-light), var(--gold), #f4d98e);
+  box-shadow: 0 0 12px rgba(201,168,76,.45);
+}
 
 .skip-link {
   position: fixed;
@@ -612,6 +632,12 @@ body.a11y-reduced-motion *::after {
   border: 1px solid var(--line);
   background: #fff;
   margin-bottom: 16px;
+  transition: transform .26s ease, box-shadow .26s ease, border-color .26s ease;
+}
+.iso-panel:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(80,20,24,.1);
+  border-color: rgba(123,30,34,.3);
 }
 .iso-panel-body { padding: 24px; }
 .iso-kpis {
@@ -879,6 +905,7 @@ body.a11y-reduced-motion *::after {
   border: 1px solid var(--line);
   background: #fff;
   padding: 16px;
+  margin-bottom: 12px;
 }
 .iso-side-card img {
   width: 72px;
@@ -929,6 +956,63 @@ body.a11y-reduced-motion *::after {
   font-weight: 700;
   padding: 12px;
 }
+.iso-toc h4 {
+  color: var(--wine);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  margin-bottom: 10px;
+}
+.iso-toc nav {
+  display: grid;
+  gap: 7px;
+}
+.iso-toc-link {
+  text-decoration: none;
+  border: 1px solid rgba(123,30,34,.18);
+  background: #fff;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 9px 10px;
+}
+.iso-toc-link:hover,
+.iso-toc-link.active {
+  color: var(--wine);
+  border-color: rgba(123,30,34,.38);
+  background: #f9f2e9;
+}
+.iso-back-top {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 46px;
+  height: 46px;
+  border: 1px solid rgba(201,168,76,.55);
+  background: rgba(25,7,8,.92);
+  color: var(--gold-light);
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1200;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: opacity .24s ease, transform .24s ease, visibility .24s ease;
+}
+.iso-back-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
 @media (max-width: 1080px) {
   .iso-layout { grid-template-columns: 1fr; }
   .iso-side { position: static; }
@@ -938,11 +1022,13 @@ body.a11y-reduced-motion *::after {
   .iso-panel-body { padding: 18px; }
   .iso-kpis, .iso-grid, .iso-split, .iso-pillars { grid-template-columns: 1fr; }
   .iso-faq summary { font-size: 11px; letter-spacing: .1em; }
+  .iso-back-top { right: 12px; bottom: 12px; width: 42px; height: 42px; }
 }
 </style>
 </head>
 <body>
 <a class="skip-link" href="#mainContent">Saltar al contenido principal</a>
+<div class="read-progress" id="readProgress" aria-hidden="true"></div>
 
 <div class="ind-header-wrapper">
   <div class="ind-top-bar">
@@ -1014,6 +1100,14 @@ body.a11y-reduced-motion *::after {
             <span>Reducir movimiento</span>
             <div class="a11y-controls"><button class="a11y-btn" id="motionToggle" aria-pressed="false">On</button></div>
           </div>
+          <div class="a11y-row">
+            <span>Espaciado amplio</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="spacingToggle" aria-pressed="false">On</button></div>
+          </div>
+          <div class="a11y-row">
+            <span>Modo lectura</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="readingToggle" aria-pressed="false">On</button></div>
+          </div>
           <button class="a11y-reset" id="a11yReset">Restablecer</button>
         </div>
         <a class="ind-btn-cta" href="contacto.html">Consulta Online</a>
@@ -1050,7 +1144,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-panorama">
       <div class="iso-panel-body">
         <h2>Panorama de la norma <em>ISO 14001:2026</em></h2>
         <p>
@@ -1070,7 +1164,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-estructura">
       <div class="iso-panel-body">
         <h2>Fundamento estructural: de HLS a HS <em>sin romper integraci&oacute;n</em></h2>
         <p>
@@ -1091,7 +1185,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-cronograma">
       <div class="iso-panel-body">
         <h2>Cronograma oficial de transici&oacute;n <em>2025-2029</em></h2>
         <p>
@@ -1126,7 +1220,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-clausulas">
       <div class="iso-panel-body">
         <h2>Cambios por cl&aacute;usula <em>de mayor impacto</em></h2>
         <div class="iso-grid">
@@ -1140,7 +1234,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-lectura-profunda">
       <div class="iso-panel-body">
         <h2>Lectura profunda por cl&aacute;usula <em>enfoque operativo para auditor&iacute;a</em></h2>
         <div class="iso-faq">
@@ -1188,7 +1282,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-digitalizacion">
       <div class="iso-panel-body">
         <h2>Impacto en procesos y digitalizaci&oacute;n <em>del SGA</em></h2>
         <div class="iso-split">
@@ -1214,7 +1308,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-ruta">
       <div class="iso-panel-body">
         <h2>Ruta sugerida de implementaci&oacute;n <em>en 6 pasos</em></h2>
         <div class="iso-roadmap">
@@ -1228,7 +1322,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-diferencias">
       <div class="iso-panel-body">
         <h2>Diferencias ISO 14001:2015 vs 14001:2026 <em>con lectura operativa</em></h2>
         <div class="iso-table-wrap">
@@ -1290,7 +1384,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-mexico">
       <div class="iso-panel-body">
         <h2>Ecosistema de adopci&oacute;n en M&eacute;xico <em>DGN · IMNC · EMA · MAAC</em></h2>
         <p>
@@ -1320,7 +1414,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-transformacion-digital">
       <div class="iso-panel-body">
         <h2>Transformaci&oacute;n digital del SGA <em>como habilitador real</em></h2>
         <p>
@@ -1342,7 +1436,7 @@ body.a11y-reduced-motion *::after {
       </div>
     </section>
 
-    <section class="iso-panel">
+    <section class="iso-panel" id="sec-fuentes">
       <div class="iso-panel-body">
         <h2>Fuentes de referencia <em>para seguimiento continuo</em></h2>
         <div class="iso-source-list">
@@ -1384,6 +1478,19 @@ body.a11y-reduced-motion *::after {
         <li>Agendar transici&oacute;n antes de mayo de 2029.</li>
       </ul>
       <a class="iso-side-cta" href="contacto.html">Solicitar acompa&ntilde;amiento</a>
+    </div>
+    <div class="iso-side-card iso-toc">
+      <h4>Navegaci&oacute;n r&aacute;pida</h4>
+      <nav aria-label="Tabla de contenido del art&iacute;culo">
+        <a class="iso-toc-link" href="#sec-panorama">Panorama ISO 14001:2026</a>
+        <a class="iso-toc-link" href="#sec-cronograma">Cronograma 2025-2029</a>
+        <a class="iso-toc-link" href="#sec-clausulas">Cambios por cl&aacute;usula</a>
+        <a class="iso-toc-link" href="#sec-lectura-profunda">Lectura profunda</a>
+        <a class="iso-toc-link" href="#sec-digitalizacion">Impacto y digitalizaci&oacute;n</a>
+        <a class="iso-toc-link" href="#sec-ruta">Ruta de implementaci&oacute;n</a>
+        <a class="iso-toc-link" href="#sec-mexico">Marco en M&eacute;xico</a>
+        <a class="iso-toc-link" href="#sec-fuentes">Fuentes oficiales</a>
+      </nav>
     </div>
   </aside>
 </main>
@@ -1436,6 +1543,7 @@ body.a11y-reduced-motion *::after {
     <div class="ind-f-office">Excelencia en gesti&oacute;n industrial y normativa</div>
   </div>
 </footer>
+<button class="iso-back-top" id="isoBackTop" type="button" aria-label="Volver arriba">↑</button>
 
 <script>
 (function () {
@@ -1447,24 +1555,42 @@ body.a11y-reduced-motion *::after {
   const fontDown = document.getElementById('fontDown');
   const contrast = document.getElementById('contrastToggle');
   const motion = document.getElementById('motionToggle');
+  const spacing = document.getElementById('spacingToggle');
+  const reading = document.getElementById('readingToggle');
   const reset = document.getElementById('a11yReset');
+  const progress = document.getElementById('readProgress');
+  const backTop = document.getElementById('isoBackTop');
+  const tocLinks = Array.from(document.querySelectorAll('.iso-toc-link'));
+  const trackedSections = tocLinks
+    .map(function (link) { return document.querySelector(link.getAttribute('href')); })
+    .filter(Boolean);
 
   let scale = parseFloat(localStorage.getItem('ind_a11y_scale') || '1');
   let highContrast = localStorage.getItem('ind_a11y_contrast') === '1';
   let reducedMotion = localStorage.getItem('ind_a11y_motion') === '1';
+  let spacious = localStorage.getItem('ind_a11y_spacing') === '1';
+  let readingMode = localStorage.getItem('ind_a11y_reading') === '1';
 
   function apply() {
     scale = Math.max(0.9, Math.min(1.25, scale));
     root.style.setProperty('--font-scale', scale.toFixed(2));
     body.classList.toggle('a11y-high-contrast', highContrast);
     body.classList.toggle('a11y-reduced-motion', reducedMotion);
+    body.classList.toggle('a11y-spacious', spacious);
+    body.classList.toggle('a11y-reading', readingMode);
     contrast.classList.toggle('active', highContrast);
     contrast.setAttribute('aria-pressed', highContrast ? 'true' : 'false');
     motion.classList.toggle('active', reducedMotion);
     motion.setAttribute('aria-pressed', reducedMotion ? 'true' : 'false');
+    spacing.classList.toggle('active', spacious);
+    spacing.setAttribute('aria-pressed', spacious ? 'true' : 'false');
+    reading.classList.toggle('active', readingMode);
+    reading.setAttribute('aria-pressed', readingMode ? 'true' : 'false');
     localStorage.setItem('ind_a11y_scale', String(scale));
     localStorage.setItem('ind_a11y_contrast', highContrast ? '1' : '0');
     localStorage.setItem('ind_a11y_motion', reducedMotion ? '1' : '0');
+    localStorage.setItem('ind_a11y_spacing', spacious ? '1' : '0');
+    localStorage.setItem('ind_a11y_reading', readingMode ? '1' : '0');
   }
 
   function setPanel(open) {
@@ -1487,14 +1613,76 @@ body.a11y-reduced-motion *::after {
   fontDown.addEventListener('click', function () { scale -= 0.05; apply(); });
   contrast.addEventListener('click', function () { highContrast = !highContrast; apply(); });
   motion.addEventListener('click', function () { reducedMotion = !reducedMotion; apply(); });
+  spacing.addEventListener('click', function () { spacious = !spacious; apply(); });
+  reading.addEventListener('click', function () { readingMode = !readingMode; apply(); });
   reset.addEventListener('click', function () {
     scale = 1;
     highContrast = false;
     reducedMotion = false;
+    spacious = false;
+    readingMode = false;
     apply();
   });
 
+  function setupReadProgress() {
+    function updateProgress() {
+      const doc = document.documentElement;
+      const scrollable = doc.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? (window.scrollY / scrollable) * 100 : 0;
+      progress.style.width = Math.max(0, Math.min(100, ratio)).toFixed(2) + '%';
+      backTop.classList.toggle('show', window.scrollY > 500);
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', updateProgress);
+    updateProgress();
+  }
+
+  function setupBackTop() {
+    if (!backTop) return;
+    backTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: body.classList.contains('a11y-reduced-motion') ? 'auto' : 'smooth' });
+    });
+  }
+
+  function setupToc() {
+    if (!trackedSections.length) return;
+    const observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        const id = '#' + entry.target.id;
+        tocLinks.forEach(function (link) {
+          link.classList.toggle('active', link.getAttribute('href') === id);
+        });
+      });
+    }, { threshold: 0.35, rootMargin: '-20% 0px -55% 0px' });
+    trackedSections.forEach(function (section) { observer.observe(section); });
+  }
+
+  function setupRevealAnimations() {
+    const nodes = document.querySelectorAll('.iso-panel, .iso-next, .iso-side-card');
+    if (!nodes.length) return;
+    nodes.forEach(function (node) { node.classList.add('reveal'); });
+
+    if (body.classList.contains('a11y-reduced-motion')) {
+      nodes.forEach(function (node) { node.classList.add('in'); });
+      return;
+    }
+
+    const observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    nodes.forEach(function (node) { observer.observe(node); });
+  }
+
   apply();
+  setupReadProgress();
+  setupBackTop();
+  setupToc();
+  setupRevealAnimations();
 })();
 </script>
 </body>

@@ -32,6 +32,22 @@ body {
   font-size: calc(16px * var(--font-scale, 1));
 }
 a { color: inherit; }
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+body.a11y-spacious p,
+body.a11y-spacious li,
+body.a11y-spacious .hub-desc,
+body.a11y-spacious .hub-search-help { line-height: 2 !important; }
+body.a11y-spacious .hub-title,
+body.a11y-spacious .blog-hero h1 { letter-spacing: .01em; }
+body.a11y-reading .hub-main {
+  max-width: 1020px;
+}
+body.a11y-reading .hub-grid {
+  grid-template-columns: 1fr !important;
+}
 
 .skip-link {
   position: fixed;
@@ -360,12 +376,24 @@ a { color: inherit; }
     radial-gradient(circle at 15% 20%, rgba(201,168,76,.2), transparent 42%),
     linear-gradient(135deg, rgba(24,8,9,.88) 0%, rgba(24,8,9,.46) 55%, rgba(24,8,9,.9) 100%);
 }
+.blog-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 85% 30%, rgba(201,168,76,.22), transparent 40%),
+    radial-gradient(circle at 30% 95%, rgba(255,255,255,.08), transparent 45%),
+    linear-gradient(to top, rgba(0,0,0,.48), transparent 42%);
+  pointer-events: none;
+}
 .blog-hero-body {
   position: relative;
   z-index: 1;
   width: min(1220px, 92vw);
   margin: 0 auto;
   padding: 70px 0 62px;
+  display: grid;
+  gap: 12px;
 }
 .blog-kicker {
   display: inline-flex;
@@ -388,16 +416,65 @@ a { color: inherit; }
   max-width: 940px;
 }
 .blog-hero p {
-  margin-top: 20px;
   color: rgba(255,255,255,.84);
   max-width: 760px;
   line-height: 1.9;
 }
+.blog-hero-actions {
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.blog-hero-btn {
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .18em;
+  padding: 11px 14px;
+  border: 1px solid rgba(201,168,76,.45);
+}
+.blog-hero-btn.primary {
+  background: rgba(123,30,34,.92);
+  color: var(--gold-light);
+}
+.blog-hero-btn.secondary {
+  background: rgba(255,255,255,.06);
+  color: #fff;
+}
+.blog-hero-btn:hover { transform: translateY(-1px); }
 
 .hub-main {
   max-width: 1240px;
   margin: 0 auto;
   padding: 62px 22px 84px;
+}
+.hub-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  margin: 0 0 22px;
+}
+.hub-metric {
+  background: #fff;
+  padding: 14px 12px;
+}
+.hub-metric strong {
+  display: block;
+  color: var(--wine);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+  line-height: 1;
+}
+.hub-metric span {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
 }
 .hub-head {
   display: flex;
@@ -478,6 +555,37 @@ a { color: inherit; }
   font-size: 13px;
   margin-top: 10px;
   line-height: 1.7;
+}
+.hub-mode-row {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+.hub-mode-label {
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.hub-mode-controls { display: inline-flex; gap: 6px; }
+.hub-mode-btn {
+  border: 1px solid rgba(123,30,34,.26);
+  background: #fff;
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 7px 9px;
+  cursor: pointer;
+}
+.hub-mode-btn.active {
+  background: rgba(123,30,34,.9);
+  color: var(--gold-light);
+  border-color: rgba(123,30,34,.6);
 }
 .hub-topic-row {
   display: flex;
@@ -601,16 +709,26 @@ a { color: inherit; }
   grid-template-columns: repeat(12, 1fr);
   gap: 16px;
 }
+.hub-grid.is-list { grid-template-columns: 1fr; }
+.hub-grid.is-list .hub-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 320px) minmax(0, 1fr);
+}
+.hub-grid.is-list .hub-media,
+.hub-grid.is-list .hub-card--next .hub-media { height: 100%; min-height: 260px; }
+.hub-grid.is-list .hub-card--featured,
+.hub-grid.is-list .hub-card--next { grid-column: span 1; }
 .hub-card {
   border: 1px solid var(--line);
   background: var(--paper);
   overflow: hidden;
-  transition: transform .24s ease, box-shadow .24s ease;
+  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
 }
 .hub-card.is-hidden { display: none; }
 .hub-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 42px rgba(80,20,24,.11);
+  border-color: rgba(123,30,34,.35);
 }
 .hub-card--featured { grid-column: span 8; }
 .hub-card--next { grid-column: span 4; }
@@ -704,6 +822,16 @@ a { color: inherit; }
   line-height: 1.75;
 }
 
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .55s ease, transform .55s ease;
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
 /* A11Y states */
 body.a11y-high-contrast { filter: contrast(1.25) saturate(1.05); }
 body.a11y-reduced-motion *,
@@ -713,12 +841,20 @@ body.a11y-reduced-motion *::after {
   transition: none !important;
   scroll-behavior: auto !important;
 }
+body.a11y-reduced-motion .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
 
 /* Responsive */
 @media (max-width: 1080px) {
+  .hub-metrics { grid-template-columns: repeat(2, 1fr); }
   .hub-tools { grid-template-columns: 1fr; }
   .hub-card--featured,
   .hub-card--next { grid-column: span 12; }
+  .hub-grid.is-list .hub-card { grid-template-columns: 1fr; }
+  .hub-grid.is-list .hub-media,
+  .hub-grid.is-list .hub-card--next .hub-media { min-height: 220px; }
 }
 @media (max-width: 980px) {
   body { padding-top: 74px; }
@@ -740,12 +876,16 @@ body.a11y-reduced-motion *::after {
   .blog-hero { min-height: calc(70vh - 74px); }
   .blog-hero-body { padding: 54px 0 44px; }
   .blog-hero p { font-size: 14px; }
+  .blog-hero-actions { gap: 8px; }
+  .blog-hero-btn { width: 100%; text-align: center; }
+  .hub-metrics { grid-template-columns: 1fr; }
   .hub-main { padding: 48px 14px 70px; }
   .hub-head p { font-size: 14px; }
   .hub-search-block,
   .hub-quick { padding: 14px; }
   .hub-search-wrap { grid-template-columns: 1fr; }
   .hub-search-clear { height: 40px; }
+  .hub-mode-row { align-items: flex-start; flex-direction: column; }
   .ind-f-main { padding: 56px 20px 24px; }
   .ind-f-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
   .ind-f-contact-strip { align-items: center; }
@@ -832,6 +972,14 @@ body.a11y-reduced-motion *::after {
             <span>Reducir movimiento</span>
             <div class="a11y-controls"><button class="a11y-btn" id="motionToggle" aria-pressed="false">On</button></div>
           </div>
+          <div class="a11y-row">
+            <span>Espaciado amplio</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="spacingToggle" aria-pressed="false">On</button></div>
+          </div>
+          <div class="a11y-row">
+            <span>Modo lectura</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="readingToggle" aria-pressed="false">On</button></div>
+          </div>
           <button class="a11y-reset" id="a11yReset">Restablecer</button>
         </div>
         <a class="ind-btn-cta" href="contacto.html">Consulta Online</a>
@@ -849,10 +997,20 @@ body.a11y-reduced-motion *::after {
       Aqu&iacute; publicamos an&aacute;lisis t&eacute;cnicos, gu&iacute;as de transici&oacute;n y recomendaciones aplicables a operaci&oacute;n real.
       Esta secci&oacute;n est&aacute; preparada para crecer y almacenar futuras publicaciones.
     </p>
+    <div class="blog-hero-actions">
+      <a class="blog-hero-btn primary" href="blog-iso-14001-2026-mexico-guia-transicion.html">Leer blog destacado</a>
+      <a class="blog-hero-btn secondary" href="contacto.html">Recibir recomendaciones</a>
+    </div>
   </div>
 </section>
 
 <main class="hub-main" id="mainContent">
+  <section class="hub-metrics" aria-label="Indicadores del blog">
+    <article class="hub-metric"><strong>01</strong><span>Blog publicado</span></article>
+    <article class="hub-metric"><strong>03</strong><span>Temas listos</span></article>
+    <article class="hub-metric"><strong>2026</strong><span>Actualizaci&oacute;n clave</span></article>
+    <article class="hub-metric"><strong>100%</strong><span>Dise&ntilde;o responsive</span></article>
+  </section>
   <div class="hub-head">
     <h2>Actualizaciones <em>generales sobre ISO</em></h2>
     <p>
@@ -871,6 +1029,13 @@ body.a11y-reduced-motion *::after {
       <p class="hub-search-help" id="blogSearchHelp">
         Escribe algo como: 14001, transici&oacute;n, auditor&iacute;a, cadena de suministro, riesgo clim&aacute;tico.
       </p>
+      <div class="hub-mode-row" aria-label="Opciones de visualizaci&oacute;n">
+        <span class="hub-mode-label">Vista de blogs</span>
+        <div class="hub-mode-controls">
+          <button class="hub-mode-btn active" id="viewGrid" type="button" aria-pressed="true">Grid</button>
+          <button class="hub-mode-btn" id="viewList" type="button" aria-pressed="false">Lista</button>
+        </div>
+      </div>
       <div class="hub-topic-row" role="list" aria-label="Temas recomendados">
         <button class="hub-topic" type="button" data-topic="ISO 14001:2026">ISO 14001:2026</button>
         <button class="hub-topic" type="button" data-topic="Transici&oacute;n 2029">Transici&oacute;n 2029</button>
@@ -1012,24 +1177,36 @@ body.a11y-reduced-motion *::after {
   const fontDown = document.getElementById('fontDown');
   const contrast = document.getElementById('contrastToggle');
   const motion = document.getElementById('motionToggle');
+  const spacing = document.getElementById('spacingToggle');
+  const reading = document.getElementById('readingToggle');
   const reset = document.getElementById('a11yReset');
 
   let scale = parseFloat(localStorage.getItem('ind_a11y_scale') || '1');
   let highContrast = localStorage.getItem('ind_a11y_contrast') === '1';
   let reducedMotion = localStorage.getItem('ind_a11y_motion') === '1';
+  let spacious = localStorage.getItem('ind_a11y_spacing') === '1';
+  let readingMode = localStorage.getItem('ind_a11y_reading') === '1';
 
   function apply() {
     scale = Math.max(0.9, Math.min(1.25, scale));
     root.style.setProperty('--font-scale', scale.toFixed(2));
     body.classList.toggle('a11y-high-contrast', highContrast);
     body.classList.toggle('a11y-reduced-motion', reducedMotion);
+    body.classList.toggle('a11y-spacious', spacious);
+    body.classList.toggle('a11y-reading', readingMode);
     contrast.classList.toggle('active', highContrast);
     contrast.setAttribute('aria-pressed', highContrast ? 'true' : 'false');
     motion.classList.toggle('active', reducedMotion);
     motion.setAttribute('aria-pressed', reducedMotion ? 'true' : 'false');
+    spacing.classList.toggle('active', spacious);
+    spacing.setAttribute('aria-pressed', spacious ? 'true' : 'false');
+    reading.classList.toggle('active', readingMode);
+    reading.setAttribute('aria-pressed', readingMode ? 'true' : 'false');
     localStorage.setItem('ind_a11y_scale', String(scale));
     localStorage.setItem('ind_a11y_contrast', highContrast ? '1' : '0');
     localStorage.setItem('ind_a11y_motion', reducedMotion ? '1' : '0');
+    localStorage.setItem('ind_a11y_spacing', spacious ? '1' : '0');
+    localStorage.setItem('ind_a11y_reading', readingMode ? '1' : '0');
   }
 
   function setPanel(open) {
@@ -1052,12 +1229,58 @@ body.a11y-reduced-motion *::after {
   fontDown.addEventListener('click', function () { scale -= 0.05; apply(); });
   contrast.addEventListener('click', function () { highContrast = !highContrast; apply(); });
   motion.addEventListener('click', function () { reducedMotion = !reducedMotion; apply(); });
+  spacing.addEventListener('click', function () { spacious = !spacious; apply(); });
+  reading.addEventListener('click', function () { readingMode = !readingMode; apply(); });
   reset.addEventListener('click', function () {
     scale = 1;
     highContrast = false;
     reducedMotion = false;
+    spacious = false;
+    readingMode = false;
     apply();
   });
+
+  function setupViewToggle() {
+    const grid = document.querySelector('.hub-grid');
+    const viewGrid = document.getElementById('viewGrid');
+    const viewList = document.getElementById('viewList');
+    if (!grid || !viewGrid || !viewList) return;
+
+    function setView(mode) {
+      const isList = mode === 'list';
+      grid.classList.toggle('is-list', isList);
+      viewGrid.classList.toggle('active', !isList);
+      viewGrid.setAttribute('aria-pressed', isList ? 'false' : 'true');
+      viewList.classList.toggle('active', isList);
+      viewList.setAttribute('aria-pressed', isList ? 'true' : 'false');
+      localStorage.setItem('ind_blog_view', isList ? 'list' : 'grid');
+    }
+
+    viewGrid.addEventListener('click', function () { setView('grid'); });
+    viewList.addEventListener('click', function () { setView('list'); });
+    setView(localStorage.getItem('ind_blog_view') === 'list' ? 'list' : 'grid');
+  }
+
+  function setupRevealAnimations() {
+    const nodes = document.querySelectorAll('.hub-search-block, .hub-quick, .hub-metric, .hub-card, .hub-note');
+    if (!nodes.length) return;
+    nodes.forEach(function (node) { node.classList.add('reveal'); });
+
+    if (body.classList.contains('a11y-reduced-motion')) {
+      nodes.forEach(function (node) { node.classList.add('in'); });
+      return;
+    }
+
+    const observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('in');
+        obs.unobserve(entry.target);
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+    nodes.forEach(function (node) { observer.observe(node); });
+  }
 
   function normalizeText(value) {
     return (value || '')
@@ -1191,7 +1414,9 @@ body.a11y-reduced-motion *::after {
   }
 
   apply();
+  setupViewToggle();
   setupBlogSearch();
+  setupRevealAnimations();
 })();
 </script>
 </body>
