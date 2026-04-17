@@ -2,381 +2,767 @@
 <html lang="es">
 <head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>ISO 14001:2026 en México | Guía Completa de Cambios, Cláusulas 6.3 y 8.1, Cronograma y Transición hasta 2029 | INDUSECC</title>
-<meta content="AnÃ¡lisis exhaustivo de ISO 14001:2026: cambios estructurales, clÃ¡usulas 6.3 y 8.1, cronograma oficial hasta mayo 2029, impacto en procesos y adopciÃ³n en MÃ©xico (DGN, EMA, MAAC)." name="description"/>
-<meta content="ISO 14001:2026, transiciÃ³n ISO 14001, cambios ISO 14001 2026, clÃ¡usula 6.3 ISO 14001, clÃ¡usula 8.1 ISO 14001, NMX-SAA-14001-IMNC-2026, DGN, EMA, MAAC" name="keywords"/>
-<meta content="ISO 14001:2026 en México | Guía Completa de Cambios, Cláusulas 6.3 y 8.1, Cronograma y Transición hasta 2029" property="og:title"/>
-<meta content="GuÃ­a tÃ©cnica de transiciÃ³n ISO 14001:2026 para empresas en MÃ©xico. Cronograma, impacto operativo y ruta de implementaciÃ³n." property="og:description"/>
-<meta content="article" property="og:type"/>
-<meta content="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg" property="og:image"/>
-<link href="Imagenes/favicon.png" rel="icon" type="image/x-icon"/>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&amp;family=Outfit:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ISO 14001:2026 | Gu&iacute;a General de Cambios, Cronograma de Transici&oacute;n y Requisitos Clave en M&eacute;xico</title>
+<meta name="description" content="An&aacute;lisis general de ISO 14001:2026 para empresas: cambios por cl&aacute;usula, cronograma 2026-2029, impacto operativo y lineamientos de implementaci&oacute;n en M&eacute;xico."/>
+<link rel="icon" type="image/x-icon" href="Imagenes/favicon.png"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Outfit:wght@300;400;500;600;700;800&display=swap"/>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
   --wine: #7B1E22;
   --wine-dark: #4B1013;
-  --wine-deep: #24090B;
+  --wine-deep: #26080A;
   --gold: #C9A84C;
   --gold-light: #E8C97A;
-  --ink: #18110B;
+  --ink: #1B130D;
   --text: #2A1A1B;
-  --muted: #6B5859;
+  --muted: #6F5A5B;
   --cream: #FAF7F2;
   --paper: #FFFFFF;
-  --line: rgba(123,30,34,.14);
+  --line: rgba(123,30,34,.15);
 }
+html { scroll-behavior: smooth; }
 body {
   font-family: 'Outfit', sans-serif;
   background: var(--cream);
   color: var(--text);
+  padding-top: 115px;
+  font-size: calc(16px * var(--font-scale, 1));
 }
 a { color: inherit; }
 
-.topbar {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: rgba(13,5,6,.95);
-  border-bottom: 1px solid rgba(201,168,76,.22);
-  backdrop-filter: blur(12px);
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -120px;
+  z-index: 4000;
+  background: #111;
+  color: var(--gold-light);
+  border: 1px solid rgba(201,168,76,.5);
+  padding: 10px 12px;
+  text-decoration: none;
+  font-size: 12px;
 }
-.topbar-inner {
-  max-width: 1240px;
+.skip-link:focus { top: 12px; }
+
+/* Header INDUSECC */
+.ind-header-wrapper {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background: #0A0A0A;
+  box-shadow: 0 2px 15px rgba(0,0,0,.5);
+}
+.ind-top-bar {
+  background: #000;
+  border-bottom: 1px solid rgba(201,168,76,.1);
+  padding: 0 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 35px;
+}
+.ind-top-info { display: flex; gap: 16px; flex-wrap: wrap; }
+.ind-top-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #A89880;
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.ind-top-item svg { width: 12px; height: 12px; color: var(--gold); }
+.ind-top-item a { color: inherit; text-decoration: none; }
+
+.ind-main-header {
+  background: rgba(10,10,10,.98);
+  border-bottom: 1px solid rgba(255,255,255,.05);
+}
+.ind-container {
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 12px 24px;
+  padding: 0 42px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 20px;
 }
-.brand {
-  text-decoration: none;
-  display: inline-flex;
+.ind-logo-group { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.ind-logo-wrap { text-decoration: none; display: flex; align-items: center; }
+.ind-logo-img { max-height: 48px; width: auto; display: block; }
+.ind-logo-sep { width: 1px; height: 30px; background: rgba(201,168,76,.2); }
+.ind-header-tagline {
+  font-family: 'Playfair Display', serif;
+  color: #A89880;
+  font-size: 14px;
+  font-style: italic;
+  max-width: 240px;
+  line-height: 1.3;
+}
+
+.ind-nav {
+  display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
+  height: 100%;
 }
-.brand img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-}
-.brand span {
-  color: #fff;
+.ind-menu-item { position: relative; height: 100%; display: flex; align-items: center; }
+.ind-link {
+  text-decoration: none;
+  color: rgba(255,255,255,.9);
   font-size: 10px;
-  letter-spacing: .2em;
+  font-weight: 700;
   text-transform: uppercase;
-}
-.menu {
+  letter-spacing: 1.2px;
   display: flex;
   align-items: center;
   gap: 6px;
 }
-.menu a {
+.ind-link:hover,
+.ind-link.active { color: var(--gold-light); }
+
+.ind-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  background: #0D0D0D;
+  border: 1px solid rgba(201,168,76,.2);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .25s ease;
+  z-index: 200;
+}
+.ind-menu-item:hover .ind-dropdown {
+  opacity: 1;
+  visibility: visible;
+}
+.ind-drop-link {
+  display: block;
+  padding: 11px 16px;
+  color: rgba(255,255,255,.65);
   text-decoration: none;
-  color: rgba(255,255,255,.75);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.ind-drop-link:hover {
+  background: rgba(139,26,26,.15);
+  color: #fff;
+  padding-left: 20px;
+  border-left: 3px solid var(--wine);
+}
+
+.ind-actions { display: flex; align-items: center; gap: 8px; position: relative; }
+.ind-btn-cta {
+  background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+  color: #fff;
+  text-decoration: none;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 11px 16px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+/* A11Y controls */
+.a11y-trigger {
+  width: 34px;
+  height: 34px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(201,168,76,.3);
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.a11y-trigger svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+.a11y-panel {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 250px;
+  background: #111;
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 24px 64px rgba(0,0,0,.7);
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+}
+.a11y-panel.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.a11y-panel h3 {
+  font-size: 9px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.a11y-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.a11y-row span { font-size: 12px; color: rgba(255,255,255,.8); }
+.a11y-controls { display: flex; gap: 6px; }
+.a11y-btn {
+  min-width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255,255,255,.16);
+  background: rgba(255,255,255,.07);
+  color: rgba(255,255,255,.9);
+  font-size: 12px;
+  cursor: pointer;
+}
+.a11y-btn.active {
+  background: rgba(201,168,76,.3);
+  border-color: var(--gold);
+  color: var(--gold-light);
+}
+.a11y-reset {
+  width: 100%;
+  margin-top: 6px;
+  padding: 9px;
+  border: 1px solid rgba(123,30,34,.45);
+  background: rgba(123,30,34,.35);
+  color: rgba(255,255,255,.86);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* Footer INDUSECC */
+.ind-footer-wrap {
+  background: #0A0A0A;
+  border-top: 1px solid rgba(201,168,76,.15);
+  position: relative;
+}
+.ind-f-top-accent {
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: .7;
+}
+.ind-f-main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 70px 42px 32px;
+}
+.ind-f-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+.ind-f-brand { display: flex; flex-direction: column; gap: 20px; }
+.ind-f-logo-container { max-width: 190px; }
+.ind-f-logo-img { max-width: 100%; height: auto; display: block; }
+.ind-f-slogan {
+  color: rgba(255,255,255,.68);
+  line-height: 1.7;
+  font-size: 14px;
+}
+.ind-f-contact-strip { display: flex; flex-direction: column; gap: 10px; }
+.ind-f-contact-link {
+  text-decoration: none;
+  color: rgba(255,255,255,.62);
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.ind-f-contact-link svg { width: 14px; height: 14px; color: var(--gold); }
+.ind-f-title {
+  color: #fff;
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.ind-f-list { list-style: none; display: grid; gap: 10px; }
+.ind-f-item-link {
+  color: rgba(255,255,255,.6);
+  text-decoration: none;
+  font-size: 13px;
+}
+.ind-f-item-link:hover { color: var(--gold-light); }
+.ind-f-social-wrap { display: flex; gap: 12px; margin-top: 14px; }
+.ind-f-social-icon {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.ind-f-social-icon.linkedin { background: #0077B5; }
+.ind-f-social-icon.instagram { background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+.ind-f-social-icon.facebook { background: #1877F2; }
+.ind-f-bottom {
+  border-top: 1px solid rgba(255,255,255,.05);
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 20px 42px 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: rgba(255,255,255,.35);
   font-size: 10px;
   letter-spacing: .16em;
   text-transform: uppercase;
-  padding: 8px 10px;
-  border-bottom: 1px solid transparent;
 }
-.menu a:hover,
-.menu .is-active {
-  color: var(--gold-light);
-  border-color: rgba(201,168,76,.42);
-}
+.ind-f-copy span { color: var(--gold); }
 
-.hero {
-  min-height: 72vh;
+/* Blog hub */
+.blog-hero {
+  min-height: calc(72vh - 115px);
   position: relative;
   display: flex;
   align-items: flex-end;
   overflow: hidden;
 }
-.hero img {
+.blog-hero img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: saturate(.9) brightness(.52);
+  filter: saturate(.86) brightness(.54);
 }
-.hero::before {
+.blog-hero::before {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(140deg, rgba(22,8,9,.9) 0%, rgba(22,8,9,.55) 52%, rgba(22,8,9,.95) 100%),
-    radial-gradient(circle at 15% 22%, rgba(201,168,76,.18), transparent 45%);
+    radial-gradient(circle at 15% 20%, rgba(201,168,76,.2), transparent 42%),
+    linear-gradient(135deg, rgba(24,8,9,.88) 0%, rgba(24,8,9,.46) 55%, rgba(24,8,9,.9) 100%);
 }
-.hero-content {
+.blog-hero-body {
   position: relative;
   z-index: 1;
-  width: min(1180px, 92vw);
+  width: min(1220px, 92vw);
   margin: 0 auto;
-  padding: 82px 0 68px;
+  padding: 70px 0 62px;
 }
-.pill {
+.blog-kicker {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: .22em;
-  text-transform: uppercase;
   color: var(--gold-light);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .24em;
+  font-weight: 700;
 }
-.pill::before {
-  content: '';
-  width: 34px;
-  height: 1px;
-  background: var(--gold);
-}
-.hero h1 {
-  margin-top: 18px;
-  max-width: 980px;
+.blog-kicker::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+.blog-hero h1 {
+  margin-top: 14px;
   color: #fff;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.1rem, 5.4vw, 4.2rem);
+  font-size: clamp(2rem, 5.2vw, 4.2rem);
   line-height: .97;
   letter-spacing: -.02em;
+  max-width: 940px;
 }
-.hero p {
-  margin-top: 22px;
-  max-width: 820px;
-  font-size: 16px;
-  color: rgba(255,255,255,.82);
+.blog-hero p {
+  margin-top: 20px;
+  color: rgba(255,255,255,.84);
+  max-width: 760px;
   line-height: 1.9;
 }
-.hero-meta {
-  margin-top: 28px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.hero-meta span {
-  border: 1px solid rgba(201,168,76,.35);
-  background: rgba(22,8,9,.55);
-  color: var(--gold-light);
-  font-size: 10px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  padding: 10px 12px;
-}
 
-.page {
+.hub-main {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 58px 24px 90px;
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
-  gap: 26px;
+  padding: 62px 22px 84px;
 }
-.article {
-  min-width: 0;
+.hub-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 24px;
 }
-.panel {
-  background: var(--paper);
-  border: 1px solid var(--line);
-  margin-bottom: 18px;
+.hub-head h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--ink);
+  font-size: clamp(1.8rem, 3vw, 2.7rem);
+  line-height: 1.06;
 }
-.panel-content {
-  padding: 28px 28px 30px;
+.hub-head h2 em { color: var(--wine); font-style: italic; font-weight: 500; }
+.hub-head p {
+  max-width: 640px;
+  color: var(--muted);
+  line-height: 1.84;
 }
 
-.kpi-grid {
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+.hub-card {
+  border: 1px solid var(--line);
+  background: var(--paper);
+  overflow: hidden;
+  transition: transform .24s ease, box-shadow .24s ease;
+}
+.hub-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 42px rgba(80,20,24,.11);
+}
+.hub-card--featured { grid-column: span 8; }
+.hub-card--next { grid-column: span 4; }
+.hub-media {
+  position: relative;
+  height: 280px;
+  overflow: hidden;
+}
+.hub-card--next .hub-media { height: 216px; }
+.hub-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .45s ease;
+}
+.hub-card:hover .hub-media img { transform: scale(1.06); }
+.hub-tag {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: rgba(26,8,9,.76);
+  border: 1px solid rgba(201,168,76,.48);
+  color: var(--gold-light);
+  padding: 7px 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.hub-body {
+  padding: 22px;
+  display: grid;
+  gap: 12px;
+}
+.hub-meta {
+  color: var(--wine);
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.hub-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--ink);
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  line-height: 1.14;
+}
+.hub-desc {
+  color: var(--muted);
+  line-height: 1.82;
+  font-size: 14px;
+}
+.hub-cta {
+  width: fit-content;
+  text-decoration: none;
+  background: var(--wine);
+  color: var(--gold-light);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .2em;
+  padding: 12px 18px;
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+.hub-ghost {
+  width: fit-content;
+  text-decoration: none;
+  color: var(--wine);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(123,30,34,.28);
+  padding-bottom: 7px;
+}
+.hub-note {
+  margin-top: 20px;
+  border: 1px dashed rgba(123,30,34,.28);
+  background: #fff;
+  padding: 16px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.hub-note strong { color: var(--wine); }
+
+/* A11Y states */
+body.a11y-high-contrast { filter: contrast(1.25) saturate(1.05); }
+body.a11y-reduced-motion *,
+body.a11y-reduced-motion *::before,
+body.a11y-reduced-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .hub-card--featured,
+  .hub-card--next { grid-column: span 12; }
+}
+@media (max-width: 980px) {
+  body { padding-top: 74px; }
+  .ind-top-bar { display: none; }
+  .ind-container { height: 74px; padding: 0 14px; gap: 12px; }
+  .ind-logo-sep, .ind-header-tagline, .ind-btn-cta { display: none; }
+  .ind-nav {
+    gap: 12px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .ind-nav::-webkit-scrollbar { display: none; }
+  .ind-link { font-size: 9px; white-space: nowrap; }
+  .ind-dropdown { display: none !important; }
+  .ind-f-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .blog-hero { min-height: calc(70vh - 74px); }
+  .blog-hero-body { padding: 54px 0 44px; }
+  .blog-hero p { font-size: 14px; }
+  .hub-main { padding: 48px 14px 70px; }
+  .hub-head p { font-size: 14px; }
+  .ind-f-main { padding: 56px 20px 24px; }
+  .ind-f-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
+  .ind-f-contact-strip { align-items: center; }
+  .ind-f-social-wrap { justify-content: center; }
+  .ind-f-bottom {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    padding: 16px 14px 22px;
+  }
+}
+
+/* Article page blocks */
+.iso-hero-title {
+  margin-top: 14px;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.1rem, 5.1vw, 4.1rem);
+  line-height: .96;
+  letter-spacing: -.02em;
+  max-width: 920px;
+}
+.iso-hero-sub {
+  margin-top: 18px;
+  color: rgba(255,255,255,.84);
+  max-width: 780px;
+  line-height: 1.86;
+}
+.iso-chip-row {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.iso-chip {
+  border: 1px solid rgba(201,168,76,.34);
+  background: rgba(22,8,9,.52);
+  color: var(--gold-light);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  padding: 9px 11px;
+}
+.iso-layout {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 58px 22px 82px;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) 320px;
+  gap: 20px;
+}
+.iso-main { min-width: 0; }
+.iso-panel {
+  border: 1px solid var(--line);
+  background: #fff;
+  margin-bottom: 16px;
+}
+.iso-panel-body { padding: 24px; }
+.iso-kpis {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   background: var(--line);
 }
-.kpi {
-  background: var(--paper);
-  padding: 20px 16px;
-}
-.kpi strong {
+.iso-kpi-item { background: #fff; padding: 18px 14px; }
+.iso-kpi-item strong {
   display: block;
   font-family: 'Playfair Display', serif;
   color: var(--wine);
   font-size: 1.4rem;
 }
-.kpi span {
+.iso-kpi-item span {
   display: block;
   margin-top: 8px;
   color: var(--muted);
+  font-size: 9px;
   text-transform: uppercase;
   letter-spacing: .14em;
-  font-size: 9px;
   line-height: 1.6;
 }
-
-h2 {
+.iso-panel h2 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.7rem, 2.7vw, 2.6rem);
   color: var(--ink);
-  line-height: 1.12;
-  margin-bottom: 14px;
-}
-h2 em { font-style: italic; color: var(--wine); font-weight: 500; }
-h3 {
-  font-size: 13px;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--wine);
+  font-size: clamp(1.7rem, 2.8vw, 2.5rem);
+  line-height: 1.1;
   margin-bottom: 12px;
 }
-p {
+.iso-panel h2 em { color: var(--wine); font-style: italic; font-weight: 500; }
+.iso-panel p {
   color: var(--muted);
-  line-height: 1.9;
-  margin-bottom: 14px;
-  font-size: 15px;
+  line-height: 1.85;
+  margin-bottom: 12px;
 }
-
-.split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-.photo {
-  position: relative;
-  min-height: 220px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-}
-.photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.timeline-wrap {
+.iso-table-wrap {
   overflow-x: auto;
   border: 1px solid var(--line);
 }
-table {
-  width: 100%;
+.iso-table {
   border-collapse: collapse;
-  min-width: 780px;
-  background: var(--paper);
+  width: 100%;
+  min-width: 760px;
 }
-th, td {
+.iso-table th,
+.iso-table td {
   border-bottom: 1px solid var(--line);
   text-align: left;
-  vertical-align: top;
-  padding: 14px 12px;
+  padding: 12px;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.55;
+  vertical-align: top;
 }
-th {
-  font-size: 11px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  color: var(--wine);
+.iso-table th {
   background: #f7f2e8;
+  color: var(--wine);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .15em;
 }
-
-.change-grid {
+.iso-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-}
-.change-card {
-  border: 1px solid var(--line);
-  background: #fff;
-  padding: 16px;
-}
-.change-card h4 {
-  font-size: 12px;
-  letter-spacing: .15em;
-  text-transform: uppercase;
-  color: var(--wine);
-  margin-bottom: 8px;
-}
-.change-card p {
-  margin: 0;
-  font-size: 14px;
-}
-
-.roadmap {
-  display: grid;
-  gap: 10px;
-}
-.road-step {
-  border: 1px solid var(--line);
-  background: var(--paper);
-  padding: 16px;
-  display: grid;
-  grid-template-columns: 42px 1fr;
   gap: 12px;
 }
-.road-step b {
-  width: 42px;
-  height: 42px;
+.iso-card {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 14px;
+}
+.iso-card h4 {
+  color: var(--wine);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  margin-bottom: 7px;
+}
+.iso-card p { margin: 0; font-size: 14px; }
+.iso-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.iso-photo {
+  border: 1px solid var(--line);
+  overflow: hidden;
+}
+.iso-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  object-fit: cover;
+}
+.iso-roadmap { display: grid; gap: 9px; }
+.iso-step {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 14px;
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 10px;
+}
+.iso-step b {
   display: inline-flex;
+  width: 40px;
+  height: 40px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(123,30,34,.25);
+  border: 1px solid rgba(123,30,34,.28);
   color: var(--wine);
   font-family: 'Playfair Display', serif;
 }
-.road-step p { margin: 0; }
-
-.sources {
-  display: grid;
-  gap: 8px;
-}
-.sources a {
-  text-decoration: none;
-  border: 1px solid var(--line);
-  background: #fff;
-  padding: 12px 14px;
-  color: var(--wine);
-  font-size: 13px;
-  line-height: 1.5;
-}
-.sources a:hover { background: #f7efe4; }
-
-.side {
+.iso-step p { margin: 0; }
+.iso-side {
   position: sticky;
   top: 92px;
   align-self: start;
-  display: grid;
-  gap: 14px;
 }
-.side-card {
+.iso-side-card {
   border: 1px solid var(--line);
   background: #fff;
-  padding: 18px;
+  padding: 16px;
 }
-.side-card img {
+.iso-side-card img {
   width: 72px;
   height: 72px;
   object-fit: contain;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.side-card h4 {
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
+.iso-side-card h4 {
   color: var(--wine);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .18em;
   margin-bottom: 10px;
 }
-.side-card ul {
+.iso-side-card ul {
   list-style: none;
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
-.side-card li {
+.iso-side-card li {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.7;
-  position: relative;
   padding-left: 12px;
+  position: relative;
 }
-.side-card li::before {
+.iso-side-card li::before {
   content: '';
   position: absolute;
   left: 0;
@@ -386,357 +772,353 @@ th {
   background: var(--gold);
   transform: rotate(45deg);
 }
-.side-cta {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 12px;
+.iso-side-cta {
   width: 100%;
-  padding: 12px;
+  margin-top: 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
   background: var(--wine);
   color: var(--gold-light);
-  text-transform: uppercase;
   font-size: 10px;
   letter-spacing: .16em;
-  font-weight: 700;
-}
-.side-cta:hover { background: var(--wine-dark); }
-
-.bottom-cta {
-  margin-top: 20px;
-  border: 1px solid var(--line);
-  background: linear-gradient(135deg, rgba(123,30,34,.98), rgba(58,12,15,.98));
-  padding: 28px;
-}
-.bottom-cta h3 {
-  color: var(--gold-light);
-}
-.bottom-cta p {
-  color: rgba(255,255,255,.84);
-}
-.bottom-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.btn {
-  text-decoration: none;
-  padding: 12px 16px;
-  font-size: 10px;
-  letter-spacing: .18em;
   text-transform: uppercase;
   font-weight: 700;
+  padding: 12px;
 }
-.btn--gold {
-  background: var(--gold);
-  color: var(--wine-deep);
-}
-.btn--line {
-  border: 1px solid rgba(255,255,255,.4);
-  color: #fff;
-}
-
-.footer {
-  margin-top: 24px;
-  background: var(--wine-deep);
-  border-top: 1px solid rgba(201,168,76,.18);
-}
-.footer-inner {
-  max-width: 1240px;
-  margin: 0 auto;
-  padding: 22px 24px;
-  color: rgba(255,255,255,.74);
-  font-size: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 14px;
-}
-
 @media (max-width: 1080px) {
-  .page { grid-template-columns: 1fr; }
-  .side { position: static; }
+  .iso-layout { grid-template-columns: 1fr; }
+  .iso-side { position: static; }
 }
-@media (max-width: 760px) {
-  .menu a { font-size: 9px; padding: 6px; letter-spacing: .11em; }
-  .brand span { display: none; }
-  .hero { min-height: 62vh; }
-  .hero-content { padding: 64px 0 52px; }
-  .hero p { font-size: 14px; }
-  .panel-content { padding: 20px; }
-  .kpi-grid, .split, .change-grid { grid-template-columns: 1fr; }
+@media (max-width: 700px) {
+  .iso-layout { padding: 44px 14px 70px; }
+  .iso-panel-body { padding: 18px; }
+  .iso-kpis, .iso-grid, .iso-split { grid-template-columns: 1fr; }
 }
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "ISO 14001:2026 en MÃ©xico: Cambios Clave, ClÃ¡usulas CrÃ­ticas y TransiciÃ³n 2026-2029",
-  "datePublished": "2026-04-15",
-  "dateModified": "2026-04-15",
-  "author": {
-    "@type": "Organization",
-    "name": "INDUSECC"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "INDUSECC"
-  },
-  "description": "AnÃ¡lisis tÃ©cnico de la norma ISO 14001:2026, impacto en procesos y hoja de ruta de transiciÃ³n en MÃ©xico."
-}
-</script>
 </head>
 <body>
-<header class="topbar">
-<div class="topbar-inner">
-<a class="brand" href="index.html">
-<img alt="INDUSECC" src="Imagenes/logo.png"/>
-<span>INDUSECC Â· Blog TÃ©cnico</span>
-</a>
-<nav class="menu">
-<a href="index.html">Inicio</a>
-<a href="servicios.html">Servicios</a>
-<a class="is-active" href="blogs.html">Blog</a>
-<a href="contacto.html">Contacto</a>
-</nav>
-</div>
-</header>
+<a class="skip-link" href="#mainContent">Saltar al contenido principal</a>
 
-<section class="hero">
-<img alt="ActualizaciÃ³n ISO 14001:2026" src="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg"/>
-<div class="hero-content">
-<span class="pill">PublicaciÃ³n clave Â· 15 abril 2026</span>
-<h1>ISO 14001:2026 en MÃ©xico: cambios estructurales, clÃ¡usulas crÃ­ticas y transiciÃ³n oficial hasta mayo de 2029</h1>
-<p>
-      La versiÃ³n ISO 14001:2026 redefine el estÃ¡ndar ambiental global con mayor exigencia en desempeÃ±o verificable,
-      gestiÃ³n del cambio, control de cadena de suministro y resiliencia climÃ¡tica. Esta guÃ­a desglosa quÃ© cambiÃ³ y cÃ³mo
-      migrar sin riesgos operativos o de certificaciÃ³n.
+<div class="ind-header-wrapper">
+  <div class="ind-top-bar">
+    <div class="ind-top-info">
+      <div class="ind-top-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>55 4015 2551</span>
+      </div>
+      <div class="ind-top-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+      </div>
+      <div class="ind-top-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
+      </div>
+      <div class="ind-top-item">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>56 1604 4547</span>
+      </div>
+    </div>
+    <div class="ind-top-item" style="opacity:.65;">INDUSECC</div>
+  </div>
+
+  <header class="ind-main-header">
+    <div class="ind-container">
+      <div class="ind-logo-group">
+        <a class="ind-logo-wrap" href="index.html"><img class="ind-logo-img" src="Imagenes/logo.png" alt="Logo INDUSECC"/></a>
+        <div class="ind-logo-sep"></div>
+        <div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+      </div>
+
+      <nav class="ind-nav" aria-label="Navegaci&oacute;n principal">
+        <div class="ind-menu-item"><a class="ind-link" href="index.html">Inicio</a></div>
+        <div class="ind-menu-item"><a class="ind-link" href="nosotros.html">&iquest;Qui&eacute;nes Somos?</a></div>
+        <div class="ind-menu-item">
+          <a class="ind-link" href="servicios.html">Servicios
+            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" viewBox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+          </a>
+          <div class="ind-dropdown">
+            <a class="ind-drop-link" href="implementacion-sistema.html">Implementaci&oacute;n de un Sistema de Gesti&oacute;n</a>
+            <a class="ind-drop-link" href="certificacion-iso_.html">Certificaci&oacute;n de Normas ISO</a>
+            <a class="ind-drop-link" href="consultoria-asesoria.html">Consultor&iacute;a y Asesor&iacute;a ISO</a>
+            <a class="ind-drop-link" href="auditorias.html">Auditor&iacute;as</a>
+          </div>
+        </div>
+        <div class="ind-menu-item"><a class="ind-link active" href="blogs.html">Blog</a></div>
+        <div class="ind-menu-item"><a class="ind-link" href="contacto.html">Contacto</a></div>
+      </nav>
+
+      <div class="ind-actions">
+        <button class="a11y-trigger" id="a11yTrigger" aria-haspopup="true" aria-expanded="false" aria-controls="a11yPanel" title="Accesibilidad">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+        </button>
+        <div class="a11y-panel" id="a11yPanel">
+          <h3>Accesibilidad</h3>
+          <div class="a11y-row">
+            <span>Tama&ntilde;o de texto</span>
+            <div class="a11y-controls">
+              <button class="a11y-btn" id="fontDown" aria-label="Reducir texto">A-</button>
+              <button class="a11y-btn" id="fontUp" aria-label="Aumentar texto">A+</button>
+            </div>
+          </div>
+          <div class="a11y-row">
+            <span>Alto contraste</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="contrastToggle" aria-pressed="false">On</button></div>
+          </div>
+          <div class="a11y-row">
+            <span>Reducir movimiento</span>
+            <div class="a11y-controls"><button class="a11y-btn" id="motionToggle" aria-pressed="false">On</button></div>
+          </div>
+          <button class="a11y-reset" id="a11yReset">Restablecer</button>
+        </div>
+        <a class="ind-btn-cta" href="contacto.html">Consulta Online</a>
+      </div>
+    </div>
+  </header>
+</div>
+
+<section class="blog-hero">
+  <img src="img_blogs/iso-14001-concept-businessman-use-laptop-with-iso-14001-certified-environmental-management-systems-ems-identify-control-reduce-environmental-impact-activities.jpg.jpeg" alt="Actualizaci&oacute;n ISO 14001:2026"/>
+  <div class="blog-hero-body">
+    <span class="blog-kicker">An&aacute;lisis general ISO · 15 abril 2026</span>
+    <h1 class="iso-hero-title">ISO 14001:2026<br/>Gu&iacute;a general de cambios y transici&oacute;n para empresas</h1>
+    <p class="iso-hero-sub">
+      Revisi&oacute;n ejecutiva de los ajustes m&aacute;s importantes: nuevo rigor de desempe&ntilde;o ambiental, cambios por
+      cl&aacute;usula, control de proveedores y plazo oficial de migraci&oacute;n hasta mayo de 2029.
     </p>
-<div class="hero-meta">
-<span>+670,000 organizaciones</span>
-<span>Plazo lÃ­mite: mayo 2029</span>
-<span>Foco MÃ©xico: DGN, EMA y MAAC</span>
-</div>
-</div>
+    <div class="iso-chip-row">
+      <span class="iso-chip">+670,000 organizaciones</span>
+      <span class="iso-chip">Transici&oacute;n oficial 2026-2029</span>
+      <span class="iso-chip">M&eacute;xico: DGN · EMA · MAAC</span>
+    </div>
+  </div>
 </section>
 
-<main class="page">
-<article class="article">
-<section class="panel">
-<div class="kpi-grid">
-<div class="kpi"><strong>15 Abr 2026</strong><span>PublicaciÃ³n oficial ISO 14001:2026</span></div>
-<div class="kpi"><strong>3 aÃ±os</strong><span>Ventana global oficial de transiciÃ³n</span></div>
-<div class="kpi"><strong>Mayo 2029</strong><span>Fin de validez para certificados 2015</span></div>
-</div>
-</section>
+<main class="iso-layout" id="mainContent">
+  <article class="iso-main">
+    <section class="iso-panel">
+      <div class="iso-kpis">
+        <div class="iso-kpi-item"><strong>15 Abr 2026</strong><span>Publicaci&oacute;n oficial ISO 14001:2026</span></div>
+        <div class="iso-kpi-item"><strong>3 a&ntilde;os</strong><span>Ventana global de transici&oacute;n</span></div>
+        <div class="iso-kpi-item"><strong>Mayo 2029</strong><span>Fin de validez ISO 14001:2015</span></div>
+      </div>
+    </section>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Resumen ejecutivo <em>del nuevo enfoque</em></h2>
-<p>
-          ISO 14001:2026 no es una correcciÃ³n menor sobre la ediciÃ³n 2015. Es una actualizaciÃ³n de arquitectura y rigor:
-          eleva la exigencia de evidencia objetiva, integra de forma estructural la enmienda climÃ¡tica de 2024 y exige
-          control documentado sobre impacto ambiental a lo largo de toda la cadena de valor.
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Panorama de la norma <em>ISO 14001:2026</em></h2>
+        <p>
+          La versi&oacute;n 2026 eleva el rigor del sistema de gesti&oacute;n ambiental y exige evidencia m&aacute;s robusta de resultados
+          medibles. Fortalece liderazgo, contexto ambiental, perspectiva de ciclo de vida y control de externos.
         </p>
-<p>
-          En tÃ©rminos operativos, la norma empuja a las organizaciones desde un cumplimiento reactivo hacia una gestiÃ³n
-          estratÃ©gica medible: riesgos climÃ¡ticos, liderazgo transversal, procesos de cambio formalizados y decisiones
-          de compras con trazabilidad ambiental.
+        <p>
+          El cambio no es solo documental: impacta planeaci&oacute;n estrat&eacute;gica, compras, auditor&iacute;as internas y gobernanza
+          directiva para convertir cumplimiento en desempe&ntilde;o verificable.
         </p>
-</div>
-</section>
+      </div>
+    </section>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Cronograma oficial de transiciÃ³n <em>2025-2029</em></h2>
-<div class="timeline-wrap">
-<table>
-<thead>
-<tr>
-<th>Fase</th>
-<th>Hito tÃ©cnico</th>
-<th>Fecha</th>
-<th>Impacto operativo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Consulta global</td>
-<td>DIS (Draft International Standard)</td>
-<td>Junio 2025</td>
-<td>Primer anÃ¡lisis de cambios y preparaciÃ³n de estrategia.</td>
-</tr>
-<tr>
-<td>VotaciÃ³n final</td>
-<td>FDIS (Final Draft International Standard)</td>
-<td>5 enero 2026</td>
-<td>Cierre tÃ©cnico para iniciar brechas formales.</td>
-</tr>
-<tr>
-<td>PublicaciÃ³n oficial</td>
-<td>ISO 14001:2026</td>
-<td>15 abril 2026</td>
-<td>Arranca el periodo global de transiciÃ³n de tres aÃ±os.</td>
-</tr>
-<tr>
-<td>AuditorÃ­as de migraciÃ³n</td>
-<td>HabilitaciÃ³n de organismos certificadores</td>
-<td>Mediados 2026 en adelante</td>
-<td>Inicio de auditorÃ­as bajo la nueva ediciÃ³n.</td>
-</tr>
-<tr>
-<td>Fecha fatal IAF</td>
-<td>Fin de validez ISO 14001:2015</td>
-<td>Mayo 2029</td>
-<td>Los certificados antiguos pierden reconocimiento global.</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</section>
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Cronograma oficial de transici&oacute;n <em>2025-2029</em></h2>
+        <div class="iso-table-wrap">
+          <table class="iso-table">
+            <thead>
+              <tr>
+                <th>Fase</th>
+                <th>Documento</th>
+                <th>Fecha</th>
+                <th>Impacto operativo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Consulta p&uacute;blica</td><td>DIS</td><td>Junio 2025</td><td>Inicio del an&aacute;lisis formal de brechas.</td></tr>
+              <tr><td>Votaci&oacute;n final</td><td>FDIS</td><td>5 enero 2026</td><td>Cierre de requisitos t&eacute;cnicos.</td></tr>
+              <tr><td>Publicaci&oacute;n oficial</td><td>ISO 14001:2026</td><td>15 abril 2026</td><td>Arranque de la ventana global de transici&oacute;n.</td></tr>
+              <tr><td>Auditor&iacute;as 2026</td><td>Organismos certificadores</td><td>Desde 2026</td><td>Evaluaci&oacute;n bajo nueva edici&oacute;n.</td></tr>
+              <tr><td>L&iacute;mite global IAF</td><td>Fin ISO 14001:2015</td><td>Mayo 2029</td><td>Certificados 2015 pierden validez.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Diferencias crÃ­ticas por clÃ¡usula <em>que cambian la operaciÃ³n</em></h2>
-<div class="change-grid">
-<article class="change-card">
-<h4>ClÃ¡usula 4 Â· Contexto</h4>
-<p>Se vuelve explÃ­cita y auditable la evaluaciÃ³n de clima, biodiversidad, contaminaciÃ³n y recursos naturales.</p>
-</article>
-<article class="change-card">
-<h4>ClÃ¡usula 5 Â· Liderazgo</h4>
-<p>La alta direcciÃ³n debe evidenciar apoyo transversal, recursos e integraciÃ³n con estrategia de negocio.</p>
-</article>
-<article class="change-card">
-<h4>ClÃ¡usulas 6.1.4 y 6.1.5</h4>
-<p>SeparaciÃ³n formal entre evaluaciÃ³n de riesgos/oportunidades y planificaciÃ³n de acciones mitigantes.</p>
-</article>
-<article class="change-card">
-<h4>ClÃ¡usula 6.3 Â· GestiÃ³n del cambio</h4>
-<p>Nueva exigencia formal: ningÃºn cambio mayor sin evaluaciÃ³n ambiental previa documentada.</p>
-</article>
-<article class="change-card">
-<h4>ClÃ¡usula 8.1 Â· Control operacional</h4>
-<p>ExpansiÃ³n de â€œsubcontratadosâ€ a procesos, productos y servicios suministrados externamente.</p>
-</article>
-<article class="change-card">
-<h4>ClÃ¡usulas 9 y 10</h4>
-<p>AuditorÃ­as internas con objetivos especÃ­ficos y mejora continua con trazabilidad causa-raÃ­z-resultado.</p>
-</article>
-</div>
-</div>
-</section>
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Cambios por cl&aacute;usula <em>de mayor impacto</em></h2>
+        <div class="iso-grid">
+          <article class="iso-card"><h4>Cl&aacute;usula 4</h4><p>Contexto ambiental expl&iacute;cito en clima, biodiversidad y recursos.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 5</h4><p>Liderazgo activo con evidencia de recursos y decisiones estrat&eacute;gicas.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 6.3</h4><p>Gesti&oacute;n del cambio obligatoria antes de ejecutar modificaciones cr&iacute;ticas.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 8.1</h4><p>Control ampliado sobre procesos, productos y servicios externos.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 9.2.2</h4><p>Objetivos definidos en auditor&iacute;as internas para validar eficacia real.</p></article>
+          <article class="iso-card"><h4>Cl&aacute;usula 10</h4><p>Trazabilidad m&aacute;s estricta entre hallazgos, causa ra&iacute;z y mejora continua.</p></article>
+        </div>
+      </div>
+    </section>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Impacto transversal en procesos y tecnologÃ­a <em>del SGA</em></h2>
-<div class="split">
-<div>
-<h3>Cadena de suministro y control externo</h3>
-<p>
-              El cambio de lenguaje en 8.1 obliga a redefinir compras, homologaciÃ³n y monitoreo de proveedores.
-              Se requieren criterios ambientales en contratos, SLAs y evaluaciones periÃ³dicas.
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Impacto en procesos y digitalizaci&oacute;n <em>del SGA</em></h2>
+        <div class="iso-split">
+          <div>
+            <p>
+              Compras y cadena de suministro deben incorporar criterios ambientales verificables para proveedores,
+              con evidencia peri&oacute;dica y seguimiento de desempe&ntilde;o.
             </p>
-<p>
-              La perspectiva de ciclo de vida deja de ser declarativa: se debe demostrar influencia y control razonable
-              sobre impactos aguas arriba y aguas abajo.
+            <p>
+              La implementaci&oacute;n exige m&aacute;s madurez digital: datos trazables, flujos MoC y reportes consistentes
+              para auditor&iacute;as internas y externas.
             </p>
-</div>
-<div class="photo">
-<img alt="Equipos revisando implementaciÃ³n ambiental" src="img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg"/>
-</div>
-</div>
-<p style="margin-top:14px;">
-          AdemÃ¡s, la norma incrementa la presiÃ³n por digitalizaciÃ³n del SGA: evidencia disponible como informaciÃ³n
-          documentada, trazabilidad de datos ambientales, workflows de aprobaciÃ³n para cambios (MoC) y visibilidad
-          de mÃ©tricas de proveedores (incluido Scope 3).
-        </p>
-</div>
-</section>
+          </div>
+          <div class="iso-photo">
+            <img src="img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg" alt="Equipo revisando plan de implementaci&oacute;n"/>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Marco de adopciÃ³n en MÃ©xico <em>DGN, IMNC, EMA y MAAC</em></h2>
-<p>
-          En MÃ©xico, la adopciÃ³n se materializa como NMX mediante el esquema de normalizaciÃ³n nacional. La ruta esperada
-          incluye revisiÃ³n tÃ©cnica, publicaciÃ³n de PROY-NMX en consulta pÃºblica, y declaratoria de vigencia en DOF por la
-          DirecciÃ³n General de Normas (DGN).
-        </p>
-<p>
-          La evaluaciÃ³n de conformidad recae en organismos certificadores acreditados por entidades nacionales como EMA
-          y MAAC, bajo el marco de reconocimiento internacional del IAF. Por ello, el lÃ­mite de mayo de 2029 aplica sin
-          holguras excepcionales para organizaciones con certificado 2015.
-        </p>
-</div>
-</section>
+    <section class="iso-panel">
+      <div class="iso-panel-body">
+        <h2>Ruta sugerida de implementaci&oacute;n <em>en 6 pasos</em></h2>
+        <div class="iso-roadmap">
+          <div class="iso-step"><b>01</b><p><strong>Gap analysis:</strong> evaluar sistema actual frente a requisitos 2026.</p></div>
+          <div class="iso-step"><b>02</b><p><strong>Alineaci&oacute;n directiva:</strong> conectar objetivos ambientales con estrategia.</p></div>
+          <div class="iso-step"><b>03</b><p><strong>Redise&ntilde;o metodol&oacute;gico:</strong> contexto, riesgos y ciclo de vida.</p></div>
+          <div class="iso-step"><b>04</b><p><strong>Control de externos:</strong> actualizar criterios para proveedores y contratistas.</p></div>
+          <div class="iso-step"><b>05</b><p><strong>MoC:</strong> formalizar gesti&oacute;n del cambio previa a cada modificaci&oacute;n mayor.</p></div>
+          <div class="iso-step"><b>06</b><p><strong>Auditor&iacute;a de transici&oacute;n:</strong> programar con anticipaci&oacute;n antes de 2029.</p></div>
+        </div>
+      </div>
+    </section>
+  </article>
 
-<section class="panel">
-<div class="panel-content">
-<h2>Hoja de ruta recomendada de migraciÃ³n <em>sin cuello de botella</em></h2>
-<div class="roadmap">
-<div class="road-step"><b>01</b><p><strong>Gap analysis profundo.</strong> Contrastar el SGA actual contra 2026 con foco en 4.1, 6.3 y 8.1.</p></div>
-<div class="road-step"><b>02</b><p><strong>AlineaciÃ³n directiva.</strong> Vincular compromisos ambientales a decisiones de inversiÃ³n y riesgo.</p></div>
-<div class="road-step"><b>03</b><p><strong>RediseÃ±o metodolÃ³gico.</strong> Ajustar matrices de aspectos, riesgos y ciclo de vida con evidencia verificable.</p></div>
-<div class="road-step"><b>04</b><p><strong>Procurement y proveedores.</strong> Integrar criterios ambientales obligatorios para procesos externos.</p></div>
-<div class="road-step"><b>05</b><p><strong>MoC institucional.</strong> Activar flujo formal de gestiÃ³n del cambio antes de ejecutar modificaciones crÃ­ticas.</p></div>
-<div class="road-step"><b>06</b><p><strong>Agendar auditorÃ­a 2026.</strong> Coordinar transiciÃ³n con organismo certificador antes de saturaciÃ³n 2028-2029.</p></div>
-</div>
-</div>
-</section>
-
-<section class="panel">
-<div class="panel-content">
-<h2>Fuentes de consulta y seguimiento <em>recomendadas</em></h2>
-<div class="sources">
-<a href="https://blog.ansi.org/" target="_blank">ANSI Blog Â· ISO 14001:2026 Transition</a>
-<a href="https://www.iaf.nu/" target="_blank">IAF Â· Documentos y lineamientos de transiciÃ³n</a>
-<a href="https://www.bsigroup.com/" target="_blank">BSI Â· GuÃ­as de cambios ISO 14001:2026</a>
-<a href="https://www.sgs.com/" target="_blank">SGS Â· Key updates and transition guidance</a>
-<a href="https://www.dnv.com/" target="_blank">DNV Â· RevisiÃ³n ISO 14001:2026</a>
-<a href="https://www.intertek.com/" target="_blank">Intertek Â· Actualizaciones clave ISO 14001:2026</a>
-<a href="https://www.dof.gob.mx/" target="_blank">DOF Â· Publicaciones oficiales en MÃ©xico</a>
-<a href="https://platiica.economia.gob.mx/" target="_blank">Plataforma de EconomÃ­a Â· CatÃ¡logo de normas NMX</a>
-</div>
-</div>
-</section>
-
-<section class="bottom-cta">
-<h3>Siguiente paso sugerido</h3>
-<p>
-          Ejecutar diagnÃ³stico de brechas en 30 dÃ­as y calendarizar auditorÃ­a de transiciÃ³n dentro de la prÃ³xima ventana
-          de vigilancia o recertificaciÃ³n para evitar saturaciÃ³n de auditores en 2028-2029.
-        </p>
-<div class="bottom-actions">
-<a class="btn btn--gold" href="contacto.html">Agendar DiagnÃ³stico</a>
-<a class="btn btn--line" href="blogs.html">Volver a Blogs</a>
-</div>
-</section>
-</article>
-
-<aside class="side">
-<div class="side-card">
-<img alt="Icono sostenibilidad" src="img_blogs/png-green-light-bulb-slide-icon-transparent-background.png"/>
-<h4>Checklist crÃ­tico 2026</h4>
-<ul>
-<li>Actualizar anÃ¡lisis de contexto con variables climÃ¡ticas y biodiversidad.</li>
-<li>Formalizar gestiÃ³n del cambio ambiental (clÃ¡usula 6.3).</li>
-<li>Reestructurar control de proveedores y servicios externos (8.1).</li>
-<li>Definir objetivos de auditorÃ­a interna por ejercicio (9.2.2).</li>
-<li>Asegurar plan de transiciÃ³n antes de mayo de 2029.</li>
-</ul>
-<a class="side-cta" href="contacto.html">Solicitar AcompaÃ±amiento</a>
-</div>
-</aside>
+  <aside class="iso-side">
+    <div class="iso-side-card">
+      <img src="img_blogs/png-green-light-bulb-slide-icon-transparent-background.png" alt="Checklist de transici&oacute;n"/>
+      <h4>Checklist cr&iacute;tico</h4>
+      <ul>
+        <li>Actualizar an&aacute;lisis de contexto y riesgos ambientales.</li>
+        <li>Implementar cl&aacute;usula 6.3 de gesti&oacute;n del cambio.</li>
+        <li>Reforzar cl&aacute;usula 8.1 sobre proveedores externos.</li>
+        <li>Definir objetivos por auditor&iacute;a interna (9.2.2).</li>
+        <li>Agendar transici&oacute;n antes de mayo de 2029.</li>
+      </ul>
+      <a class="iso-side-cta" href="contacto.html">Solicitar acompa&ntilde;amiento</a>
+    </div>
+  </aside>
 </main>
 
-<footer class="footer">
-<div class="footer-inner">
-<span>Â© 2026 INDUSECC Â· Blog tÃ©cnico ISO</span>
-<span><a href="blogs.html">Blogs</a> Â· <a href="index.html">Inicio</a> Â· <a href="contacto.html">Contacto</a></span>
-</div>
+<footer class="ind-footer-wrap">
+  <div class="ind-f-top-accent"></div>
+  <div class="ind-f-main">
+    <div class="ind-f-grid">
+      <div class="ind-f-brand">
+        <div class="ind-f-logo-container"><img class="ind-f-logo-img" src="Imagenes/logo.png" alt="INDUSECC"/></div>
+        <p class="ind-f-slogan">Soluciones ISO para la mejora continua y el cumplimiento empresarial.</p>
+        <div class="ind-f-contact-strip">
+          <a class="ind-f-contact-link" href="tel:5540152551"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>55 4015 2551</a>
+          <a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>danna@indusecc.com.mx</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="ind-f-title">Navegaci&oacute;n</h4>
+        <ul class="ind-f-list">
+          <li><a class="ind-f-item-link" href="index.html">Inicio</a></li>
+          <li><a class="ind-f-item-link" href="servicios.html">Servicios</a></li>
+          <li><a class="ind-f-item-link" href="nosotros.html">&iquest;Qui&eacute;nes Somos?</a></li>
+          <li><a class="ind-f-item-link" href="blogs.html">Blog</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ind-f-title">Servicios</h4>
+        <ul class="ind-f-list">
+          <li><a class="ind-f-item-link" href="consultoria-asesoria.html">Consultor&iacute;a ISO</a></li>
+          <li><a class="ind-f-item-link" href="implementacion-sistema.html">Implementaci&oacute;n</a></li>
+          <li><a class="ind-f-item-link" href="certificacion-iso_.html">Certificaci&oacute;n ISO</a></li>
+          <li><a class="ind-f-item-link" href="auditorias.html">Auditor&iacute;as</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="ind-f-title">Redes</h4>
+        <ul class="ind-f-list">
+          <li><a class="ind-f-item-link" href="contacto.html">Cont&aacute;ctanos</a></li>
+        </ul>
+        <div class="ind-f-social-wrap">
+          <a class="ind-f-social-icon linkedin" href="#" aria-label="LinkedIn"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+          <a class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn" aria-label="Instagram"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+          <a class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/" aria-label="Facebook"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ind-f-bottom">
+    <div class="ind-f-copy">&copy; 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+    <div class="ind-f-office">Excelencia en gesti&oacute;n industrial y normativa</div>
+  </div>
 </footer>
+
+<script>
+(function () {
+  const body = document.body;
+  const root = document.documentElement;
+  const panel = document.getElementById('a11yPanel');
+  const trigger = document.getElementById('a11yTrigger');
+  const fontUp = document.getElementById('fontUp');
+  const fontDown = document.getElementById('fontDown');
+  const contrast = document.getElementById('contrastToggle');
+  const motion = document.getElementById('motionToggle');
+  const reset = document.getElementById('a11yReset');
+
+  let scale = parseFloat(localStorage.getItem('ind_a11y_scale') || '1');
+  let highContrast = localStorage.getItem('ind_a11y_contrast') === '1';
+  let reducedMotion = localStorage.getItem('ind_a11y_motion') === '1';
+
+  function apply() {
+    scale = Math.max(0.9, Math.min(1.25, scale));
+    root.style.setProperty('--font-scale', scale.toFixed(2));
+    body.classList.toggle('a11y-high-contrast', highContrast);
+    body.classList.toggle('a11y-reduced-motion', reducedMotion);
+    contrast.classList.toggle('active', highContrast);
+    contrast.setAttribute('aria-pressed', highContrast ? 'true' : 'false');
+    motion.classList.toggle('active', reducedMotion);
+    motion.setAttribute('aria-pressed', reducedMotion ? 'true' : 'false');
+    localStorage.setItem('ind_a11y_scale', String(scale));
+    localStorage.setItem('ind_a11y_contrast', highContrast ? '1' : '0');
+    localStorage.setItem('ind_a11y_motion', reducedMotion ? '1' : '0');
+  }
+
+  function setPanel(open) {
+    panel.classList.toggle('open', open);
+    trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  trigger.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setPanel(!panel.classList.contains('open'));
+  });
+  document.addEventListener('click', function (e) {
+    if (!panel.contains(e.target) && !trigger.contains(e.target)) setPanel(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') setPanel(false);
+  });
+
+  fontUp.addEventListener('click', function () { scale += 0.05; apply(); });
+  fontDown.addEventListener('click', function () { scale -= 0.05; apply(); });
+  contrast.addEventListener('click', function () { highContrast = !highContrast; apply(); });
+  motion.addEventListener('click', function () { reducedMotion = !reducedMotion; apply(); });
+  reset.addEventListener('click', function () {
+    scale = 1;
+    highContrast = false;
+    reducedMotion = false;
+    apply();
+  });
+
+  apply();
+})();
+</script>
 </body>
 </html>
 
