@@ -1286,7 +1286,7 @@
 
     <!-- ════════ SUBMIT ════════ -->
     <div class="btn-group">
-  <button type="button" id="download-pdf-btn" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
+  <button type="submit" id="submit-form-btn" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="22" y1="2" x2="11" y2="13"></line>
       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -1300,14 +1300,14 @@
     </svg>
     Descargar mi copia en PDF
   </button>
-  <button type="button" id="send-email-btn" class="btn-download" disabled>
+  <button type="submit" id="send-email-btn" class="btn-download">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="22" y1="2" x2="11" y2="13"></line>
       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
     </svg>
-    Enviar PDF por correo
+    Enviar diagnostico por correo
   </button>
-  <div class="delivery-note" id="delivery-note">Primero genera el PDF y luego se habilitara el envio a danna@indusecc.com.mx y maricruz@partumdesign.com.mx.</div>
+  <div class="delivery-note" id="delivery-note">Puedes descargar una copia en PDF antes de enviar la informacion a danna@indusecc.com.mx y maricruz@partumdesign.com.mx.</div>
 </div>
   </form>
 
@@ -1625,13 +1625,12 @@
 
       latestPdfBlob = pdfDoc.output('blob');
       pdfDoc.save('INDUSECC_Formulario_Auditoria.pdf');
-      sendEmailBtn.disabled = false;
-      deliveryNote.textContent = 'PDF generado correctamente. Ya puedes enviarlo por correo a Danna y Maricruz.';
+      deliveryNote.textContent = 'PDF generado correctamente. Puedes revisarlo y luego enviar la informacion por correo.';
       showToast('âœ“ PDF descargado. Ya puedes enviarlo por correo');
     });
   }
 
-  if (sendEmailBtn) {
+  if (false && sendEmailBtn) {
     sendEmailBtn.addEventListener('click', async () => {
       if (!latestPdfBlob) {
         showToast('Primero genera y descarga el PDF');
