@@ -1244,7 +1244,7 @@
             <span>¿De qué empresa nos contactan?</span>
           </label>
           <div class="input-row">
-            <input type="text" name="empresa_nombre" placeholder="🏢 Empresa / Razón social">
+            <input type="text" name="empresa_nombre" placeholder="🏢 Empresa / Razón social" required>
             <input type="text" name="empresa_giro" placeholder="🏭 Giro, industria o RFC">
           </div>
         </div>
@@ -1261,7 +1261,7 @@
             <input type="text" name="contacto_puesto" placeholder="🏷️ Cargo / Puesto">
           </div>
           <div class="input-row">
-            <input type="text" name="contacto_email" placeholder="✉️ Correo electrónico">
+            <input type="text" name="contacto_email" placeholder="✉️ Correo electrónico" required>
             <input type="text" name="contacto_telefono" placeholder="📞 Teléfono / Ext.">
           </div>
         </div>
@@ -1370,7 +1370,7 @@
     let filled = 0, total = 0;
     const optional = ['areas_otro','normas_otro','sedes_detalle','nuevos_sistemas_detalle',
       'auditorias_previas_detalle','cambios_personal_detalle','riesgos_detalle',
-      'contacto_email','contacto_telefono','fecha_informe_obs','disponibilidad_detalle','comentarios'];
+      'contacto_telefono','fecha_informe_obs','disponibilidad_detalle','comentarios'];
 
     inputs.forEach(inp => {
       if (inp.name && !optional.includes(inp.name)) {
