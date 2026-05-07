@@ -1241,21 +1241,12 @@
         <div class="question">
           <label class="question-label">
             <span class="question-num">1.</span>
-            <span>¿De qué empresa nos contactan?</span>
+            <span>¿Quién será el contacto principal para la información?</span>
           </label>
           <div class="input-row">
             <input type="text" name="empresa_nombre" placeholder="🏢 Empresa / Razón social" required>
             <input type="text" name="empresa_giro" placeholder="🏭 Giro, industria o RFC">
           </div>
-        </div>
-
-        <div class="field-separator"></div>
-
-        <div class="question">
-          <label class="question-label">
-            <span class="question-num">2.</span>
-            <span>¿Quién será el contacto principal para la auditoría?</span>
-          </label>
           <div class="input-row">
             <input type="text" name="contacto_nombre" placeholder="👤 Nombre completo" required>
             <input type="text" name="contacto_puesto" placeholder="🏷️ Cargo / Puesto">
@@ -1270,7 +1261,7 @@
 
         <div class="question">
           <label class="question-label">
-            <span class="question-num">3.</span>
+            <span class="question-num">2.</span>
             <span>¿El personal de la empresa estará disponible para entrevistas durante la auditoría?</span>
           </label>
           <div class="radio-group">
@@ -1282,16 +1273,6 @@
             <label for="d3" class="radio-label">📅 Requiere coordinación</label>
           </div>
           <textarea name="disponibilidad_detalle" placeholder="Restricciones de horario, áreas con acceso limitado, o cualquier observación relevante..."></textarea>
-        </div>
-
-        <div class="field-separator"></div>
-
-        <div class="question">
-          <label class="question-label">
-            <span class="question-num" style="color:rgba(196,154,46,0.6);">+</span>
-            <span>💬&nbsp; Comentarios adicionales o información relevante</span>
-          </label>
-          <textarea name="comentarios" placeholder="Cualquier información adicional que considere importante para la planificación de la auditoría..." rows="4"></textarea>
         </div>
 
       </div>
@@ -1719,8 +1700,7 @@
           { label: 'Giro / RFC', val: d.empresa_giro },
           { label: 'Contacto principal', val: [d.contacto_nombre, d.contacto_puesto].filter(Boolean).join(' - ') },
           { label: 'Email / Telefono', val: [d.contacto_email, d.contacto_telefono].filter(Boolean).join(' | ') },
-          { label: 'Disponibilidad del personal', val: (d.disponibilidad || '') + (d.disponibilidad_detalle ? `: ${d.disponibilidad_detalle}` : '') },
-          { label: 'Comentarios adicionales', val: d.comentarios }
+          { label: 'Disponibilidad del personal', val: (d.disponibilidad || '') + (d.disponibilidad_detalle ? `: ${d.disponibilidad_detalle}` : '') }
         ]
       }
     ];

@@ -101,8 +101,7 @@ function buildHtml(fields) {
     contacto_email: 'Correo del contacto',
     contacto_telefono: 'Telefono del contacto',
     disponibilidad: 'Disponibilidad del personal',
-    disponibilidad_detalle: 'Detalle de disponibilidad',
-    comentarios: 'Comentarios adicionales'
+    disponibilidad_detalle: 'Detalle de disponibilidad'
   };
 
   const rows = Object.entries(labels).map(([key, label]) => `
