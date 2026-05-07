@@ -94,6 +94,8 @@ function buildHtml(fields) {
     fecha_informe: 'Fecha requerida del informe',
     fecha_informe_obs: 'Observaciones del informe',
     entregables: 'Entregables requeridos',
+    empresa_nombre: 'Empresa / razon social',
+    empresa_giro: 'Giro, industria o RFC',
     contacto_nombre: 'Nombre de contacto',
     contacto_puesto: 'Puesto del contacto',
     contacto_email: 'Correo del contacto',
@@ -162,7 +164,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: process.env.SMTP_FROM || process.env.SMTP_USER,
       to: ['danna@indusecc.com.mx', 'maricruz@partumdesign.com.mx'],
-      subject: 'Nuevo diagnostico de auditoria - INDUSECC',
+      subject: `Nuevo diagnostico de auditoria - ${formatValue(fields.empresa_nombre)}`,
       html: buildHtml(fields),
       attachments: [
         {
