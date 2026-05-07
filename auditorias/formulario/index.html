@@ -1286,7 +1286,7 @@
 
     <!-- ════════ SUBMIT ════════ -->
     <div class="btn-group">
-  <button type="submit" id="submit-form-btn" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
+  <button type="submit" id="send-email-btn" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="22" y1="2" x2="11" y2="13"></line>
       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -1294,18 +1294,11 @@
     Enviar Diagnóstico a Danna
   </button>
 
-  <button type="button" class="btn-download" onclick="descargarPDF()">
+  <button type="button" id="download-pdf-btn" class="btn-download" onclick="descargarPDF()">
     <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
       <path d="M7.5 1v9M4.5 7l3 3 3-3M1.5 12v1a1 1 0 001 1h10a1 1 0 001-1v-1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
     Descargar mi copia en PDF
-  </button>
-  <button type="submit" id="send-email-btn" class="btn-download">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="22" y1="2" x2="11" y2="13"></line>
-      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-    </svg>
-    Enviar diagnostico por correo
   </button>
   <div class="delivery-note" id="delivery-note">Puedes descargar una copia en PDF antes de enviar la informacion a danna@indusecc.com.mx y maricruz@partumdesign.com.mx.</div>
 </div>
@@ -1670,7 +1663,7 @@
   formEl.addEventListener('submit', async (event) => {
     event.preventDefault();
 
-    const submitButton = formEl.querySelector('button[type="submit"]');
+    const submitButton = sendEmailBtn || formEl.querySelector('button[type="submit"]');
     const originalLabel = submitButton.innerHTML;
     const pdfDoc = buildPdfDocument();
 
