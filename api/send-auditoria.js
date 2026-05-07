@@ -122,10 +122,10 @@ function buildHtml(fields) {
 }
 
 function createTransporter() {
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT || 465);
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
+  const host = (process.env.SMTP_HOST || '').trim();
+  const port = Number((process.env.SMTP_PORT || '465').trim());
+  const user = (process.env.SMTP_USER || '').trim();
+  const pass = (process.env.SMTP_PASS || '').trim();
 
   if (!host || !user || !pass) {
     throw new Error('Missing SMTP configuration');
