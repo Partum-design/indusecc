@@ -851,7 +851,7 @@
     </div>
   </div>
 
-<form id="auditoria-form" action="https://formspree.io/f/mlgzwjra" method="POST">
+<form id="auditoria-form" action="/api/send-auditoria" method="POST">
 
     <!-- ════════ SECCIÓN 1 ════════ -->
     <div class="section">
@@ -1401,9 +1401,9 @@
   }
 
   /* ── PDF ── */
-  function descargarPDF() {
+  function buildPdfDocument() {
     const { jsPDF } = window.jspdf;
-    if (!jsPDF) { showToast('Error: librería no cargada'); return; }
+    if (!jsPDF) { return null; }
 
     const doc      = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
     const d        = getFormData();
@@ -1540,6 +1540,12 @@
       doc.text(`Pág. ${p} de ${totalPages}`, 195, 292, { align: 'right' });
     }
 
+    return doc;
+  }
+
+  function descargarPDF() {
+    const doc = buildPdfDocument();
+    if (!doc) { showToast('Error: librería no cargada'); return; }
     doc.save('INDUSECC_Formulario_Auditoria.pdf');
     showToast('✓ PDF descargado correctamente');
   }
@@ -1551,27 +1557,35 @@
 
     const submitButton = formEl.querySelector('button[type="submit"]');
     const originalLabel = submitButton.innerHTML;
+    const pdfDoc = buildPdfDocument();
+
+    if (!pdfDoc) {
+      showToast('Error: no se pudo generar el PDF');
+      return;
+    }
 
     submitButton.disabled = true;
     submitButton.style.opacity = '0.75';
     submitButton.innerHTML = 'Enviando...';
 
     try {
+      const pdfBlob = pdfDoc.output('blob');
+      const payload = new FormData(formEl);
+      payload.append('pdf', pdfBlob, 'INDUSECC_Formulario_Auditoria.pdf');
+
       const response = await fetch(formEl.action, {
         method: 'POST',
-        body: new FormData(formEl),
-        headers: {
-          'Accept': 'application/json'
-        }
+        body: payload
       });
 
       if (!response.ok) {
         throw new Error('No se pudo enviar el formulario');
       }
 
+      pdfDoc.save('INDUSECC_Formulario_Auditoria.pdf');
       formEl.reset();
       updateProgress();
-      showToast('✓ Formulario enviado correctamente');
+      showToast('✓ Diagnóstico enviado a Danna y PDF descargado');
     } catch (error) {
       showToast('Error al enviar. Intente nuevamente');
     } finally {
