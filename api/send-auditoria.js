@@ -1,3 +1,5 @@
+import nodemailer from 'nodemailer';
+
 export const config = {
   api: {
     bodyParser: false
@@ -39,7 +41,7 @@ function parseMultipart(buffer, boundary) {
     if (filenameMatch && filenameMatch[1]) {
       pdfAttachment = {
         filename: filenameMatch[1],
-        content: Buffer.from(rawBody, 'latin1').toString('base64')
+        content: Buffer.from(rawBody, 'latin1')
       };
       continue;
     }
@@ -61,41 +63,41 @@ function parseMultipart(buffer, boundary) {
 
 function formatValue(value) {
   if (Array.isArray(value)) return value.join(', ');
-  return value || '—';
+  return value || '-';
 }
 
 function buildHtml(fields) {
   const labels = {
     objetivo: 'Objetivo principal',
     objetivo_detalle: 'Detalle del objetivo',
-    areas: 'Áreas a auditar',
-    areas_otro: 'Otra área',
+    areas: 'Areas a auditar',
+    areas_otro: 'Otra area',
     periodo_inicio: 'Periodo inicio',
     periodo_fin: 'Periodo fin',
     normas: 'Normas / regulaciones',
     normas_otro: 'Otra norma',
-    empleados: 'Número de empleados',
+    empleados: 'Numero de empleados',
     sedes: 'Sedes / sucursales',
     sedes_detalle: 'Detalle de sedes',
-    modalidad: 'Modalidad de auditoría',
+    modalidad: 'Modalidad de auditoria',
     nuevos_sistemas: 'Nuevos sistemas implementados',
     nuevos_sistemas_detalle: 'Detalle de nuevos sistemas',
     manuales: 'Manuales / procedimientos',
-    auditorias_previas: 'Auditorías previas',
-    auditorias_previas_detalle: 'Detalle de auditorías previas',
+    auditorias_previas: 'Auditorias previas',
+    auditorias_previas_detalle: 'Detalle de auditorias previas',
     cambios_personal: 'Cambios en personal clave',
     cambios_personal_detalle: 'Detalle de cambios de personal',
     riesgos: 'Riesgos identificados',
     riesgos_detalle: 'Detalle de riesgos',
-    fecha_inicio_auditoria: 'Inicio deseado de auditoría',
-    fecha_fin_auditoria: 'Fin deseado de auditoría',
+    fecha_inicio_auditoria: 'Inicio deseado de auditoria',
+    fecha_fin_auditoria: 'Fin deseado de auditoria',
     fecha_informe: 'Fecha requerida del informe',
     fecha_informe_obs: 'Observaciones del informe',
     entregables: 'Entregables requeridos',
     contacto_nombre: 'Nombre de contacto',
     contacto_puesto: 'Puesto del contacto',
     contacto_email: 'Correo del contacto',
-    contacto_telefono: 'Teléfono del contacto',
+    contacto_telefono: 'Telefono del contacto',
     disponibilidad: 'Disponibilidad del personal',
     disponibilidad_detalle: 'Detalle de disponibilidad',
     comentarios: 'Comentarios adicionales'
@@ -110,8 +112,8 @@ function buildHtml(fields) {
 
   return `
     <div style="font-family:Arial,sans-serif;color:#2f1720;">
-      <h2 style="margin:0 0 16px;color:#5c1a2e;">Nuevo diagnóstico de auditoría</h2>
-      <p style="margin:0 0 18px;">Se recibió un nuevo formulario desde INDUSECC. El PDF viene adjunto en este correo.</p>
+      <h2 style="margin:0 0 16px;color:#5c1a2e;">Nuevo diagnostico de auditoria</h2>
+      <p style="margin:0 0 18px;">Se recibio un nuevo formulario desde INDUSECC. El PDF viene adjunto en este correo.</p>
       <table style="border-collapse:collapse;width:100%;max-width:900px;">
         <tbody>${rows}</tbody>
       </table>
@@ -119,14 +121,28 @@ function buildHtml(fields) {
   `;
 }
 
+function createTransporter() {
+  const host = process.env.SMTP_HOST;
+  const port = Number(process.env.SMTP_PORT || 465);
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+
+  if (!host || !user || !pass) {
+    throw new Error('Missing SMTP configuration');
+  }
+
+  return nodemailer.createTransport({
+    host,
+    port,
+    secure: port === 465,
+    auth: { user, pass }
+  });
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
     return res.status(405).json({ error: 'Method not allowed' });
-  }
-
-  if (!process.env.RESEND_API_KEY) {
-    return res.status(500).json({ error: 'Missing RESEND_API_KEY' });
   }
 
   const boundary = getBoundary(req.headers['content-type']);
@@ -141,33 +157,26 @@ export default async function handler(req, res) {
     return res.status(400).json({ error: 'PDF attachment is required' });
   }
 
-  const payload = {
-    from: process.env.AUDITORIA_FROM_EMAIL || 'INDUSECC <onboarding@resend.dev>',
-    to: ['danna@indusecc.com.mx', 'maricruz@partumdesign.com.mx'],
-    subject: 'Nuevo diagnóstico de auditoría - INDUSECC',
-    html: buildHtml(fields),
-    attachments: [
-      {
-        filename: pdfAttachment.filename,
-        content: pdfAttachment.content
-      }
-    ]
-  };
+  try {
+    const transporter = createTransporter();
+    await transporter.sendMail({
+      from: process.env.SMTP_FROM || process.env.SMTP_USER,
+      to: ['danna@indusecc.com.mx', 'maricruz@partumdesign.com.mx'],
+      subject: 'Nuevo diagnostico de auditoria - INDUSECC',
+      html: buildHtml(fields),
+      attachments: [
+        {
+          filename: pdfAttachment.filename,
+          content: pdfAttachment.content,
+          contentType: 'application/pdf'
+        }
+      ]
+    });
 
-  const resendResponse = await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${process.env.RESEND_API_KEY}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(payload)
-  });
-
-  if (!resendResponse.ok) {
-    const errorText = await resendResponse.text();
-    return res.status(502).json({ error: errorText });
+    return res.status(200).json({ ok: true });
+  } catch (error) {
+    return res.status(502).json({
+      error: error instanceof Error ? error.message : 'SMTP send failed'
+    });
   }
-
-  const result = await resendResponse.json();
-  return res.status(200).json({ ok: true, id: result.id });
 }
