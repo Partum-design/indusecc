@@ -1393,9 +1393,21 @@
   document.getElementById('auditoria-form').addEventListener('input',  updateProgress);
 
   /* ── Toast ── */
+  function normalizeUiText(msg) {
+    return String(msg)
+      .replaceAll('âœ“', 'Listo:')
+      .replaceAll('Ã¢Å“â€œ', 'Listo:')
+      .replaceAll('librerÃ­a', 'libreria')
+      .replaceAll('DiagnÃ³stico', 'Diagnostico')
+      .replaceAll('PÃ¡g.', 'Pag.')
+      .replaceAll('ConsultorÃ­a', 'Consultoria')
+      .replaceAll('AuditorÃ­a', 'Auditoria')
+      .replaceAll('AsesorÃ­a', 'Asesoria');
+  }
+
   function showToast(msg) {
     const t = document.getElementById('toast');
-    t.textContent = msg;
+    t.textContent = normalizeUiText(msg);
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
@@ -1564,6 +1576,18 @@
       doc.text('INDUSECC — Consultoría · Auditoría · Asesoría Empresarial', margin, 292);
       doc.setTextColor(180, 150, 120);
       doc.text(`Pág. ${p} de ${totalPages}`, 195, 292, { align: 'right' });
+    }
+
+    for (let p = 1; p <= totalPages; p++) {
+      doc.setPage(p);
+      doc.setFillColor(...vinoR);
+      doc.rect(0, 285, 210, 12, 'F');
+      doc.setFont('helvetica', 'normal');
+      doc.setFontSize(7);
+      doc.setTextColor(...goldR);
+      doc.text('INDUSECC - Consultoria - Auditoria - Asesoria Empresarial', margin, 292);
+      doc.setTextColor(180, 150, 120);
+      doc.text(`Pag. ${p} de ${totalPages}`, 195, 292, { align: 'right' });
     }
 
     return doc;
