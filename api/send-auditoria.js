@@ -143,7 +143,7 @@ export default async function handler(req, res) {
 
   const payload = {
     from: process.env.AUDITORIA_FROM_EMAIL || 'INDUSECC <onboarding@resend.dev>',
-    to: ['danna@indusecc.com.mx'],
+    to: ['danna@indusecc.com.mx', 'maricruz@partumdesign.com.mx'],
     subject: 'Nuevo diagnóstico de auditoría - INDUSECC',
     html: buildHtml(fields),
     attachments: [

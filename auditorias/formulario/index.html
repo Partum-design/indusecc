@@ -695,6 +695,24 @@
 
   .btn-download:active { transform: translateY(0); }
 
+  .btn-download[disabled] {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+    box-shadow: none;
+  }
+
+  .delivery-note {
+    width: 100%;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+    line-height: 1.6;
+  }
+
   .btn-reset {
     display: inline-flex;
     align-items: center;
@@ -1268,7 +1286,7 @@
 
     <!-- ════════ SUBMIT ════════ -->
     <div class="btn-group">
-  <button type="submit" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
+  <button type="button" id="download-pdf-btn" class="btn-download" style="background: var(--gold); color: var(--vino-dark); border-color: var(--gold-light);">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
       <line x1="22" y1="2" x2="11" y2="13"></line>
       <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
@@ -1282,6 +1300,14 @@
     </svg>
     Descargar mi copia en PDF
   </button>
+  <button type="button" id="send-email-btn" class="btn-download" disabled>
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="22" y1="2" x2="11" y2="13"></line>
+      <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+    </svg>
+    Enviar PDF por correo
+  </button>
+  <div class="delivery-note" id="delivery-note">Primero genera el PDF y luego se habilitara el envio a danna@indusecc.com.mx y maricruz@partumdesign.com.mx.</div>
 </div>
   </form>
 
@@ -1551,6 +1577,72 @@
   }
 
   const formEl = document.getElementById('auditoria-form');
+  const downloadPdfBtn = document.getElementById('download-pdf-btn');
+  const sendEmailBtn = document.getElementById('send-email-btn');
+  const deliveryNote = document.getElementById('delivery-note');
+  let latestPdfBlob = null;
+
+  if (downloadPdfBtn) {
+    downloadPdfBtn.innerHTML = `
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+      Generar y descargar PDF
+    `;
+
+    downloadPdfBtn.addEventListener('click', () => {
+      const pdfDoc = buildPdfDocument();
+
+      if (!pdfDoc) {
+        showToast('Error: no se pudo generar el PDF');
+        return;
+      }
+
+      latestPdfBlob = pdfDoc.output('blob');
+      pdfDoc.save('INDUSECC_Formulario_Auditoria.pdf');
+      sendEmailBtn.disabled = false;
+      deliveryNote.textContent = 'PDF generado correctamente. Ya puedes enviarlo por correo a Danna y Maricruz.';
+      showToast('âœ“ PDF descargado. Ya puedes enviarlo por correo');
+    });
+  }
+
+  if (sendEmailBtn) {
+    sendEmailBtn.addEventListener('click', async () => {
+      if (!latestPdfBlob) {
+        showToast('Primero genera y descarga el PDF');
+        return;
+      }
+
+      const originalLabel = sendEmailBtn.innerHTML;
+      sendEmailBtn.disabled = true;
+      sendEmailBtn.innerHTML = 'Enviando...';
+
+      try {
+        const payload = new FormData(formEl);
+        payload.append('pdf', latestPdfBlob, 'INDUSECC_Formulario_Auditoria.pdf');
+
+        const response = await fetch(formEl.action, {
+          method: 'POST',
+          body: payload
+        });
+
+        if (!response.ok) {
+          throw new Error('No se pudo enviar el formulario');
+        }
+
+        deliveryNote.textContent = 'PDF enviado correctamente a danna@indusecc.com.mx y maricruz@partumdesign.com.mx.';
+        showToast('âœ“ PDF enviado por correo');
+      } catch (error) {
+        sendEmailBtn.disabled = false;
+        deliveryNote.textContent = 'Hubo un error al enviar el correo. Puedes intentarlo nuevamente con el mismo PDF generado.';
+        showToast('Error al enviar. Intente nuevamente');
+        return;
+      }
+
+      sendEmailBtn.innerHTML = originalLabel;
+    });
+  }
 
   formEl.addEventListener('submit', async (event) => {
     event.preventDefault();
