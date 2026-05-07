@@ -175,6 +175,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({ ok: true });
   } catch (error) {
+    console.error('send-auditoria failed:', error);
     return res.status(502).json({
       error: error instanceof Error ? error.message : 'SMTP send failed'
     });

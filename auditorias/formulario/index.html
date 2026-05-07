@@ -1687,7 +1687,12 @@
       });
 
       if (!response.ok) {
-        throw new Error('No se pudo enviar el formulario');
+        let errorMessage = 'No se pudo enviar el formulario';
+        try {
+          const result = await response.json();
+          if (result && result.error) errorMessage = result.error;
+        } catch (_) {}
+        throw new Error(errorMessage);
       }
 
       pdfDoc.save('INDUSECC_Formulario_Auditoria.pdf');
@@ -1695,7 +1700,8 @@
       updateProgress();
       showToast('✓ Diagnóstico enviado a Danna y PDF descargado');
     } catch (error) {
-      showToast('Error al enviar. Intente nuevamente');
+      const message = error && error.message ? error.message : 'Intente nuevamente';
+      showToast(`Error al enviar: ${message}`);
     } finally {
       submitButton.disabled = false;
       submitButton.style.opacity = '';
