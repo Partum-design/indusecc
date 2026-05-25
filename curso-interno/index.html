@@ -1135,25 +1135,25 @@
     .role-picker {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    @media (min-width: 900px) {
-      .role-picker {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
+      gap: 14px;
+      margin-top: 12px;
     }
 
     .role-option {
       position: relative;
       display: grid;
-      gap: 6px;
-      padding: 16px 14px;
+      gap: 8px;
+      min-height: 96px;
+      padding: 18px 16px 16px;
       border: 1px solid var(--border);
       background: var(--white);
       cursor: pointer;
+      overflow: hidden;
       transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+
+    .role-option.has-badge {
+      padding-top: 34px;
     }
 
     .role-option:hover {
@@ -1184,17 +1184,22 @@
     }
 
     .role-option-title {
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--ink);
-      line-height: 1.3;
+      line-height: 1.35;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     .role-option-desc {
       font-size: 12px;
-      line-height: 1.5;
+      line-height: 1.55;
       color: var(--muted);
       font-weight: 300;
+      overflow-wrap: anywhere;
+      word-break: break-word;
     }
 
     .profile-context-title {
@@ -1218,16 +1223,19 @@
     }
 
     .role-option-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
       display: inline-flex;
-      width: fit-content;
       padding: 4px 8px;
-      margin-bottom: 4px;
       background: linear-gradient(135deg, var(--wine), var(--wine-dark));
       color: var(--gold-light);
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 800;
-      letter-spacing: .14em;
+      letter-spacing: .12em;
       text-transform: uppercase;
+      line-height: 1;
+      z-index: 1;
     }
 
     .summary-price-wrap {
@@ -2230,10 +2238,10 @@
                     </label>
                     <label class="role-option" data-profile-value="CEO">
                       <input type="radio" name="profile" value="CEO" />
-                      <span class="role-option-title">CEO / representante</span>
-                      <span class="role-option-desc">Empresa y registro grupal</span>
+                      <span class="role-option-title">Representante</span>
+                      <span class="role-option-desc">CEO, director o registro grupal</span>
                     </label>
-                    <label class="role-option" data-profile-value="Emprendedor">
+                    <label class="role-option has-badge" data-profile-value="Emprendedor">
                       <input type="radio" name="profile" value="Emprendedor" />
                       <span class="role-option-badge">Nuevo</span>
                       <span class="role-option-title">Emprendedor</span>
@@ -2468,7 +2476,7 @@
     const profileContextTitles = {
       student: 'Datos de estudiante',
       worker: 'Datos laborales',
-      ceo: 'Datos de empresa y registro grupal',
+      ceo: 'Datos de representante o empresa',
       entrepreneur: 'Datos de emprendedor'
     };
 
