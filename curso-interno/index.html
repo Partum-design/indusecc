@@ -523,6 +523,7 @@
       overflow: hidden;
       background: #12090a;
       border: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.03);
     }
 
     .video-shell { aspect-ratio: 16 / 9; }
@@ -548,6 +549,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      background: linear-gradient(135deg, #1b0e10, #3a1419);
     }
 
     .video-mobile { display: none; }
@@ -577,6 +579,22 @@
       color: rgba(255,255,255,.74);
       font-size: 12px;
       line-height: 1.7;
+    }
+
+    .video-fallback-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 3;
+      padding: 9px 12px;
+      background: rgba(10,2,3,.68);
+      border: 1px solid rgba(201,168,76,.22);
+      color: var(--gold-light);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
     }
 
     .play-prompt {
@@ -1693,32 +1711,34 @@
 
         <aside class="hero-video-card float-soft">
           <div class="hero-video-top">
-            <div class="panel-badge">Landing premium del curso</div>
+            <div class="panel-badge">Presentación del curso</div>
             <div class="video-version-tag"></div>
           </div>
 
           <div class="video-frame">
             <div class="video-shell shine-sweep">
-              <video class="video-desktop" controls muted playsinline poster="/Imagenes/auditoria.jpg">
+              <div class="video-fallback-badge">Curso interno</div>
+              <video class="video-desktop" controls muted playsinline preload="metadata" poster="/Imagenes/auditoria.jpg">
                 <source src="/curso-interno/7191019_Timelapse_Time_1920x1080.mp4" type="video/mp4" />
               </video>
               <div class="video-overlay">
                 <div class="video-overlay-copy">
-                  <div class="video-overlay-title">Video para escritorio</div>
-                  <div class="video-overlay-text">La versión desktop usa una pieza horizontal independiente para verse limpia, fuerte y muy profesional.</div>
+                  <div class="video-overlay-title">Conoce el curso</div>
+                  <div class="video-overlay-text">Una vista general del programa, su enfoque práctico y la experiencia de formación que vivirás.</div>
                 </div>
                 <div class="play-prompt pulse-gold">▶</div>
               </div>
             </div>
 
             <div class="video-shell-mobile shine-sweep">
-              <video class="video-mobile" controls muted playsinline poster="/Imagenes/comunicacion-interna.jpg">
+              <div class="video-fallback-badge">Mobile video</div>
+              <video class="video-mobile" controls muted playsinline preload="metadata" poster="/Imagenes/comunicacion-interna.jpg">
                 <source src="/curso-interno/0_Landscape_Nature_2160x3840.mp4" type="video/mp4" />
               </video>
               <div class="video-overlay">
                 <div class="video-overlay-copy">
-                  <div class="video-overlay-title">Video para móvil</div>
-                  <div class="video-overlay-text">La versión mobile usa un archivo vertical independiente para que en celular se vea poca madre.</div>
+                  <div class="video-overlay-title">Conoce el curso</div>
+                  <div class="video-overlay-text">Una vista pensada para móvil, con el contenido visual del curso en formato más cómodo para celular.</div>
                 </div>
                 <div class="play-prompt pulse-gold">▶</div>
               </div>
@@ -1727,27 +1747,27 @@
 
           <div class="hero-panel">
             <div class="hero-panel-content">
-              <h2 class="panel-title">Una sección que se siente <em>fuerte, confiable y vendible</em>.</h2>
+              <h2 class="panel-title">Un curso diseñado para <em>formarte de verdad</em>.</h2>
               <div class="panel-list">
                 <div class="panel-item">
                   <div class="panel-index">01</div>
                   <div class="panel-copy">
-                    <h3>Logo protagonista</h3>
-                    <p>El logo de INDUSECC ahora se ve grande y con mucho más peso dentro de la landing.</p>
+                    <h3>Enfoque práctico</h3>
+                    <p>Aprende a planear, ejecutar y documentar auditorías internas con criterios claros y aplicación real.</p>
                   </div>
                 </div>
                 <div class="panel-item">
                   <div class="panel-index">02</div>
                   <div class="panel-copy">
-                    <h3>Video dual real</h3>
-                    <p>Desktop y móvil ya usan archivos distintos en proporciones correctas, horizontal y vertical.</p>
+                    <h3>Valor curricular</h3>
+                    <p>Obtén constancia de participación y respaldo formativo útil para fortalecer tu perfil profesional.</p>
                   </div>
                 </div>
                 <div class="panel-item">
                   <div class="panel-index">03</div>
                   <div class="panel-copy">
-                    <h3>Pago confiable</h3>
-                    <p>Mercado Pago, Visa y Mastercard quedan visibles como señales claras de confianza antes del checkout.</p>
+                    <h3>Herramientas listas</h3>
+                    <p>Trabaja con formatos, listas de verificación y ejemplos de hallazgos que podrás llevar directo a tu operación.</p>
                   </div>
                 </div>
               </div>

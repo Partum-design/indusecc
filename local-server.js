@@ -93,7 +93,40 @@ function serveStatic(req, res) {
   }
 
   const ext = path.extname(filePath).toLowerCase();
-  res.writeHead(200, { 'Content-Type': mime[ext] || 'application/octet-stream' });
+  const contentType = mime[ext] || 'application/octet-stream';
+  const stat = fs.statSync(filePath);
+  const range = req.headers.range;
+
+  if (range && ['.mp4', '.mp3', '.webm', '.ogg'].includes(ext)) {
+    const [startText, endText] = range.replace(/bytes=/, '').split('-');
+    const start = Number.parseInt(startText, 10);
+    const end = endText ? Number.parseInt(endText, 10) : stat.size - 1;
+
+    if (Number.isNaN(start) || Number.isNaN(end) || start > end || end >= stat.size) {
+      res.writeHead(416, {
+        'Content-Range': `bytes */${stat.size}`
+      });
+      res.end();
+      return;
+    }
+
+    res.writeHead(206, {
+      'Content-Type': contentType,
+      'Content-Range': `bytes ${start}-${end}/${stat.size}`,
+      'Accept-Ranges': 'bytes',
+      'Content-Length': end - start + 1,
+      'Cache-Control': 'no-cache'
+    });
+
+    fs.createReadStream(filePath, { start, end }).pipe(res);
+    return;
+  }
+
+  res.writeHead(200, {
+    'Content-Type': contentType,
+    'Content-Length': stat.size,
+    'Accept-Ranges': ['.mp4', '.mp3', '.webm', '.ogg'].includes(ext) ? 'bytes' : 'none'
+  });
   fs.createReadStream(filePath).pipe(res);
 }
 
