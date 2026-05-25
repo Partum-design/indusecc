@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import sendAuditoriaHandler from './api/send-auditoria.js';
+import createCoursePreferenceHandler from './api/create-course-preference.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -104,6 +105,12 @@ http
       if (req.url.startsWith('/api/send-auditoria')) {
         attachResponseHelpers(res);
         await sendAuditoriaHandler(req, res);
+        return;
+      }
+
+      if (req.url.startsWith('/api/create-course-preference')) {
+        attachResponseHelpers(res);
+        await createCoursePreferenceHandler(req, res);
         return;
       }
 

@@ -1,0 +1,2317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curso Auditor Interno ISO 9001:2015 | INDUSECC</title>
+  <link rel="icon" type="image/x-icon" href="/Imagenes/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://sdk.mercadopago.com/js/v2"></script>
+  <style>
+    :root {
+      --wine: #7b1e22;
+      --wine-dark: #550f13;
+      --wine-deep: #360a0d;
+      --gold: #c9a84c;
+      --gold-light: #e8c97a;
+      --gold-pale: #f7efd8;
+      --cream: #fbf8f3;
+      --parchment: #f2ede4;
+      --white: #ffffff;
+      --ink: #1c1008;
+      --text: #2a1a1b;
+      --muted: #7a6060;
+      --border: rgba(123, 30, 34, 0.12);
+      --border-strong: rgba(123, 30, 34, 0.2);
+      --success: #14532d;
+      --success-bg: #ecfdf3;
+      --warning: #92400e;
+      --warning-bg: #fffbeb;
+      --error: #991b1b;
+      --error-bg: #fef2f2;
+      --blue-card: #eaf4ff;
+      --blue-text: #0a5ca8;
+      --blue-border: #b8d8ff;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; }
+    img, video { display: block; max-width: 100%; }
+    button, input, select { font: inherit; }
+
+    .shell {
+      width: min(1240px, calc(100vw - 48px));
+      margin: 0 auto;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .shine-sweep {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shine-sweep::after {
+      content: '';
+      position: absolute;
+      top: -12%;
+      left: -140%;
+      width: 70%;
+      height: 124%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
+      transform: skewX(-18deg);
+      animation: sweep 5.4s ease-in-out infinite;
+    }
+
+    .float-soft { animation: floatSoft 6s ease-in-out infinite; }
+    .pulse-gold { animation: pulseGold 2.8s ease-in-out infinite; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      backdrop-filter: blur(16px);
+      background: rgba(10, 2, 3, 0.88);
+    }
+
+    .topbar-inner {
+      width: min(1240px, calc(100vw - 48px));
+      height: 82px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .brand-logo-wrap {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(201,168,76,.26);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      padding: 7px;
+      box-shadow: 0 14px 32px rgba(0,0,0,.18);
+    }
+
+    .brand-logo {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .brand-title {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .brand-sub {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.56);
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      transition: color .25s ease;
+    }
+
+    .navlinks a:hover { color: var(--gold-light); }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-tertiary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 0 28px;
+      border: none;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: 11px;
+      font-weight: 800;
+      transition: transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      color: var(--wine-deep);
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      box-shadow: 0 18px 40px rgba(201,168,76,.24);
+    }
+
+    .btn-primary:hover,
+    .btn-secondary:hover,
+    .btn-tertiary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary:hover { box-shadow: 0 24px 54px rgba(201,168,76,.28); }
+
+    .btn-secondary {
+      border: 1px solid rgba(201,168,76,.24);
+      background: rgba(255,255,255,.02);
+      color: rgba(255,255,255,.88);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(201,168,76,.44);
+    }
+
+    .btn-tertiary {
+      background: var(--white);
+      border: 1px solid var(--border);
+      color: var(--wine);
+    }
+
+    .btn-tertiary:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 18px 36px rgba(123,30,34,.08);
+    }
+
+    .quick-nav {
+      position: fixed;
+      right: 22px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 45;
+      display: grid;
+      gap: 10px;
+    }
+
+    .quick-nav a {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      background: rgba(10,2,3,.82);
+      border: 1px solid rgba(201,168,76,.2);
+      color: rgba(255,255,255,.82);
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      box-shadow: 0 18px 30px rgba(0,0,0,.2);
+      transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+      backdrop-filter: blur(14px);
+      position: relative;
+    }
+
+    .quick-nav a span {
+      position: absolute;
+      right: calc(100% + 12px);
+      white-space: nowrap;
+      background: rgba(10,2,3,.9);
+      color: #fff;
+      padding: 10px 12px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(8px);
+      transition: opacity .2s ease, transform .2s ease;
+    }
+
+    .quick-nav a:hover span,
+    .quick-nav a.active span {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .quick-nav a:hover,
+    .quick-nav a.active {
+      background: var(--wine);
+      color: var(--gold-light);
+      border-color: rgba(201,168,76,.44);
+      transform: translateX(-4px);
+    }
+
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      padding: 92px 0 86px;
+      color: #fff;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(123,30,34,.44), transparent 32%),
+        radial-gradient(circle at 85% 12%, rgba(201,168,76,.12), transparent 18%),
+        linear-gradient(135deg, rgba(10,2,3,.96), rgba(54,10,13,.93));
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(10,2,3,.38), rgba(10,2,3,.84)),
+        url('/Imagenes/managers-controlling.jpg') center/cover;
+      opacity: .16;
+      z-index: -2;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cpath d='M48 0v96M0 48h96' stroke='%23C9A84C' stroke-opacity='.06'/%3E%3C/svg%3E") repeat;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(420px, .98fr);
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1px solid rgba(201,168,76,.22);
+      background: rgba(255,255,255,.05);
+      color: var(--gold-light);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      transform: rotate(45deg);
+    }
+
+    .hero-logo-stage {
+      margin-top: 24px;
+      width: min(390px, 82%);
+      border: 1px solid rgba(201,168,76,.18);
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
+      padding: 22px 26px;
+      box-shadow: 0 24px 54px rgba(0,0,0,.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-logo-stage img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 16px 26px rgba(0,0,0,.18));
+    }
+
+    .hero h1 {
+      margin-top: 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.2rem, 6.2vw, 5.7rem);
+      line-height: .9;
+      letter-spacing: -.04em;
+    }
+
+    .hero h1 em {
+      display: block;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold-light);
+    }
+
+    .hero-copy {
+      margin-top: 22px;
+      max-width: 620px;
+      color: rgba(255,255,255,.76);
+      font-size: 16px;
+      line-height: 1.9;
+      font-weight: 300;
+    }
+
+    .hero-compact-points {
+      margin-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .compact-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(201,168,76,.18);
+      background: rgba(255,255,255,.05);
+      font-size: 11px;
+      color: rgba(255,255,255,.86);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .compact-pill::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .hero-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .fact-card {
+      border: 1px solid rgba(201,168,76,.18);
+      background: rgba(255,255,255,.06);
+      padding: 18px 18px 20px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+    }
+
+    .fact-label {
+      display: block;
+      margin-bottom: 10px;
+      color: rgba(201,168,76,.72);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .fact-value {
+      display: block;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .hero-side {
+      display: grid;
+      gap: 18px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trust-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(201,168,76,.18);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.88);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .hero-video-card {
+      position: relative;
+      border: 1px solid rgba(201,168,76,.18);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+      overflow: hidden;
+      box-shadow: 0 30px 70px rgba(0,0,0,.22);
+    }
+
+    .hero-video-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 14px;
+      padding: 18px 18px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      border: 1px solid rgba(201,168,76,.24);
+      background: rgba(255,255,255,.08);
+      padding: 10px 14px;
+      color: var(--gold-light);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .video-version-tag {
+      color: rgba(255,255,255,.56);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .video-frame {
+      padding: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .video-shell,
+    .video-shell-mobile {
+      position: relative;
+      overflow: hidden;
+      background: #12090a;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .video-shell { aspect-ratio: 16 / 9; }
+    .video-shell-mobile {
+      display: none;
+      aspect-ratio: 9 / 16;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .video-shell::before,
+    .video-shell-mobile::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(10,2,3,.06), rgba(10,2,3,.42));
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .video-desktop,
+    .video-mobile {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .video-mobile { display: none; }
+
+    .video-overlay {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 14px;
+    }
+
+    .video-overlay-copy { max-width: 70%; }
+
+    .video-overlay-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .video-overlay-text {
+      color: rgba(255,255,255,.74);
+      font-size: 12px;
+      line-height: 1.7;
+    }
+
+    .play-prompt {
+      min-width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(123,30,34,.84);
+      border: 2px solid rgba(232,201,122,.8);
+      color: #fff;
+      font-size: 22px;
+      box-shadow: 0 18px 36px rgba(0,0,0,.25);
+    }
+
+    .hero-panel {
+      position: relative;
+      border-top: 1px solid rgba(201,168,76,.18);
+      padding: 0 18px 18px;
+      z-index: 1;
+    }
+
+    .hero-panel-content {
+      display: grid;
+      gap: 16px;
+      padding-top: 18px;
+    }
+
+    .panel-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      line-height: .98;
+      letter-spacing: -.03em;
+      color: #fff;
+    }
+
+    .panel-title em {
+      color: var(--gold-light);
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .panel-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel-item {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .panel-index {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(201,168,76,.25);
+      background: rgba(201,168,76,.08);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .panel-copy h3 {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(201,168,76,.82);
+      margin-bottom: 6px;
+    }
+
+    .panel-copy p {
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.72;
+      font-weight: 300;
+    }
+
+    main section {
+      padding: 88px 0;
+      position: relative;
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .24em;
+      text-transform: uppercase;
+    }
+
+    .section-kicker::before {
+      content: '';
+      width: 34px;
+      height: 1px;
+      background: linear-gradient(to right, var(--wine), var(--gold));
+    }
+
+    .section-title {
+      margin-top: 18px;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 4vw, 4rem);
+      line-height: .98;
+      letter-spacing: -.03em;
+      color: var(--ink);
+    }
+
+    .section-title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--wine);
+    }
+
+    .section-text {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.88;
+      font-weight: 300;
+      max-width: 620px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 44px rgba(123,30,34,.04);
+    }
+
+    .benefit-card {
+      padding: 28px 24px;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--wine), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .35s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(123,30,34,.18);
+      box-shadow: 0 26px 52px rgba(123,30,34,.1);
+    }
+
+    .benefit-card:hover::before { transform: scaleX(1); }
+
+    .benefit-icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--gold-pale);
+      color: var(--wine);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      margin-bottom: 18px;
+    }
+
+    .benefit-card h3,
+    .audience-card h3,
+    .detail-card h3 {
+      font-size: 20px;
+      line-height: 1.24;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card p,
+    .audience-card p,
+    .detail-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .gallery-band {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 18px;
+    }
+
+    .gallery-main,
+    .gallery-stack {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--white);
+      box-shadow: 0 24px 42px rgba(123,30,34,.05);
+    }
+
+    .gallery-main img,
+    .gallery-stack img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .7s ease;
+    }
+
+    .gallery-main:hover img,
+    .gallery-stack:hover img { transform: scale(1.04); }
+
+    .gallery-main {
+      min-height: 340px;
+      position: relative;
+    }
+
+    .gallery-caption {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      bottom: 18px;
+      padding: 14px 16px;
+      background: rgba(10,2,3,.78);
+      color: rgba(255,255,255,.84);
+      font-size: 13px;
+      line-height: 1.7;
+      backdrop-filter: blur(8px);
+    }
+
+    .gallery-stack {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .gallery-stack .split {
+      min-height: 160px;
+      overflow: hidden;
+    }
+
+    .audience {
+      background: linear-gradient(180deg, var(--parchment), rgba(255,255,255,.82));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .audience-card {
+      padding: 32px 28px;
+      display: grid;
+      gap: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audience-card::after {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, rgba(201,168,76,.16), transparent 68%);
+      pointer-events: none;
+    }
+
+    .audience-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      padding: 9px 14px;
+      background: rgba(123,30,34,.06);
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .audience-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .audience-list li {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 16px 1fr;
+      gap: 10px;
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .audience-list li::before {
+      content: '■';
+      color: var(--gold);
+      font-size: 10px;
+      transform: translateY(4px);
+    }
+
+    .syllabus-wrap {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, .88fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .syllabus-card {
+      background: linear-gradient(135deg, var(--wine), var(--wine-dark));
+      color: #fff;
+      padding: 34px 30px;
+      border: 1px solid rgba(201,168,76,.16);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .syllabus-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,168,76,.14), transparent 28%);
+      pointer-events: none;
+    }
+
+    .syllabus-card .section-kicker { color: var(--gold-light); }
+    .syllabus-card .section-kicker::before { background: linear-gradient(to right, var(--gold), rgba(255,255,255,.2)); }
+    .syllabus-card .section-title { color: #fff; margin-top: 14px; }
+    .syllabus-card .section-title em { color: var(--gold-light); }
+    .syllabus-card .section-text { color: rgba(255,255,255,.76); }
+
+    .module-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 26px;
+    }
+
+    .module-item {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+
+    .module-item:first-child { border-top: none; }
+
+    .module-no {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .module-item h3 {
+      color: #fff;
+      font-size: 17px;
+      line-height: 1.26;
+      margin-bottom: 6px;
+    }
+
+    .module-item p {
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.76;
+      font-weight: 300;
+    }
+
+    .kit-card {
+      padding: 32px 28px;
+    }
+
+    .kit-card h3 {
+      font-size: 23px;
+      margin-bottom: 12px;
+    }
+
+    .kit-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .kit-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .kit-list li {
+      list-style: none;
+      padding: 14px 0 0;
+      border-top: 1px solid var(--border);
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .details {
+      background: linear-gradient(180deg, rgba(255,255,255,.9), var(--parchment));
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-card {
+      padding: 30px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .detail-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--wine), var(--gold));
+      opacity: .4;
+    }
+
+    .detail-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
+    .detail-meta {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+      display: grid;
+      gap: 10px;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    .price-card {
+      background: linear-gradient(180deg, var(--wine), var(--wine-dark));
+      color: #fff;
+      border-color: rgba(201,168,76,.18);
+    }
+
+    .price-card h3,
+    .price-card p,
+    .price-card .detail-meta { color: inherit; }
+
+    .price-main {
+      font-size: 40px;
+      line-height: 1;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .price-main span {
+      font-size: 16px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    .checkout { background: #fff; }
+
+    .status-banner {
+      display: none;
+      margin-bottom: 24px;
+      padding: 18px 20px;
+      border: 1px solid transparent;
+      font-size: 14px;
+      line-height: 1.72;
+    }
+
+    .status-banner.visible { display: block; }
+    .status-banner.success { background: var(--success-bg); border-color: rgba(20,83,45,.15); color: var(--success); }
+    .status-banner.pending { background: var(--warning-bg); border-color: rgba(146,64,14,.16); color: var(--warning); }
+    .status-banner.error { background: var(--error-bg); border-color: rgba(153,27,27,.14); color: var(--error); }
+
+    .checkout-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(380px, .98fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .form-card,
+    .payment-card {
+      padding: 34px 30px;
+    }
+
+    .card-title {
+      font-size: 24px;
+      line-height: 1.16;
+      margin-bottom: 10px;
+    }
+
+    .card-text {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    .field label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(123,30,34,.16);
+      background: #fff;
+      padding: 0 16px;
+      color: var(--text);
+      transition: border-color .25s ease, box-shadow .25s ease;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--wine);
+      box-shadow: 0 0 0 4px rgba(123,30,34,.08);
+    }
+
+    .privacy-note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border: 1px solid rgba(123,30,34,.1);
+      background: linear-gradient(180deg, rgba(123,30,34,.04), rgba(201,168,76,.05));
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.75;
+    }
+
+    .helper {
+      margin-top: 14px;
+      font-size: 12px;
+      line-height: 1.72;
+      color: var(--muted);
+    }
+
+    .submit-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-top: 22px;
+    }
+
+    .small-note {
+      font-size: 11px;
+      line-height: 1.7;
+      color: rgba(42,26,27,.65);
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .summary-box {
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(123,30,34,.06), rgba(201,168,76,.08));
+      border: 1px solid rgba(123,30,34,.1);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 10px 0;
+      border-top: 1px solid rgba(123,30,34,.08);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .summary-row:first-of-type { border-top: none; padding-top: 0; }
+
+    .summary-row strong {
+      color: var(--ink);
+      font-size: 20px;
+    }
+
+    .payment-marks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      align-items: stretch;
+    }
+
+    .pay-mark {
+      min-height: 56px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 12px 24px rgba(123,30,34,.04);
+    }
+
+    .mp-logo-pill {
+      background: var(--blue-card);
+      border-color: var(--blue-border);
+      color: var(--blue-text);
+    }
+
+    .mp-logo-real {
+      width: 138px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    .visa-mark {
+      color: #163f9b;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+
+    .mc-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mc-circles {
+      width: 36px;
+      height: 22px;
+      position: relative;
+      flex: 0 0 auto;
+    }
+
+    .mc-circles::before,
+    .mc-circles::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+    }
+
+    .mc-circles::before {
+      left: 0;
+      background: #eb001b;
+    }
+
+    .mc-circles::after {
+      right: 0;
+      background: #f79e1b;
+      mix-blend-mode: multiply;
+    }
+
+    .mc-text {
+      color: #1f1f1f;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .mp-shell {
+      margin-top: 22px;
+      border: 1px solid rgba(123,30,34,.12);
+      background: var(--parchment);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mp-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201,168,76,.14), transparent 28%);
+      pointer-events: none;
+    }
+
+    .mp-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(123,30,34,.1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .mp-kicker {
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+
+    .mp-title {
+      margin-top: 4px;
+      font-size: 20px;
+    }
+
+    .mp-badge {
+      padding: 10px 14px;
+      background: rgba(255,255,255,.7);
+      color: var(--wine);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      border: 1px solid rgba(123,30,34,.12);
+      white-space: nowrap;
+    }
+
+    .mp-message {
+      display: none;
+      margin-top: 18px;
+      padding: 15px 16px;
+      font-size: 13px;
+      line-height: 1.72;
+      border: 1px solid transparent;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mp-message.visible { display: block; }
+    .mp-message.info { background: rgba(255,255,255,.78); border-color: rgba(123,30,34,.08); color: var(--text); }
+    .mp-message.error { background: var(--error-bg); border-color: rgba(153,27,27,.14); color: var(--error); }
+    .mp-message.success { background: var(--success-bg); border-color: rgba(20,83,45,.14); color: var(--success); }
+
+    .mp-loading {
+      display: none;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mp-loading.visible { display: block; }
+
+    #walletBrickContainer {
+      margin-top: 20px;
+      min-height: 64px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fallback-link {
+      display: none;
+      margin-top: 16px;
+      color: var(--wine);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .fallback-link.visible { display: inline-flex; }
+
+    .faq-zone {
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(242,237,228,.68));
+      border-top: 1px solid var(--border);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .faq-item {
+      border: 1px solid var(--border);
+      background: #fff;
+      overflow: hidden;
+      box-shadow: 0 16px 28px rgba(123,30,34,.04);
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .faq-item[open] {
+      transform: translateY(-2px);
+      box-shadow: 0 22px 40px rgba(123,30,34,.08);
+      border-color: rgba(123,30,34,.18);
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 22px;
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      color: var(--wine);
+      font-size: 22px;
+      line-height: 1;
+      font-weight: 500;
+      flex: 0 0 auto;
+    }
+
+    .faq-item[open] summary::after { content: '-'; }
+
+    .faq-answer {
+      padding: 0 22px 22px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.82;
+      font-weight: 300;
+      border-top: 1px solid var(--border);
+    }
+
+    footer {
+      padding: 34px 0 50px;
+      background: #0b0506;
+      color: rgba(255,255,255,.62);
+      border-top: 1px solid rgba(201,168,76,.12);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .8fr .8fr;
+      gap: 26px;
+      padding-bottom: 26px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .footer-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .footer-text,
+    .footer-link {
+      color: rgba(255,255,255,.62);
+      font-size: 13px;
+      line-height: 1.8;
+      text-decoration: none;
+    }
+
+    .footer-link:hover { color: var(--gold-light); }
+
+    .footer-bottom {
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      font-size: 12px;
+      color: rgba(255,255,255,.38);
+    }
+
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulseGold {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(201,168,76,.28); }
+      70% { box-shadow: 0 0 0 14px rgba(201,168,76,0); }
+    }
+
+    @keyframes sweep {
+      0% { left: -140%; }
+      50% { left: 160%; }
+      100% { left: 160%; }
+    }
+
+    @media (max-width: 1200px) {
+      .quick-nav { right: 16px; }
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .checkout-shell,
+      .syllabus-wrap,
+      .footer-grid,
+      .gallery-band {
+        grid-template-columns: 1fr;
+      }
+
+      .navlinks { display: none; }
+      .quick-nav {
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        top: auto;
+        transform: none;
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .quick-nav a {
+        width: auto;
+        height: 56px;
+        border-radius: 18px;
+      }
+
+      .quick-nav a span { display: none; }
+      .hero-side { order: -1; }
+    }
+
+    @media (max-width: 840px) {
+      .shell,
+      .topbar-inner {
+        width: min(1240px, calc(100vw - 32px));
+      }
+
+      .hero {
+        padding: 62px 0 72px;
+      }
+
+      .hero-facts,
+      .grid-3,
+      .grid-2,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar-inner { height: 74px; }
+      main section { padding: 72px 0; }
+      .hero-grid { gap: 28px; }
+      .brand-logo-wrap { width: 48px; height: 48px; }
+    }
+
+    @media (max-width: 640px) {
+      .topbar-inner {
+        width: min(1240px, calc(100vw - 24px));
+        gap: 16px;
+      }
+
+      .shell { width: min(1240px, calc(100vw - 24px)); }
+      .brand-sub { display: none; }
+      .hero-logo-stage {
+        width: min(320px, 100%);
+        padding: 16px 18px;
+      }
+
+      .video-shell { display: none; }
+      .video-shell-mobile { display: block; }
+      .video-mobile { display: block; }
+      .video-version-tag::after { content: 'Movil'; }
+      .video-overlay {
+        left: 14px;
+        right: 14px;
+        bottom: 14px;
+        gap: 10px;
+      }
+
+      .video-overlay-copy { max-width: calc(100% - 84px); }
+      .video-overlay-title { font-size: 16px; }
+      .video-overlay-text { font-size: 11px; }
+      .play-prompt { min-width: 58px; height: 58px; font-size: 18px; }
+      .hero-panel,
+      .video-frame,
+      .hero-video-top,
+      .form-card,
+      .payment-card,
+      .syllabus-card,
+      .kit-card,
+      .detail-card,
+      .audience-card {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+
+      .video-frame { padding-top: 14px; }
+      .hero-panel { padding-bottom: 16px; }
+      .payment-marks { display: grid; grid-template-columns: 1fr; }
+    }
+
+    @media (min-width: 641px) {
+      .video-version-tag::after { content: 'Escritorio'; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="quick-nav" aria-label="Accesos rápidos del curso">
+    <a href="#hero" data-target="hero" class="active"><span>Inicio</span>01</a>
+    <a href="#beneficios" data-target="beneficios"><span>Beneficios</span>02</a>
+    <a href="#temario" data-target="temario"><span>Temario</span>03</a>
+    <a href="#inscripcion" data-target="inscripcion"><span>Pago</span>04</a>
+    <a href="#faqs" data-target="faqs"><span>FAQs</span>05</a>
+  </nav>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="/">
+        <div class="brand-logo-wrap shine-sweep">
+          <img class="brand-logo" src="/curso-interno/logo.png" alt="Logo INDUSECC" />
+        </div>
+        <div>
+          <span class="brand-title">INDUSECC</span>
+          <span class="brand-sub">Curso Interno</span>
+        </div>
+      </a>
+      <nav class="navlinks" aria-label="Navegación del curso">
+        <a href="#beneficios">Beneficios</a>
+        <a href="#temario">Temario</a>
+        <a href="#detalles">Detalles</a>
+        <a href="#inscripcion">Inscripción</a>
+        <a href="#faqs">FAQs</a>
+      </nav>
+      <a class="btn-primary" href="#inscripcion">Inscribirme</a>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <div class="shell hero-grid">
+      <div class="reveal visible">
+        <div class="eyebrow">Certificación oficial incluida</div>
+        <div class="hero-logo-stage reveal visible">
+          <img src="/curso-interno/logo.png" alt="Logo grande de INDUSECC" />
+        </div>
+        <h1>Curso Auditor Interno <em>bajo ISO 9001:2015</em></h1>
+        <p class="hero-copy">
+          Formación presencial pensada para verse seria, confiable y lista para vender.
+          Aprendes a auditar, documentar hallazgos y fortalecer tu sistema de gestión de calidad con una experiencia enfocada en acción, no en relleno.
+        </p>
+        <div class="hero-compact-points">
+          <div class="compact-pill">DC-3 incluida</div>
+          <div class="compact-pill">Pago con Mercado Pago</div>
+          <div class="compact-pill">Presencial en CDMX</div>
+        </div>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#inscripcion">Reservar mi lugar</a>
+          <a class="btn-secondary" href="#temario">Ver temario</a>
+        </div>
+        <div class="hero-facts">
+          <div class="fact-card reveal visible">
+            <span class="fact-label">Fecha</span>
+            <span class="fact-value">24 y 25 de Julio</span>
+          </div>
+          <div class="fact-card reveal visible">
+            <span class="fact-label">Modalidad</span>
+            <span class="fact-value">Presencial en CDMX</span>
+          </div>
+          <div class="fact-card reveal visible">
+            <span class="fact-label">Inversión</span>
+            <span class="fact-value">$3,500 MXN</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-side reveal visible">
+        <div class="trust-row">
+          <div class="trust-chip">Mercado Pago</div>
+          <div class="trust-chip">Visa</div>
+          <div class="trust-chip">Mastercard</div>
+        </div>
+
+        <aside class="hero-video-card float-soft">
+          <div class="hero-video-top">
+            <div class="panel-badge">Landing premium del curso</div>
+            <div class="video-version-tag"></div>
+          </div>
+
+          <div class="video-frame">
+            <div class="video-shell shine-sweep">
+              <video class="video-desktop" controls muted playsinline poster="/Imagenes/auditoria.jpg">
+                <source src="/curso-interno/7191019_Timelapse_Time_1920x1080.mp4" type="video/mp4" />
+              </video>
+              <div class="video-overlay">
+                <div class="video-overlay-copy">
+                  <div class="video-overlay-title">Video para escritorio</div>
+                  <div class="video-overlay-text">La versión desktop usa una pieza horizontal independiente para verse limpia, fuerte y muy profesional.</div>
+                </div>
+                <div class="play-prompt pulse-gold">▶</div>
+              </div>
+            </div>
+
+            <div class="video-shell-mobile shine-sweep">
+              <video class="video-mobile" controls muted playsinline poster="/Imagenes/comunicacion-interna.jpg">
+                <source src="/curso-interno/0_Landscape_Nature_2160x3840.mp4" type="video/mp4" />
+              </video>
+              <div class="video-overlay">
+                <div class="video-overlay-copy">
+                  <div class="video-overlay-title">Video para móvil</div>
+                  <div class="video-overlay-text">La versión mobile usa un archivo vertical independiente para que en celular se vea poca madre.</div>
+                </div>
+                <div class="play-prompt pulse-gold">▶</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-panel-content">
+              <h2 class="panel-title">Una sección que se siente <em>fuerte, confiable y vendible</em>.</h2>
+              <div class="panel-list">
+                <div class="panel-item">
+                  <div class="panel-index">01</div>
+                  <div class="panel-copy">
+                    <h3>Logo protagonista</h3>
+                    <p>El logo de INDUSECC ahora se ve grande y con mucho más peso dentro de la landing.</p>
+                  </div>
+                </div>
+                <div class="panel-item">
+                  <div class="panel-index">02</div>
+                  <div class="panel-copy">
+                    <h3>Video dual real</h3>
+                    <p>Desktop y móvil ya usan archivos distintos en proporciones correctas, horizontal y vertical.</p>
+                  </div>
+                </div>
+                <div class="panel-item">
+                  <div class="panel-index">03</div>
+                  <div class="panel-copy">
+                    <h3>Pago confiable</h3>
+                    <p>Mercado Pago, Visa y Mastercard quedan visibles como señales claras de confianza antes del checkout.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section id="beneficios">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="section-kicker">Ventajas del programa</div>
+          <h2 class="section-title">Formación intensa, visual y <em>de alto valor</em>.</h2>
+          <p class="section-text">
+            La landing está pensada para verse seria y premium, con el contenido justo para vender sin saturar al usuario.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">DC3</div>
+            <h3>Constancia oficial</h3>
+            <p>Diploma y formato DC-3 incluidos para respaldo curricular inmediato.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">PRA</div>
+            <h3>Talleres prácticos</h3>
+            <p>Simulaciones de auditoría, entrevistas y hallazgos con enfoque real.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">KIT</div>
+            <h3>Plantillas listas</h3>
+            <p>Listas de verificación, reportes y formatos para usar desde el curso.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">EXP</div>
+            <h3>Instructor experto</h3>
+            <p>Experiencia aplicada en implementación, auditoría y mejora de sistemas de gestión.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">MAT</div>
+            <h3>Material didáctico</h3>
+            <p>Base alineada con ISO 9001:2015 e ISO 19011:2018 para auditoría interna.</p>
+          </article>
+          <article class="card benefit-card reveal">
+            <div class="benefit-icon">VIP</div>
+            <h3>Experiencia presencial</h3>
+            <p>Logística cuidada, atención profesional y una presentación visual muy por encima de una landing genérica.</p>
+          </article>
+        </div>
+
+        <div class="gallery-band">
+          <div class="gallery-main reveal">
+            <img src="/Imagenes/comunicacion-interna.jpg" alt="Capacitación interna INDUSECC" />
+            <div class="gallery-caption">La página combina identidad visual fuerte, video, señales de confianza y un flujo de pago listo para producción.</div>
+          </div>
+          <div class="gallery-stack">
+            <div class="split reveal">
+              <img src="/Imagenes/implementacion.jpg" alt="Sesión de implementación y formación" />
+            </div>
+            <div class="split reveal">
+              <img src="/Imagenes/team.jpg" alt="Equipo de trabajo INDUSECC" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="audience">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="section-kicker">Público objetivo</div>
+          <h2 class="section-title">Una landing clara para <em>empresas y perfiles individuales</em>.</h2>
+        </div>
+
+        <div class="grid-2">
+          <article class="card audience-card reveal">
+            <div class="audience-label">Para empresas e instituciones</div>
+            <h3>Capacita auditores internos con una experiencia seria y alineada a tu marca.</h3>
+            <p>Ideal para registrar colaboradores y acelerar la preparación del equipo frente a auditorías y cumplimiento del sistema.</p>
+            <ul class="audience-list">
+              <li>Fortalece el sistema de gestión de calidad interno.</li>
+              <li>Reduce dependencia operativa de apoyo externo.</li>
+              <li>Usa esta landing como punto de registro empresarial.</li>
+            </ul>
+            <a class="btn-tertiary" href="#inscripcion">Registrar colaboradores</a>
+          </article>
+
+          <article class="card audience-card reveal">
+            <div class="audience-label">Para profesionales y estudiantes</div>
+            <h3>Impulsa tu perfil con una formación práctica, visual y lista para pagar en línea.</h3>
+            <p>Perfecto para ingenieros, coordinadores de calidad, consultores y perfiles que quieren subir de nivel con una competencia reconocible.</p>
+            <ul class="audience-list">
+              <li>Mejora tu currículum con enfoque práctico.</li>
+              <li>Conecta con oportunidades de supervisión y consultoría.</li>
+              <li>Inscríbete directamente desde la misma landing.</li>
+            </ul>
+            <a class="btn-tertiary" href="#inscripcion">Inscribirme individualmente</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="temario">
+      <div class="shell syllabus-wrap">
+        <article class="syllabus-card reveal">
+          <div class="section-kicker">Contenido académico</div>
+          <h2 class="section-title">Temario directo y <em>convincente</em>.</h2>
+          <p class="section-text">
+            El programa se presenta de forma simple para que el usuario entienda rápido qué dominará y por qué vale la inversión.
+          </p>
+          <div class="module-list">
+            <div class="module-item">
+              <div class="module-no">01</div>
+              <div>
+                <h3>Requisitos clave de ISO 9001:2015</h3>
+                <p>Contexto, liderazgo, planificación, operación, evaluación y mejora.</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-no">02</div>
+              <div>
+                <h3>Técnicas y principios de auditoría</h3>
+                <p>Enfoque basado en evidencia, entrevistas y preparación efectiva.</p>
+              </div>
+            </div>
+            <div class="module-item">
+              <div class="module-no">03</div>
+              <div>
+                <h3>Planificación, ejecución y hallazgos</h3>
+                <p>Redacción de no conformidades, oportunidades de mejora y cierre de auditorías.</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="card kit-card reveal">
+          <h3>Lo que recibe cada participante</h3>
+          <p>Menos ruido, más claridad: la landing deja visibles los entregables que ayudan a tomar la decisión.</p>
+          <ul class="kit-list">
+            <li>Plan de auditoría y listas de verificación base.</li>
+            <li>Material de trabajo y guía de reportes de hallazgos.</li>
+            <li>Base para interpretación práctica de auditoría interna.</li>
+            <li>Constancia de capacitación y trámite de DC-3.</li>
+            <li>Ruta de atención para grupos e inscripciones empresariales.</li>
+          </ul>
+          <div class="submit-row">
+            <a class="btn-primary" href="#inscripcion">Quiero asegurar mi lugar</a>
+            <a class="btn-tertiary" href="https://wa.me/525540152551?text=Hola%2C%20me%20interesa%20el%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Pedir informe por WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="details" id="detalles">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="section-kicker">Información técnica</div>
+          <h2 class="section-title">Todo lo importante en una <em>sola vista</em>.</h2>
+        </div>
+
+        <div class="grid-3">
+          <article class="card detail-card reveal">
+            <span class="detail-label">Cuándo</span>
+            <h3>24 y 25 de Julio</h3>
+            <p>Dos jornadas intensivas con ritmo práctico y estructura orientada a aplicación.</p>
+            <div class="detail-meta">
+              <div>Viernes: 9:00 AM a 6:00 PM</div>
+              <div>Sábado: 9:00 AM a 2:00 PM</div>
+            </div>
+          </article>
+          <article class="card detail-card reveal">
+            <span class="detail-label">Dónde</span>
+            <h3>Centro de Negocios Reforma</h3>
+            <p>Av. Paseo de la Reforma 250, Piso 12, Juárez, Cuauhtémoc, C.P. 06600, Ciudad de México, CDMX.</p>
+            <div class="detail-meta">
+              <div>Transporte público cercano</div>
+              <div>Estacionamiento en sitio</div>
+            </div>
+          </article>
+          <article class="card detail-card price-card reveal">
+            <span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span>
+            <div class="price-main">$3,500 <span>MXN</span></div>
+            <p style="margin-top: 12px;">IVA incluido. Facturación disponible.</p>
+            <div class="detail-meta">
+              <div>Incluye material y coffee break</div>
+              <div>Incluye diploma y formato DC-3</div>
+              <div>Preparado para checkout real</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="checkout" id="inscripcion">
+      <div class="shell">
+        <div id="statusBanner" class="status-banner" role="status" aria-live="polite"></div>
+        <div class="section-head reveal">
+          <div class="section-kicker">Paso final</div>
+          <h2 class="section-title">Inscripción y pago <em>listos para producción</em>.</h2>
+          <p class="section-text">
+            El checkout ya está preparado. Solo te faltará colocar tus variables de entorno de Mercado Pago para activarlo en producción.
+          </p>
+        </div>
+
+        <div class="checkout-shell">
+          <article class="card form-card reveal">
+            <h3 class="card-title">1. Datos del participante</h3>
+            <p class="card-text">Capturamos la información del alumno y desde aquí mismo se crea la preferencia segura para el pago.</p>
+
+            <form id="courseRegistrationForm">
+              <div class="form-grid">
+                <div class="field">
+                  <label for="studentName">Nombre</label>
+                  <input id="studentName" name="name" type="text" required placeholder="Tu nombre completo" />
+                </div>
+                <div class="field">
+                  <label for="studentPhone">WhatsApp</label>
+                  <input id="studentPhone" name="phone" type="tel" required placeholder="+52 55 1234 5678" />
+                </div>
+                <div class="field">
+                  <label for="studentEmail">Correo</label>
+                  <input id="studentEmail" name="email" type="email" required placeholder="ejemplo@correo.com" />
+                </div>
+                <div class="field">
+                  <label for="studentOccupation">A qué se dedica</label>
+                  <input id="studentOccupation" name="occupation" type="text" required placeholder="Ej. Coordinación de calidad" />
+                </div>
+                <div class="field full">
+                  <label for="studentEducation">Último nivel de estudios</label>
+                  <select id="studentEducation" name="education" required>
+                    <option value="">Selecciona una opción</option>
+                    <option>Secundaria</option>
+                    <option>Bachillerato</option>
+                    <option>Técnico</option>
+                    <option>Licenciatura</option>
+                    <option>Especialidad</option>
+                    <option>Maestría</option>
+                    <option>Doctorado</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="privacy-note">
+                Tus datos están protegidos conforme a la <strong>Ley Federal de Protección de Datos Personales en Posesión de los Particulares</strong> y se utilizarán únicamente para tu registro, contacto y seguimiento comercial relacionado con este curso.
+              </div>
+
+              <p class="helper">No se captura ninguna tarjeta dentro de esta página. El usuario se envía al checkout oficial de Mercado Pago.</p>
+              <div class="submit-row">
+                <button class="btn-primary" id="preparePaymentButton" type="submit">Preparar pago seguro</button>
+                <span class="small-note">Backend listo, solo faltan tus keys</span>
+              </div>
+            </form>
+          </article>
+
+          <aside class="card payment-card reveal">
+            <h3 class="card-title">2. Checkout oficial con Mercado Pago</h3>
+            <p class="card-text">Refuerzo visual de confianza con métodos visibles y espacio listo para el botón oficial de pago.</p>
+
+            <div class="summary-box">
+              <div class="summary-row">
+                <span>Programa</span>
+                <strong>Auditor Interno ISO 9001:2015</strong>
+              </div>
+              <div class="summary-row">
+                <span>Participante</span>
+                <span id="summaryParticipant">Pendiente de registro</span>
+              </div>
+              <div class="summary-row">
+                <span>Actividad</span>
+                <span id="summaryOccupation">Sin capturar</span>
+              </div>
+              <div class="summary-row">
+                <span>Estudios</span>
+                <span id="summaryEducation">Sin capturar</span>
+              </div>
+              <div class="summary-row">
+                <span>Total</span>
+                <strong>$3,500 MXN</strong>
+              </div>
+            </div>
+
+            <div class="payment-marks">
+              <div class="pay-mark mp-logo-pill">
+                <img class="mp-logo-real" src="/curso-interno/logo%20mercado%20pago.svg" alt="Mercado Pago" />
+              </div>
+              <div class="pay-mark">
+                <div class="visa-mark">VISA</div>
+              </div>
+              <div class="pay-mark">
+                <div class="mc-mark">
+                  <div class="mc-circles"></div>
+                  <div class="mc-text">Mastercard</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mp-shell">
+              <div class="mp-head">
+                <div>
+                  <div class="mp-kicker">Mercado Pago directo</div>
+                  <div class="mp-title">Checkout preparado para producción</div>
+                </div>
+                <div class="mp-badge">SSL y preferencia segura</div>
+              </div>
+
+              <div id="mpMessage" class="mp-message info visible">
+                Completa el formulario para generar la preferencia del curso y mostrar el checkout oficial.
+              </div>
+              <div id="mpLoading" class="mp-loading">Conectando con Mercado Pago y preparando tu orden...</div>
+              <div id="walletBrickContainer"></div>
+              <a id="fallbackLink" class="fallback-link" href="#" target="_blank" rel="noreferrer">Abrir checkout en nueva ventana</a>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq-zone" id="faqs">
+      <div class="shell">
+        <div class="section-head reveal">
+          <div class="section-kicker">Preguntas frecuentes</div>
+          <h2 class="section-title">FAQs más visuales y <em>más claras</em>.</h2>
+          <p class="section-text">Compacté las respuestas y mejoré la presentación para que la sección se vea premium y no pesada.</p>
+        </div>
+
+        <div class="faq-list">
+          <details class="faq-item reveal">
+            <summary>¿Se requiere experiencia previa en auditoría?</summary>
+            <div class="faq-answer">No. El curso parte desde fundamentos y avanza hasta la ejecución práctica de una auditoría interna bajo ISO 9001:2015.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>¿La constancia DC-3 tiene costo adicional?</summary>
+            <div class="faq-answer">No. La inversión ya contempla la documentación académica y el trámite indicado en la propuesta.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>¿Pueden inscribirse varios colaboradores?</summary>
+            <div class="faq-answer">Sí. La landing ya funciona para registro individual y también como base para inscripción empresarial o por grupos.</div>
+          </details>
+          <details class="faq-item reveal">
+            <summary>¿Puedo pedir factura?</summary>
+            <div class="faq-answer">Sí. La estructura del formulario y del checkout ya deja lista la ruta para seguimiento comercial y facturación posterior.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-title">INDUSECC</div>
+          <p class="footer-text">Landing especial del curso con logo protagonista, video dual real, navegación flotante y checkout preparado para producción.</p>
+        </div>
+        <div>
+          <div class="footer-title">Contacto</div>
+          <a class="footer-link" href="mailto:contacto@indusecc.com.mx">contacto@indusecc.com.mx</a><br />
+          <a class="footer-link" href="https://wa.me/525540152551" target="_blank" rel="noreferrer">WhatsApp de atención</a>
+        </div>
+        <div>
+          <div class="footer-title">Variables para producción</div>
+          <div class="footer-text">SITE_URL</div>
+          <div class="footer-text">MERCADOPAGO_ACCESS_TOKEN</div>
+          <div class="footer-text">MERCADOPAGO_PUBLIC_KEY</div>
+          <div class="footer-text">MERCADOPAGO_NOTIFICATION_URL</div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 INDUSECC. Curso Auditor Interno ISO 9001:2015.</span>
+        <span>Listo para colocar tu `.env` de Mercado Pago.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const registrationForm = document.getElementById('courseRegistrationForm');
+    const preparePaymentButton = document.getElementById('preparePaymentButton');
+    const summaryParticipant = document.getElementById('summaryParticipant');
+    const summaryOccupation = document.getElementById('summaryOccupation');
+    const summaryEducation = document.getElementById('summaryEducation');
+    const mpMessage = document.getElementById('mpMessage');
+    const mpLoading = document.getElementById('mpLoading');
+    const fallbackLink = document.getElementById('fallbackLink');
+    const statusBanner = document.getElementById('statusBanner');
+    const quickLinks = Array.from(document.querySelectorAll('.quick-nav a'));
+    const sectionTargets = ['hero', 'beneficios', 'temario', 'inscripcion', 'faqs']
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
+
+    let mpInstance = null;
+    let bricksBuilder = null;
+    let walletBrickController = null;
+    let currentPublicKey = '';
+
+    function setBanner(type, text) {
+      if (!text) {
+        statusBanner.className = 'status-banner';
+        statusBanner.textContent = '';
+        return;
+      }
+
+      statusBanner.className = `status-banner visible ${type}`;
+      statusBanner.textContent = text;
+    }
+
+    function setMpMessage(type, text) {
+      mpMessage.className = `mp-message visible ${type}`;
+      mpMessage.textContent = text;
+    }
+
+    function setLoading(isVisible, text = 'Conectando con Mercado Pago y preparando tu orden...') {
+      mpLoading.className = isVisible ? 'mp-loading visible' : 'mp-loading';
+      mpLoading.textContent = text;
+    }
+
+    function setFallbackLink(url) {
+      if (!url) {
+        fallbackLink.className = 'fallback-link';
+        fallbackLink.removeAttribute('href');
+        return;
+      }
+
+      fallbackLink.href = url;
+      fallbackLink.className = 'fallback-link visible';
+    }
+
+    function readPaymentStatus() {
+      const params = new URLSearchParams(window.location.search);
+      const status = params.get('payment_status');
+
+      if (status === 'approved') {
+        setBanner('success', 'Pago aprobado. Tu inscripción quedó registrada correctamente.');
+      } else if (status === 'pending') {
+        setBanner('pending', 'Tu pago está pendiente de confirmación. Revisa tu correo o tu cuenta de Mercado Pago para el siguiente paso.');
+      } else if (status === 'failure') {
+        setBanner('error', 'El pago no se completó. Puedes volver a intentarlo desde esta misma sección.');
+      }
+    }
+
+    async function ensureBrick(publicKey) {
+      if (!window.MercadoPago) {
+        throw new Error('No fue posible cargar el SDK de Mercado Pago.');
+      }
+
+      if (!mpInstance || currentPublicKey !== publicKey) {
+        mpInstance = new window.MercadoPago(publicKey, { locale: 'es-MX' });
+        bricksBuilder = mpInstance.bricks();
+        currentPublicKey = publicKey;
+      }
+    }
+
+    async function renderWalletBrick(preferenceId) {
+      const container = document.getElementById('walletBrickContainer');
+      container.innerHTML = '';
+
+      if (walletBrickController && typeof walletBrickController.unmount === 'function') {
+        walletBrickController.unmount();
+      }
+
+      walletBrickController = await bricksBuilder.create('wallet', 'walletBrickContainer', {
+        initialization: {
+          preferenceId
+        },
+        customization: {
+          texts: {
+            valueProp: 'smart_option'
+          }
+        }
+      });
+    }
+
+    function activateQuickNav() {
+      const scrollPoint = window.scrollY + window.innerHeight * 0.35;
+      let activeId = 'hero';
+
+      for (const section of sectionTargets) {
+        if (scrollPoint >= section.offsetTop) {
+          activeId = section.id;
+        }
+      }
+
+      quickLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.target === activeId);
+      });
+    }
+
+    function setupRevealObserver() {
+      const reveals = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      reveals.forEach(node => observer.observe(node));
+    }
+
+    registrationForm.addEventListener('submit', async event => {
+      event.preventDefault();
+
+      const formData = new FormData(registrationForm);
+      const payload = {
+        name: String(formData.get('name') || '').trim(),
+        email: String(formData.get('email') || '').trim(),
+        phone: String(formData.get('phone') || '').trim(),
+        profile: String(formData.get('occupation') || '').trim(),
+        occupation: String(formData.get('occupation') || '').trim(),
+        education: String(formData.get('education') || '').trim()
+      };
+
+      summaryParticipant.textContent = payload.name || 'Pendiente de registro';
+      summaryOccupation.textContent = payload.occupation || 'Sin capturar';
+      summaryEducation.textContent = payload.education || 'Sin capturar';
+
+      preparePaymentButton.disabled = true;
+      preparePaymentButton.textContent = 'Preparando checkout...';
+      setLoading(true);
+      setBanner('', '');
+      setFallbackLink('');
+      setMpMessage('info', 'Estamos creando una preferencia segura de Mercado Pago para este participante.');
+
+      try {
+        const response = await fetch('/api/create-course-preference', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+        if (!response.ok) {
+          throw new Error(result.error || 'No fue posible crear la preferencia de pago.');
+        }
+
+        await ensureBrick(result.publicKey);
+        await renderWalletBrick(result.preferenceId);
+
+        setMpMessage('success', 'Listo. El botón oficial de Mercado Pago ya está disponible para completar tu pago.');
+        setFallbackLink(result.initPoint || result.sandboxInitPoint || '');
+      } catch (error) {
+        const message = error instanceof Error ? error.message : 'Ocurrió un error al preparar el checkout.';
+        setMpMessage('error', message);
+        setBanner('error', message);
+      } finally {
+        setLoading(false);
+        preparePaymentButton.disabled = false;
+        preparePaymentButton.textContent = 'Preparar pago seguro';
+      }
+    });
+
+    setupRevealObserver();
+    readPaymentStatus();
+    activateQuickNav();
+    window.addEventListener('scroll', activateQuickNav, { passive: true });
+    window.addEventListener('resize', activateQuickNav);
+  </script>
+</body>
+</html>

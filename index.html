@@ -670,6 +670,188 @@ body {
 .ss-dot { width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex-shrink: 0; margin-top: 4px; }
 .ss-txt { font-size: 12px; font-weight: 500; color: rgba(255,255,255,.55); line-height: 1.5; }
 
+.curso-spotlight {
+  background:
+    linear-gradient(135deg, rgba(10,2,3,.96), rgba(54,10,13,.94)),
+    radial-gradient(circle at top right, rgba(201,168,76,.2), transparent 36%);
+  padding: 96px 80px;
+  overflow: hidden;
+}
+.curso-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cpath d='M20 70h100M70 20v100' stroke='%23C9A84C' stroke-width='.6' opacity='.06'/%3E%3C/svg%3E") repeat;
+  opacity: .45;
+  pointer-events: none;
+}
+.curso-spotlight-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(380px, .9fr);
+  gap: 48px;
+  align-items: stretch;
+}
+.curso-spotlight-copy .section-tag-text { color: var(--gold-light); }
+.curso-spotlight-copy .section-title { color: #fff; margin-top: 14px; }
+.curso-spotlight-copy .section-title em { color: var(--gold-light); }
+.curso-spotlight-copy .rule-wine { background: var(--gold); }
+.curso-spotlight-copy p {
+  margin-top: 28px;
+  max-width: 620px;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.95;
+  color: rgba(255,255,255,.68);
+}
+.curso-spotlight-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 34px;
+}
+.curso-meta-card {
+  border: 1px solid rgba(201,168,76,.18);
+  background: rgba(255,255,255,.04);
+  padding: 18px 18px 20px;
+}
+.curso-meta-label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.74);
+}
+.curso-meta-value {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: #fff;
+}
+.curso-spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 38px;
+}
+.curso-spotlight-note {
+  margin-top: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.38);
+}
+.curso-spotlight-card {
+  position: relative;
+  border: 1px solid rgba(201,168,76,.18);
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
+  overflow: hidden;
+}
+.curso-spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(10,2,3,.2), rgba(10,2,3,.75)),
+    url('/Imagenes/comunicacion-interna.jpg') center/cover;
+  opacity: .9;
+}
+.curso-card-content {
+  position: relative;
+  z-index: 1;
+  padding: 34px 32px;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 28px;
+}
+.curso-card-topline {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 10px 14px;
+  border: 1px solid rgba(201,168,76,.24);
+  background: rgba(255,255,255,.06);
+  color: var(--gold-light);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+.curso-card-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  transform: rotate(45deg);
+}
+.curso-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.3rem;
+  font-weight: 900;
+  line-height: .96;
+  letter-spacing: -.03em;
+  color: #fff;
+}
+.curso-card-title em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-light);
+}
+.curso-card-list {
+  display: grid;
+  gap: 14px;
+}
+.curso-card-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.curso-card-icon {
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(201,168,76,.25);
+  background: rgba(201,168,76,.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  font-size: 12px;
+}
+.curso-card-label {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,.74);
+}
+.curso-card-text {
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255,255,255,.72);
+}
+.curso-card-cta {
+  padding-top: 24px;
+  border-top: 1px solid rgba(201,168,76,.18);
+}
+.curso-card-cta .btn-primary {
+  width: 100%;
+  justify-content: center;
+}
+
 /* ── SECTION WRAPPER (needed by rest of page) ── */
 section { position: relative; }
 .section-tag {
@@ -692,6 +874,7 @@ section { position: relative; }
   .svc-bullets{grid-template-columns:1fr 1fr;}
   .ss-items{grid-template-columns:1fr 1fr; gap:20px;}
   .servicios-strip{padding:48px 60px;}
+  .curso-spotlight{padding:84px 60px;}
 }
 @media (max-width:1024px){
   .hero-body{grid-template-columns:1fr; max-width:680px;}
@@ -702,6 +885,7 @@ section { position: relative; }
   .svc-pane{position:relative; transform:none; pointer-events:auto; display:none; padding:48px 40px;}
   .svc-pane.active{display:flex; opacity:1;}
   .sib-inner{grid-template-columns:1fr;}
+  .curso-spotlight-inner{grid-template-columns:1fr;}
 }
 @media (max-width:768px){
   .hero-title{font-size:clamp(2.8rem,9vw,4rem);}
@@ -710,6 +894,8 @@ section { position: relative; }
   .svc-step{border-right:none; border-bottom:1px solid var(--border);}
   .ss-items{grid-template-columns:1fr 1fr;}
   .servicios-strip{grid-template-columns:1fr; gap:28px; padding:40px 40px;}
+  .curso-spotlight{padding:72px 40px;}
+  .curso-spotlight-meta{grid-template-columns:1fr;}
 }
 @media (max-width:640px){
   .hero-body{padding:32px 24px 40px;}
@@ -720,6 +906,9 @@ section { position: relative; }
   .svc-pane{padding:36px 24px;}
   .ss-items{grid-template-columns:1fr;}
   .servicios-strip{padding:40px 24px;}
+  .curso-spotlight{padding:60px 24px;}
+  .curso-card-content{padding:28px 22px;}
+  .curso-card-title{font-size:1.9rem;}
   body{cursor:auto;}
   .cursor{display:none;}
 }
@@ -2459,8 +2648,8 @@ img, video, canvas { max-width: 100%; }
 <div class="svc-step"><div class="svc-step-num">05</div><div class="svc-step-txt">Certificación y seguimiento</div></div>
 </div>
 <div class="svc-pane-cta">
-<a class="svc-cta-primary shine-el" href="/contacto"><span>Solicitar información</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
-<a class="svc-cta-ghost" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank"><div class="svc-cta-ghost-line"></div>Ver brochure</a>
+<a class="svc-cta-primary shine-el" href="/curso-interno"><span>Ver curso interno</span><svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg></a>
+<a class="svc-cta-ghost" href="/contacto"><div class="svc-cta-ghost-line"></div>Capacitación a medida</a>
 </div>
 </div>
 <!-- PANE 3: Gestión de Riesgos -->
@@ -2536,6 +2725,90 @@ img, video, canvas { max-width: 100%; }
 <div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">Servicios industriales especializados</span></div>
 <div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">Mantenimiento de sistemas ISO</span></div>
 <div class="ss-item"><div class="ss-dot"></div><span class="ss-txt">Diagnóstico organizacional integral</span></div>
+</div>
+</div>
+</section>
+<section class="curso-spotlight" id="curso-interno">
+<div class="curso-spotlight-inner">
+<div class="curso-spotlight-copy reveal">
+<div class="section-tag">
+<div class="section-tag-line"></div>
+<span class="section-tag-text">Sección Especial</span>
+</div>
+<h2 class="section-title">Curso Interno para <em>auditores ISO</em>.</h2>
+<div class="section-rule">
+<div class="rule-wine"></div>
+<div class="rule-gold"></div>
+</div>
+<p>
+        Abrimos una landing dedicada para el curso de <strong>Auditor Interno ISO 9001:2015</strong> con temario, beneficios, logística e inscripción individual o empresarial.
+        Esta experiencia vive en paralelo al resto de servicios de INDUSECC y mantiene la misma línea visual vino, oro y enfoque corporativo del sitio principal.
+      </p>
+<div class="curso-spotlight-meta">
+<div class="curso-meta-card">
+<span class="curso-meta-label">Modalidad</span>
+<span class="curso-meta-value">Presencial<br/>CDMX</span>
+</div>
+<div class="curso-meta-card">
+<span class="curso-meta-label">Fechas</span>
+<span class="curso-meta-value">24 y 25<br/>de Julio</span>
+</div>
+<div class="curso-meta-card">
+<span class="curso-meta-label">Inversión</span>
+<span class="curso-meta-value">$3,500 MXN</span>
+</div>
+</div>
+<div class="curso-spotlight-actions">
+<a class="btn-primary" href="/curso-interno">
+<span>Explorar landing</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="btn-ghost" href="/curso-interno#inscripcion">
+<div class="btn-ghost-line"></div>
+        Pago con Mercado Pago
+      </a>
+</div>
+<div class="curso-spotlight-note">Inscripciones individuales y registro empresarial en una misma página</div>
+</div>
+<div class="curso-spotlight-card reveal reveal-delay-2">
+<div class="curso-card-content">
+<div>
+<div class="curso-card-topline"><div class="curso-card-dot"></div>Especial de capacitación</div>
+<h3 class="curso-card-title">Todo el curso en una <em>sección exclusiva</em>.</h3>
+</div>
+<div class="curso-card-list">
+<div class="curso-card-item">
+<div class="curso-card-icon">01</div>
+<div>
+<span class="curso-card-label">Contenido</span>
+<p class="curso-card-text">Beneficios, temario, fecha, sede, FAQ y una narrativa enfocada en conversión para alumnos y empresas.</p>
+</div>
+</div>
+<div class="curso-card-item">
+<div class="curso-card-icon">02</div>
+<div>
+<span class="curso-card-label">Checkout</span>
+<p class="curso-card-text">Formulario de registro conectado a una preferencia segura de Mercado Pago lista para activarse con tus credenciales.</p>
+</div>
+</div>
+<div class="curso-card-item">
+<div class="curso-card-icon">03</div>
+<div>
+<span class="curso-card-label">Escalabilidad</span>
+<p class="curso-card-text">Base pensada para futuras ediciones, múltiples cursos y ajustes rápidos de precio, agenda y modalidad.</p>
+</div>
+</div>
+</div>
+<div class="curso-card-cta">
+<a class="btn-primary" href="/curso-interno">
+<span>Ir a la sección especial</span>
+<svg fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M17 8l4 4m0 0l-4 4m4-4H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
 </div>
 </div>
 </section>

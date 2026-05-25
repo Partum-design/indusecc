@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "mercadopago": "^3.0.0",
     "nodemailer": "^6.10.1"
   }
 }
