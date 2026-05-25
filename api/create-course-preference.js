@@ -1,5 +1,9 @@
 import { MercadoPagoConfig, Preference } from 'mercadopago';
 
+const DEFAULT_BASE_PRICE = 3500;
+const DEFAULT_PROMO_PRICE = 3000;
+const DEFAULT_PROMO_CODES = ['OSESNA3000'];
+
 function readJsonBody(req) {
   return new Promise((resolve, reject) => {
     let raw = '';
@@ -40,7 +44,31 @@ function getBaseUrl(req) {
   return `${proto}://${req.headers.host}`;
 }
 
-function buildPreferenceBody(req, payload) {
+function getCoursePricingConfig() {
+  const basePrice = Number(process.env.COURSE_BASE_PRICE) || DEFAULT_BASE_PRICE;
+  const promoPrice = Number(process.env.COURSE_PROMO_PRICE) || DEFAULT_PROMO_PRICE;
+  const promoCodes = (process.env.COURSE_PROMO_CODES || DEFAULT_PROMO_CODES.join(','))
+    .split(',')
+    .map(code => code.trim().toUpperCase())
+    .filter(Boolean);
+
+  return { basePrice, promoPrice, promoCodes };
+}
+
+function resolveCoursePrice(discountCode) {
+  const { basePrice, promoPrice, promoCodes } = getCoursePricingConfig();
+  const normalizedCode = cleanText(discountCode, 40).toUpperCase();
+  const promoApplied = Boolean(normalizedCode && promoCodes.includes(normalizedCode));
+
+  return {
+    amount: promoApplied ? promoPrice : basePrice,
+    basePrice,
+    promoPrice,
+    promoApplied
+  };
+}
+
+function buildPreferenceBody(req, payload, amount) {
   const courseUrl = `${getBaseUrl(req)}/curso-interno/`;
   const now = new Date();
   const expirationTo = new Date(now.getTime() + 5 * 24 * 60 * 60 * 1000);
@@ -56,7 +84,7 @@ function buildPreferenceBody(req, payload) {
         category_id: 'services',
         quantity: 1,
         currency_id: 'MXN',
-        unit_price: 3000
+        unit_price: amount
       }
     ],
     payer: {
@@ -101,6 +129,7 @@ function validatePayload(payload) {
   const school = cleanText(payload.school, 120);
   const area = cleanText(payload.area, 120);
   const experience = cleanText(payload.experience, 120);
+  const participants = cleanText(payload.participants, 40);
 
   if (!name || !email) {
     return { error: 'Nombre y correo son obligatorios.' };
@@ -112,7 +141,7 @@ function validatePayload(payload) {
   }
 
   return {
-    value: { name, email, phone, profile, discountCode, company, role, career, school, area, experience }
+    value: { name, email, phone, profile, discountCode, company, role, career, school, area, experience, participants }
   };
 }
 
@@ -122,17 +151,28 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const accessToken = cleanText(process.env.MERCADOPAGO_ACCESS_TOKEN || '', 250);
-  const publicKey = cleanText(process.env.MERCADOPAGO_PUBLIC_KEY || '', 250);
-
-  if (!accessToken || !publicKey) {
-    return res.status(503).json({
-      error: 'Mercado Pago no esta configurado todavia. Agrega MERCADOPAGO_ACCESS_TOKEN y MERCADOPAGO_PUBLIC_KEY.'
-    });
-  }
-
   try {
     const payload = await readJsonBody(req);
+    const pricing = resolveCoursePrice(payload.discountCode);
+
+    if (payload.preview === true) {
+      return res.status(200).json({
+        amount: pricing.amount,
+        basePrice: pricing.basePrice,
+        promoPrice: pricing.promoPrice,
+        promoApplied: pricing.promoApplied
+      });
+    }
+
+    const accessToken = cleanText(process.env.MERCADOPAGO_ACCESS_TOKEN || '', 250);
+    const publicKey = cleanText(process.env.MERCADOPAGO_PUBLIC_KEY || '', 250);
+
+    if (!accessToken || !publicKey) {
+      return res.status(503).json({
+        error: 'Mercado Pago no esta configurado todavia. Agrega MERCADOPAGO_ACCESS_TOKEN y MERCADOPAGO_PUBLIC_KEY.'
+      });
+    }
+
     const validation = validatePayload(payload);
 
     if (validation.error) {
@@ -146,7 +186,7 @@ export default async function handler(req, res) {
 
     const preferenceClient = new Preference(client);
     const preference = await preferenceClient.create({
-      body: buildPreferenceBody(req, validation.value),
+      body: buildPreferenceBody(req, validation.value, pricing.amount),
       requestOptions: {
         idempotencyKey: `curso-interno-${Date.now()}`
       }
@@ -157,7 +197,10 @@ export default async function handler(req, res) {
       initPoint: preference.init_point,
       sandboxInitPoint: preference.sandbox_init_point,
       publicKey,
-      amount: 3000,
+      amount: pricing.amount,
+      basePrice: pricing.basePrice,
+      promoPrice: pricing.promoPrice,
+      promoApplied: pricing.promoApplied,
       title: 'Curso Auditor Interno ISO 9001:2015'
     });
   } catch (error) {

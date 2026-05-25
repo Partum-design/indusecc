@@ -1124,29 +1124,7 @@
       display: grid;
     }
 
-    .discount-box {
-      margin-top: 20px;
-      padding: 18px;
-      border: 1px solid rgba(201,168,76,.3);
-      background: linear-gradient(180deg, rgba(201,168,76,.08), rgba(123,30,34,.04));
-      display: grid;
-      gap: 14px;
-    }
-
-    .discount-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .discount-label {
-      display: grid;
-      gap: 4px;
-    }
-
-    .discount-title {
+    .role-picker-label {
       font-size: 11px;
       font-weight: 800;
       letter-spacing: .16em;
@@ -1154,26 +1132,142 @@
       color: var(--wine);
     }
 
-    .discount-code {
-      font-size: 24px;
+    .role-picker {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    @media (min-width: 900px) {
+      .role-picker {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    .role-option {
+      position: relative;
+      display: grid;
+      gap: 6px;
+      padding: 16px 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      cursor: pointer;
+      transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+    }
+
+    .role-option:hover {
+      border-color: var(--border-strong);
+      box-shadow: 0 12px 24px rgba(123,30,34,.06);
+    }
+
+    .role-option input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .role-option.selected {
+      border-color: rgba(123,30,34,.32);
+      background: linear-gradient(180deg, rgba(123,30,34,.04), rgba(201,168,76,.06));
+      box-shadow: 0 14px 28px rgba(123,30,34,.08);
+    }
+
+    .role-option.selected::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--wine), var(--gold));
+    }
+
+    .role-option-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.3;
+    }
+
+    .role-option-desc {
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    .profile-context-title {
+      grid-column: 1 / -1;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--wine);
+      margin-bottom: 2px;
+    }
+
+    .profile-panel {
+      display: none;
+      grid-column: 1 / -1;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .profile-panel.is-active {
+      display: grid;
+    }
+
+    .role-option-badge {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 8px;
+      margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--wine), var(--wine-dark));
+      color: var(--gold-light);
+      font-size: 9px;
       font-weight: 800;
-      letter-spacing: .08em;
-      color: var(--wine-dark);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .summary-price-wrap {
+      display: grid;
+      justify-items: end;
+      gap: 4px;
+      text-align: right;
+    }
+
+    .summary-price-base {
+      font-size: 12px;
+      color: var(--muted);
+      text-decoration: line-through;
+    }
+
+    .summary-price-base[hidden] {
+      display: none;
+    }
+
+    .summary-price-note {
+      font-size: 11px;
+      color: var(--wine);
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .discount-box {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      background: var(--parchment);
+      display: grid;
+      gap: 8px;
     }
 
     .discount-copy {
       color: var(--muted);
-      font-size: 13px;
-      line-height: 1.7;
-    }
-
-    .discount-status {
-      padding: 10px 12px;
-      background: rgba(20,83,45,.08);
-      border: 1px solid rgba(20,83,45,.16);
-      color: var(--success);
       font-size: 12px;
-      font-weight: 700;
+      line-height: 1.65;
+      font-weight: 300;
     }
 
     .price-strike {
@@ -1640,7 +1734,8 @@
       .video-shell { display: none; }
       .video-shell-mobile { display: block; }
       .video-mobile { display: block; }
-      .dynamic-fields { grid-template-columns: 1fr; }
+      .dynamic-fields,
+      .role-picker { grid-template-columns: 1fr; }
       .hero-panel,
       .video-frame,
       .form-card,
@@ -1748,7 +1843,7 @@
           </div>
           <div class="fact-card reveal visible">
             <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="fact-label">Inversión</span></div>
-            <span class="fact-value">$3,000 MXN</span>
+            <span class="fact-value">Desde $3,000 MXN</span>
           </div>
         </div>
       </div>
@@ -2078,9 +2173,8 @@
           </article>
           <article class="card detail-card price-card reveal">
             <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span></div>
-            <span class="price-strike">$3,500 MXN</span>
-            <div class="price-main">$3,000 <span>MXN</span></div>
-            <p style="margin-top: 12px;">IVA incluido. Facturación disponible.</p>
+            <div class="price-main">$3,500 <span>MXN</span></div>
+            <p style="margin-top: 12px;">Precio preferente $3,000 MXN con código promocional. IVA incluido. Facturación disponible.</p>
             <div class="detail-meta">
               <div>Incluye material y coffee break</div>
               <div>Incluye diploma y formato DC-3</div>
@@ -2121,60 +2215,100 @@
                   <label for="studentEmail">Correo</label>
                   <input id="studentEmail" name="email" type="email" required placeholder="ejemplo@correo.com" />
                 </div>
-                <div class="field">
-                  <label for="studentType">Tipo de inscripción</label>
-                  <select id="studentType" name="profile" required>
-                    <option value="">Selecciona una opción</option>
-                    <option>Profesional</option>
-                    <option>Empresa</option>
-                    <option>Colaborador</option>
-                    <option>Estudiante</option>
-                  </select>
+                <div class="field full">
+                  <span class="role-picker-label" id="rolePickerLabel">¿Quién se inscribe?</span>
+                  <div class="role-picker" id="rolePicker" role="radiogroup" aria-labelledby="rolePickerLabel">
+                    <label class="role-option" data-profile-value="Estudiante">
+                      <input type="radio" name="profile" value="Estudiante" required />
+                      <span class="role-option-title">Estudiante</span>
+                      <span class="role-option-desc">Carrera y escuela</span>
+                    </label>
+                    <label class="role-option" data-profile-value="Trabajador">
+                      <input type="radio" name="profile" value="Trabajador" />
+                      <span class="role-option-title">Trabajador</span>
+                      <span class="role-option-desc">Empresa, puesto y área</span>
+                    </label>
+                    <label class="role-option" data-profile-value="CEO">
+                      <input type="radio" name="profile" value="CEO" />
+                      <span class="role-option-title">CEO / representante</span>
+                      <span class="role-option-desc">Empresa y registro grupal</span>
+                    </label>
+                    <label class="role-option" data-profile-value="Emprendedor">
+                      <input type="radio" name="profile" value="Emprendedor" />
+                      <span class="role-option-badge">Nuevo</span>
+                      <span class="role-option-title">Emprendedor</span>
+                      <span class="role-option-desc">Proyecto, giro y etapa</span>
+                    </label>
+                  </div>
                 </div>
               </div>
 
               <div class="dynamic-fields" id="studentContextFields">
-                <div class="field full" data-profile-set="student">
-                  <label for="studentCareer">Carrera</label>
-                  <input id="studentCareer" name="career" type="text" placeholder="Ej. Ingeniería Industrial" />
-                </div>
-                <div class="field full" data-profile-set="student">
-                  <label for="studentSchool">Escuela</label>
-                  <input id="studentSchool" name="school" type="text" placeholder="Nombre de tu universidad o institución" />
+                <p class="profile-context-title" id="profileContextTitle" hidden></p>
+
+                <div class="profile-panel" data-profile-panel="student" id="profilePanelStudent">
+                  <div class="field full">
+                    <label for="studentCareer">Carrera</label>
+                    <input id="studentCareer" type="text" placeholder="Ej. Ingeniería Industrial" />
+                  </div>
+                  <div class="field full">
+                    <label for="studentSchool">Escuela</label>
+                    <input id="studentSchool" type="text" placeholder="Nombre de tu universidad o institución" />
+                  </div>
                 </div>
 
-                <div class="field" data-profile-set="company">
-                  <label for="studentCompany">Empresa</label>
-                  <input id="studentCompany" name="company" type="text" placeholder="Nombre de la empresa" />
-                </div>
-                <div class="field" data-profile-set="company">
-                  <label for="studentRole">Puesto</label>
-                  <input id="studentRole" name="role" type="text" placeholder="Puesto o área" />
+                <div class="profile-panel" data-profile-panel="worker" id="profilePanelWorker">
+                  <div class="field">
+                    <label for="workerCompany">Empresa</label>
+                    <input id="workerCompany" type="text" placeholder="Nombre de la empresa" />
+                  </div>
+                  <div class="field">
+                    <label for="workerRole">Puesto</label>
+                    <input id="workerRole" type="text" placeholder="Ej. Coordinador de calidad" />
+                  </div>
+                  <div class="field full">
+                    <label for="workerArea">Área o departamento</label>
+                    <input id="workerArea" type="text" placeholder="Ej. Operaciones, calidad o producción" />
+                  </div>
                 </div>
 
-                <div class="field" data-profile-set="professional">
-                  <label for="studentArea">Área profesional</label>
-                  <input id="studentArea" name="area" type="text" placeholder="Ej. Calidad, operaciones o consultoría" />
+                <div class="profile-panel" data-profile-panel="ceo" id="profilePanelCeo">
+                  <div class="field">
+                    <label for="ceoCompany">Empresa</label>
+                    <input id="ceoCompany" type="text" placeholder="Nombre de la empresa" />
+                  </div>
+                  <div class="field">
+                    <label for="ceoRole">Cargo</label>
+                    <input id="ceoRole" type="text" placeholder="CEO, Director, Gerente" />
+                  </div>
+                  <div class="field full">
+                    <label for="ceoParticipants">Participantes a inscribir</label>
+                    <input id="ceoParticipants" type="text" inputmode="numeric" placeholder="Ej. 3 personas" />
+                  </div>
                 </div>
-                <div class="field" data-profile-set="professional">
-                  <label for="studentExperience">Experiencia</label>
-                  <input id="studentExperience" name="experience" type="text" placeholder="Ej. 3 años en sistemas de gestión" />
+
+                <div class="profile-panel" data-profile-panel="entrepreneur" id="profilePanelEntrepreneur">
+                  <div class="field full">
+                    <label for="entrepreneurBusiness">Negocio o proyecto</label>
+                    <input id="entrepreneurBusiness" type="text" placeholder="Nombre de tu emprendimiento" />
+                  </div>
+                  <div class="field">
+                    <label for="entrepreneurSector">Giro o sector</label>
+                    <input id="entrepreneurSector" type="text" placeholder="Ej. Consultoría, manufactura, servicios" />
+                  </div>
+                  <div class="field">
+                    <label for="entrepreneurStage">Etapa</label>
+                    <input id="entrepreneurStage" type="text" placeholder="Ej. En crecimiento, recién lanzado" />
+                  </div>
                 </div>
               </div>
 
               <div class="discount-box">
-                <div class="discount-top">
-                  <div class="discount-label">
-                    <span class="discount-title">Código de descuento</span>
-                    <span class="discount-code">OSESNA3000</span>
-                  </div>
-                  <div class="discount-status">Precio especial aplicado</div>
-                </div>
                 <div class="field full" style="margin-top:0;">
-                  <label for="discountCode">Código aplicado</label>
-                  <input id="discountCode" name="discount_code" type="text" value="OSESNA3000" readonly />
+                  <label for="discountCode">Código promocional (opcional)</label>
+                  <input id="discountCode" name="discount_code" type="text" autocomplete="off" placeholder="Ej. código promocional" />
                 </div>
-                <p class="discount-copy">Tu inscripción ya considera el precio preferente de $3,000 MXN para este curso.</p>
+                <p class="discount-copy">Si cuentas con un código, ingrésalo antes de continuar al pago.</p>
               </div>
 
               <p class="helper">No se captura ninguna tarjeta dentro de esta página. El usuario se envía al checkout oficial de Mercado Pago.</p>
@@ -2204,7 +2338,11 @@
               </div>
               <div class="summary-row">
                 <span>Total</span>
-                <strong>$3,000 MXN</strong>
+                <div class="summary-price-wrap">
+                  <span class="summary-price-base" id="summaryPriceBase" hidden>$3,500 MXN</span>
+                  <strong id="summaryTotal">$3,500 MXN</strong>
+                  <span class="summary-price-note" id="summaryPriceNote" hidden>Precio promocional aplicado</span>
+                </div>
               </div>
             </div>
 
@@ -2306,8 +2444,40 @@
     const preparePaymentButton = document.getElementById('preparePaymentButton');
     const summaryParticipant = document.getElementById('summaryParticipant');
     const summaryProfile = document.getElementById('summaryProfile');
-    const studentType = document.getElementById('studentType');
+    const rolePicker = document.getElementById('rolePicker');
+    const profileContextTitle = document.getElementById('profileContextTitle');
     const studentContextFields = document.getElementById('studentContextFields');
+    const profileRadios = Array.from(registrationForm.querySelectorAll('input[name="profile"]'));
+    const roleOptions = Array.from(document.querySelectorAll('#rolePicker .role-option'));
+    const profilePanels = Array.from(document.querySelectorAll('#studentContextFields [data-profile-panel]'));
+    const discountCodeInput = document.getElementById('discountCode');
+    const summaryTotal = document.getElementById('summaryTotal');
+    const summaryPriceBase = document.getElementById('summaryPriceBase');
+    const summaryPriceNote = document.getElementById('summaryPriceNote');
+
+    const COURSE_BASE_PRICE = 3500;
+    const COURSE_PROMO_PRICE = 3000;
+
+    const profileMap = {
+      estudiante: 'student',
+      trabajador: 'worker',
+      ceo: 'ceo',
+      emprendedor: 'entrepreneur'
+    };
+
+    const profileContextTitles = {
+      student: 'Datos de estudiante',
+      worker: 'Datos laborales',
+      ceo: 'Datos de empresa y registro grupal',
+      entrepreneur: 'Datos de emprendedor'
+    };
+
+    const profilePanelInputs = {
+      student: ['#studentCareer', '#studentSchool'],
+      worker: ['#workerCompany', '#workerRole', '#workerArea'],
+      ceo: ['#ceoCompany', '#ceoRole', '#ceoParticipants'],
+      entrepreneur: ['#entrepreneurBusiness', '#entrepreneurSector', '#entrepreneurStage']
+    };
     const mpMessage = document.getElementById('mpMessage');
     const mpLoading = document.getElementById('mpLoading');
     const fallbackLink = document.getElementById('fallbackLink');
@@ -2322,25 +2492,41 @@
     let walletBrickController = null;
     let currentPublicKey = '';
 
+    function getSelectedProfileValue() {
+      const checked = profileRadios.find(radio => radio.checked);
+      return String(checked?.value || '').trim();
+    }
+
+    function getActiveProfileSet() {
+      const selectedProfile = getSelectedProfileValue().toLowerCase();
+      return profileMap[selectedProfile] || '';
+    }
+
+    function updateRolePickerState() {
+      const selectedValue = getSelectedProfileValue();
+      roleOptions.forEach(option => {
+        const isSelected = option.dataset.profileValue === selectedValue;
+        option.classList.toggle('selected', isSelected);
+      });
+    }
+
+    function getPanelInputValues(activeSet) {
+      const selectors = profilePanelInputs[activeSet] || [];
+      return selectors
+        .map(selector => cleanValue(document.querySelector(selector)?.value))
+        .filter(Boolean);
+    }
+
     function updateParticipantFields() {
-      const selectedProfile = String(studentType?.value || '').trim().toLowerCase();
-      const profileMap = {
-        estudiante: 'student',
-        empresa: 'company',
-        colaborador: 'company',
-        profesional: 'professional'
-      };
+      const activeSet = getActiveProfileSet();
 
-      const activeSet = profileMap[selectedProfile] || '';
-      const dynamicGroups = Array.from(document.querySelectorAll('[data-profile-set]'));
+      profilePanels.forEach(panel => {
+        const isActive = panel.dataset.profilePanel === activeSet;
+        panel.classList.toggle('is-active', isActive);
 
-      dynamicGroups.forEach(field => {
-        const isVisible = field.dataset.profileSet === activeSet;
-        field.hidden = !isVisible;
-
-        const inputs = field.querySelectorAll('input, select');
-        inputs.forEach(input => {
-          if (isVisible) {
+        panel.querySelectorAll('input, select, textarea').forEach(input => {
+          input.disabled = !isActive;
+          if (isActive) {
             input.setAttribute('required', 'required');
           } else {
             input.removeAttribute('required');
@@ -2349,7 +2535,100 @@
         });
       });
 
+      if (profileContextTitle) {
+        const title = profileContextTitles[activeSet] || '';
+        profileContextTitle.textContent = title;
+        profileContextTitle.hidden = !title;
+      }
+
       studentContextFields?.classList.toggle('visible', Boolean(activeSet));
+      updateRolePickerState();
+      updateSummaryPreview();
+    }
+
+    function formatPrice(amount) {
+      return `$${amount.toLocaleString('es-MX')} MXN`;
+    }
+
+    function applyPriceSummary(amount, promoApplied) {
+      const isPromo = promoApplied || amount === COURSE_PROMO_PRICE;
+      summaryTotal.textContent = formatPrice(amount);
+      if (summaryPriceBase) {
+        summaryPriceBase.hidden = !isPromo;
+        summaryPriceBase.textContent = formatPrice(COURSE_BASE_PRICE);
+      }
+      if (summaryPriceNote) {
+        summaryPriceNote.hidden = !isPromo;
+      }
+    }
+
+    async function refreshPricePreview() {
+      const discountCode = cleanValue(discountCodeInput?.value);
+      applyPriceSummary(COURSE_BASE_PRICE, false);
+
+      if (!discountCode) return;
+
+      try {
+        const response = await fetch('/api/create-course-preference', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ preview: true, discountCode })
+        });
+        const result = await response.json();
+        if (!response.ok) return;
+        applyPriceSummary(result.amount || COURSE_BASE_PRICE, Boolean(result.promoApplied));
+      } catch {
+        // Mantener precio base si el preview no está disponible.
+      }
+    }
+
+    function buildRegistrationPayload() {
+      const activeSet = getActiveProfileSet();
+      const profile = getSelectedProfileValue();
+      const panelValues = getPanelInputValues(activeSet);
+
+      const payload = {
+        name: cleanValue(document.getElementById('studentName')?.value),
+        email: cleanValue(document.getElementById('studentEmail')?.value),
+        phone: cleanValue(document.getElementById('studentPhone')?.value),
+        profile,
+        discountCode: cleanValue(discountCodeInput?.value),
+        company: '',
+        role: '',
+        career: '',
+        school: '',
+        area: '',
+        experience: '',
+        participants: ''
+      };
+
+      if (activeSet === 'student') {
+        payload.career = panelValues[0] || '';
+        payload.school = panelValues[1] || '';
+      } else if (activeSet === 'worker') {
+        payload.company = panelValues[0] || '';
+        payload.role = panelValues[1] || '';
+        payload.area = panelValues[2] || '';
+      } else if (activeSet === 'ceo') {
+        payload.company = panelValues[0] || '';
+        payload.role = panelValues[1] || '';
+        payload.participants = panelValues[2] || '';
+      } else if (activeSet === 'entrepreneur') {
+        payload.company = panelValues[0] || '';
+        payload.area = panelValues[1] || '';
+        payload.experience = panelValues[2] || '';
+      }
+
+      return payload;
+    }
+
+    function updateSummaryPreview() {
+      const payload = buildRegistrationPayload();
+      const activeSet = getActiveProfileSet();
+      const extras = getPanelInputValues(activeSet);
+
+      summaryParticipant.textContent = payload.name || 'Pendiente de registro';
+      summaryProfile.textContent = [payload.profile, ...extras].filter(Boolean).join(' · ') || 'Sin seleccionar';
     }
 
     function setBanner(type, text) {
@@ -2484,33 +2763,13 @@
     registrationForm.addEventListener('submit', async event => {
       event.preventDefault();
 
-      const formData = new FormData(registrationForm);
-      const profile = String(formData.get('profile') || '').trim();
-      const extraProfileData = [
-        cleanValue(formData.get('company')),
-        cleanValue(formData.get('role')),
-        cleanValue(formData.get('career')),
-        cleanValue(formData.get('school')),
-        cleanValue(formData.get('area')),
-        cleanValue(formData.get('experience'))
-      ].filter(Boolean);
+      const payload = buildRegistrationPayload();
+      if (!payload.profile) {
+        setBanner('error', 'Selecciona quién se inscribe para continuar.');
+        return;
+      }
 
-      const payload = {
-        name: String(formData.get('name') || '').trim(),
-        email: String(formData.get('email') || '').trim(),
-        phone: String(formData.get('phone') || '').trim(),
-        profile,
-        discountCode: String(formData.get('discount_code') || '').trim(),
-        company: cleanValue(formData.get('company')),
-        role: cleanValue(formData.get('role')),
-        career: cleanValue(formData.get('career')),
-        school: cleanValue(formData.get('school')),
-        area: cleanValue(formData.get('area')),
-        experience: cleanValue(formData.get('experience'))
-      };
-
-      summaryParticipant.textContent = payload.name || 'Pendiente de registro';
-      summaryProfile.textContent = [profile, ...extraProfileData].filter(Boolean).join(' · ') || 'Sin seleccionar';
+      updateSummaryPreview();
 
       preparePaymentButton.disabled = true;
       preparePaymentButton.textContent = 'Preparando checkout...';
@@ -2533,6 +2792,10 @@
           throw new Error(result.error || 'No fue posible crear la preferencia de pago.');
         }
 
+        if (result.amount) {
+          applyPriceSummary(result.amount, Boolean(result.promoApplied));
+        }
+
         await ensureBrick(result.publicKey);
         await renderWalletBrick(result.preferenceId);
 
@@ -2553,11 +2816,41 @@
       return String(value || '').trim();
     }
 
-    studentType?.addEventListener('change', updateParticipantFields);
+    profileRadios.forEach(radio => {
+      radio.addEventListener('change', updateParticipantFields);
+    });
+
+    roleOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const radio = option.querySelector('input[type="radio"]');
+        if (radio) {
+          radio.checked = true;
+          updateParticipantFields();
+        }
+      });
+    });
+
+    registrationForm.addEventListener('input', event => {
+      const target = event.target;
+      if (!(target instanceof HTMLElement)) return;
+      if (target.matches('#studentName, #studentEmail, #studentPhone, #studentContextFields input, #discountCode')) {
+        updateSummaryPreview();
+      }
+      if (target.matches('#discountCode')) {
+        refreshPricePreview();
+      }
+    });
+
+    let pricePreviewTimer = null;
+    discountCodeInput?.addEventListener('input', () => {
+      clearTimeout(pricePreviewTimer);
+      pricePreviewTimer = setTimeout(refreshPricePreview, 320);
+    });
 
     setupRevealObserver();
     setupVideoPlayback();
     updateParticipantFields();
+    applyPriceSummary(COURSE_BASE_PRICE, false);
     readPaymentStatus();
     activateQuickNav();
     window.addEventListener('scroll', activateQuickNav, { passive: true });
