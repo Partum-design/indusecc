@@ -56,7 +56,7 @@ function buildPreferenceBody(req, payload) {
         category_id: 'services',
         quantity: 1,
         currency_id: 'MXN',
-        unit_price: 3500
+        unit_price: 3000
       }
     ],
     payer: {
@@ -94,6 +94,13 @@ function validatePayload(payload) {
   const email = cleanText(payload.email, 120).toLowerCase();
   const phone = cleanText(payload.phone, 30);
   const profile = cleanText(payload.profile, 60);
+  const discountCode = cleanText(payload.discountCode, 40).toUpperCase();
+  const company = cleanText(payload.company, 120);
+  const role = cleanText(payload.role, 120);
+  const career = cleanText(payload.career, 120);
+  const school = cleanText(payload.school, 120);
+  const area = cleanText(payload.area, 120);
+  const experience = cleanText(payload.experience, 120);
 
   if (!name || !email) {
     return { error: 'Nombre y correo son obligatorios.' };
@@ -105,7 +112,7 @@ function validatePayload(payload) {
   }
 
   return {
-    value: { name, email, phone, profile }
+    value: { name, email, phone, profile, discountCode, company, role, career, school, area, experience }
   };
 }
 
@@ -150,7 +157,7 @@ export default async function handler(req, res) {
       initPoint: preference.init_point,
       sandboxInitPoint: preference.sandbox_init_point,
       publicKey,
-      amount: 3500,
+      amount: 3000,
       title: 'Curso Auditor Interno ISO 9001:2015'
     });
   } catch (error) {

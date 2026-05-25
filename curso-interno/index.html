@@ -104,9 +104,7 @@
     .brand-logo-wrap {
       width: 82px;
       height: 82px;
-      border: 1px solid rgba(201,168,76,.26);
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      padding: 10px;
+      padding: 0;
     }
 
     .brand-logo {
@@ -332,22 +330,8 @@
       transform: rotate(45deg);
     }
 
-    .hero-logo-stage {
-      margin-top: 24px;
-      width: min(390px, 82%);
-      border: 1px solid rgba(201,168,76,.18);
-      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
-      padding: 22px 26px;
-    }
-
-    .hero-logo-stage img {
-      width: 100%;
-      height: auto;
-      object-fit: contain;
-    }
-
     .hero h1 {
-      margin-top: 24px;
+      margin-top: 26px;
       font-family: 'Playfair Display', serif;
       font-size: clamp(3.2rem, 6.2vw, 5.7rem);
       line-height: .9;
@@ -1127,6 +1111,80 @@
 
     .field.full { grid-column: 1 / -1; }
 
+    .dynamic-fields {
+      display: none;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(123,30,34,.1);
+    }
+
+    .dynamic-fields.visible {
+      display: grid;
+    }
+
+    .discount-box {
+      margin-top: 20px;
+      padding: 18px;
+      border: 1px solid rgba(201,168,76,.3);
+      background: linear-gradient(180deg, rgba(201,168,76,.08), rgba(123,30,34,.04));
+      display: grid;
+      gap: 14px;
+    }
+
+    .discount-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .discount-label {
+      display: grid;
+      gap: 4px;
+    }
+
+    .discount-title {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--wine);
+    }
+
+    .discount-code {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      color: var(--wine-dark);
+    }
+
+    .discount-copy {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .discount-status {
+      padding: 10px 12px;
+      background: rgba(20,83,45,.08);
+      border: 1px solid rgba(20,83,45,.16);
+      color: var(--success);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .price-strike {
+      display: block;
+      margin-top: 10px;
+      color: rgba(255,255,255,.58);
+      font-size: 14px;
+      text-decoration: line-through;
+      letter-spacing: .08em;
+    }
+
     .field label {
       font-size: 11px;
       font-weight: 800;
@@ -1569,7 +1627,7 @@
       .topbar-inner { height: 80px; }
       main section { padding: 72px 0; }
       .hero-grid { gap: 28px; }
-      .brand-logo-wrap { width: 68px; height: 68px; padding: 9px; }
+      .brand-logo-wrap { width: 68px; height: 68px; }
     }
 
     @media (max-width: 640px) {
@@ -1579,14 +1637,10 @@
       }
 
       .shell { width: min(1240px, calc(100vw - 24px)); }
-      .hero-logo-stage {
-        width: min(320px, 100%);
-        padding: 16px 18px;
-      }
-
       .video-shell { display: none; }
       .video-shell-mobile { display: block; }
       .video-mobile { display: block; }
+      .dynamic-fields { grid-template-columns: 1fr; }
       .hero-panel,
       .video-frame,
       .form-card,
@@ -1670,9 +1724,6 @@
     <div class="shell hero-grid">
       <div class="reveal visible">
         <div class="eyebrow">Certificación oficial incluida</div>
-        <div class="hero-logo-stage reveal visible">
-          <img src="/curso-interno/logo.png" alt="Logo grande de INDUSECC" />
-        </div>
         <h1>Curso Auditor Interno <em>bajo ISO 9001:2015</em></h1>
         <p class="hero-copy">
           Formación presencial para aprender a auditar, documentar hallazgos y fortalecer sistemas de gestión de calidad con enfoque práctico desde el primer módulo.
@@ -1697,7 +1748,7 @@
           </div>
           <div class="fact-card reveal visible">
             <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="fact-label">Inversión</span></div>
-            <span class="fact-value">$3,500 MXN</span>
+            <span class="fact-value">$3,000 MXN</span>
           </div>
         </div>
       </div>
@@ -2027,7 +2078,8 @@
           </article>
           <article class="card detail-card price-card reveal">
             <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span></div>
-            <div class="price-main">$3,500 <span>MXN</span></div>
+            <span class="price-strike">$3,500 MXN</span>
+            <div class="price-main">$3,000 <span>MXN</span></div>
             <p style="margin-top: 12px;">IVA incluido. Facturación disponible.</p>
             <div class="detail-meta">
               <div>Incluye material y coffee break</div>
@@ -2073,11 +2125,56 @@
                   <label for="studentType">Tipo de inscripción</label>
                   <select id="studentType" name="profile" required>
                     <option value="">Selecciona una opción</option>
-                    <option>Individual</option>
+                    <option>Profesional</option>
                     <option>Empresa</option>
+                    <option>Colaborador</option>
                     <option>Estudiante</option>
                   </select>
                 </div>
+              </div>
+
+              <div class="dynamic-fields" id="studentContextFields">
+                <div class="field full" data-profile-set="student">
+                  <label for="studentCareer">Carrera</label>
+                  <input id="studentCareer" name="career" type="text" placeholder="Ej. Ingeniería Industrial" />
+                </div>
+                <div class="field full" data-profile-set="student">
+                  <label for="studentSchool">Escuela</label>
+                  <input id="studentSchool" name="school" type="text" placeholder="Nombre de tu universidad o institución" />
+                </div>
+
+                <div class="field" data-profile-set="company">
+                  <label for="studentCompany">Empresa</label>
+                  <input id="studentCompany" name="company" type="text" placeholder="Nombre de la empresa" />
+                </div>
+                <div class="field" data-profile-set="company">
+                  <label for="studentRole">Puesto</label>
+                  <input id="studentRole" name="role" type="text" placeholder="Puesto o área" />
+                </div>
+
+                <div class="field" data-profile-set="professional">
+                  <label for="studentArea">Área profesional</label>
+                  <input id="studentArea" name="area" type="text" placeholder="Ej. Calidad, operaciones o consultoría" />
+                </div>
+                <div class="field" data-profile-set="professional">
+                  <label for="studentExperience">Experiencia</label>
+                  <input id="studentExperience" name="experience" type="text" placeholder="Ej. 3 años en sistemas de gestión" />
+                </div>
+              </div>
+
+              <div class="discount-box">
+                <div class="discount-top">
+                  <div class="discount-label">
+                    <span class="discount-title">Código de descuento</span>
+                    <span class="discount-code">OSESNA3000</span>
+                  </div>
+                  <div class="discount-status">Precio especial aplicado</div>
+                </div>
+                <div class="field full" style="margin-top:0;">
+                  <label for="discountCode">Código aplicado</label>
+                  <input id="discountCode" name="discount_code" type="text" value="OSESNA3000" readonly />
+                </div>
+                <p class="discount-copy">Tu inscripción ya considera el precio preferente de $3,000 MXN para este curso.</p>
               </div>
 
               <p class="helper">No se captura ninguna tarjeta dentro de esta página. El usuario se envía al checkout oficial de Mercado Pago.</p>
@@ -2107,7 +2204,7 @@
               </div>
               <div class="summary-row">
                 <span>Total</span>
-                <strong>$3,500 MXN</strong>
+                <strong>$3,000 MXN</strong>
               </div>
             </div>
 
@@ -2209,6 +2306,8 @@
     const preparePaymentButton = document.getElementById('preparePaymentButton');
     const summaryParticipant = document.getElementById('summaryParticipant');
     const summaryProfile = document.getElementById('summaryProfile');
+    const studentType = document.getElementById('studentType');
+    const studentContextFields = document.getElementById('studentContextFields');
     const mpMessage = document.getElementById('mpMessage');
     const mpLoading = document.getElementById('mpLoading');
     const fallbackLink = document.getElementById('fallbackLink');
@@ -2222,6 +2321,36 @@
     let bricksBuilder = null;
     let walletBrickController = null;
     let currentPublicKey = '';
+
+    function updateParticipantFields() {
+      const selectedProfile = String(studentType?.value || '').trim().toLowerCase();
+      const profileMap = {
+        estudiante: 'student',
+        empresa: 'company',
+        colaborador: 'company',
+        profesional: 'professional'
+      };
+
+      const activeSet = profileMap[selectedProfile] || '';
+      const dynamicGroups = Array.from(document.querySelectorAll('[data-profile-set]'));
+
+      dynamicGroups.forEach(field => {
+        const isVisible = field.dataset.profileSet === activeSet;
+        field.hidden = !isVisible;
+
+        const inputs = field.querySelectorAll('input, select');
+        inputs.forEach(input => {
+          if (isVisible) {
+            input.setAttribute('required', 'required');
+          } else {
+            input.removeAttribute('required');
+            input.value = '';
+          }
+        });
+      });
+
+      studentContextFields?.classList.toggle('visible', Boolean(activeSet));
+    }
 
     function setBanner(type, text) {
       if (!text) {
@@ -2356,15 +2485,32 @@
       event.preventDefault();
 
       const formData = new FormData(registrationForm);
+      const profile = String(formData.get('profile') || '').trim();
+      const extraProfileData = [
+        cleanValue(formData.get('company')),
+        cleanValue(formData.get('role')),
+        cleanValue(formData.get('career')),
+        cleanValue(formData.get('school')),
+        cleanValue(formData.get('area')),
+        cleanValue(formData.get('experience'))
+      ].filter(Boolean);
+
       const payload = {
         name: String(formData.get('name') || '').trim(),
         email: String(formData.get('email') || '').trim(),
         phone: String(formData.get('phone') || '').trim(),
-        profile: String(formData.get('profile') || '').trim()
+        profile,
+        discountCode: String(formData.get('discount_code') || '').trim(),
+        company: cleanValue(formData.get('company')),
+        role: cleanValue(formData.get('role')),
+        career: cleanValue(formData.get('career')),
+        school: cleanValue(formData.get('school')),
+        area: cleanValue(formData.get('area')),
+        experience: cleanValue(formData.get('experience'))
       };
 
       summaryParticipant.textContent = payload.name || 'Pendiente de registro';
-      summaryProfile.textContent = payload.profile || 'Sin seleccionar';
+      summaryProfile.textContent = [profile, ...extraProfileData].filter(Boolean).join(' · ') || 'Sin seleccionar';
 
       preparePaymentButton.disabled = true;
       preparePaymentButton.textContent = 'Preparando checkout...';
@@ -2403,8 +2549,15 @@
       }
     });
 
+    function cleanValue(value) {
+      return String(value || '').trim();
+    }
+
+    studentType?.addEventListener('change', updateParticipantFields);
+
     setupRevealObserver();
     setupVideoPlayback();
+    updateParticipantFields();
     readPaymentStatus();
     activateQuickNav();
     window.addEventListener('scroll', activateQuickNav, { passive: true });
