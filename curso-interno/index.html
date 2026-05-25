@@ -97,40 +97,22 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 14px;
       text-decoration: none;
       color: #fff;
     }
 
     .brand-logo-wrap {
-      width: 60px;
-      height: 60px;
+      width: 82px;
+      height: 82px;
       border: 1px solid rgba(201,168,76,.26);
       background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
-      padding: 7px;
+      padding: 10px;
     }
 
     .brand-logo {
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-
-    .brand-title {
-      display: block;
-      font-size: 18px;
-      font-weight: 800;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .brand-sub {
-      display: block;
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.56);
     }
 
     .navlinks {
@@ -207,6 +189,26 @@
       box-shadow: 0 18px 36px rgba(123,30,34,.08);
     }
 
+    .icon-inline,
+    .nav-glyph,
+    .benefit-glyph,
+    .info-glyph,
+    .trust-glyph,
+    .footer-glyph {
+      width: 18px;
+      height: 18px;
+      display: inline-block;
+      flex: 0 0 auto;
+      color: currentColor;
+    }
+
+    .btn-primary .icon-inline,
+    .btn-secondary .icon-inline,
+    .btn-tertiary .icon-inline {
+      width: 16px;
+      height: 16px;
+    }
+
     .quick-nav {
       position: fixed;
       right: 22px;
@@ -231,6 +233,11 @@
       transition: transform .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
       backdrop-filter: blur(14px);
       position: relative;
+    }
+
+    .nav-glyph {
+      width: 20px;
+      height: 20px;
     }
 
     .quick-nav a span {
@@ -431,6 +438,20 @@
       line-height: 1.35;
     }
 
+    .fact-top,
+    .detail-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .info-glyph {
+      width: 16px;
+      height: 16px;
+      color: var(--gold-light);
+    }
+
     .hero-side {
       display: grid;
       gap: 18px;
@@ -454,6 +475,11 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .1em;
+    }
+
+    .trust-glyph {
+      width: 16px;
+      height: 16px;
     }
 
     .hero-video-card {
@@ -672,6 +698,11 @@
       font-weight: 800;
       letter-spacing: .16em;
       margin-bottom: 18px;
+    }
+
+    .benefit-glyph {
+      width: 22px;
+      height: 22px;
     }
 
     .benefit-card h3,
@@ -1451,7 +1482,18 @@
       text-decoration: none;
     }
 
+    .footer-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
     .footer-link:hover { color: var(--gold-light); }
+
+    .footer-glyph {
+      width: 15px;
+      height: 15px;
+    }
 
     .footer-bottom {
       padding-top: 20px;
@@ -1524,10 +1566,10 @@
         grid-template-columns: 1fr;
       }
 
-      .topbar-inner { height: 74px; }
+      .topbar-inner { height: 80px; }
       main section { padding: 72px 0; }
       .hero-grid { gap: 28px; }
-      .brand-logo-wrap { width: 48px; height: 48px; }
+      .brand-logo-wrap { width: 68px; height: 68px; padding: 9px; }
     }
 
     @media (max-width: 640px) {
@@ -1537,7 +1579,6 @@
       }
 
       .shell { width: min(1240px, calc(100vw - 24px)); }
-      .brand-sub { display: none; }
       .hero-logo-stage {
         width: min(320px, 100%);
         padding: 16px 18px;
@@ -1580,12 +1621,31 @@
   </style>
 </head>
 <body>
+  <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden">
+    <symbol id="icon-home" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3.4 3.5 10.2v10.3h6.1v-6.3h4.8v6.3h6.1V10.2z"/></symbol>
+    <symbol id="icon-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.8 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path fill="currentColor" d="M5 4.5A2.5 2.5 0 0 1 7.5 2H20v18H7.5A2.5 2.5 0 0 0 5 22zm2.5-.5A1.5 1.5 0 0 0 6 5.5v13A3.5 3.5 0 0 1 7.5 18H18V4z"/></symbol>
+    <symbol id="icon-card" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5zm2 1.5v2h14V8zm0 5v4h6v-4z"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4C7 4 3 7.5 3 11.9c0 2.3 1.1 4.4 3.1 5.8L5 21l3.7-1.9c1 .3 2.1.5 3.3.5 5 0 9-3.5 9-7.9S17 4 12 4"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path fill="currentColor" d="m13.4 5.4 1.4-1.4L22 11.2l-7.2 7.2-1.4-1.4 4.8-4.8H2v-2h16.2z"/></symbol>
+    <symbol id="icon-calendar" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h2v2h6V2h2v2h2.5A2.5 2.5 0 0 1 22 6.5v12A2.5 2.5 0 0 1 19.5 21h-15A2.5 2.5 0 0 1 2 18.5v-12A2.5 2.5 0 0 1 4.5 4H7zm13 7H4v9.5c0 .3.2.5.5.5h15c.3 0 .5-.2.5-.5z"/></symbol>
+    <symbol id="icon-location" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2.5a7 7 0 0 1 7 7c0 5.1-7 12-7 12s-7-6.9-7-12a7 7 0 0 1 7-7m0 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/></symbol>
+    <symbol id="icon-wallet" viewBox="0 0 24 24"><path fill="currentColor" d="M4 6.5A2.5 2.5 0 0 1 6.5 4H19v3h1a1 1 0 0 1 1 1v9.5A2.5 2.5 0 0 1 18.5 20h-12A2.5 2.5 0 0 1 4 17.5zm15 2.5h-4a2 2 0 0 0 0 4h4z"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2 4 5v6c0 5.2 3.4 10.1 8 11 4.6-.9 8-5.8 8-11V5zm-1 13-4-4 1.4-1.4 2.6 2.6 5.6-5.6L18 8z"/></symbol>
+    <symbol id="icon-certificate" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 4 7v6c0 4.4 3 8.8 8 10 5-1.2 8-5.6 8-10V7zm0 4.5A3.5 3.5 0 1 1 8.5 11 3.5 3.5 0 0 1 12 7.5"/></symbol>
+    <symbol id="icon-tools" viewBox="0 0 24 24"><path fill="currentColor" d="m14.7 6.3 3-3a3 3 0 0 1 3.4 3.4l-3 3-3.4-3.4ZM13.3 7.7 4 17a2.1 2.1 0 1 0 3 3l9.3-9.3zM3 5l4 4 1.5-1.5-4-4z"/></symbol>
+    <symbol id="icon-teacher" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3 1 8l11 5 9-4.1V15h2V8zm-6 8.7V16c0 2.2 2.7 4 6 4s6-1.8 6-4v-4.3l-6 2.8z"/></symbol>
+    <symbol id="icon-file" viewBox="0 0 24 24"><path fill="currentColor" d="M7 2h7l5 5v15H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2m6 1.5V8h4.5z"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><path fill="currentColor" d="M9 11a4 4 0 1 0-4-4 4 4 0 0 0 4 4m6 1a3 3 0 1 0-3-3 3 3 0 0 0 3 3M2 19a5 5 0 0 1 10 0zm11 0a4 4 0 0 1 8 0z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><path fill="currentColor" d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5zm2 .2V8l7 4.8L19 8V6.7l-7 4.8z"/></symbol>
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24"><path fill="currentColor" d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3m0 2a7 7 0 0 1 6.1 10.5A7 7 0 0 1 12 19a6.9 6.9 0 0 1-3.5-.9l-.4-.2-2.3.6.6-2.2-.2-.4A7 7 0 0 1 12 5m-2 3.5c-.3 0-.5.1-.7.4l-.6.8c-.2.3-.3.7-.1 1.1.3.7 1 1.8 2 2.7 1 .9 2.2 1.8 3.5 2.2.4.1.8.1 1.1-.1l.9-.5c.3-.2.5-.5.5-.8v-.7c0-.2-.1-.4-.3-.4l-1.8-.8c-.2-.1-.4 0-.5.1l-.7.9c-.1.2-.4.2-.6.1-.4-.2-1-.6-1.6-1.2-.6-.5-1-1.1-1.3-1.5-.1-.2-.1-.5.1-.6l.8-.7c.2-.2.3-.4.2-.6l-.8-1.9c-.1-.2-.3-.3-.5-.3z"/></symbol>
+  </svg>
   <nav class="quick-nav" aria-label="Accesos rápidos del curso">
-    <a href="#hero" data-target="hero" class="active"><span>Inicio</span>01</a>
-    <a href="#beneficios" data-target="beneficios"><span>Beneficios</span>02</a>
-    <a href="#temario" data-target="temario"><span>Temario</span>03</a>
-    <a href="#inscripcion" data-target="inscripcion"><span>Pago</span>04</a>
-    <a href="#faqs" data-target="faqs"><span>FAQs</span>05</a>
+    <a href="#hero" data-target="hero" class="active"><span>Inicio</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-home"></use></svg></a>
+    <a href="#beneficios" data-target="beneficios"><span>Beneficios</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-star"></use></svg></a>
+    <a href="#temario" data-target="temario"><span>Temario</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></a>
+    <a href="#inscripcion" data-target="inscripcion"><span>Pago</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-card"></use></svg></a>
+    <a href="#faqs" data-target="faqs"><span>FAQs</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-chat"></use></svg></a>
   </nav>
 
   <header class="topbar">
@@ -1593,10 +1653,6 @@
       <a class="brand" href="/">
         <div class="brand-logo-wrap">
           <img class="brand-logo" src="/curso-interno/logo.png" alt="Logo INDUSECC" />
-        </div>
-        <div>
-          <span class="brand-title">INDUSECC</span>
-          <span class="brand-sub">Curso Interno</span>
         </div>
       </a>
       <nav class="navlinks" aria-label="Navegación del curso">
@@ -1606,7 +1662,7 @@
         <a href="#inscripcion">Inscripción</a>
         <a href="#faqs">FAQs</a>
       </nav>
-      <a class="btn-primary" href="#inscripcion">Inscribirme</a>
+      <a class="btn-primary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-arrow"></use></svg>Inscribirme</a>
     </div>
   </header>
 
@@ -1627,20 +1683,20 @@
           <div class="compact-pill">Presencial en CDMX</div>
         </div>
         <div class="hero-actions">
-          <a class="btn-primary" href="#inscripcion">Reservar mi lugar</a>
-          <a class="btn-secondary" href="#temario">Ver temario</a>
+          <a class="btn-primary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-arrow"></use></svg>Reservar mi lugar</a>
+          <a class="btn-secondary" href="#temario"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-book"></use></svg>Ver temario</a>
         </div>
         <div class="hero-facts">
           <div class="fact-card reveal visible">
-            <span class="fact-label">Fecha</span>
+            <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-calendar"></use></svg><span class="fact-label">Fecha</span></div>
             <span class="fact-value">24 y 25 de Julio</span>
           </div>
           <div class="fact-card reveal visible">
-            <span class="fact-label">Modalidad</span>
+            <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-location"></use></svg><span class="fact-label">Modalidad</span></div>
             <span class="fact-value">Presencial en CDMX</span>
           </div>
           <div class="fact-card reveal visible">
-            <span class="fact-label">Inversión</span>
+            <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="fact-label">Inversión</span></div>
             <span class="fact-value">$3,500 MXN</span>
           </div>
         </div>
@@ -1648,9 +1704,9 @@
 
       <div class="hero-side reveal visible">
         <div class="trust-row">
-          <div class="trust-chip">Mercado Pago</div>
-          <div class="trust-chip">Visa</div>
-          <div class="trust-chip">Mastercard</div>
+          <div class="trust-chip"><svg class="trust-glyph" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg>Mercado Pago</div>
+          <div class="trust-chip"><svg class="trust-glyph" viewBox="0 0 24 24"><use href="#icon-card"></use></svg>Visa</div>
+          <div class="trust-chip"><svg class="trust-glyph" viewBox="0 0 24 24"><use href="#icon-card"></use></svg>Mastercard</div>
         </div>
 
         <aside class="hero-video-card float-soft">
@@ -1714,32 +1770,32 @@
 
         <div class="grid-3">
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">DC3</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-certificate"></use></svg></div>
             <h3>Constancia oficial</h3>
             <p>Diploma y formato DC-3 incluidos para respaldo curricular inmediato.</p>
           </article>
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">PRA</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-tools"></use></svg></div>
             <h3>Talleres prácticos</h3>
             <p>Simulaciones de auditoría, entrevistas y hallazgos con enfoque real.</p>
           </article>
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">KIT</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-file"></use></svg></div>
             <h3>Plantillas listas</h3>
             <p>Listas de verificación, reportes y formatos para usar desde el curso.</p>
           </article>
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">EXP</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-teacher"></use></svg></div>
             <h3>Instructor experto</h3>
             <p>Experiencia aplicada en implementación, auditoría y mejora de sistemas de gestión.</p>
           </article>
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">MAT</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-book"></use></svg></div>
             <h3>Material didáctico</h3>
             <p>Base alineada con ISO 9001:2015 e ISO 19011:2018 para auditoría interna.</p>
           </article>
           <article class="card benefit-card reveal">
-            <div class="benefit-icon">VIP</div>
+            <div class="benefit-icon"><svg class="benefit-glyph" viewBox="0 0 24 24"><use href="#icon-users"></use></svg></div>
             <h3>Experiencia presencial</h3>
             <p>Logística cuidada, atención profesional y una experiencia de formación clara de principio a fin.</p>
           </article>
@@ -1779,7 +1835,7 @@
               <li>Reduce dependencia operativa de apoyo externo.</li>
               <li>Facilita el registro y seguimiento de participantes.</li>
             </ul>
-            <a class="btn-tertiary" href="#inscripcion">Registrar colaboradores</a>
+            <a class="btn-tertiary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-users"></use></svg>Registrar colaboradores</a>
           </article>
 
           <article class="card audience-card reveal">
@@ -1791,7 +1847,7 @@
               <li>Conecta con oportunidades de supervisión y consultoría.</li>
               <li>Resuelve tu inscripción en pocos pasos.</li>
             </ul>
-            <a class="btn-tertiary" href="#inscripcion">Inscribirme individualmente</a>
+            <a class="btn-tertiary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-arrow"></use></svg>Inscribirme individualmente</a>
           </article>
         </div>
       </div>
@@ -1841,8 +1897,8 @@
             <li>Ruta de atención para grupos e inscripciones empresariales.</li>
           </ul>
           <div class="submit-row">
-            <a class="btn-primary" href="#inscripcion">Quiero asegurar mi lugar</a>
-            <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20me%20interesa%20el%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Pedir informe por WhatsApp</a>
+            <a class="btn-primary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-arrow"></use></svg>Quiero asegurar mi lugar</a>
+            <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20me%20interesa%20el%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-whatsapp"></use></svg>Pedir informe por WhatsApp</a>
           </div>
         </article>
       </div>
@@ -1936,7 +1992,7 @@
             </div>
 
             <div class="submit-row">
-              <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20el%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Hablar por WhatsApp</a>
+              <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20asesor%C3%ADa%20sobre%20el%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-whatsapp"></use></svg>Hablar por WhatsApp</a>
             </div>
           </form>
         </article>
@@ -1952,7 +2008,7 @@
 
         <div class="grid-3">
           <article class="card detail-card reveal">
-            <span class="detail-label">Cuándo</span>
+            <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-calendar"></use></svg><span class="detail-label">Cuándo</span></div>
             <h3>24 y 25 de Julio</h3>
             <p>Dos jornadas intensivas con ritmo práctico y estructura orientada a aplicación.</p>
             <div class="detail-meta">
@@ -1961,7 +2017,7 @@
             </div>
           </article>
           <article class="card detail-card reveal">
-            <span class="detail-label">Dónde</span>
+            <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-location"></use></svg><span class="detail-label">Dónde</span></div>
             <h3>Centro de Negocios Reforma</h3>
             <p>Av. Paseo de la Reforma 250, Piso 12, Juárez, Cuauhtémoc, C.P. 06600, Ciudad de México, CDMX.</p>
             <div class="detail-meta">
@@ -1970,7 +2026,7 @@
             </div>
           </article>
           <article class="card detail-card price-card reveal">
-            <span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span>
+            <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span></div>
             <div class="price-main">$3,500 <span>MXN</span></div>
             <p style="margin-top: 12px;">IVA incluido. Facturación disponible.</p>
             <div class="detail-meta">
@@ -2026,8 +2082,8 @@
 
               <p class="helper">No se captura ninguna tarjeta dentro de esta página. El usuario se envía al checkout oficial de Mercado Pago.</p>
               <div class="submit-row">
-                <button class="btn-primary" id="preparePaymentButton" type="submit">Preparar pago seguro</button>
-                <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20apoyo%20para%20inscribirme%20al%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Apoyo por WhatsApp</a>
+                <button class="btn-primary" id="preparePaymentButton" type="submit"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg>Preparar pago seguro</button>
+                <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20apoyo%20para%20inscribirme%20al%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-whatsapp"></use></svg>Apoyo por WhatsApp</a>
               </div>
             </form>
           </article>
@@ -2130,8 +2186,8 @@
         </div>
         <div>
           <div class="footer-title">Contacto</div>
-          <a class="footer-link" href="mailto:contacto@indusecc.com.mx">contacto@indusecc.com.mx</a><br />
-          <a class="footer-link" href="https://wa.me/5215616044547" target="_blank" rel="noreferrer">WhatsApp: +52 1 56 1604 4547</a>
+          <a class="footer-link" href="mailto:contacto@indusecc.com.mx"><svg class="footer-glyph" viewBox="0 0 24 24"><use href="#icon-mail"></use></svg>contacto@indusecc.com.mx</a><br />
+          <a class="footer-link" href="https://wa.me/5215616044547" target="_blank" rel="noreferrer"><svg class="footer-glyph" viewBox="0 0 24 24"><use href="#icon-whatsapp"></use></svg>WhatsApp: +52 1 56 1604 4547</a>
         </div>
         <div>
           <div class="footer-title">Atención</div>
