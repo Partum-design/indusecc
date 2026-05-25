@@ -56,30 +56,20 @@
 
     .reveal {
       opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1);
+      transform: translate3d(0, 28px, 0) scale(.985);
+      filter: blur(8px);
+      transition:
+        opacity .88s cubic-bezier(.22,1,.36,1),
+        transform .88s cubic-bezier(.22,1,.36,1),
+        filter .88s cubic-bezier(.22,1,.36,1);
+      transition-delay: var(--reveal-delay, 0ms);
+      will-change: transform, opacity, filter;
     }
 
     .reveal.visible {
       opacity: 1;
-      transform: translateY(0);
-    }
-
-    .shine-sweep {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .shine-sweep::after {
-      content: '';
-      position: absolute;
-      top: -12%;
-      left: -140%;
-      width: 70%;
-      height: 124%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,.26), transparent);
-      transform: skewX(-18deg);
-      animation: sweep 5.4s ease-in-out infinite;
+      transform: translate3d(0, 0, 0) scale(1);
+      filter: blur(0);
     }
 
     .float-soft { animation: floatSoft 6s ease-in-out infinite; }
@@ -118,7 +108,6 @@
       border: 1px solid rgba(201,168,76,.26);
       background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03));
       padding: 7px;
-      box-shadow: 0 14px 32px rgba(0,0,0,.18);
     }
 
     .brand-logo {
@@ -342,15 +331,12 @@
       border: 1px solid rgba(201,168,76,.18);
       background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.03));
       padding: 22px 26px;
-      box-shadow: 0 24px 54px rgba(0,0,0,.18);
-      backdrop-filter: blur(10px);
     }
 
     .hero-logo-stage img {
       width: 100%;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 16px 26px rgba(0,0,0,.18));
     }
 
     .hero h1 {
@@ -478,39 +464,6 @@
       box-shadow: 0 30px 70px rgba(0,0,0,.22);
     }
 
-    .hero-video-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 14px;
-      padding: 18px 18px 0;
-      position: relative;
-      z-index: 1;
-    }
-
-    .panel-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      width: fit-content;
-      border: 1px solid rgba(201,168,76,.24);
-      background: rgba(255,255,255,.08);
-      padding: 10px 14px;
-      color: var(--gold-light);
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
-
-    .video-version-tag {
-      color: rgba(255,255,255,.56);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-    }
-
     .video-frame {
       padding: 18px;
       position: relative;
@@ -534,16 +487,6 @@
       margin: 0 auto;
     }
 
-    .video-shell::before,
-    .video-shell-mobile::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(10,2,3,.06), rgba(10,2,3,.42));
-      pointer-events: none;
-      z-index: 2;
-    }
-
     .video-desktop,
     .video-mobile {
       width: 100%;
@@ -553,63 +496,6 @@
     }
 
     .video-mobile { display: none; }
-
-    .video-overlay {
-      position: absolute;
-      left: 18px;
-      right: 18px;
-      bottom: 18px;
-      z-index: 3;
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 14px;
-    }
-
-    .video-overlay-copy { max-width: 70%; }
-
-    .video-overlay-title {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-
-    .video-overlay-text {
-      color: rgba(255,255,255,.74);
-      font-size: 12px;
-      line-height: 1.7;
-    }
-
-    .video-fallback-badge {
-      position: absolute;
-      top: 16px;
-      right: 16px;
-      z-index: 3;
-      padding: 9px 12px;
-      background: rgba(10,2,3,.68);
-      border: 1px solid rgba(201,168,76,.22);
-      color: var(--gold-light);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      backdrop-filter: blur(8px);
-    }
-
-    .play-prompt {
-      min-width: 68px;
-      height: 68px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      background: rgba(123,30,34,.84);
-      border: 2px solid rgba(232,201,122,.8);
-      color: #fff;
-      font-size: 22px;
-      box-shadow: 0 18px 36px rgba(0,0,0,.25);
-    }
-
     .hero-panel {
       position: relative;
       border-top: 1px solid rgba(201,168,76,.18);
@@ -1587,12 +1473,6 @@
       70% { box-shadow: 0 0 0 14px rgba(201,168,76,0); }
     }
 
-    @keyframes sweep {
-      0% { left: -140%; }
-      50% { left: 160%; }
-      100% { left: 160%; }
-    }
-
     @media (max-width: 1200px) {
       .quick-nav { right: 16px; }
     }
@@ -1666,21 +1546,8 @@
       .video-shell { display: none; }
       .video-shell-mobile { display: block; }
       .video-mobile { display: block; }
-      .video-version-tag::after { content: 'Movil'; }
-      .video-overlay {
-        left: 14px;
-        right: 14px;
-        bottom: 14px;
-        gap: 10px;
-      }
-
-      .video-overlay-copy { max-width: calc(100% - 84px); }
-      .video-overlay-title { font-size: 16px; }
-      .video-overlay-text { font-size: 11px; }
-      .play-prompt { min-width: 58px; height: 58px; font-size: 18px; }
       .hero-panel,
       .video-frame,
-      .hero-video-top,
       .form-card,
       .payment-card,
       .syllabus-card,
@@ -1696,9 +1563,20 @@
       .payment-marks { display: grid; grid-template-columns: 1fr; }
     }
 
-    @media (min-width: 641px) {
-      .video-version-tag::after { content: 'Escritorio'; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal,
+      .reveal.visible,
+      .float-soft,
+      .pulse-gold {
+        animation: none !important;
+        transition: none !important;
+        transform: none !important;
+        filter: none !important;
+        opacity: 1 !important;
+      }
     }
+
   </style>
 </head>
 <body>
@@ -1713,7 +1591,7 @@
   <header class="topbar">
     <div class="topbar-inner">
       <a class="brand" href="/">
-        <div class="brand-logo-wrap shine-sweep">
+        <div class="brand-logo-wrap">
           <img class="brand-logo" src="/curso-interno/logo.png" alt="Logo INDUSECC" />
         </div>
         <div>
@@ -1741,8 +1619,7 @@
         </div>
         <h1>Curso Auditor Interno <em>bajo ISO 9001:2015</em></h1>
         <p class="hero-copy">
-          Formación presencial pensada para verse seria, confiable y lista para vender.
-          Aprendes a auditar, documentar hallazgos y fortalecer tu sistema de gestión de calidad con una experiencia enfocada en acción, no en relleno.
+          Formación presencial para aprender a auditar, documentar hallazgos y fortalecer sistemas de gestión de calidad con enfoque práctico desde el primer módulo.
         </p>
         <div class="hero-compact-points">
           <div class="compact-pill">DC-3 incluida</div>
@@ -1777,38 +1654,17 @@
         </div>
 
         <aside class="hero-video-card float-soft">
-          <div class="hero-video-top">
-            <div class="panel-badge">Presentación del curso</div>
-            <div class="video-version-tag"></div>
-          </div>
-
           <div class="video-frame">
-            <div class="video-shell shine-sweep">
-              <div class="video-fallback-badge">Curso interno</div>
-              <video class="video-desktop" controls muted playsinline preload="metadata" poster="/Imagenes/auditoria.jpg">
+            <div class="video-shell">
+              <video class="video-desktop" controls muted playsinline autoplay loop preload="metadata" poster="/Imagenes/auditoria.jpg" aria-label="Video del curso en versión escritorio">
                 <source src="/curso-interno/7191019_Timelapse_Time_1920x1080.mp4" type="video/mp4" />
               </video>
-              <div class="video-overlay">
-                <div class="video-overlay-copy">
-                  <div class="video-overlay-title">Conoce el curso</div>
-                  <div class="video-overlay-text">Una vista general del programa, su enfoque práctico y la experiencia de formación que vivirás.</div>
-                </div>
-                <div class="play-prompt pulse-gold">▶</div>
-              </div>
             </div>
 
-            <div class="video-shell-mobile shine-sweep">
-              <div class="video-fallback-badge">Mobile video</div>
-              <video class="video-mobile" controls muted playsinline preload="metadata" poster="/Imagenes/comunicacion-interna.jpg">
+            <div class="video-shell-mobile">
+              <video class="video-mobile" controls muted playsinline autoplay loop preload="metadata" poster="/Imagenes/comunicacion-interna.jpg" aria-label="Video del curso en versión móvil">
                 <source src="/curso-interno/0_Landscape_Nature_2160x3840.mp4" type="video/mp4" />
               </video>
-              <div class="video-overlay">
-                <div class="video-overlay-copy">
-                  <div class="video-overlay-title">Conoce el curso</div>
-                  <div class="video-overlay-text">Una vista pensada para móvil, con el contenido visual del curso en formato más cómodo para celular.</div>
-                </div>
-                <div class="play-prompt pulse-gold">▶</div>
-              </div>
             </div>
           </div>
 
@@ -1850,9 +1706,9 @@
       <div class="shell">
         <div class="section-head reveal">
           <div class="section-kicker">Ventajas del programa</div>
-          <h2 class="section-title">Formación intensa, visual y <em>de alto valor</em>.</h2>
+          <h2 class="section-title">Una formación práctica y <em>de alto valor</em>.</h2>
           <p class="section-text">
-            La página está pensada para verse seria, clara y confiable, con el contenido justo para vender sin saturar al usuario.
+            Un formato concentrado para que conozcas rápido el alcance del curso, su utilidad y lo que recibirás como participante.
           </p>
         </div>
 
@@ -1885,14 +1741,14 @@
           <article class="card benefit-card reveal">
             <div class="benefit-icon">VIP</div>
             <h3>Experiencia presencial</h3>
-            <p>Logística cuidada, atención profesional y una presentación visual muy por encima de una landing genérica.</p>
+            <p>Logística cuidada, atención profesional y una experiencia de formación clara de principio a fin.</p>
           </article>
         </div>
 
         <div class="gallery-band">
           <div class="gallery-main reveal">
             <img src="/Imagenes/comunicacion-interna.jpg" alt="Capacitación interna INDUSECC" />
-            <div class="gallery-caption">Una experiencia visual clara, seria y enfocada en ayudarte a conocer el curso y asegurar tu lugar con confianza.</div>
+            <div class="gallery-caption">Conoce el ambiente, el enfoque de trabajo y la experiencia presencial que acompaña el curso.</div>
           </div>
           <div class="gallery-stack">
             <div class="split reveal">
@@ -1910,30 +1766,30 @@
       <div class="shell">
         <div class="section-head reveal">
           <div class="section-kicker">Público objetivo</div>
-          <h2 class="section-title">Una landing clara para <em>empresas y perfiles individuales</em>.</h2>
+          <h2 class="section-title">Ideal para <em>empresas y profesionales</em>.</h2>
         </div>
 
         <div class="grid-2">
           <article class="card audience-card reveal">
             <div class="audience-label">Para empresas e instituciones</div>
-            <h3>Capacita auditores internos con una experiencia seria y alineada a tu marca.</h3>
+            <h3>Capacita auditores internos con una formación clara y enfocada en resultados.</h3>
             <p>Ideal para registrar colaboradores y acelerar la preparación del equipo frente a auditorías y cumplimiento del sistema.</p>
             <ul class="audience-list">
               <li>Fortalece el sistema de gestión de calidad interno.</li>
               <li>Reduce dependencia operativa de apoyo externo.</li>
-              <li>Usa esta landing como punto de registro empresarial.</li>
+              <li>Facilita el registro y seguimiento de participantes.</li>
             </ul>
             <a class="btn-tertiary" href="#inscripcion">Registrar colaboradores</a>
           </article>
 
           <article class="card audience-card reveal">
             <div class="audience-label">Para profesionales y estudiantes</div>
-            <h3>Impulsa tu perfil con una formación práctica, visual y lista para pagar en línea.</h3>
+            <h3>Impulsa tu perfil con una formación práctica y aplicada a situaciones reales.</h3>
             <p>Perfecto para ingenieros, coordinadores de calidad, consultores y perfiles que quieren subir de nivel con una competencia reconocible.</p>
             <ul class="audience-list">
               <li>Mejora tu currículum con enfoque práctico.</li>
               <li>Conecta con oportunidades de supervisión y consultoría.</li>
-              <li>Inscríbete directamente desde la misma landing.</li>
+              <li>Resuelve tu inscripción en pocos pasos.</li>
             </ul>
             <a class="btn-tertiary" href="#inscripcion">Inscribirme individualmente</a>
           </article>
@@ -1945,9 +1801,9 @@
       <div class="shell syllabus-wrap">
         <article class="syllabus-card reveal">
           <div class="section-kicker">Contenido académico</div>
-          <h2 class="section-title">Temario directo y <em>convincente</em>.</h2>
+          <h2 class="section-title">Temario claro y <em>bien estructurado</em>.</h2>
           <p class="section-text">
-            El programa se presenta de forma simple para que el usuario entienda rápido qué dominará y por qué vale la inversión.
+            Revisa los bloques centrales del curso y lo que trabajarás durante la formación.
           </p>
           <div class="module-list">
             <div class="module-item">
@@ -1976,7 +1832,7 @@
 
         <article class="card kit-card reveal">
           <h3>Lo que recibe cada participante</h3>
-          <p>Menos ruido, más claridad: la landing deja visibles los entregables que ayudan a tomar la decisión.</p>
+          <p>Estos son algunos de los recursos y entregables contemplados dentro de la experiencia del curso.</p>
           <ul class="kit-list">
             <li>Plan de auditoría y listas de verificación base.</li>
             <li>Material de trabajo y guía de reportes de hallazgos.</li>
@@ -2239,8 +2095,8 @@
       <div class="shell">
         <div class="section-head reveal">
           <div class="section-kicker">Preguntas frecuentes</div>
-          <h2 class="section-title">FAQs más visuales y <em>más claras</em>.</h2>
-          <p class="section-text">Compacté las respuestas y mejoré la presentación para que la sección se vea clara, útil y nada pesada.</p>
+          <h2 class="section-title">Resuelve tus dudas <em>antes de inscribirte</em>.</h2>
+          <p class="section-text">Aquí tienes respuestas breves a las preguntas más comunes sobre el curso.</p>
         </div>
 
         <div class="faq-list">
@@ -2254,11 +2110,11 @@
           </details>
           <details class="faq-item reveal">
             <summary>¿Pueden inscribirse varios colaboradores?</summary>
-            <div class="faq-answer">Sí. La landing ya funciona para registro individual y también como base para inscripción empresarial o por grupos.</div>
+            <div class="faq-answer">Sí. Puedes registrar participantes de forma individual o coordinar inscripciones para grupos y empresas.</div>
           </details>
           <details class="faq-item reveal">
             <summary>¿Puedo pedir factura?</summary>
-            <div class="faq-answer">Sí. La estructura del formulario y del checkout ya deja lista la ruta para seguimiento comercial y facturación posterior.</div>
+            <div class="faq-answer">Sí. Puedes solicitar factura una vez confirmado tu proceso de inscripción.</div>
           </details>
         </div>
       </div>
@@ -2405,10 +2261,15 @@
 
     function setupRevealObserver() {
       const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach((node, index) => {
+        node.style.setProperty('--reveal-delay', `${Math.min((index % 6) * 70, 280)}ms`);
+      });
+
       const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
           }
         });
       }, {
@@ -2416,6 +2277,23 @@
       });
 
       reveals.forEach(node => observer.observe(node));
+    }
+
+    function setupVideoPlayback() {
+      const videos = Array.from(document.querySelectorAll('.video-desktop, .video-mobile'));
+      videos.forEach(video => {
+        const tryPlay = () => {
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {});
+          }
+        };
+
+        video.muted = true;
+        video.playsInline = true;
+        video.addEventListener('loadeddata', tryPlay, { once: true });
+        video.addEventListener('canplay', tryPlay, { once: true });
+      });
     }
 
     registrationForm.addEventListener('submit', async event => {
@@ -2470,6 +2348,7 @@
     });
 
     setupRevealObserver();
+    setupVideoPlayback();
     readPaymentStatus();
     activateQuickNav();
     window.addEventListener('scroll', activateQuickNav, { passive: true });
