@@ -1851,7 +1851,7 @@
           </div>
           <div class="fact-card reveal visible">
             <div class="fact-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="fact-label">Inversión</span></div>
-            <span class="fact-value">Desde $3,000 MXN</span>
+            <span class="fact-value">$3,500 MXN</span>
           </div>
         </div>
       </div>
@@ -2182,7 +2182,7 @@
           <article class="card detail-card price-card reveal">
             <div class="detail-top"><svg class="info-glyph" viewBox="0 0 24 24"><use href="#icon-wallet"></use></svg><span class="detail-label" style="color: rgba(232,201,122,.88);">Inversión</span></div>
             <div class="price-main">$3,500 <span>MXN</span></div>
-            <p style="margin-top: 12px;">Precio preferente $3,000 MXN con código promocional. IVA incluido. Facturación disponible.</p>
+            <p style="margin-top: 12px;">IVA incluido. Facturación disponible. Código promocional al inscribirte.</p>
             <div class="detail-meta">
               <div>Incluye material y coffee break</div>
               <div>Incluye diploma y formato DC-3</div>
@@ -2349,7 +2349,7 @@
                 <div class="summary-price-wrap">
                   <span class="summary-price-base" id="summaryPriceBase" hidden>$3,500 MXN</span>
                   <strong id="summaryTotal">$3,500 MXN</strong>
-                  <span class="summary-price-note" id="summaryPriceNote" hidden>Precio promocional aplicado</span>
+                  <span class="summary-price-note" id="summaryPriceNote" hidden>Código promocional aplicado</span>
                 </div>
               </div>
             </div>
@@ -2558,21 +2558,19 @@
       return `$${amount.toLocaleString('es-MX')} MXN`;
     }
 
-    function applyPriceSummary(amount, promoApplied) {
-      const isPromo = promoApplied || amount === COURSE_PROMO_PRICE;
-      summaryTotal.textContent = formatPrice(amount);
+    function applyPriceSummary(promoApplied = false) {
+      summaryTotal.textContent = formatPrice(COURSE_BASE_PRICE);
       if (summaryPriceBase) {
-        summaryPriceBase.hidden = !isPromo;
-        summaryPriceBase.textContent = formatPrice(COURSE_BASE_PRICE);
+        summaryPriceBase.hidden = true;
       }
       if (summaryPriceNote) {
-        summaryPriceNote.hidden = !isPromo;
+        summaryPriceNote.hidden = !promoApplied;
       }
     }
 
     async function refreshPricePreview() {
       const discountCode = cleanValue(discountCodeInput?.value);
-      applyPriceSummary(COURSE_BASE_PRICE, false);
+      applyPriceSummary(false);
 
       if (!discountCode) return;
 
@@ -2584,9 +2582,9 @@
         });
         const result = await response.json();
         if (!response.ok) return;
-        applyPriceSummary(result.amount || COURSE_BASE_PRICE, Boolean(result.promoApplied));
+        applyPriceSummary(Boolean(result.promoApplied));
       } catch {
-        // Mantener precio base si el preview no está disponible.
+        // Mantener precio publicado si el preview no está disponible.
       }
     }
 
@@ -2800,8 +2798,8 @@
           throw new Error(result.error || 'No fue posible crear la preferencia de pago.');
         }
 
-        if (result.amount) {
-          applyPriceSummary(result.amount, Boolean(result.promoApplied));
+        if (result.promoApplied) {
+          applyPriceSummary(true);
         }
 
         await ensureBrick(result.publicKey);
@@ -2858,7 +2856,7 @@
     setupRevealObserver();
     setupVideoPlayback();
     updateParticipantFields();
-    applyPriceSummary(COURSE_BASE_PRICE, false);
+    applyPriceSummary(false);
     readPaymentStatus();
     activateQuickNav();
     window.addEventListener('scroll', activateQuickNav, { passive: true });
