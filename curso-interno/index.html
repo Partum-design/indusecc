@@ -114,8 +114,8 @@
     }
 
     .brand-logo-wrap {
-      width: 214px;
-      height: 74px;
+      width: 232px;
+      height: 80px;
       padding: 0;
       flex-shrink: 0;
     }
@@ -294,11 +294,14 @@
       z-index: 48;
       right: 22px;
       bottom: 28px;
-      width: 64px;
+      min-width: 190px;
       height: 64px;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
+      padding: 0 18px 0 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
       text-decoration: none;
       color: #fff;
       background: linear-gradient(145deg, #25d366, #128c7e);
@@ -312,7 +315,7 @@
       content: '';
       position: absolute;
       inset: -6px;
-      border-radius: 50%;
+      border-radius: 999px;
       background: rgba(37, 211, 102, .28);
       animation: waPulse 2.4s ease-out infinite;
       z-index: -1;
@@ -326,32 +329,43 @@
     }
 
     .wa-fab-icon {
-      font-size: 34px;
+      font-size: 28px;
       line-height: 1;
-      display: block;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .wa-fab-copy {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      text-align: left;
+      min-width: 0;
+    }
+
+    .wa-fab-kicker {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .86;
     }
 
     .wa-fab-label {
-      position: absolute;
-      right: calc(100% + 12px);
+      position: static;
       white-space: nowrap;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: rgba(10,2,3,.92);
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
       color: #fff;
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: .06em;
-      box-shadow: 0 12px 28px rgba(0,0,0,.22);
-      opacity: 0;
-      transform: translateX(8px);
-      pointer-events: none;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-
-    .wa-fab:hover .wa-fab-label {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: .01em;
+      box-shadow: none;
       opacity: 1;
-      transform: translateX(0);
+      transform: none;
+      pointer-events: auto;
+      transition: none;
     }
 
     @keyframes waPulse {
@@ -1811,16 +1825,18 @@
       .wa-fab {
         right: 16px;
         bottom: calc(92px + env(safe-area-inset-bottom, 0px));
+        min-width: 58px;
         width: 58px;
         height: 58px;
+        padding: 0;
+        justify-content: center;
       }
 
       .wa-fab-icon {
-        width: 30px;
-        height: 30px;
+        font-size: 30px;
       }
 
-      .wa-fab-label {
+      .wa-fab-copy {
         display: none;
       }
 
@@ -1861,7 +1877,7 @@
       }
 
       .shell { width: min(1240px, calc(100vw - 24px)); }
-      .brand-logo-wrap { width: 156px; height: 54px; }
+      .brand-logo-wrap { width: 174px; height: 60px; }
       .video-shell { display: none; }
       .video-shell-mobile { display: block; }
       .video-mobile { display: block; }
@@ -1927,8 +1943,11 @@
     rel="noreferrer"
     aria-label="WhatsApp +52 1 56 1604 4547"
   >
-    <span class="wa-fab-label">+52 1 56 1604 4547</span>
     <i class="fa-brands fa-whatsapp wa-fab-icon" aria-hidden="true"></i>
+    <span class="wa-fab-copy">
+      <span class="wa-fab-kicker">WhatsApp</span>
+      <span class="wa-fab-label">+52 1 56 1604 4547</span>
+    </span>
   </a>
 
   <nav class="quick-nav" id="quickNav" aria-label="Accesos rápidos del curso">
