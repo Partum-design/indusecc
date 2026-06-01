@@ -942,7 +942,7 @@
     .syllabus-card {
       background: linear-gradient(135deg, var(--wine), var(--wine-dark));
       color: #fff;
-      padding: 34px 30px;
+      padding: 38px 34px 34px;
       border: 1px solid rgba(201,168,76,.16);
       position: relative;
       overflow: hidden;
@@ -962,39 +962,106 @@
     .syllabus-card .section-title em { color: var(--gold-light); }
     .syllabus-card .section-text { color: rgba(255,255,255,.76); }
 
+    .syllabus-masthead {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: grid;
+      justify-items: center;
+      gap: 10px;
+      padding-bottom: 18px;
+    }
+
+    .syllabus-kicker {
+      color: var(--gold-light);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .34em;
+      text-transform: uppercase;
+    }
+
+    .syllabus-headline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.6rem, 4.8vw, 4.3rem);
+      line-height: .92;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+    }
+
+    .syllabus-subtitle {
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+      line-height: 1.12;
+    }
+
+    .syllabus-subcopy {
+      color: rgba(255,255,255,.84);
+      font-size: 14px;
+      line-height: 1.85;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .syllabus-divider {
+      height: 1px;
+      margin: 26px 0 24px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,.52), transparent);
+      position: relative;
+      z-index: 1;
+    }
+
+    .syllabus-divider::before,
+    .syllabus-divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 54px;
+      height: 1px;
+      background: rgba(201,168,76,.28);
+      transform: translateY(-50%);
+    }
+
+    .syllabus-divider::before { left: 0; }
+    .syllabus-divider::after { right: 0; }
+
     .module-list {
       display: grid;
-      gap: 14px;
+      gap: 16px;
       margin-top: 26px;
+      position: relative;
+      z-index: 1;
     }
 
     .module-item {
       display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 16px;
+      grid-template-columns: 1fr;
+      gap: 10px;
       align-items: start;
-      padding: 16px 0;
-      border-top: 1px solid rgba(255,255,255,.12);
+      padding: 18px 18px 18px 22px;
+      border: 1px solid rgba(201,168,76,.14);
+      border-left: 6px solid var(--gold);
+      background: rgba(255,255,255,.05);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
     }
 
-    .module-item:first-child { border-top: none; }
+    .module-item:first-child { border-top: 1px solid rgba(201,168,76,.14); }
 
     .module-no {
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(201,168,76,.3);
+      width: fit-content;
       color: var(--gold-light);
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 800;
+      letter-spacing: .3em;
+      text-transform: uppercase;
     }
 
     .module-item h3 {
       color: #fff;
-      font-size: 17px;
-      line-height: 1.26;
-      margin-bottom: 6px;
+      font-size: 18px;
+      line-height: 1.34;
+      margin-bottom: 0;
     }
 
     .module-item p {
@@ -1004,13 +1071,43 @@
       font-weight: 300;
     }
 
+    .syllabus-footer {
+      margin-top: 26px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(201,168,76,.24);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .syllabus-footer-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+    }
+
+    .syllabus-footer-note {
+      margin-top: 10px;
+      color: rgba(255,255,255,.76);
+      font-size: 13px;
+      line-height: 1.8;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+    }
+
     .kit-card {
-      padding: 32px 28px;
+      padding: 34px 30px;
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(242,237,228,.94));
+      border: 1px solid var(--border);
     }
 
     .kit-card h3 {
-      font-size: 23px;
+      font-size: 26px;
+      line-height: 1.16;
       margin-bottom: 12px;
+      color: var(--wine);
     }
 
     .kit-card p {
@@ -1032,6 +1129,13 @@
       border-top: 1px solid var(--border);
       font-size: 14px;
       line-height: 1.72;
+    }
+
+    .kit-list li::before {
+      content: '•';
+      color: var(--gold);
+      margin-right: 8px;
+      font-weight: 900;
     }
 
     .profile-section {
@@ -2173,39 +2277,60 @@
     <section id="temario">
       <div class="shell syllabus-wrap">
         <article class="syllabus-card reveal">
-          <div class="section-kicker">Contenido académico</div>
-          <h2 class="section-title">Temario claro y <em>bien estructurado</em>.</h2>
-          <p class="section-text">
-            Revisa los bloques centrales del curso y lo que trabajarás durante la formación.
-          </p>
+          <div class="syllabus-masthead">
+            <div class="syllabus-kicker">Programa de capacitación ejecutiva</div>
+            <h2 class="syllabus-headline">Temario exclusivo</h2>
+            <p class="syllabus-subtitle">Formación en Auditoría Interna de Gestión</p>
+            <p class="syllabus-subcopy">En cumplimiento con el Estándar Internacional ISO 9001:2015</p>
+          </div>
+          <div class="syllabus-divider" aria-hidden="true"></div>
           <div class="module-list">
             <div class="module-item">
-              <div class="module-no">01</div>
-              <div>
-                <h3>Requisitos clave de ISO 9001:2015</h3>
-                <p>Contexto, liderazgo, planificación, operación, evaluación y mejora.</p>
-              </div>
+              <div class="module-no">Módulo I</div>
+              <h3>Introducción y Fundamentos del Control</h3>
             </div>
             <div class="module-item">
-              <div class="module-no">02</div>
-              <div>
-                <h3>Técnicas y principios de auditoría</h3>
-                <p>Enfoque basado en evidencia, entrevistas y preparación efectiva.</p>
-              </div>
+              <div class="module-no">Módulo II</div>
+              <h3>Auditorías Internas bajo el Estándar Internacional ISO 9001</h3>
             </div>
             <div class="module-item">
-              <div class="module-no">03</div>
-              <div>
-                <h3>Planificación, ejecución y hallazgos</h3>
-                <p>Redacción de no conformidades, oportunidades de mejora y cierre de auditorías.</p>
-              </div>
+              <div class="module-no">Módulo III</div>
+              <h3>Tipos de Auditorías y sus Aplicaciones Organizacionales</h3>
             </div>
+            <div class="module-item">
+              <div class="module-no">Módulo IV</div>
+              <h3>Metodología Estratégica para la Auditoría Interna</h3>
+            </div>
+            <div class="module-item">
+              <div class="module-no">Módulo V</div>
+              <h3>El Perfil del Auditor Interno: Atribuciones y Responsabilidades</h3>
+            </div>
+            <div class="module-item">
+              <div class="module-no">Módulo VI</div>
+              <h3>Desarrollo Práctico: De la Preparación a la Ejecución en Campo</h3>
+            </div>
+            <div class="module-item">
+              <div class="module-no">Módulo VII</div>
+              <h3>Resultados de la Auditoría Interna: Comunicación y Reportes de Valor</h3>
+            </div>
+            <div class="module-item">
+              <div class="module-no">Módulo VIII</div>
+              <h3>Gestión de No Conformidades: Seguimiento y Cierre Efectivo</h3>
+            </div>
+            <div class="module-item">
+              <div class="module-no">Módulo IX</div>
+              <h3>Evaluación y Mejora Continua del Proceso de Auditoría</h3>
+            </div>
+          </div>
+          <div class="syllabus-footer">
+            <div class="syllabus-footer-label">Consultoría y excelencia empresarial</div>
+            <div class="syllabus-footer-note">Curso presencial con enfoque práctico y aplicado</div>
           </div>
         </article>
 
         <article class="card kit-card reveal">
-          <h3>Lo que recibe cada participante</h3>
-          <p>Estos son algunos de los recursos y entregables contemplados dentro de la experiencia del curso.</p>
+          <h3>Lo que acompaña este programa</h3>
+          <p>Un resumen rápido de los apoyos y entregables que hacen más útil la experiencia de capacitación.</p>
           <ul class="kit-list">
             <li>Plan de auditoría y listas de verificación base.</li>
             <li>Material de trabajo y guía de reportes de hallazgos.</li>
@@ -3073,5 +3198,4 @@
   </script>
 </body>
 </html>
-
 
