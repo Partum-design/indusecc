@@ -1171,9 +1171,59 @@ section { position: relative; }
   .servicios-strip{grid-template-columns:1fr; gap:28px; padding:40px 40px;}
   .curso-spotlight{padding:72px 40px;}
   .curso-spotlight-meta{grid-template-columns:1fr;}
-  .course-popup{padding:14px;}
-  .course-popup-media{min-height:260px;}
-  .course-popup-content{padding:20px 20px 18px;}
+  .course-popup{padding:12px;}
+  .course-popup-dialog{
+    max-height: calc(100dvh - 24px);
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 22px;
+  }
+  .course-popup-media{
+    min-height: 180px;
+    max-height: 220px;
+  }
+  .course-popup-content{
+    padding: 18px 18px 16px;
+    justify-content: flex-start;
+  }
+  .course-popup-title{
+    font-size: clamp(1.55rem, 6vw, 2.2rem);
+    line-height: .98;
+    margin-top: 10px;
+  }
+  .course-popup-copy{
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .course-popup-meta{
+    margin-top: 14px;
+    gap: 8px;
+  }
+  .course-popup-chip{
+    padding: 8px 10px;
+    font-size: 9px;
+  }
+  .course-popup-note{
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+  .course-popup-actions{
+    margin-top: 14px;
+    gap: 10px;
+  }
+  .course-popup-btn{
+    min-height: 46px;
+    padding: 0 16px;
+  }
+  .course-popup-close{
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
 }
 @media (max-width:640px){
   .hero-body{padding:32px 24px 40px;}
@@ -1189,6 +1239,33 @@ section { position: relative; }
   .curso-card-title{font-size:1.9rem;}
   .course-popup-actions{flex-direction:column;}
   .course-popup-btn{width:100%;}
+  .course-popup{
+    padding: 8px;
+  }
+  .course-popup-dialog{
+    max-height: calc(100dvh - 16px);
+  }
+  .course-popup-media{
+    min-height: 150px;
+    max-height: 190px;
+  }
+  .course-popup-content{
+    padding: 16px 16px 14px;
+  }
+  .course-popup-kicker{
+    padding: 8px 12px;
+    font-size: 8px;
+    letter-spacing: .2em;
+  }
+  .course-popup-title{
+    font-size: 1.45rem;
+  }
+  .course-popup-copy{
+    font-size: 12px;
+  }
+  .course-popup-chip{
+    padding: 7px 10px;
+  }
   body{cursor:auto;}
   .cursor{display:none;}
 }
