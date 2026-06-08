@@ -857,36 +857,45 @@ body {
   position: fixed;
   inset: 0;
   z-index: 220;
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .28s ease, visibility 0s linear .28s;
 }
 
 .course-popup.is-open {
-  display: flex;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .28s ease;
 }
 
 .course-popup-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(10, 2, 3, .76);
-  backdrop-filter: blur(14px);
+  background: rgba(10, 2, 3, .58);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity .28s ease;
 }
 
 .course-popup-dialog {
   position: relative;
   z-index: 1;
-  width: min(1120px, 100%);
-  border: 1px solid rgba(201,168,76,.24);
-  background: linear-gradient(180deg, rgba(22,8,10,.98), rgba(10,2,3,.98));
-  box-shadow: 0 32px 100px rgba(0,0,0,.5);
+  width: min(960px, 100%);
+  border: 1px solid rgba(201,168,76,.18);
+  background: linear-gradient(180deg, rgba(22,8,10,.97), rgba(10,2,3,.97));
+  box-shadow: 0 26px 72px rgba(0,0,0,.42);
   overflow: hidden;
   display: grid;
-  grid-template-columns: minmax(320px, .95fr) minmax(0, 1.05fr);
-  transform: translateY(18px) scale(.98);
+  grid-template-columns: minmax(280px, .88fr) minmax(0, 1.12fr);
+  transform: translateY(22px) scale(.94);
   opacity: 0;
-  transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s cubic-bezier(.22,1,.36,1);
+  transition: transform .42s cubic-bezier(.22,1,.36,1), opacity .42s cubic-bezier(.22,1,.36,1);
 }
 
 .course-popup.is-open .course-popup-dialog {
@@ -894,9 +903,13 @@ body {
   opacity: 1;
 }
 
+.course-popup.is-open .course-popup-backdrop {
+  opacity: 1;
+}
+
 .course-popup-media {
   position: relative;
-  min-height: 520px;
+  min-height: 460px;
   background: #0b0607;
 }
 
@@ -913,11 +926,17 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(1.02);
+  transition: transform .7s ease;
+}
+
+.course-popup.is-open .course-popup-media img {
+  transform: scale(1);
 }
 
 .course-popup-content {
   position: relative;
-  padding: 34px 34px 30px;
+  padding: 28px 30px 26px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -939,10 +958,10 @@ body {
 }
 
 .course-popup-title {
-  margin-top: 16px;
+  margin-top: 14px;
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.3rem, 3.8vw, 4.25rem);
-  line-height: .95;
+  font-size: clamp(2rem, 3vw, 3.4rem);
+  line-height: .98;
   letter-spacing: -.04em;
   color: #fff;
 }
@@ -953,25 +972,25 @@ body {
 }
 
 .course-popup-copy {
-  margin-top: 18px;
+  margin-top: 14px;
   max-width: 54ch;
   color: rgba(255,255,255,.72);
-  font-size: 15px;
-  line-height: 1.9;
+  font-size: 14px;
+  line-height: 1.8;
 }
 
 .course-popup-points {
   display: grid;
-  gap: 12px;
-  margin-top: 22px;
+  gap: 10px;
+  margin-top: 18px;
 }
 
 .course-popup-point {
   display: grid;
-  grid-template-columns: 34px 1fr;
-  gap: 12px;
+  grid-template-columns: 30px 1fr;
+  gap: 10px;
   align-items: start;
-  padding-top: 12px;
+  padding-top: 10px;
   border-top: 1px solid rgba(201,168,76,.12);
 }
 
@@ -981,14 +1000,14 @@ body {
 }
 
 .course-popup-index {
-  width: 34px;
-  height: 34px;
+  width: 30px;
+  height: 30px;
   display: grid;
   place-items: center;
   border: 1px solid rgba(201,168,76,.26);
   background: rgba(201,168,76,.08);
   color: var(--gold-light);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
 }
 
@@ -996,7 +1015,7 @@ body {
   display: block;
   margin-bottom: 4px;
   color: #fff;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -1004,34 +1023,34 @@ body {
 
 .course-popup-point span {
   color: rgba(255,255,255,.65);
-  font-size: 13px;
-  line-height: 1.65;
+  font-size: 12px;
+  line-height: 1.6;
 }
 
 .course-popup-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 28px;
+  gap: 12px;
+  margin-top: 20px;
 }
 
 .course-popup-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 54px;
-  padding: 0 20px;
+  min-height: 48px;
+  padding: 0 18px;
   border: none;
   text-decoration: none;
   text-transform: uppercase;
-  letter-spacing: .16em;
-  font-size: 11px;
+  letter-spacing: .14em;
+  font-size: 10px;
   font-weight: 800;
-  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  transition: transform .2s ease, box-shadow .25s ease, background .25s ease, opacity .25s ease;
 }
 
 .course-popup-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
 }
 
 .course-popup-btn-primary {
@@ -1052,16 +1071,16 @@ body {
 
 .course-popup-close {
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 12px;
+  right: 12px;
   z-index: 2;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   border: none;
   border-radius: 999px;
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.07);
   color: #fff;
-  font-size: 24px;
+  font-size: 22px;
   line-height: 1;
   cursor: pointer;
 }
@@ -1109,6 +1128,7 @@ section { position: relative; }
   .sib-inner{grid-template-columns:1fr;}
   .curso-spotlight-inner{grid-template-columns:1fr;}
   .course-popup-dialog{grid-template-columns:1fr;}
+  .course-popup-dialog{width:min(820px,100%);}
 }
 @media (max-width:768px){
   .hero-title{font-size:clamp(2.8rem,9vw,4rem);}
@@ -1119,9 +1139,9 @@ section { position: relative; }
   .servicios-strip{grid-template-columns:1fr; gap:28px; padding:40px 40px;}
   .curso-spotlight{padding:72px 40px;}
   .curso-spotlight-meta{grid-template-columns:1fr;}
-  .course-popup{padding:16px;}
-  .course-popup-media{min-height:300px;}
-  .course-popup-content{padding:24px;}
+  .course-popup{padding:14px;}
+  .course-popup-media{min-height:260px;}
+  .course-popup-content{padding:20px 20px 18px;}
 }
 @media (max-width:640px){
   .hero-body{padding:32px 24px 40px;}
