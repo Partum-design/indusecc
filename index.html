@@ -979,6 +979,38 @@ body {
   line-height: 1.8;
 }
 
+.course-popup-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.course-popup-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid rgba(201,168,76,.18);
+  background: rgba(255,255,255,.04);
+  color: rgba(255,255,255,.82);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.course-popup-chip strong {
+  color: var(--gold-light);
+}
+
+.course-popup-note {
+  margin-top: 16px;
+  color: rgba(255,255,255,.58);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
 .course-popup-points {
   display: grid;
   gap: 10px;
@@ -3070,30 +3102,12 @@ img, video, canvas { max-width: 100%; }
 <div class="course-popup-content">
 <span class="course-popup-kicker">Curso destacado</span>
 <h2 class="course-popup-title" id="coursePopupTitle">Curso Auditor Interno <em>ISO 9001:2015</em></h2>
-<p class="course-popup-copy">Conoce el curso interno desde el primer vistazo: información clara, acceso directo al temario y una ruta rápida para resolver tus dudas o escribirnos por WhatsApp.</p>
-<div class="course-popup-points">
-<div class="course-popup-point">
-<div class="course-popup-index">01</div>
-<div>
-<strong>Saber más</strong>
-<span>Entra al curso para revisar el temario, beneficios, fechas e inscripción completa.</span>
+<p class="course-popup-copy">Próximo inicio: conoce la fecha, la inversión y la ruta rápida para registrarte.</p>
+<div class="course-popup-meta">
+<div class="course-popup-chip"><strong>24 y 25 de Julio</strong></div>
+<div class="course-popup-chip"><strong>$3,000 MXN</strong></div>
 </div>
-</div>
-<div class="course-popup-point">
-<div class="course-popup-index">02</div>
-<div>
-<strong>Contacto directo</strong>
-<span>Si quieres atención inmediata, te llevamos a WhatsApp con un mensaje listo para enviar.</span>
-</div>
-</div>
-<div class="course-popup-point">
-<div class="course-popup-index">03</div>
-<div>
-<strong>Visual premium</strong>
-<span>El curso se presenta con una imagen más impactante para que destaque desde el inicio.</span>
-</div>
-</div>
-</div>
+<p class="course-popup-note">Toda la información esencial en un solo vistazo.</p>
 <div class="course-popup-actions">
 <a class="course-popup-btn course-popup-btn-primary" href="/curso-interno/">Saber más</a>
 <a class="course-popup-btn course-popup-btn-wa" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20interno%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Contacto directo a WhatsApp</a>
