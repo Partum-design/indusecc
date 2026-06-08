@@ -20,7 +20,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer" />
-  <script src="https://sdk.mercadopago.com/js/v2"></script>
   <style>
     :root {
       --wine: #7b1e22;
@@ -2491,14 +2490,14 @@
           <div class="section-kicker">Paso final</div>
           <h2 class="section-title">Inscripción y pago <em>en línea</em>.</h2>
           <p class="section-text">
-            Completa tus datos principales y continúa al pago seguro para asegurar tu lugar en el curso.
+            Completa tus datos principales y te llevaremos al checkout oficial de Mercado Pago en una nueva pestaña.
           </p>
         </div>
 
         <div class="checkout-shell">
           <article class="card form-card reveal">
             <h3 class="card-title">1. Datos del participante</h3>
-            <p class="card-text">Ingresa tus datos de contacto para generar tu solicitud de inscripción y continuar al pago.</p>
+            <p class="card-text">Ingresa tus datos de contacto para generar tu pago y abrir el checkout oficial.</p>
 
             <form id="courseRegistrationForm">
               <div class="form-grid">
@@ -2507,98 +2506,22 @@
                   <input id="studentName" name="name" type="text" required placeholder="Tu nombre completo" />
                 </div>
                 <div class="field">
-                  <label for="studentPhone">WhatsApp</label>
+                  <label for="studentPhone">Número / WhatsApp</label>
                   <input id="studentPhone" name="phone" type="tel" required placeholder="+52 1 56 1604 4547" />
                 </div>
-                <div class="field">
+                <div class="field full">
                   <label for="studentEmail">Correo</label>
                   <input id="studentEmail" name="email" type="email" required placeholder="ejemplo@correo.com" />
                 </div>
                 <div class="field full">
-                  <span class="role-picker-label" id="rolePickerLabel">¿Quién se inscribe?</span>
-                  <div class="role-picker" id="rolePicker" role="radiogroup" aria-labelledby="rolePickerLabel">
-                    <label class="role-option" data-profile-value="Estudiante">
-                      <input type="radio" name="profile" value="Estudiante" required />
-                      <span class="role-option-title">Estudiante</span>
-                      <span class="role-option-desc">Carrera y escuela</span>
-                    </label>
-                    <label class="role-option" data-profile-value="Trabajador">
-                      <input type="radio" name="profile" value="Trabajador" />
-                      <span class="role-option-title">Trabajador</span>
-                      <span class="role-option-desc">Empresa, puesto y área</span>
-                    </label>
-                    <label class="role-option" data-profile-value="CEO">
-                      <input type="radio" name="profile" value="CEO" />
-                      <span class="role-option-title">Representante</span>
-                      <span class="role-option-desc">CEO, director o registro grupal</span>
-                    </label>
-                    <label class="role-option has-badge" data-profile-value="Emprendedor">
-                      <input type="radio" name="profile" value="Emprendedor" />
-                      <span class="role-option-badge">Nuevo</span>
-                      <span class="role-option-title">Emprendedor</span>
-                      <span class="role-option-desc">Proyecto, giro y etapa</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="dynamic-fields" id="studentContextFields">
-                <p class="profile-context-title" id="profileContextTitle" hidden></p>
-
-                <div class="profile-panel" data-profile-panel="student" id="profilePanelStudent">
-                  <div class="field full">
-                    <label for="studentCareer">Carrera</label>
-                    <input id="studentCareer" type="text" placeholder="Ej. Ingeniería Industrial" />
-                  </div>
-                  <div class="field full">
-                    <label for="studentSchool">Escuela</label>
-                    <input id="studentSchool" type="text" placeholder="Nombre de tu universidad o institución" />
-                  </div>
-                </div>
-
-                <div class="profile-panel" data-profile-panel="worker" id="profilePanelWorker">
-                  <div class="field">
-                    <label for="workerCompany">Empresa</label>
-                    <input id="workerCompany" type="text" placeholder="Nombre de la empresa" />
-                  </div>
-                  <div class="field">
-                    <label for="workerRole">Puesto</label>
-                    <input id="workerRole" type="text" placeholder="Ej. Coordinador de calidad" />
-                  </div>
-                  <div class="field full">
-                    <label for="workerArea">Área o departamento</label>
-                    <input id="workerArea" type="text" placeholder="Ej. Operaciones, calidad o producción" />
-                  </div>
-                </div>
-
-                <div class="profile-panel" data-profile-panel="ceo" id="profilePanelCeo">
-                  <div class="field">
-                    <label for="ceoCompany">Empresa</label>
-                    <input id="ceoCompany" type="text" placeholder="Nombre de la empresa" />
-                  </div>
-                  <div class="field">
-                    <label for="ceoRole">Cargo</label>
-                    <input id="ceoRole" type="text" placeholder="CEO, Director, Gerente" />
-                  </div>
-                  <div class="field full">
-                    <label for="ceoParticipants">Participantes a inscribir</label>
-                    <input id="ceoParticipants" type="text" inputmode="numeric" placeholder="Ej. 3 personas" />
-                  </div>
-                </div>
-
-                <div class="profile-panel" data-profile-panel="entrepreneur" id="profilePanelEntrepreneur">
-                  <div class="field full">
-                    <label for="entrepreneurBusiness">Negocio o proyecto</label>
-                    <input id="entrepreneurBusiness" type="text" placeholder="Nombre de tu emprendimiento" />
-                  </div>
-                  <div class="field">
-                    <label for="entrepreneurSector">Giro o sector</label>
-                    <input id="entrepreneurSector" type="text" placeholder="Ej. Consultoría, manufactura, servicios" />
-                  </div>
-                  <div class="field">
-                    <label for="entrepreneurStage">Etapa</label>
-                    <input id="entrepreneurStage" type="text" placeholder="Ej. En crecimiento, recién lanzado" />
-                  </div>
+                  <label for="studentWhatIs">¿Qué es? <span class="optional-label">(opcional)</span></label>
+                  <select id="studentWhatIs" name="profile">
+                    <option value="">Selecciona una opción</option>
+                    <option value="Estudiante">Estudiante</option>
+                    <option value="Trabajador">Trabajador</option>
+                    <option value="Representante">Representante / Empresa</option>
+                    <option value="Emprendedor">Emprendedor</option>
+                  </select>
                 </div>
               </div>
 
@@ -2610,9 +2533,9 @@
                 <p class="discount-copy">Si cuentas con un código, ingrésalo antes de continuar al pago.</p>
               </div>
 
-              <p class="helper">No se captura ninguna tarjeta dentro de esta página. El usuario se envía al checkout oficial de Mercado Pago.</p>
+              <p class="helper">No capturamos tarjetas aquí. Al hacer clic en Generar pago, abriremos el checkout oficial de Mercado Pago en una nueva pestaña.</p>
               <div class="submit-row">
-                <button class="btn-primary" id="preparePaymentButton" type="submit"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg>Preparar pago seguro</button>
+                <button class="btn-primary" id="preparePaymentButton" type="submit"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-shield"></use></svg>Generar pago</button>
                 <a class="btn-tertiary" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20apoyo%20para%20inscribirme%20al%20curso%20de%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer"><i class="fa-brands fa-whatsapp icon-inline" aria-hidden="true"></i>Apoyo por WhatsApp</a>
               </div>
             </form>
@@ -2620,7 +2543,7 @@
 
           <aside class="card payment-card reveal">
             <h3 class="card-title">2. Checkout oficial con Mercado Pago</h3>
-            <p class="card-text">Métodos de pago visibles y un flujo claro para confirmar tu lugar de forma segura.</p>
+            <p class="card-text">Te enviaremos directo al checkout oficial. Si el navegador bloquea la nueva pestaña, tendrás un enlace de respaldo visible.</p>
 
             <div class="summary-box">
               <div class="summary-row">
@@ -2632,8 +2555,8 @@
                 <span id="summaryParticipant">Pendiente de registro</span>
               </div>
               <div class="summary-row">
-                <span>Tipo</span>
-                <span id="summaryProfile">Sin seleccionar</span>
+                <span>Qué es</span>
+                <span id="summaryProfile">Sin especificar</span>
               </div>
               <div class="summary-row">
                 <span>Total</span>
@@ -2663,17 +2586,16 @@
             <div class="mp-shell">
               <div class="mp-head">
                 <div>
-                  <div class="mp-kicker">Mercado Pago directo</div>
-                  <div class="mp-title">Checkout seguro del curso</div>
+                  <div class="mp-kicker">Redirección directa</div>
+                  <div class="mp-title">Checkout oficial del curso</div>
                 </div>
-                <div class="mp-badge">SSL y preferencia segura</div>
+                <div class="mp-badge">Nueva pestaña</div>
               </div>
 
               <div id="mpMessage" class="mp-message info visible">
-                Completa el formulario para generar la preferencia del curso y mostrar el checkout oficial.
+                Completa el formulario y presiona Generar pago para abrir el checkout oficial.
               </div>
-              <div id="mpLoading" class="mp-loading">Conectando con Mercado Pago y preparando tu orden...</div>
-              <div id="walletBrickContainer"></div>
+              <div id="mpLoading" class="mp-loading">Preparando el enlace seguro de Mercado Pago...</div>
               <a id="fallbackLink" class="fallback-link" href="#" target="_blank" rel="noreferrer">Abrir checkout en nueva ventana</a>
             </div>
           </aside>
@@ -2743,40 +2665,14 @@
     const preparePaymentButton = document.getElementById('preparePaymentButton');
     const summaryParticipant = document.getElementById('summaryParticipant');
     const summaryProfile = document.getElementById('summaryProfile');
-    const rolePicker = document.getElementById('rolePicker');
-    const profileContextTitle = document.getElementById('profileContextTitle');
-    const studentContextFields = document.getElementById('studentContextFields');
-    const profileRadios = Array.from(registrationForm.querySelectorAll('input[name="profile"]'));
-    const roleOptions = Array.from(document.querySelectorAll('#rolePicker .role-option'));
-    const profilePanels = Array.from(document.querySelectorAll('#studentContextFields [data-profile-panel]'));
+    const studentNameInput = document.getElementById('studentName');
+    const studentPhoneInput = document.getElementById('studentPhone');
+    const studentEmailInput = document.getElementById('studentEmail');
+    const studentWhatIsInput = document.getElementById('studentWhatIs');
     const discountCodeInput = document.getElementById('discountCode');
     const summaryTotal = document.getElementById('summaryTotal');
     const summaryPriceBase = document.getElementById('summaryPriceBase');
     const summaryPriceNote = document.getElementById('summaryPriceNote');
-
-    const COURSE_BASE_PRICE = 3500;
-    const COURSE_PROMO_PRICE = 3000;
-
-    const profileMap = {
-      estudiante: 'student',
-      trabajador: 'worker',
-      ceo: 'ceo',
-      emprendedor: 'entrepreneur'
-    };
-
-    const profileContextTitles = {
-      student: 'Datos de estudiante',
-      worker: 'Datos laborales',
-      ceo: 'Datos de representante o empresa',
-      entrepreneur: 'Datos de emprendedor'
-    };
-
-    const profilePanelInputs = {
-      student: ['#studentCareer', '#studentSchool'],
-      worker: ['#workerCompany', '#workerRole', '#workerArea'],
-      ceo: ['#ceoCompany', '#ceoRole', '#ceoParticipants'],
-      entrepreneur: ['#entrepreneurBusiness', '#entrepreneurSector', '#entrepreneurStage']
-    };
     const mpMessage = document.getElementById('mpMessage');
     const mpLoading = document.getElementById('mpLoading');
     const fallbackLink = document.getElementById('fallbackLink');
@@ -2789,63 +2685,11 @@
       .map(id => document.getElementById(id))
       .filter(Boolean);
 
-    let mpInstance = null;
-    let bricksBuilder = null;
-    let walletBrickController = null;
-    let currentPublicKey = '';
+    const COURSE_BASE_PRICE = 3500;
+    const COURSE_PROMO_PRICE = 3000;
 
-    function getSelectedProfileValue() {
-      const checked = profileRadios.find(radio => radio.checked);
-      return String(checked?.value || '').trim();
-    }
-
-    function getActiveProfileSet() {
-      const selectedProfile = getSelectedProfileValue().toLowerCase();
-      return profileMap[selectedProfile] || '';
-    }
-
-    function updateRolePickerState() {
-      const selectedValue = getSelectedProfileValue();
-      roleOptions.forEach(option => {
-        const isSelected = option.dataset.profileValue === selectedValue;
-        option.classList.toggle('selected', isSelected);
-      });
-    }
-
-    function getPanelInputValues(activeSet) {
-      const selectors = profilePanelInputs[activeSet] || [];
-      return selectors
-        .map(selector => cleanValue(document.querySelector(selector)?.value))
-        .filter(Boolean);
-    }
-
-    function updateParticipantFields() {
-      const activeSet = getActiveProfileSet();
-
-      profilePanels.forEach(panel => {
-        const isActive = panel.dataset.profilePanel === activeSet;
-        panel.classList.toggle('is-active', isActive);
-
-        panel.querySelectorAll('input, select, textarea').forEach(input => {
-          input.disabled = !isActive;
-          if (isActive) {
-            input.setAttribute('required', 'required');
-          } else {
-            input.removeAttribute('required');
-            input.value = '';
-          }
-        });
-      });
-
-      if (profileContextTitle) {
-        const title = profileContextTitles[activeSet] || '';
-        profileContextTitle.textContent = title;
-        profileContextTitle.hidden = !title;
-      }
-
-      studentContextFields?.classList.toggle('visible', Boolean(activeSet));
-      updateRolePickerState();
-      updateSummaryPreview();
+    function cleanValue(value) {
+      return String(value || '').trim();
     }
 
     function formatPrice(amount) {
@@ -2853,9 +2697,11 @@
     }
 
     function applyPriceSummary(promoApplied = false) {
-      summaryTotal.textContent = formatPrice(COURSE_BASE_PRICE);
+      const visiblePrice = promoApplied ? COURSE_PROMO_PRICE : COURSE_BASE_PRICE;
+      summaryTotal.textContent = formatPrice(visiblePrice);
       if (summaryPriceBase) {
-        summaryPriceBase.hidden = true;
+        summaryPriceBase.textContent = formatPrice(COURSE_BASE_PRICE);
+        summaryPriceBase.hidden = !promoApplied;
       }
       if (summaryPriceNote) {
         summaryPriceNote.hidden = !promoApplied;
@@ -2883,52 +2729,19 @@
     }
 
     function buildRegistrationPayload() {
-      const activeSet = getActiveProfileSet();
-      const profile = getSelectedProfileValue();
-      const panelValues = getPanelInputValues(activeSet);
-
-      const payload = {
-        name: cleanValue(document.getElementById('studentName')?.value),
-        email: cleanValue(document.getElementById('studentEmail')?.value),
-        phone: cleanValue(document.getElementById('studentPhone')?.value),
-        profile,
-        discountCode: cleanValue(discountCodeInput?.value),
-        company: '',
-        role: '',
-        career: '',
-        school: '',
-        area: '',
-        experience: '',
-        participants: ''
+      return {
+        name: cleanValue(studentNameInput?.value),
+        email: cleanValue(studentEmailInput?.value),
+        phone: cleanValue(studentPhoneInput?.value),
+        profile: cleanValue(studentWhatIsInput?.value),
+        discountCode: cleanValue(discountCodeInput?.value)
       };
-
-      if (activeSet === 'student') {
-        payload.career = panelValues[0] || '';
-        payload.school = panelValues[1] || '';
-      } else if (activeSet === 'worker') {
-        payload.company = panelValues[0] || '';
-        payload.role = panelValues[1] || '';
-        payload.area = panelValues[2] || '';
-      } else if (activeSet === 'ceo') {
-        payload.company = panelValues[0] || '';
-        payload.role = panelValues[1] || '';
-        payload.participants = panelValues[2] || '';
-      } else if (activeSet === 'entrepreneur') {
-        payload.company = panelValues[0] || '';
-        payload.area = panelValues[1] || '';
-        payload.experience = panelValues[2] || '';
-      }
-
-      return payload;
     }
 
     function updateSummaryPreview() {
       const payload = buildRegistrationPayload();
-      const activeSet = getActiveProfileSet();
-      const extras = getPanelInputValues(activeSet);
-
       summaryParticipant.textContent = payload.name || 'Pendiente de registro';
-      summaryProfile.textContent = [payload.profile, ...extras].filter(Boolean).join(' · ') || 'Sin seleccionar';
+      summaryProfile.textContent = payload.profile || 'Sin especificar';
     }
 
     function setBanner(type, text) {
@@ -2947,7 +2760,7 @@
       mpMessage.textContent = text;
     }
 
-    function setLoading(isVisible, text = 'Conectando con Mercado Pago y preparando tu orden...') {
+    function setLoading(isVisible, text = 'Preparando el enlace seguro de Mercado Pago...') {
       mpLoading.className = isVisible ? 'mp-loading visible' : 'mp-loading';
       mpLoading.textContent = text;
     }
@@ -2974,38 +2787,6 @@
       } else if (status === 'failure') {
         setBanner('error', 'El pago no se completó. Puedes volver a intentarlo desde esta misma sección.');
       }
-    }
-
-    async function ensureBrick(publicKey) {
-      if (!window.MercadoPago) {
-        throw new Error('No fue posible cargar el SDK de Mercado Pago.');
-      }
-
-      if (!mpInstance || currentPublicKey !== publicKey) {
-        mpInstance = new window.MercadoPago(publicKey, { locale: 'es-MX' });
-        bricksBuilder = mpInstance.bricks();
-        currentPublicKey = publicKey;
-      }
-    }
-
-    async function renderWalletBrick(preferenceId) {
-      const container = document.getElementById('walletBrickContainer');
-      container.innerHTML = '';
-
-      if (walletBrickController && typeof walletBrickController.unmount === 'function') {
-        walletBrickController.unmount();
-      }
-
-      walletBrickController = await bricksBuilder.create('wallet', 'walletBrickContainer', {
-        initialization: {
-          preferenceId
-        },
-        customization: {
-          texts: {
-            valueProp: 'smart_option'
-          }
-        }
-      });
     }
 
     function activateQuickNav() {
@@ -3096,21 +2877,34 @@
       event.preventDefault();
 
       const payload = buildRegistrationPayload();
-      if (!payload.profile) {
-        setBanner('error', 'Selecciona quién se inscribe para continuar.');
+      if (!payload.name || !payload.phone || !payload.email) {
+        setBanner('error', 'Completa nombre, número y correo para continuar.');
         return;
       }
 
       updateSummaryPreview();
 
       preparePaymentButton.disabled = true;
-      preparePaymentButton.textContent = 'Preparando checkout...';
-      setLoading(true);
+      preparePaymentButton.textContent = 'Generando pago...';
+      setLoading(true, 'Creando tu acceso a Mercado Pago...');
       setBanner('', '');
       setFallbackLink('');
-      setMpMessage('info', 'Estamos creando una preferencia segura de Mercado Pago para este participante.');
+      setMpMessage('info', 'Estamos generando tu checkout oficial. Si la nueva pestaña no aparece, te dejamos un enlace de respaldo.');
+
+      let checkoutWindow = null;
 
       try {
+        checkoutWindow = window.open('', '_blank');
+        if (checkoutWindow) {
+          try {
+            checkoutWindow.opener = null;
+            checkoutWindow.document.write('<!doctype html><title>Abriendo Mercado Pago...</title><p style="font-family:sans-serif;padding:24px">Abriendo checkout seguro...</p>');
+            checkoutWindow.document.close();
+          } catch {
+            // Si el navegador limita la escritura, solo usamos la ventana como contenedor.
+          }
+        }
+
         const response = await fetch('/api/create-course-preference', {
           method: 'POST',
           headers: {
@@ -3128,44 +2922,43 @@
           applyPriceSummary(true);
         }
 
-        await ensureBrick(result.publicKey);
-        await renderWalletBrick(result.preferenceId);
+        const checkoutUrl = result.initPoint || result.sandboxInitPoint || '';
+        if (!checkoutUrl) {
+          throw new Error('No fue posible obtener el enlace de Mercado Pago.');
+        }
 
-        setMpMessage('success', 'Listo. El botón oficial de Mercado Pago ya está disponible para completar tu pago.');
-        setFallbackLink(result.initPoint || result.sandboxInitPoint || '');
+        setFallbackLink(checkoutUrl);
+
+        if (checkoutWindow) {
+          checkoutWindow.location.href = checkoutUrl;
+          if (typeof checkoutWindow.focus === 'function') {
+            checkoutWindow.focus();
+          }
+        } else {
+          setMpMessage('warning', 'Tu navegador bloqueó la nueva pestaña. Usa el enlace de respaldo para abrir el checkout.');
+        }
+
+        setMpMessage('success', checkoutWindow
+          ? 'Se abrió el checkout oficial de Mercado Pago en una nueva pestaña.'
+          : 'Tu navegador bloqueó la nueva pestaña. Usa el enlace de respaldo para abrir el checkout.');
       } catch (error) {
+        if (checkoutWindow && !checkoutWindow.closed) {
+          checkoutWindow.close();
+        }
         const message = error instanceof Error ? error.message : 'Ocurrió un error al preparar el checkout.';
         setMpMessage('error', message);
         setBanner('error', message);
       } finally {
         setLoading(false);
         preparePaymentButton.disabled = false;
-        preparePaymentButton.textContent = 'Preparar pago seguro';
+        preparePaymentButton.textContent = 'Generar pago';
       }
-    });
-
-    function cleanValue(value) {
-      return String(value || '').trim();
-    }
-
-    profileRadios.forEach(radio => {
-      radio.addEventListener('change', updateParticipantFields);
-    });
-
-    roleOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        const radio = option.querySelector('input[type="radio"]');
-        if (radio) {
-          radio.checked = true;
-          updateParticipantFields();
-        }
-      });
     });
 
     registrationForm.addEventListener('input', event => {
       const target = event.target;
       if (!(target instanceof HTMLElement)) return;
-      if (target.matches('#studentName, #studentEmail, #studentPhone, #studentContextFields input, #discountCode')) {
+      if (target.matches('#studentName, #studentEmail, #studentPhone, #studentWhatIs, #discountCode')) {
         updateSummaryPreview();
       }
       if (target.matches('#discountCode')) {
@@ -3181,7 +2974,7 @@
 
     setupRevealObserver();
     setupVideoPlayback();
-    updateParticipantFields();
+    updateSummaryPreview();
     applyPriceSummary(false);
     readPaymentStatus();
     activateQuickNav();
