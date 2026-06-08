@@ -761,8 +761,8 @@ body {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(180deg, rgba(10,2,3,.2), rgba(10,2,3,.75)),
-    url('/Imagenes/comunicacion-interna.jpg') center/cover;
+    linear-gradient(180deg, rgba(10,2,3,.16), rgba(10,2,3,.82)),
+    url('/curso-interno/ChatGPT%20Image%20Jun%208%2C%202026%2C%2001_51_24%20PM.png') center/cover;
   opacity: .9;
 }
 .curso-card-content {
@@ -853,6 +853,227 @@ body {
   justify-content: center;
 }
 
+.course-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 220;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.course-popup.is-open {
+  display: flex;
+}
+
+.course-popup-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 2, 3, .76);
+  backdrop-filter: blur(14px);
+}
+
+.course-popup-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, 100%);
+  border: 1px solid rgba(201,168,76,.24);
+  background: linear-gradient(180deg, rgba(22,8,10,.98), rgba(10,2,3,.98));
+  box-shadow: 0 32px 100px rgba(0,0,0,.5);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: minmax(320px, .95fr) minmax(0, 1.05fr);
+  transform: translateY(18px) scale(.98);
+  opacity: 0;
+  transition: transform .35s cubic-bezier(.22,1,.36,1), opacity .35s cubic-bezier(.22,1,.36,1);
+}
+
+.course-popup.is-open .course-popup-dialog {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.course-popup-media {
+  position: relative;
+  min-height: 520px;
+  background: #0b0607;
+}
+
+.course-popup-media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 22% 22%, rgba(232,201,122,.12), transparent 26%),
+    linear-gradient(180deg, rgba(10,2,3,.05), rgba(10,2,3,.78));
+}
+
+.course-popup-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.course-popup-content {
+  position: relative;
+  padding: 34px 34px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.course-popup-kicker {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(201,168,76,.24);
+  background: rgba(255,255,255,.05);
+  color: var(--gold-light);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+}
+
+.course-popup-title {
+  margin-top: 16px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.3rem, 3.8vw, 4.25rem);
+  line-height: .95;
+  letter-spacing: -.04em;
+  color: #fff;
+}
+
+.course-popup-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.course-popup-copy {
+  margin-top: 18px;
+  max-width: 54ch;
+  color: rgba(255,255,255,.72);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.course-popup-points {
+  display: grid;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.course-popup-point {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding-top: 12px;
+  border-top: 1px solid rgba(201,168,76,.12);
+}
+
+.course-popup-point:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.course-popup-index {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(201,168,76,.26);
+  background: rgba(201,168,76,.08);
+  color: var(--gold-light);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.course-popup-point strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.course-popup-point span {
+  color: rgba(255,255,255,.65);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.course-popup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.course-popup-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 0 20px;
+  border: none;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: 11px;
+  font-weight: 800;
+  transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+}
+
+.course-popup-btn:hover {
+  transform: translateY(-2px);
+}
+
+.course-popup-btn-primary {
+  background: linear-gradient(135deg, var(--gold-dark), var(--gold), var(--gold-light));
+  color: var(--wine-deep);
+  box-shadow: 0 20px 40px rgba(201,168,76,.2);
+}
+
+.course-popup-btn-wa {
+  background: rgba(37,211,102,.12);
+  border: 1px solid rgba(37,211,102,.25);
+  color: #dfffee;
+}
+
+.course-popup-btn-wa:hover {
+  background: rgba(37,211,102,.18);
+}
+
+.course-popup-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.course-popup-close:hover {
+  background: rgba(255,255,255,.12);
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
 /* ── SECTION WRAPPER (needed by rest of page) ── */
 section { position: relative; }
 .section-tag {
@@ -887,6 +1108,7 @@ section { position: relative; }
   .svc-pane.active{display:flex; opacity:1;}
   .sib-inner{grid-template-columns:1fr;}
   .curso-spotlight-inner{grid-template-columns:1fr;}
+  .course-popup-dialog{grid-template-columns:1fr;}
 }
 @media (max-width:768px){
   .hero-title{font-size:clamp(2.8rem,9vw,4rem);}
@@ -897,6 +1119,9 @@ section { position: relative; }
   .servicios-strip{grid-template-columns:1fr; gap:28px; padding:40px 40px;}
   .curso-spotlight{padding:72px 40px;}
   .curso-spotlight-meta{grid-template-columns:1fr;}
+  .course-popup{padding:16px;}
+  .course-popup-media{min-height:300px;}
+  .course-popup-content{padding:24px;}
 }
 @media (max-width:640px){
   .hero-body{padding:32px 24px 40px;}
@@ -910,6 +1135,8 @@ section { position: relative; }
   .curso-spotlight{padding:60px 24px;}
   .curso-card-content{padding:28px 22px;}
   .curso-card-title{font-size:1.9rem;}
+  .course-popup-actions{flex-direction:column;}
+  .course-popup-btn{width:100%;}
   body{cursor:auto;}
   .cursor{display:none;}
 }
@@ -2813,6 +3040,47 @@ img, video, canvas { max-width: 100%; }
 </div>
 </div>
 </section>
+<div aria-hidden="true" class="course-popup" id="coursePopup">
+<div class="course-popup-backdrop" data-course-popup-close="true"></div>
+<div aria-labelledby="coursePopupTitle" aria-modal="true" class="course-popup-dialog" role="dialog">
+<button aria-label="Cerrar promoción del curso" class="course-popup-close" id="coursePopupClose" type="button">×</button>
+<div class="course-popup-media">
+<img alt="Curso Auditor Interno ISO 9001:2015" loading="eager" src="/curso-interno/ChatGPT%20Image%20Jun%208%2C%202026%2C%2001_51_24%20PM.png"/>
+</div>
+<div class="course-popup-content">
+<span class="course-popup-kicker">Curso destacado</span>
+<h2 class="course-popup-title" id="coursePopupTitle">Curso Auditor Interno <em>ISO 9001:2015</em></h2>
+<p class="course-popup-copy">Conoce el curso interno desde el primer vistazo: información clara, acceso directo al temario y una ruta rápida para resolver tus dudas o escribirnos por WhatsApp.</p>
+<div class="course-popup-points">
+<div class="course-popup-point">
+<div class="course-popup-index">01</div>
+<div>
+<strong>Saber más</strong>
+<span>Entra al curso para revisar el temario, beneficios, fechas e inscripción completa.</span>
+</div>
+</div>
+<div class="course-popup-point">
+<div class="course-popup-index">02</div>
+<div>
+<strong>Contacto directo</strong>
+<span>Si quieres atención inmediata, te llevamos a WhatsApp con un mensaje listo para enviar.</span>
+</div>
+</div>
+<div class="course-popup-point">
+<div class="course-popup-index">03</div>
+<div>
+<strong>Visual premium</strong>
+<span>El curso se presenta con una imagen más impactante para que destaque desde el inicio.</span>
+</div>
+</div>
+</div>
+<div class="course-popup-actions">
+<a class="course-popup-btn course-popup-btn-primary" href="/curso-interno/">Saber más</a>
+<a class="course-popup-btn course-popup-btn-wa" href="https://wa.me/5215616044547?text=Hola%2C%20quiero%20informaci%C3%B3n%20del%20curso%20interno%20Auditor%20Interno%20ISO%209001%3A2015." target="_blank" rel="noreferrer">Contacto directo a WhatsApp</a>
+</div>
+</div>
+</div>
+</div>
 <!-- ══ QUIÉNES SOMOS ══ -->
 <section class="quienes" id="quienes">
 <div class="quienes-left">
@@ -3872,6 +4140,60 @@ function applyTranslations(lang) {
   safe('.proceso .section-tag-text', t.proc_tag); safe('.proceso .section-title', t.proc_title);
 }
 
+/* ══ COURSE POPUP ══ */
+const coursePopup = document.getElementById('coursePopup');
+const coursePopupClose = document.getElementById('coursePopupClose');
+const coursePopupCloseTargets = Array.from(document.querySelectorAll('[data-course-popup-close="true"]'));
+const COURSE_POPUP_KEY = 'indusecc-course-popup-seen';
+
+function getCoursePopupState() {
+  try {
+    return window.sessionStorage.getItem(COURSE_POPUP_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function setCoursePopupState(value) {
+  try {
+    window.sessionStorage.setItem(COURSE_POPUP_KEY, value);
+  } catch {
+    // Si el navegador bloquea sessionStorage, seguimos sin persistencia.
+  }
+}
+
+function openCoursePopup() {
+  if (!coursePopup) return;
+  coursePopup.classList.add('is-open');
+  coursePopup.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  setCoursePopupState('1');
+  window.setTimeout(() => {
+    coursePopupClose?.focus?.({ preventScroll: true });
+  }, 0);
+}
+
+function closeCoursePopup() {
+  if (!coursePopup) return;
+  coursePopup.classList.remove('is-open');
+  coursePopup.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+}
+
+if (coursePopupClose) {
+  coursePopupClose.addEventListener('click', closeCoursePopup);
+}
+
+coursePopupCloseTargets.forEach(target => {
+  target.addEventListener('click', closeCoursePopup);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && coursePopup?.classList.contains('is-open')) {
+    closeCoursePopup();
+  }
+});
+
 /* ══ INIT ══ */
 // Siempre español — eliminar cualquier idioma guardado en caché
 localStorage.removeItem('ind-lang');
@@ -3881,6 +4203,10 @@ applyFontLevel();
 applyContrast();
 applyMotion();
 applyTranslations('es');
+
+if (!getCoursePopupState()) {
+  window.setTimeout(openCoursePopup, 650);
+}
 </script>
 </body>
 </html>
