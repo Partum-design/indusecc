@@ -8,6 +8,7 @@
 <link rel="icon" type="image/jpeg" href="/curso-interno/LOGO%201080%20X%201080.jpg"/>
 <link rel="shortcut icon" type="image/jpeg" href="/curso-interno/LOGO%201080%20X%201080.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,500&family=Outfit:wght@300;400;500;600;700;800&display=swap"/>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -447,9 +448,9 @@ body.a11y-reading .hub-grid {
 .blog-hero-btn:hover { transform: translateY(-1px); }
 
 .hub-main {
-  max-width: 1240px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 62px 22px 84px;
+  padding: 70px 28px 96px;
 }
 .hub-metrics {
   display: grid;
@@ -708,7 +709,7 @@ body.a11y-reading .hub-grid {
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 16px;
+  gap: 20px;
 }
 .hub-grid.is-list { grid-template-columns: 1fr; }
 .hub-grid.is-list .hub-card {
@@ -723,88 +724,95 @@ body.a11y-reading .hub-grid {
   border: 1px solid var(--line);
   background: var(--paper);
   overflow: hidden;
-  transition: transform .24s ease, box-shadow .24s ease, border-color .24s ease;
+  border-radius: 3px;
+  transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s ease, border-color .28s ease;
 }
 .hub-card.is-hidden { display: none; }
 .hub-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 42px rgba(80,20,24,.11);
-  border-color: rgba(123,30,34,.35);
+  transform: translateY(-5px);
+  box-shadow: 0 24px 52px rgba(80,20,24,.12);
+  border-color: rgba(123,30,34,.3);
 }
 .hub-card--featured { grid-column: span 8; }
 .hub-card--next { grid-column: span 4; }
 .hub-media {
   position: relative;
-  height: 280px;
+  height: 300px;
   overflow: hidden;
 }
-.hub-card--next .hub-media { height: 216px; }
+.hub-card--next .hub-media { height: 228px; }
 .hub-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform .45s ease;
+  transition: transform .5s cubic-bezier(.22,1,.36,1);
 }
-.hub-card:hover .hub-media img { transform: scale(1.06); }
+.hub-card:hover .hub-media img { transform: scale(1.07); }
 .hub-tag {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  background: rgba(26,8,9,.76);
-  border: 1px solid rgba(201,168,76,.48);
+  top: 16px;
+  left: 16px;
+  background: rgba(10,3,4,.82);
+  border: 1px solid rgba(201,168,76,.52);
   color: var(--gold-light);
-  padding: 7px 12px;
+  padding: 8px 14px;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   text-transform: uppercase;
+  backdrop-filter: blur(4px);
 }
 .hub-body {
-  padding: 22px;
+  padding: 28px 26px 26px;
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 .hub-meta {
   color: var(--wine);
   font-size: 10px;
-  letter-spacing: .14em;
+  letter-spacing: .16em;
   text-transform: uppercase;
   font-weight: 700;
 }
 .hub-title {
   font-family: 'Playfair Display', serif;
   color: var(--ink);
-  font-size: clamp(1.3rem, 2vw, 2rem);
-  line-height: 1.14;
+  font-size: clamp(1.35rem, 2vw, 2.1rem);
+  line-height: 1.12;
+  letter-spacing: -.015em;
 }
 .hub-desc {
   color: var(--muted);
-  line-height: 1.82;
-  font-size: 14px;
+  line-height: 1.86;
+  font-size: 15px;
 }
 .hub-cta {
   width: fit-content;
   text-decoration: none;
-  background: var(--wine);
+  background: linear-gradient(135deg, var(--wine-dark), var(--wine));
   color: var(--gold-light);
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .2em;
-  padding: 12px 18px;
+  padding: 13px 20px;
   clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  transition: opacity .2s ease;
 }
+.hub-cta:hover { opacity: .85; }
 .hub-ghost {
   width: fit-content;
   text-decoration: none;
   color: var(--wine);
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: .16em;
+  letter-spacing: .18em;
   font-weight: 700;
-  border-bottom: 1px solid rgba(123,30,34,.28);
+  border-bottom: 1px solid rgba(123,30,34,.3);
   padding-bottom: 7px;
+  transition: letter-spacing .2s ease;
 }
+.hub-ghost:hover { letter-spacing: .24em; }
 .hub-note {
   margin-top: 20px;
   border: 1px dashed rgba(123,30,34,.28);

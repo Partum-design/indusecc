@@ -86,62 +86,151 @@
     .float-soft { animation: floatSoft 6s ease-in-out infinite; }
     .pulse-gold { animation: pulseGold 2.8s ease-in-out infinite; }
 
-    .topbar {
-      position: sticky;
+    /* ─── INDUSECC Header ─── */
+    body { padding-top: 115px; }
+    .ind-header-wrapper {
+      position: fixed;
       top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      backdrop-filter: blur(16px);
-      background: rgba(10, 2, 3, 0.88);
+      width: 100%;
+      z-index: 1000;
+      background: #0A0A0A;
+      box-shadow: 0 2px 15px rgba(0,0,0,.5);
     }
-
-    .topbar-inner {
-      width: min(1240px, calc(100vw - 48px));
-      height: 136px;
+    .ind-top-bar {
+      background: #000;
+      border-bottom: 1px solid rgba(201,168,76,.1);
+      padding: 0 42px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 35px;
+    }
+    .ind-top-info { display: flex; gap: 16px; flex-wrap: wrap; }
+    .ind-top-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #A89880;
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .ind-top-item svg { width: 12px; height: 12px; color: var(--gold); }
+    .ind-top-item a { color: inherit; text-decoration: none; }
+    .ind-main-header {
+      background: rgba(10,10,10,.98);
+      border-bottom: 1px solid rgba(255,255,255,.05);
+    }
+    .ind-container {
+      max-width: 1400px;
       margin: 0 auto;
+      padding: 0 42px;
+      height: 80px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 20px;
     }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
+    .ind-logo-group { display: flex; align-items: center; gap: 16px; min-width: 0; }
+    .ind-logo-wrap { text-decoration: none; display: flex; align-items: center; }
+    .ind-logo-img { max-height: 48px; width: auto; display: block; }
+    .ind-logo-sep { width: 1px; height: 30px; background: rgba(201,168,76,.2); }
+    .ind-header-tagline {
+      font-family: 'Playfair Display', serif;
+      color: #A89880;
+      font-size: 14px;
+      font-style: italic;
+      max-width: 240px;
+      line-height: 1.3;
+    }
+    .ind-nav { display: flex; align-items: center; gap: 18px; height: 100%; }
+    .ind-menu-item { position: relative; height: 100%; display: flex; align-items: center; }
+    .ind-link {
       text-decoration: none;
-      color: #fff;
-    }
-
-    .brand-logo-wrap {
-      width: 232px;
-      height: 80px;
-      padding: 0;
-      flex-shrink: 0;
-    }
-
-    .brand-logo {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
-
-    .navlinks {
+      color: rgba(255,255,255,.9);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
       display: flex;
       align-items: center;
-      gap: 24px;
-      color: rgba(255,255,255,.72);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .16em;
-      text-transform: uppercase;
+      gap: 6px;
     }
-
-    .navlinks a {
+    .ind-link:hover, .ind-link.active { color: var(--gold-light); }
+    .ind-dropdown {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      background: #0D0D0D;
+      border: 1px solid rgba(201,168,76,.2);
+      padding: 8px 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: all .25s ease;
+      z-index: 200;
+    }
+    .ind-menu-item:hover .ind-dropdown { opacity: 1; visibility: visible; }
+    .ind-drop-link {
+      display: block;
+      padding: 11px 16px;
+      color: rgba(255,255,255,.65);
       text-decoration: none;
-      transition: color .25s ease;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
-
-    .navlinks a:hover { color: var(--gold-light); }
+    .ind-drop-link:hover {
+      background: rgba(139,26,26,.15);
+      color: #fff;
+      padding-left: 20px;
+      border-left: 3px solid var(--wine);
+    }
+    .ind-actions { display: flex; align-items: center; gap: 8px; position: relative; }
+    .ind-btn-cta {
+      background: linear-gradient(135deg, var(--wine-deep), var(--wine));
+      color: #fff;
+      text-decoration: none;
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 11px 16px;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+    .a11y-trigger {
+      width: 34px; height: 34px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(201,168,76,.3);
+      color: var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+    }
+    .a11y-trigger svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 1.8; }
+    .a11y-panel {
+      position: absolute;
+      top: calc(100% + 10px);
+      right: 0;
+      width: 250px;
+      background: #111;
+      border: 1px solid rgba(201,168,76,.3);
+      box-shadow: 0 24px 64px rgba(0,0,0,.7);
+      padding: 16px;
+      opacity: 0; visibility: hidden;
+      transform: translateY(-6px);
+      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    }
+    .a11y-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
+    .a11y-panel h3 { font-size: 9px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .a11y-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .a11y-row span { font-size: 12px; color: rgba(255,255,255,.8); }
+    .a11y-controls { display: flex; gap: 6px; }
+    .a11y-btn { min-width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.07); color: rgba(255,255,255,.9); font-size: 12px; cursor: pointer; }
+    .a11y-btn.active { background: rgba(201,168,76,.3); border-color: var(--gold); color: var(--gold-light); }
+    .a11y-reset { width: 100%; margin-top: 6px; padding: 9px; border: 1px solid rgba(123,30,34,.45); background: rgba(123,30,34,.35); color: rgba(255,255,255,.86); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; cursor: pointer; }
 
     .btn-primary,
     .btn-secondary,
@@ -1829,58 +1918,67 @@
       border-top: 1px solid var(--border);
     }
 
-    footer {
-      padding: 34px 0 50px;
-      background: #0b0506;
-      color: rgba(255,255,255,.62);
-      border-top: 1px solid rgba(201,168,76,.12);
+    /* ─── INDUSECC Footer ─── */
+    .ind-footer-wrap {
+      background: #0A0A0A;
+      border-top: 1px solid rgba(201,168,76,.15);
+      position: relative;
     }
-
-    .footer-grid {
+    .ind-f-top-accent {
+      height: 3px;
+      background: linear-gradient(to right, transparent, var(--gold), transparent);
+      opacity: .7;
+    }
+    .ind-f-main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 70px 42px 32px;
+    }
+    .ind-f-grid {
       display: grid;
-      grid-template-columns: 1.1fr .8fr .8fr;
-      gap: 26px;
-      padding-bottom: 26px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 32px;
     }
-
-    .footer-title {
-      color: #fff;
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
-
-    .footer-text,
-    .footer-link {
+    .ind-f-brand { display: flex; flex-direction: column; gap: 20px; }
+    .ind-f-logo-container { max-width: 190px; }
+    .ind-f-logo-img { max-width: 100%; height: auto; display: block; }
+    .ind-f-slogan { color: rgba(255,255,255,.68); line-height: 1.7; font-size: 14px; }
+    .ind-f-contact-strip { display: flex; flex-direction: column; gap: 10px; }
+    .ind-f-contact-link {
+      text-decoration: none;
       color: rgba(255,255,255,.62);
       font-size: 13px;
-      line-height: 1.8;
-      text-decoration: none;
-    }
-
-    .footer-link {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
-
-    .footer-link:hover { color: var(--gold-light); }
-
-    .footer-glyph {
-      width: 15px;
-      height: 15px;
+    .ind-f-contact-link svg { width: 14px; height: 14px; color: var(--gold); }
+    .ind-f-title { color: #fff; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; margin-bottom: 12px; }
+    .ind-f-list { list-style: none; display: grid; gap: 10px; }
+    .ind-f-item-link { color: rgba(255,255,255,.6); text-decoration: none; font-size: 13px; }
+    .ind-f-item-link:hover { color: var(--gold-light); }
+    .ind-f-social-wrap { display: flex; gap: 12px; margin-top: 14px; }
+    .ind-f-social-icon {
+      width: 35px; height: 35px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center; color: #fff;
     }
-
-    .footer-bottom {
-      padding-top: 20px;
+    .ind-f-social-icon.linkedin { background: #0077B5; }
+    .ind-f-social-icon.instagram { background: radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%); }
+    .ind-f-social-icon.facebook { background: #1877F2; }
+    .ind-f-bottom {
+      border-top: 1px solid rgba(255,255,255,.05);
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px 42px 26px;
       display: flex;
       justify-content: space-between;
-      gap: 18px;
       align-items: center;
-      font-size: 12px;
-      color: rgba(255,255,255,.38);
+      color: rgba(255,255,255,.35);
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
+    .ind-f-copy span { color: var(--gold); }
 
     @keyframes floatSoft {
       0%, 100% { transform: translateY(0); }
@@ -1896,17 +1994,27 @@
       .quick-nav { right: 16px; }
     }
 
+    @media (max-width: 980px) {
+      body { padding-top: 74px; }
+      .ind-top-bar { display: none; }
+      .ind-container { height: 74px; padding: 0 14px; gap: 12px; }
+      .ind-logo-sep, .ind-header-tagline, .ind-btn-cta { display: none; }
+      .ind-nav { gap: 12px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; }
+      .ind-nav::-webkit-scrollbar { display: none; }
+      .ind-link { font-size: 9px; white-space: nowrap; }
+      .ind-dropdown { display: none !important; }
+      .ind-f-grid { grid-template-columns: 1fr 1fr; }
+    }
+
     @media (max-width: 1080px) {
       .hero-grid,
       .profile-shell,
       .checkout-shell,
       .syllabus-wrap,
-      .footer-grid,
       .gallery-band {
         grid-template-columns: 1fr;
       }
 
-      .navlinks { display: none; }
       .quick-nav {
         left: 16px;
         right: 16px;
@@ -1954,8 +2062,7 @@
     }
 
     @media (max-width: 840px) {
-      .shell,
-      .topbar-inner {
+      .shell {
         width: min(1240px, calc(100vw - 32px));
       }
 
@@ -1970,20 +2077,15 @@
         grid-template-columns: 1fr;
       }
 
-      .topbar-inner { height: 120px; }
       main section { padding: 72px 0; }
       .hero-grid { gap: 28px; }
-      .brand-logo-wrap { width: 184px; height: 64px; }
+      .ind-f-grid { grid-template-columns: 1fr; gap: 28px; }
+      .ind-f-main { padding: 56px 20px 24px; }
+      .ind-f-bottom { flex-direction: column; gap: 10px; text-align: center; padding: 16px 14px 22px; }
     }
 
     @media (max-width: 640px) {
-      .topbar-inner {
-        width: min(1240px, calc(100vw - 24px));
-        gap: 16px;
-      }
-
       .shell { width: min(1240px, calc(100vw - 24px)); }
-      .brand-logo-wrap { width: 174px; height: 60px; }
       .video-shell { display: none; }
       .video-shell-mobile { display: block; }
       .video-mobile { display: block; }
@@ -2064,23 +2166,72 @@
     <a href="#faqs" data-target="faqs"><span>FAQs</span><svg class="nav-glyph" viewBox="0 0 24 24"><use href="#icon-chat"></use></svg></a>
   </nav>
 
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="/">
-        <div class="brand-logo-wrap">
-          <img class="brand-logo" src="/curso-interno/INDUSECCHORIZONTAL.png" alt="Logo INDUSECC" />
+  <div class="ind-header-wrapper">
+    <div class="ind-top-bar">
+      <div class="ind-top-info">
+        <div class="ind-top-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>55 4015 2551</span>
         </div>
-      </a>
-      <nav class="navlinks" aria-label="Navegación del curso">
-        <a href="#beneficios">Beneficios</a>
-        <a href="#temario">Temario</a>
-        <a href="#detalles">Detalles</a>
-        <a href="#inscripcion">Inscripción</a>
-        <a href="#faqs">FAQs</a>
-      </nav>
-      <a class="btn-primary" href="#inscripcion"><svg class="icon-inline" viewBox="0 0 24 24"><use href="#icon-arrow"></use></svg>Inscribirme</a>
+        <div class="ind-top-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          <span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
+        </div>
+        <div class="ind-top-item">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          <span>56 1604 4547</span>
+        </div>
+      </div>
+      <div class="ind-top-item" style="opacity:.65;">INDUSECC</div>
     </div>
-  </header>
+    <header class="ind-main-header">
+      <div class="ind-container">
+        <div class="ind-logo-group">
+          <a class="ind-logo-wrap" href="/"><img class="ind-logo-img" src="/Imagenes/logo.png" alt="Logo INDUSECC"/></a>
+          <div class="ind-logo-sep"></div>
+          <div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
+        </div>
+        <nav class="ind-nav" aria-label="Navegaci&oacute;n principal">
+          <div class="ind-menu-item"><a class="ind-link" href="/">Inicio</a></div>
+          <div class="ind-menu-item"><a class="ind-link" href="/nosotros">&iquest;Qui&eacute;nes Somos?</a></div>
+          <div class="ind-menu-item">
+            <a class="ind-link" href="/servicios">Servicios
+              <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" viewBox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
+            </a>
+            <div class="ind-dropdown">
+              <a class="ind-drop-link" href="/implementacion-sistema">Implementaci&oacute;n de un Sistema de Gesti&oacute;n</a>
+              <a class="ind-drop-link" href="/certificacion-iso">Certificaci&oacute;n de Normas ISO</a>
+              <a class="ind-drop-link" href="/consultoria-asesoria">Consultor&iacute;a y Asesor&iacute;a ISO</a>
+              <a class="ind-drop-link" href="/auditorias">Auditor&iacute;as</a>
+            </div>
+          </div>
+          <div class="ind-menu-item"><a class="ind-link" href="/blog">Blog</a></div>
+          <div class="ind-menu-item"><a class="ind-link" href="/contacto">Contacto</a></div>
+        </nav>
+        <div class="ind-actions">
+          <button class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
+          </button>
+          <div class="a11y-panel" id="a11yPanel">
+            <h3>Accesibilidad</h3>
+            <div class="a11y-row">
+              <span>Tama&ntilde;o de texto</span>
+              <div class="a11y-controls">
+                <button class="a11y-btn" id="fontDown">A-</button>
+                <button class="a11y-btn" id="fontUp">A+</button>
+              </div>
+            </div>
+            <div class="a11y-row">
+              <span>Alto contraste</span>
+              <div class="a11y-controls"><button class="a11y-btn" id="contrastToggle">On</button></div>
+            </div>
+            <button class="a11y-reset" id="a11yReset">&#8634; Restablecer</button>
+          </div>
+          <a class="ind-btn-cta" href="#inscripcion">Inscribirme</a>
+        </div>
+      </div>
+    </header>
+  </div>
 
   <section class="hero" id="hero">
     <div class="shell hero-grid">
@@ -2633,30 +2784,52 @@
     </section>
   </main>
 
-  <footer id="siteFooter">
-    <div class="shell">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-title">INDUSECC</div>
-          <p class="footer-text">Capacitación enfocada en auditoría interna, interpretación práctica de ISO 9001:2015 y formación aplicable al entorno profesional.</p>
+  <footer class="ind-footer-wrap" id="siteFooter">
+    <div class="ind-f-top-accent"></div>
+    <div class="ind-f-main">
+      <div class="ind-f-grid">
+        <div class="ind-f-brand">
+          <div class="ind-f-logo-container"><img class="ind-f-logo-img" src="/Imagenes/logo.png" alt="INDUSECC"/></div>
+          <p class="ind-f-slogan">Soluciones ISO para la mejora continua y el cumplimiento empresarial.</p>
+          <div class="ind-f-contact-strip">
+            <a class="ind-f-contact-link" href="tel:5540152551"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>55 4015 2551</a>
+            <a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>danna@indusecc.com.mx</a>
+          </div>
         </div>
         <div>
-          <div class="footer-title">Contacto</div>
-          <a class="footer-link" href="mailto:contacto@indusecc.com.mx"><svg class="footer-glyph" viewBox="0 0 24 24"><use href="#icon-mail"></use></svg>contacto@indusecc.com.mx</a><br />
-          <a class="footer-link" href="https://wa.me/5215616044547" target="_blank" rel="noreferrer"><i class="fa-brands fa-whatsapp footer-glyph" aria-hidden="true"></i>WhatsApp: +52 1 56 1604 4547</a>
+          <h4 class="ind-f-title">Navegaci&oacute;n</h4>
+          <ul class="ind-f-list">
+            <li><a class="ind-f-item-link" href="/">Inicio</a></li>
+            <li><a class="ind-f-item-link" href="/servicios">Servicios</a></li>
+            <li><a class="ind-f-item-link" href="/nosotros">&iquest;Qui&eacute;nes Somos?</a></li>
+            <li><a class="ind-f-item-link" href="/blog">Blog</a></li>
+          </ul>
         </div>
         <div>
-          <div class="footer-title">Atención</div>
-          <div class="footer-text">Inscripción individual</div>
-          <div class="footer-text">Registro empresarial</div>
-          <div class="footer-text">Seguimiento por WhatsApp</div>
-          <div class="footer-text">Facturación disponible</div>
+          <h4 class="ind-f-title">Servicios</h4>
+          <ul class="ind-f-list">
+            <li><a class="ind-f-item-link" href="/consultoria-asesoria">Consultor&iacute;a ISO</a></li>
+            <li><a class="ind-f-item-link" href="/implementacion-sistema">Implementaci&oacute;n</a></li>
+            <li><a class="ind-f-item-link" href="/certificacion-iso">Certificaci&oacute;n ISO</a></li>
+            <li><a class="ind-f-item-link" href="/auditorias">Auditor&iacute;as</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="ind-f-title">Contacto</h4>
+          <ul class="ind-f-list">
+            <li><a class="ind-f-item-link" href="/contacto">Cont&aacute;ctanos</a></li>
+            <li><a class="ind-f-item-link" href="https://wa.me/5215616044547" target="_blank" rel="noreferrer">WhatsApp</a></li>
+          </ul>
+          <div class="ind-f-social-wrap">
+            <a class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn" aria-label="Instagram" target="_blank" rel="noreferrer"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+            <a class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/" aria-label="Facebook" target="_blank" rel="noreferrer"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" width="20" height="20"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+          </div>
         </div>
       </div>
-      <div class="footer-bottom">
-        <span>© 2026 INDUSECC. Curso Auditor Interno ISO 9001:2015.</span>
-        <span>Atención directa por WhatsApp: +52 1 56 1604 4547</span>
-      </div>
+    </div>
+    <div class="ind-f-bottom">
+      <div class="ind-f-copy">&copy; 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
+      <div class="ind-f-office">Excelencia en gesti&oacute;n industrial y normativa</div>
     </div>
   </footer>
 
