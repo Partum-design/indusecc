@@ -80,7 +80,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 .ind-container{max-width:1400px;margin:0 auto;padding:0 60px;height:80px;display:flex;align-items:center;justify-content:space-between;}
 .ind-logo-group{display:flex;align-items:center;gap:20px;}
 .ind-logo-wrap{text-decoration:none;display:flex;align-items:center;}
-.ind-logo-img{max-height:48px;width:auto;display:block;}
+.ind-logo-img{max-height: 64px;width:auto;display:block;}
 .ind-logo-sep{width:1px;height:30px;background:rgba(201,168,76,.2);}
 .ind-header-tagline{font-family:'Playfair Display',serif;color:#A89880;font-size:15px;font-style:italic;max-width:200px;line-height:1.3;}
 .ind-nav{display:flex;align-items:center;gap:30px;height:100%;}
@@ -155,7 +155,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
   .ind-nav,.ind-actions,.ind-top-bar,.ind-logo-sep,.ind-header-tagline{display:none;}
   .ind-bottom-nav{display:block;}
   .ind-container{height:70px;justify-content:center;}
-  .ind-logo-img{max-height:42px;}
+  .ind-logo-img{max-height: 54px;}
 }
 
 /* ══ SECTION HELPERS ══ */
@@ -734,7 +734,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 .ind-f-main{max-width:1300px;margin:0 auto;padding:80px 60px 40px;position:relative;z-index:1;}
 .ind-f-grid{display:grid;grid-template-columns:1.4fr .8fr .8fr 1fr;gap:50px;margin-bottom:60px;}
 .ind-f-brand{display:flex;flex-direction:column;gap:25px;}
-.ind-f-logo-container{position:relative;display:inline-block;max-width:200px;overflow:hidden;}
+.ind-f-logo-container{position:relative;display:inline-block;max-width: 240px;overflow:hidden;}
 .ind-f-logo-container::after{content:'';position:absolute;top:0;left:-150%;width:50%;height:100%;background:linear-gradient(to right,rgba(255,255,255,0) 0%,rgba(255,255,255,.4) 50%,rgba(255,255,255,0) 100%);transform:skewX(-25deg);animation:shine-logo 4s infinite;}
 .ind-f-logo-img{max-width:100%;height:auto;display:block;}
 .ind-f-slogan{font-family:'Playfair Display',serif;font-size:18px;font-style:italic;font-weight:400;color:var(--gold-light);line-height:1.3;max-width:280px;letter-spacing:.5px;}
@@ -811,6 +811,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 </style>
 </head>
 <body>
+<div id="ind-preloader"><div class="ind-pre-inner"><img src="/Imagenes/logo.png" alt="INDUSECC" class="ind-pre-logo"/><div class="ind-pre-bar"><div class="ind-pre-fill"></div></div><p class="ind-pre-txt">INDUSECC</p></div></div><style>#ind-preloader{position:fixed;inset:0;z-index:99999;background:#0A0A0A;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}#ind-preloader.pre-out{opacity:0;visibility:hidden;pointer-events:none}.ind-pre-inner{display:flex;flex-direction:column;align-items:center;gap:28px}.ind-pre-logo{max-width:180px;height:auto;animation:preLogoPulse 1.8s ease-in-out infinite}.ind-pre-bar{width:180px;height:2px;background:rgba(201,168,76,.12);overflow:hidden}.ind-pre-fill{height:100%;width:0;background:linear-gradient(to right,#8B6914,#C9A84C,#E8C97A,#C9A84C);animation:preFill 1.4s cubic-bezier(.4,0,.2,1) forwards}.ind-pre-txt{font-family:"Outfit",sans-serif;font-size:9px;font-weight:700;letter-spacing:.45em;text-transform:uppercase;color:rgba(201,168,76,.45)}@keyframes preLogoPulse{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}@keyframes preFill{0%{width:0}100%{width:100%}}</style><script>!function(){function r(){var e=document.getElementById("ind-preloader");e&&(e.classList.add("pre-out"),setTimeout(function(){e&&e.parentNode&&e.parentNode.removeChild(e)},650))}document.readyState==="complete"?setTimeout(r,300):window.addEventListener("load",function(){setTimeout(r,300)})}();</script>
 <!-- ══ NAVBAR ══ -->
 <div class="ind-header-wrapper" id="navbar">
 <div class="ind-top-bar">
@@ -845,7 +846,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 <div class="ind-container">
 <div class="ind-logo-group">
 <a class="ind-logo-wrap" href="/">
-<img alt="Logo INDUSECC" class="ind-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+<img alt="Logo INDUSECC" class="ind-logo-img" src="/Imagenes/logo.png"/>
 </a>
 <div class="ind-logo-sep"></div>
 <div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
@@ -1533,7 +1534,7 @@ body{font-family:'Outfit',sans-serif;background:var(--cream);color:var(--text);o
 <div class="ind-f-grid reveal">
 <div class="ind-f-brand">
 <div class="ind-f-logo-container">
-<img alt="INDUSECC" class="ind-f-logo-img" src="https://indusecc.store/wp-content/uploads/2026/02/logo-indusecc-300x117-1.png"/>
+<img alt="INDUSECC" class="ind-f-logo-img" src="/Imagenes/logo.png"/>
 </div>
 <p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
 <div class="ind-f-contact-strip">
