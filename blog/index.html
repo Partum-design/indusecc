@@ -765,25 +765,26 @@ body.a11y-reading .hub-grid {
   color: var(--gold-light);
   border-color: var(--wine);
 }
-.hub-topic-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.hub-topic-row { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 14px; }
 .hub-topic {
   border: 1px solid rgba(123,30,34,.22);
   background: #fff;
+  border-radius: 999px;
   color: var(--wine);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .13em;
   text-transform: uppercase;
-  padding: 9px 11px;
+  padding: 10px 16px;
   cursor: pointer;
-  transition: background .22s ease, color .22s ease, transform .22s ease, box-shadow .22s ease;
+  transition: background .22s ease, color .22s ease, transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
 .hub-topic:hover {
   background: rgba(123,30,34,.9);
   color: var(--gold-light);
   border-color: var(--wine);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(123,30,34,.2);
+  box-shadow: 0 6px 16px rgba(123,30,34,.22);
 }
 .hub-topic.active {
   background: linear-gradient(135deg, var(--wine-dark), var(--wine));
@@ -869,7 +870,7 @@ body.a11y-reading .hub-grid {
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 24px;
+  gap: 28px;
 }
 .hub-grid.is-list { grid-template-columns: 1fr; }
 .hub-grid.is-list .hub-card {
@@ -885,7 +886,7 @@ body.a11y-reading .hub-grid {
   border: 1px solid var(--line);
   background: var(--paper);
   overflow: hidden;
-  border-radius: 4px;
+  border-radius: 18px;
   transition:
     transform .38s cubic-bezier(.22,1,.36,1),
     box-shadow .38s ease,
@@ -912,7 +913,12 @@ body.a11y-reading .hub-grid {
     0 0 0 1px rgba(123,30,34,.15);
   border-color: rgba(123,30,34,.25);
 }
-.hub-card--featured { grid-column: span 8; }
+.hub-card--featured {
+  grid-column: span 12;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  align-items: stretch;
+}
 .hub-card--next { grid-column: span 4; }
 
 .hub-media {
@@ -920,6 +926,7 @@ body.a11y-reading .hub-grid {
   height: 300px;
   overflow: hidden;
 }
+.hub-card--featured .hub-media { height: 100%; min-height: 380px; }
 .hub-card--next .hub-media { height: 232px; }
 
 /* image zoom + color shift on hover */
@@ -950,30 +957,57 @@ body.a11y-reading .hub-grid {
   position: absolute;
   top: 16px;
   left: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
   background: rgba(10,3,4,.86);
   border: 1px solid rgba(201,168,76,.55);
+  border-radius: 999px;
   color: var(--gold-light);
-  padding: 8px 14px;
+  padding: 8px 16px 8px 12px;
   font-size: 9px;
   font-weight: 700;
-  letter-spacing: .2em;
+  letter-spacing: .18em;
   text-transform: uppercase;
   backdrop-filter: blur(6px);
   z-index: 2;
-  transition: background .25s ease, border-color .25s ease;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.hub-tag::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  flex: none;
 }
 .hub-card:hover .hub-tag {
   background: rgba(123,30,34,.92);
   border-color: rgba(201,168,76,.8);
+  transform: translateY(-2px);
+}
+.hub-tag.is-soon {
+  background: rgba(255,255,255,.92);
+  border-color: rgba(123,30,34,.22);
+  color: var(--wine);
+}
+.hub-tag.is-soon::before { background: var(--wine); }
+.hub-card:hover .hub-tag.is-soon {
+  background: #fff;
+  border-color: rgba(123,30,34,.4);
 }
 
 .hub-body {
   padding: 30px 28px 28px;
   display: grid;
   gap: 16px;
+  align-content: center;
   position: relative;
   z-index: 2;
 }
+.hub-card--featured .hub-body { padding: 40px 44px; gap: 18px; }
+.hub-card--featured .hub-title { font-size: clamp(1.9rem, 3.1vw, 2.7rem); }
+.hub-card--featured .hub-desc { font-size: 16px; }
 .hub-meta { color: var(--wine); font-size: 10px; letter-spacing: .18em; text-transform: uppercase; font-weight: 700; }
 .hub-title {
   font-family: 'Playfair Display', serif;
@@ -1079,6 +1113,9 @@ body.a11y-reduced-motion .reveal {
   .hub-tools { grid-template-columns: 1fr; }
   .hub-card--featured,
   .hub-card--next { grid-column: span 12; }
+  .hub-card--featured { grid-template-columns: 1fr; }
+  .hub-card--featured .hub-media { min-height: 260px; }
+  .hub-card--featured .hub-body { padding: 30px 28px 28px; }
   .hub-grid.is-list .hub-card { grid-template-columns: 1fr; }
   .hub-grid.is-list .hub-media,
   .hub-grid.is-list .hub-card--next .hub-media { min-height: 220px; }
@@ -1114,6 +1151,9 @@ body.a11y-reduced-motion .reveal {
   .hub-search-wrap { grid-template-columns: 1fr; }
   .hub-search-clear { height: 42px; }
   .hub-mode-row { align-items: flex-start; flex-direction: column; }
+  .hub-topic-row { justify-content: center; }
+  .hub-card--featured .hub-body { padding: 26px 22px 24px; }
+  .hub-card--featured .hub-title { font-size: clamp(1.55rem, 6vw, 2.1rem); }
   .ind-f-main { padding: 56px 20px 24px; }
   .ind-f-grid { grid-template-columns: 1fr; gap: 28px; text-align: center; }
   .ind-f-contact-strip { align-items: center; }
@@ -1324,7 +1364,7 @@ body.a11y-reduced-motion .reveal {
     <article class="hub-card hub-card--next" data-blog-card data-title="Integraci&oacute;n ISO 9001 + ISO 14001 en sistemas de gesti&oacute;n" data-link="/contacto" data-available="false" data-status="Pr&oacute;ximamente" data-search="ISO 9001 ISO 14001 integraci&oacute;n sistemas de gesti&oacute;n auditor&iacute;as internas revisi&oacute;n directiva">
       <div class="hub-media">
         <img src="/img_blogs/medium-shot-engineers-discussing-environmental-plan.jpg.jpeg" alt="Pr&oacute;ximo art&iacute;culo ISO"/>
-        <span class="hub-tag">Pr&oacute;ximamente</span>
+        <span class="hub-tag is-soon">Pr&oacute;ximamente</span>
       </div>
       <div class="hub-body">
         <span class="hub-meta">Pr&oacute;xima publicaci&oacute;n</span>
@@ -1337,7 +1377,7 @@ body.a11y-reduced-motion .reveal {
     <article class="hub-card hub-card--next" data-blog-card data-title="Control ambiental de proveedores y evidencia auditada" data-link="/contacto" data-available="false" data-status="Pr&oacute;ximamente" data-search="control ambiental proveedores cadena de suministro evidencia auditada cl&aacute;usula 8.1 criterios medibles seguimiento">
       <div class="hub-media">
         <img src="/img_blogs/bulb-is-located-inside-with-leaves-forest-trees-are-light-concepts-environmental-conservation-global-warming-plant-growing-inside-lamp-bulb-dry.jpg.jpeg" alt="Pr&oacute;ximo art&iacute;culo sobre cadena de suministro"/>
-        <span class="hub-tag">Pr&oacute;ximamente</span>
+        <span class="hub-tag is-soon">Pr&oacute;ximamente</span>
       </div>
       <div class="hub-body">
         <span class="hub-meta">Pr&oacute;xima publicaci&oacute;n</span>
