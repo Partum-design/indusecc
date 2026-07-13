@@ -84,6 +84,11 @@ ASSETS: list[BlogAsset] = [
     BlogAsset("anticorrupcion-iso-37001", "impacto-legal-lgra-mexico", "Anticorrupcion ISO 37001", "Impacto legal en Mexico", "LGRA, conflictos de interes y contrataciones", "LGRA", "#4C6FFF", "#C9A84C", "scale", "documents", 703),
     BlogAsset("anticorrupcion-iso-37001", "plan-transicion-costos", "Anticorrupcion ISO 37001", "Plan de transicion", "Costos, riesgos y cronograma 2026-2027", "Roadmap", "#B08968", "#E8C97A", "checklist", "roadmap", 704),
     BlogAsset("anticorrupcion-iso-37001", "cultura-antisoborno-conflicto-interes", "Anticorrupcion ISO 37001", "Cultura antisoborno", "Liderazgo, conflicto de interes y funcion antisoborno", "Clausula 5", "#246A73", "#E8C97A", "people", "orbits", 705),
+    BlogAsset("anticorrupcion-iso-37001", "funcion-antisoborno-independencia", "Anticorrupcion ISO 37001", "Funcion antisoborno", "Rol, independencia y recursos", "Clausula 5.1.2", "#5A5FBF", "#C9A84C", "shield", "control", 706),
+    BlogAsset("anticorrupcion-iso-37001", "terceros-due-diligence-37001", "Anticorrupcion ISO 37001", "Terceros y socios", "Due diligence bajo ISO 37001:2025", "Clausula 8.2", "#B08968", "#E8C97A", "truck", "supply", 707),
+    BlogAsset("anticorrupcion-iso-37001", "auditoria-revision-direccion-37001", "Anticorrupcion ISO 37001", "Auditoria y revision", "Lo que exige la version 2025", "Clausula 9", "#8F2D56", "#C9A84C", "documents", "audit", 708),
+    BlogAsset("anticorrupcion-iso-37001", "preguntas-frecuentes-transicion-37001", "Anticorrupcion ISO 37001", "Preguntas frecuentes", "Dudas comunes sobre la transicion", "FAQ", "#00897B", "#E8C97A", "magnify", "grid", 709),
+    BlogAsset("anticorrupcion-iso-37001", "como-elegir-certificador-37001", "Anticorrupcion ISO 37001", "Elegir certificador", "Que revisar antes de contratar", "Guia practica", "#4C6FFF", "#C9A84C", "checklist", "roadmap", 710),
 ]
 
 

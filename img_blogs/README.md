@@ -58,5 +58,10 @@ Pack de imágenes originales para futuros artículos del blog. Fueron generadas 
 - `img_blogs/anticorrupcion-iso-37001/impacto-legal-lgra-mexico.webp` — Impacto legal en Mexico: LGRA, conflictos de interes y contrataciones.
 - `img_blogs/anticorrupcion-iso-37001/plan-transicion-costos.webp` — Plan de transicion: Costos, riesgos y cronograma 2026-2027.
 - `img_blogs/anticorrupcion-iso-37001/cultura-antisoborno-conflicto-interes.webp` — Cultura antisoborno: Liderazgo, conflicto de interes y funcion antisoborno.
+- `img_blogs/anticorrupcion-iso-37001/funcion-antisoborno-independencia.webp` — Funcion antisoborno: Rol, independencia y recursos.
+- `img_blogs/anticorrupcion-iso-37001/terceros-due-diligence-37001.webp` — Terceros y socios: Due diligence bajo ISO 37001:2025.
+- `img_blogs/anticorrupcion-iso-37001/auditoria-revision-direccion-37001.webp` — Auditoria y revision: Lo que exige la version 2025.
+- `img_blogs/anticorrupcion-iso-37001/preguntas-frecuentes-transicion-37001.webp` — Preguntas frecuentes: Dudas comunes sobre la transicion.
+- `img_blogs/anticorrupcion-iso-37001/como-elegir-certificador-37001.webp` — Elegir certificador: Que revisar antes de contratar.
 
 Nota: las fotos antiguas que ya estaban en `img_blogs/` se conservaron sin cambios.
