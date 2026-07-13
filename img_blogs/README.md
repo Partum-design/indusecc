@@ -51,5 +51,12 @@ Pack de imágenes originales para futuros artículos del blog. Fueron generadas 
 - `img_blogs/sistemas-integrados-energia/objetivos-metas-programas.webp` — Objetivos y metas: Programas medibles de cumplimiento.
 - `img_blogs/sistemas-integrados-energia/cadena-suministro-sostenible.webp` — Cadena sostenible: Riesgo, desempeno y proveedores.
 - `img_blogs/sistemas-integrados-energia/capacitacion-auditores-internos.webp` — Auditores internos: Formacion practica para equipos ISO.
+### Anticorrupcion ISO 37001
+
+- `img_blogs/anticorrupcion-iso-37001/iso-37001-2025-actualizacion.webp` — ISO 37001:2025: Actualizacion y calendario de transicion.
+- `img_blogs/anticorrupcion-iso-37001/diferencias-clausulas-2016-2025.webp` — 2016 vs 2025: Diferencias clave por clausula.
+- `img_blogs/anticorrupcion-iso-37001/impacto-legal-lgra-mexico.webp` — Impacto legal en Mexico: LGRA, conflictos de interes y contrataciones.
+- `img_blogs/anticorrupcion-iso-37001/plan-transicion-costos.webp` — Plan de transicion: Costos, riesgos y cronograma 2026-2027.
+- `img_blogs/anticorrupcion-iso-37001/cultura-antisoborno-conflicto-interes.webp` — Cultura antisoborno: Liderazgo, conflicto de interes y funcion antisoborno.
 
 Nota: las fotos antiguas que ya estaban en `img_blogs/` se conservaron sin cambios.

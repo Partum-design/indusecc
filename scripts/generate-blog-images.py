@@ -79,6 +79,11 @@ ASSETS: list[BlogAsset] = [
     BlogAsset("sistemas-integrados-energia", "objetivos-metas-programas", "Sistemas integrados", "Objetivos y metas", "Programas medibles de cumplimiento", "OKR", "#118C8B", "#E8C97A", "target", "roadmap", 603),
     BlogAsset("sistemas-integrados-energia", "cadena-suministro-sostenible", "Sistemas integrados", "Cadena sostenible", "Riesgo, desempeno y proveedores", "Suministro", "#5E8C61", "#C9A84C", "truck", "supply", 604),
     BlogAsset("sistemas-integrados-energia", "capacitacion-auditores-internos", "Sistemas integrados", "Auditores internos", "Formacion practica para equipos ISO", "Capacitacion", "#4D908E", "#E8C97A", "people", "orbits", 605),
+    BlogAsset("anticorrupcion-iso-37001", "iso-37001-2025-actualizacion", "Anticorrupcion ISO 37001", "ISO 37001:2025", "Actualizacion y calendario de transicion", "IAF MD 30:2025", "#7B1E22", "#C9A84C", "shield", "roadmap", 701),
+    BlogAsset("anticorrupcion-iso-37001", "diferencias-clausulas-2016-2025", "Anticorrupcion ISO 37001", "2016 vs 2025", "Diferencias clave por clausula", "Comparativo", "#8F2D56", "#E8C97A", "documents", "grid", 702),
+    BlogAsset("anticorrupcion-iso-37001", "impacto-legal-lgra-mexico", "Anticorrupcion ISO 37001", "Impacto legal en Mexico", "LGRA, conflictos de interes y contrataciones", "LGRA", "#4C6FFF", "#C9A84C", "scale", "documents", 703),
+    BlogAsset("anticorrupcion-iso-37001", "plan-transicion-costos", "Anticorrupcion ISO 37001", "Plan de transicion", "Costos, riesgos y cronograma 2026-2027", "Roadmap", "#B08968", "#E8C97A", "checklist", "roadmap", 704),
+    BlogAsset("anticorrupcion-iso-37001", "cultura-antisoborno-conflicto-interes", "Anticorrupcion ISO 37001", "Cultura antisoborno", "Liderazgo, conflicto de interes y funcion antisoborno", "Clausula 5", "#246A73", "#E8C97A", "people", "orbits", 705),
 ]
 
 
