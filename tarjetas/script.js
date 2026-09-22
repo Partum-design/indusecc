@@ -41,7 +41,7 @@ function downloadContact() {
     `TITLE:${escapeVCard(person.role)}`,
     `TEL;TYPE=WORK,VOICE:${person.phone}`,
     `EMAIL;TYPE=WORK,INTERNET:${person.email}`,
-    `URL:${window.location.href.split('#')[0]}`,
+    'URL:https://indusecc.com.mx/',
     'END:VCARD'
   ].join('\r\n');
   const url = URL.createObjectURL(new Blob([vcard], { type: 'text/vcard;charset=utf-8' }));
