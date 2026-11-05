@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="theme-color" content="#0D0D12">
+<title>Portal SGC ISO 9001:2015 | Liga TAM & INDUSECC</title>
+<meta name="description" content="Plan Maestro 12 meses para la certificación ISO 9001:2015 de Tochito Atletas Mexicanos (Liga TAM). Propuesta confidencial de INDUSECC.">
+<link rel="icon" type="image/png" href="/Imagenes/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+<style>
+:root{
+  --ink:#0D0D12; --ink-2:#13131A; --ink-3:#1A1A23; --line:rgba(201,168,76,.18); --line-2:rgba(201,168,76,.35);
+  --gold:#C9A84C; --gold-2:#E8C97A; --gold-3:#F4E3B0; --gold-d:#8B6914;
+  --wine:#7B1E22; --wine-d:#3A0A0E; --wine-b:#A3283A;
+  --text:#F5F0E8; --muted:#A89880; --soft:#CFC6B8;
+  --ok:#5FD39A; --warn:#F2B451; --crit:#F0626E;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Outfit',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+  --r:18px; --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{background:var(--ink);color:var(--text);font-family:var(--sans);font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--gold);color:var(--ink)}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+strong{font-weight:600;color:var(--text)}
+.wrap{width:min(1200px,100% - 32px);margin-inline:auto}
+.mono{font-family:var(--mono)}
+.serif{font-family:var(--serif)}
+em.g{font-style:italic;background:linear-gradient(120deg,var(--gold-3),var(--gold-2) 40%,var(--gold) 70%,var(--gold-d));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* grain + glow background */
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.07;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+main,header,footer,section{position:relative;z-index:1}
+
+/* ── TOP BAR ── */
+.bar{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s,backdrop-filter .3s;border-bottom:1px solid transparent}
+.bar.scrolled{background:rgba(13,13,18,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-color:var(--line)}
+.bar-in{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px}
+.bar-logo img{height:38px;width:auto}
+.bar-nav{display:flex;gap:4px;align-items:center}
+.bar-nav a{color:var(--soft);text-decoration:none;font-size:13px;font-weight:400;padding:8px 12px;border-radius:999px;transition:color .2s,background .2s;white-space:nowrap}
+.bar-nav a:hover,.bar-nav a.on{color:var(--ink);background:var(--gold-2)}
+.bar-actions{display:flex;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:13px;font-weight:500;letter-spacing:.02em;transition:transform .2s var(--ease),box-shadow .2s,background .2s,border-color .2s;text-decoration:none}
+.btn i{font-size:16px}
+.btn-gold{background:linear-gradient(135deg,var(--gold-2),var(--gold) 55%,var(--gold-d));color:var(--ink);box-shadow:0 8px 24px -10px rgba(201,168,76,.7)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 30px -10px rgba(201,168,76,.85)}
+.btn-ghost{border:1px solid var(--line-2);color:var(--gold-2)}
+.btn-ghost:hover{background:rgba(201,168,76,.08);border-color:var(--gold)}
+.btn-icon{padding:10px;border-radius:50%}
+@media (max-width:1020px){.bar-nav{display:none}}
+@media (max-width:520px){.bar-logo img{height:30px}.bar-actions .btn-gold span{display:none}.bar-actions .btn-gold{padding:10px}}
+
+/* ── HERO ── */
+.hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 72px;overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;inset:0;z-index:-1;
+  background:
+   radial-gradient(60% 55% at 85% 20%,rgba(123,30,34,.55),transparent 70%),
+   radial-gradient(45% 40% at 10% 90%,rgba(201,168,76,.14),transparent 70%),
+   linear-gradient(180deg,#0D0D12 0%,#110A0D 60%,#0D0D12 100%)}
+.hero-grid{position:absolute;inset:0;z-index:-1;opacity:.35;
+  background-image:linear-gradient(rgba(201,168,76,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.07) 1px,transparent 1px);
+  background-size:64px 64px;mask-image:radial-gradient(ellipse 70% 60% at 60% 40%,#000 30%,transparent 80%)}
+.hero-ring{position:absolute;right:-180px;top:50%;width:760px;height:760px;transform:translateY(-50%);z-index:-1;opacity:.9}
+.hero-ring circle{fill:none}
+.spin{transform-origin:380px 380px;animation:spin 60s linear infinite}
+.spin-r{transform-origin:380px 380px;animation:spin 90s linear infinite reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-in{display:grid;grid-template-columns:1.25fr .95fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold-2);font-weight:500}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.pill-row{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 26px}
+.pill{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;padding:6px 12px;border-radius:999px;border:1px solid var(--line-2);color:var(--soft);background:rgba(255,255,255,.02)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 0 rgba(95,211,154,.6);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(95,211,154,.55)}80%,100%{box-shadow:0 0 0 9px rgba(95,211,154,0)}}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,76px);line-height:1.02;letter-spacing:-.02em}
+.hero h1 em{font-weight:600;white-space:nowrap}
+.hero-sub{font-family:var(--serif);font-style:italic;color:var(--gold-2);font-size:clamp(17px,2vw,22px);margin-top:18px}
+.hero p.lead{max-width:620px;margin-top:22px;font-size:16px;color:var(--soft)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-meta{display:flex;gap:28px;margin-top:44px;padding-top:24px;border-top:1px solid var(--line);flex-wrap:wrap}
+.hero-meta div span{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hero-meta div b{font-family:var(--mono);font-weight:600;font-size:14px;color:var(--text)}
+
+.goals{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.goal{position:relative;padding:24px 22px;border-radius:var(--r);background:linear-gradient(160deg,rgba(26,26,35,.9),rgba(13,13,18,.9));border:1px solid var(--line);overflow:hidden;transition:transform .35s var(--ease),border-color .3s}
+.goal:hover{transform:translateY(-4px);border-color:var(--line-2)}
+.goal::after{content:"";position:absolute;inset:auto -40% -60% auto;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(201,168,76,.18),transparent 70%)}
+.goal small{display:block;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.goal .num{font-family:var(--serif);font-size:clamp(30px,3.2vw,40px);line-height:1.1;margin:10px 0 6px;color:var(--text)}
+.goal .num sub{font-family:var(--sans);font-size:12px;color:var(--gold-2);vertical-align:baseline;margin-left:4px}
+.goal .tag{font-family:var(--mono);font-size:11px}
+.goal.g1 .tag{color:var(--warn)} .goal.g2 .num{color:var(--gold-2)} .goal.g2 .tag{color:var(--soft)}
+.goal.g3 .num{color:var(--ok)} .goal.g3 .tag{color:#A9E9C8} .goal.g4 .tag{color:var(--gold-2)}
+.goal:nth-child(2){transform:translateY(22px)} .goal:nth-child(4){transform:translateY(22px)}
+.goal:nth-child(2):hover,.goal:nth-child(4):hover{transform:translateY(18px)}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+.scroll-cue i{width:1px;height:38px;background:linear-gradient(var(--gold),transparent);animation:cue 2.2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@media (max-width:960px){.hero-in{grid-template-columns:1fr}.hero-ring{opacity:.35;right:-360px}.goal:nth-child(2),.goal:nth-child(4){transform:none}.goal:nth-child(2):hover,.goal:nth-child(4):hover{transform:translateY(-4px)}.scroll-cue{display:none}}
+@media (max-width:420px){.goals{grid-template-columns:1fr}}
+
+/* ── SECTIONS ── */
+section.s{padding:110px 0}
+.s-head{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:end;margin-bottom:52px}
+.s-idx{font-family:var(--serif);font-style:italic;font-size:76px;line-height:.8;color:transparent;-webkit-text-stroke:1px var(--line-2)}
+.s-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4vw,50px);line-height:1.08;letter-spacing:-.015em;margin-top:10px}
+.s-head p{color:var(--muted);margin-top:12px;max-width:640px;font-size:15px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--gold-2);padding:7px 14px;border:1px solid var(--line-2);border-radius:999px;white-space:nowrap;background:rgba(201,168,76,.05)}
+@media (max-width:760px){.s-head{grid-template-columns:1fr;gap:12px}.s-idx{font-size:56px}section.s{padding:80px 0}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--line-2),transparent)}
+
+.card{position:relative;background:linear-gradient(160deg,rgba(26,26,35,.75),rgba(16,16,22,.95));border:1px solid var(--line);border-radius:var(--r);transition:border-color .3s,transform .35s var(--ease),box-shadow .35s}
+.card:hover{border-color:var(--line-2);box-shadow:0 30px 60px -30px rgba(0,0,0,.8),0 0 0 1px rgba(201,168,76,.06)}
+
+/* ── PHASES ── */
+.phvA{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;counter-reset:ph}
+.phase{padding:28px 24px 22px;cursor:pointer;display:flex;flex-direction:column;overflow:hidden;text-align:left}
+.phase:hover{transform:translateY(-6px)}
+.phase::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--pc)}
+.phase .top{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;color:var(--pc)}
+.phase .verb{padding:3px 9px;border-radius:6px;border:1px solid currentColor;font-size:10px;letter-spacing:.14em}
+.phase .big{font-family:var(--serif);font-style:italic;font-size:90px;line-height:.9;color:transparent;-webkit-text-stroke:1px var(--pc);opacity:.5;position:absolute;right:14px;bottom:42px;pointer-events:none;transition:opacity .3s,transform .4s var(--ease)}
+.phase:hover .big{opacity:.9;transform:translateY(-6px)}
+.phase h3{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;margin:18px 0 10px}
+.phase p{font-size:14px;color:var(--soft);flex:1;position:relative}
+.phase .foot{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:14px;border-top:1px solid var(--line);font-size:12px}
+.phase .foot span:first-child{color:var(--muted)}
+.phase .foot span:last-child{color:var(--gold-2);display:flex;align-items:center;gap:6px;font-weight:500}
+.phase:hover .foot i{transform:translateX(4px)} .phase .foot i{transition:transform .25s}
+@media (max-width:1020px){.phvA{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.phvA{grid-template-columns:1fr}}
+
+/* ── KPI ── */
+.kpi-box{padding:34px;margin-top:26px}
+.kpi-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;flex-wrap:wrap;padding-bottom:22px;border-bottom:1px solid var(--line);margin-bottom:26px}
+.kpi-head h3{font-family:var(--serif);font-weight:500;font-size:26px;display:flex;align-items:center;gap:12px}
+.kpi-head h3 i{color:var(--gold-2)}
+.kpi-head p{color:var(--muted);font-size:14px;margin-top:4px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.kpi{padding:4px 0}
+.kpi .lbl{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--gold-3);letter-spacing:.04em}
+.kpi .lbl i{font-size:20px;color:var(--kc)}
+.kpi .val{font-family:var(--serif);font-size:34px;margin:12px 0 4px;color:var(--kc);line-height:1.1}
+.kpi .val small{font-family:var(--sans);font-size:12px;color:var(--muted)}
+.kpi p{font-size:13px;color:var(--soft);min-height:42px}
+.meter{height:6px;border-radius:99px;background:rgba(255,255,255,.06);margin-top:14px;overflow:hidden}
+.meter b{display:block;height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--kc2,var(--kc)),var(--kc));transition:width 1.6s var(--ease)}
+.in .meter b{width:var(--w)}
+@media (max-width:1020px){.kpis{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.kpis{grid-template-columns:1fr}.kpi-box{padding:24px 20px}}
+
+/* ── GANTT ── */
+.gantt{padding:28px;margin-bottom:28px;overflow-x:auto}
+.g-grid{min-width:720px;display:grid;grid-template-columns:repeat(12,1fr);gap:6px}
+.g-month{text-align:center;font-family:var(--mono);font-size:11px;color:var(--muted);padding-bottom:10px;border-bottom:1px dashed var(--line)}
+.g-bar{grid-row:2;margin-top:14px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;font-size:12px;font-weight:500;color:var(--ink);cursor:pointer;transition:transform .25s var(--ease),filter .25s,opacity .3s;position:relative;overflow:hidden}
+.g-bar::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s}
+.g-bar:hover::after{transform:translateX(120%)}
+.g-bar:hover{transform:translateY(-3px)}
+.g-bar span.v{font-family:var(--mono);font-size:10px;letter-spacing:.12em;opacity:.75}
+.g-bar.dim{opacity:.25;filter:grayscale(.6)}
+.g-dots{grid-row:3;display:flex;justify-content:center;padding-top:12px}
+.g-dots i{width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(201,168,76,.12)}
+.g-dots.star i{width:14px;height:14px;background:var(--gold-2);box-shadow:0 0 0 5px rgba(232,201,122,.2),0 0 22px rgba(232,201,122,.6)}
+
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.f-btn{padding:9px 16px;border-radius:999px;font-size:12px;font-weight:500;border:1px solid var(--line-2);color:var(--soft);transition:all .2s}
+.f-btn:hover{border-color:var(--gold);color:var(--text)}
+.f-btn.on{background:var(--gold-2);color:var(--ink);border-color:var(--gold-2)}
+
+.timeline{position:relative;display:grid;gap:14px;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:11px;top:8px;bottom:8px;width:1px;background:linear-gradient(var(--gold),var(--line) 70%,transparent)}
+.tl{display:grid;grid-template-columns:1fr 300px;gap:24px;padding:24px 26px;align-items:center;animation:rise .55s var(--ease) both}
+.tl::before{content:"";position:absolute;left:-29px;top:34px;width:13px;height:13px;border-radius:50%;background:var(--ink);border:2px solid var(--gold)}
+.tl.final::before{background:var(--gold-2);box-shadow:0 0 18px var(--gold-2)}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.tl-main{display:flex;gap:20px;align-items:flex-start}
+.tl-m{flex:none;width:62px;height:62px;border-radius:16px;background:linear-gradient(145deg,var(--gold-2),var(--gold) 60%,var(--gold-d));color:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 10px 24px -12px rgba(201,168,76,.8)}
+.tl-m small{font-size:9px;font-weight:700;letter-spacing:.14em}
+.tl-m b{font-family:var(--serif);font-size:24px;line-height:1}
+.tl-tags{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:6px}
+.tl-tags .ph-tag{font-family:var(--mono);font-size:10px;padding:3px 10px;border-radius:999px;border:1px solid var(--line-2);color:var(--gold-2);font-weight:600}
+.tl.final .ph-tag{background:var(--wine);border-color:var(--gold);color:var(--gold-3)}
+.tl-tags .cl{font-family:var(--mono);font-size:10px;color:var(--muted)}
+.tl h4{font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.3;margin-bottom:8px}
+.tl p{font-size:14px;color:var(--soft)}
+.tl-del{padding:16px 18px;border-radius:14px;background:rgba(201,168,76,.05);border:1px solid var(--line)}
+.tl-del .h{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;color:var(--gold-2);letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.tl-del p{font-size:13px;color:var(--text);line-height:1.5}
+.tl-del .who{display:flex;justify-content:space-between;gap:10px;margin-top:12px;padding-top:10px;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}
+.tl-del .who b{color:var(--text);font-weight:500;text-align:right}
+@media (max-width:900px){.tl{grid-template-columns:1fr}}
+@media (max-width:560px){.timeline{padding-left:22px}.timeline::before{left:5px}.tl::before{left:-23px}.tl{padding:20px}.tl-main{flex-direction:column;gap:14px}}
+
+/* ── RISKS ── */
+.legend{display:flex;gap:8px;flex-wrap:wrap}
+.lv{font-size:11px;font-weight:500;padding:6px 12px;border-radius:999px;display:inline-flex;align-items:center;gap:6px}
+.lv::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.lv.c{color:var(--crit);background:rgba(240,98,110,.1);border:1px solid rgba(240,98,110,.3)}
+.lv.a{color:var(--warn);background:rgba(242,180,81,.1);border:1px solid rgba(242,180,81,.3)}
+.risks{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.risk{padding:28px;overflow:hidden}
+.risk::before{content:"";position:absolute;left:0;top:24px;bottom:24px;width:3px;border-radius:0 3px 3px 0;background:var(--rc)}
+.risk .rt{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.risk .rt .cl{font-family:var(--mono);font-size:11px;color:var(--gold-3);font-weight:600;letter-spacing:.04em}
+.risk h4{font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.25;margin:14px 0 10px}
+.risk > p{font-size:14px;color:var(--soft)}
+.fix{margin-top:18px;padding:16px 18px;border-radius:14px;background:linear-gradient(135deg,rgba(201,168,76,.09),rgba(201,168,76,.02));border:1px solid var(--line)}
+.fix strong{display:flex;align-items:center;gap:6px;color:var(--gold-2);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px}
+.fix p{font-size:14px;color:var(--text)}
+@media (max-width:860px){.risks{grid-template-columns:1fr}.risk{padding:22px}}
+
+/* ── MACRO ── */
+.flow{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative}
+.stage{padding:28px 24px}
+.stage-h{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.stage-n{width:52px;height:52px;flex:none;border-radius:50%;display:grid;place-items:center;font-family:var(--serif);font-size:24px;font-style:italic;border:1px solid var(--gold);color:var(--gold-2);background:radial-gradient(circle,rgba(201,168,76,.18),transparent 70%)}
+.stage-h small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);font-weight:600}
+.stage-h h4{font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.2}
+.step{padding:16px 0;border-top:1px solid var(--line)}
+.step strong{display:block;font-size:14px;margin-bottom:4px}
+.step p{font-size:13px;color:var(--soft)}
+.flow .arrow{position:absolute;top:52px;width:22px;height:22px;display:grid;place-items:center;color:var(--gold);font-size:18px;z-index:2;background:var(--ink);border-radius:50%}
+.flow .a1{left:calc(33.333% - 11px - 7px)} .flow .a2{left:calc(66.666% - 11px + 7px)}
+@media (max-width:960px){.flow{grid-template-columns:1fr}.flow .arrow{display:none}}
+
+/* ── ROLES ── */
+.roles{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.role{padding:24px 20px}
+.role:hover{transform:translateY(-5px)}
+.role .n{font-family:var(--serif);font-style:italic;font-size:40px;line-height:1;color:var(--gold-2)}
+.role h4{font-size:16px;font-weight:600;margin:16px 0 4px}
+.role .sub{font-family:var(--mono);font-size:10px;color:var(--gold-3);display:block;margin-bottom:12px;opacity:.8}
+.role p{font-size:13px;color:var(--soft);line-height:1.55}
+@media (max-width:1100px){.roles{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.roles{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.roles{grid-template-columns:1fr}}
+
+.stake{margin-top:28px;padding:32px}
+.stake h3{font-family:var(--serif);font-weight:500;font-size:24px;display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.stake h3 i{color:var(--gold-2)}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;min-width:760px}
+th{text-align:left;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);font-weight:500;padding:14px 16px;border-bottom:1px solid var(--line-2)}
+td{padding:18px 16px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--soft)}
+tr{transition:background .2s} tbody tr:hover{background:rgba(201,168,76,.04)}
+td:first-child{color:var(--text);font-weight:600;font-family:var(--serif);font-size:16px}
+td.rk-a{color:#F5C77A} td.rk-c{color:#F59AA2} td.ctl{color:var(--gold-3)}
+@media (max-width:560px){.stake{padding:22px 16px}}
+
+/* ── GPS SIM ── */
+.sim{display:grid;grid-template-columns:1fr 1fr;gap:0;overflow:hidden;padding:0}
+.radar-side{position:relative;min-height:440px;background:radial-gradient(circle at 50% 50%,rgba(123,30,34,.4),transparent 70%),#0A0A0E;display:grid;place-items:center;border-right:1px solid var(--line);overflow:hidden}
+.radar{position:relative;width:min(340px,80%);aspect-ratio:1}
+.radar .ring{position:absolute;inset:0;border-radius:50%;border:1px solid rgba(201,168,76,.25)}
+.radar .ring:nth-child(2){inset:16%} .radar .ring:nth-child(3){inset:32%}
+.radar .fence{position:absolute;inset:22%;border-radius:50%;border:1px dashed var(--ok);background:rgba(95,211,154,.06)}
+.radar .sweep{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,rgba(201,168,76,.45),transparent 22%);animation:spin 3.2s linear infinite}
+.radar .cross::before,.radar .cross::after{content:"";position:absolute;background:rgba(201,168,76,.18)}
+.radar .cross::before{left:50%;top:0;bottom:0;width:1px}.radar .cross::after{top:50%;left:0;right:0;height:1px}
+.radar .field{position:absolute;left:50%;top:50%;width:18px;height:18px;margin:-9px 0 0 -9px;color:var(--gold-2);font-size:18px;display:grid;place-items:center}
+.radar .me{position:absolute;left:61%;top:38%;width:14px;height:14px;margin:-7px;border-radius:50%;background:var(--gold-2);box-shadow:0 0 0 0 rgba(232,201,122,.7);animation:ping 1.6s infinite;transition:background .3s}
+.radar.ok .me{background:var(--ok)}
+.radar-cap{position:absolute;left:20px;bottom:18px;right:20px;display:flex;justify-content:space-between;font-family:var(--mono);font-size:10px;color:var(--muted)}
+.form-side{padding:36px}
+.form-side h3{font-family:var(--serif);font-weight:500;font-size:28px;line-height:1.15}
+.form-side .k{font-family:var(--mono);font-size:11px;color:var(--gold-2);display:block;margin:6px 0 24px}
+label.f{display:block;font-size:12px;color:var(--gold-3);margin:0 0 6px;letter-spacing:.04em}
+select{width:100%;appearance:none;-webkit-appearance:none;font:inherit;font-size:14px;color:var(--text);background:#0F0F15 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' fill='none' stroke-width='1.5'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid var(--line-2);border-radius:12px;padding:12px 38px 12px 14px;margin-bottom:16px;transition:border-color .2s}
+select:focus{outline:none;border-color:var(--gold)}
+.readout{padding:16px;border-radius:14px;background:#0F0F15;border:1px solid var(--line);font-size:13px;display:grid;gap:8px;margin-bottom:16px}
+.readout .row{display:flex;justify-content:space-between;gap:10px;color:var(--soft)}
+.readout .row b{font-family:var(--mono);font-weight:600;color:var(--gold-2);text-align:right}
+.readout .row b.okc{color:var(--ok)}
+.readout .note{font-size:11px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;line-height:1.5}
+.readout .note i{color:var(--ok)}
+.result{display:none;gap:10px;align-items:flex-start;padding:14px;border-radius:12px;background:rgba(95,211,154,.08);border:1px solid rgba(95,211,154,.35);color:#BDF0D6;font-size:12px;margin-bottom:14px;animation:rise .4s var(--ease)}
+.result.show{display:flex}
+.result i{font-size:20px;color:var(--ok);flex:none}
+.result strong{display:block;color:#fff;font-size:13px}
+.btn-wide{width:100%;justify-content:center;padding:14px 18px;border-radius:14px;font-size:14px}
+.btn-wide:disabled{opacity:.85;cursor:progress;transform:none}
+.spinner{animation:spin 1s linear infinite;display:inline-block}
+@media (max-width:860px){.sim{grid-template-columns:1fr}.radar-side{min-height:320px;border-right:0;border-bottom:1px solid var(--line)}.form-side{padding:24px 20px}}
+
+/* ── CLOSING / FOOTER ── */
+.closing{padding:120px 0;text-align:center;overflow:hidden}
+.closing::before{content:"";position:absolute;inset:0;background:radial-gradient(50% 60% at 50% 50%,rgba(123,30,34,.45),transparent 70%);z-index:-1}
+.closing img{height:56px;width:auto;margin:0 auto 34px}
+.closing h2{font-family:var(--serif);font-weight:500;font-size:clamp(32px,5vw,62px);line-height:1.08;max-width:900px;margin:0 auto}
+.closing p{color:var(--muted);margin:18px auto 0;max-width:560px}
+.closing .hero-cta{justify-content:center}
+footer{border-top:1px solid var(--line);padding:28px 0;font-size:12px;color:var(--muted)}
+.foot-in{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.foot-in b{color:var(--gold-2);font-weight:600}
+.foot-in .mono{font-size:11px;color:var(--gold-3);opacity:.8}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}.meter b{width:var(--w)}}
+
+/* print */
+@media print{
+  body{background:#fff;color:#111}
+  body::before,.bar,.hero-ring,.hero-grid,.scroll-cue,.hero-cta,#simulador,.closing .hero-cta,.filters,.gantt{display:none!important}
+  .hero{min-height:auto;padding:20px 0}
+  .hero-bg{display:none}
+  .card,.goal{background:#fff!important;border-color:#ccc!important;box-shadow:none!important;break-inside:avoid}
+  .rv{opacity:1;transform:none}
+  *{color:#111!important;-webkit-text-fill-color:#111!important}
+  section.s{padding:28px 0}
+  .meter b{width:var(--w)}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="bar" id="bar">
+  <div class="wrap bar-in">
+    <a class="bar-logo" href="#inicio" aria-label="INDUSECC"><img src="/Imagenes/logo.png" alt="INDUSECC"></a>
+    <nav class="bar-nav" aria-label="Secciones">
+      <a href="#tablero">Tablero Ejecutivo</a>
+      <a href="#cronograma">Cronograma</a>
+      <a href="#riesgos">Riesgos & Cláusulas</a>
+      <a href="#macroproceso">Macroproceso</a>
+      <a href="#puestos">Perfiles</a>
+    </nav>
+    <div class="bar-actions">
+      <a class="btn btn-gold" href="#simulador"><i class="ph-bold ph-crosshair"></i><span>Simulador Check-in GPS</span></a>
+      <button class="btn btn-ghost btn-icon" onclick="window.print()" title="Imprimir / Exportar Resumen" aria-label="Imprimir / Exportar Resumen"><i class="ph-bold ph-printer"></i></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <svg class="hero-ring" viewBox="0 0 760 760" aria-hidden="true">
+    <g class="spin"><circle cx="380" cy="380" r="300" stroke="rgba(201,168,76,.28)" stroke-dasharray="2 10"/></g>
+    <g class="spin-r"><circle cx="380" cy="380" r="250" stroke="rgba(201,168,76,.18)" stroke-dasharray="120 30 4 30"/></g>
+    <circle cx="380" cy="380" r="360" stroke="rgba(201,168,76,.08)"/>
+    <circle cx="380" cy="380" r="190" stroke="rgba(123,30,34,.6)" stroke-width="40" stroke-dasharray="4 6"/>
+  </svg>
+  <div class="wrap hero-in">
+    <div>
+      <span class="eyebrow rv">Propuesta confidencial · INDUSECC Consultoría</span>
+      <div class="pill-row rv d1">
+        <span class="pill"><span class="dot"></span>SGC ISO 9001:2015</span>
+        <span class="pill"><i class="ph-bold ph-file-text"></i>Diagnóstico Operativo Consolidado</span>
+        <span class="pill">17 Años de Trayectoria</span>
+      </div>
+      <h1 class="rv d2">Transformación Integral del Modelo Operativo de <em class="g">Liga TAM</em></h1>
+      <div class="hero-sub rv d2">Plan Maestro 12 Meses · Tochito Atletas Mexicanos</div>
+      <p class="lead rv d3">De un esquema empírico vulnerable a un <strong>Sistema de Gestión de la Calidad (ISO 9001:2015)</strong> blindado institucionalmente. Erradicación de informalidad inmobiliaria en 6 de 7 sedes, control automatizado de asistencia vía GPS, supresión de excepciones de cartera vencida y profesionalización de ~100 colaboradores por jornada.</p>
+      <div class="hero-cta rv d4">
+        <a class="btn btn-gold" href="#cronograma"><i class="ph-bold ph-calendar-check"></i>Ver Cronograma Mes a Mes</a>
+        <a class="btn btn-ghost" href="#riesgos"><i class="ph-bold ph-warning-octagon"></i>Matriz de Riesgos</a>
+      </div>
+      <div class="hero-meta rv d4">
+        <div><span>Horizonte</span><b>12 Meses • 4 Fases</b></div>
+        <div><span>Ciclo</span><b>PHVA</b></div>
+        <div><span>Cobertura</span><b>100%</b></div>
+      </div>
+    </div>
+    <div class="goals">
+      <div class="goal g1 rv d1"><small>Sedes por Regularizar</small><div class="num"><span data-count="6">0</span><sub>/ 7 canchas</sub></div><div class="tag">Meta: Contrato Mes 3</div></div>
+      <div class="goal g2 rv d2"><small>Fuerza Laboral</small><div class="num">~<span data-count="100">0</span></div><div class="tag">5 Perfiles Formalizados</div></div>
+      <div class="goal g3 rv d3"><small>Check-in Staff</small><div class="num">GPS Móvil</div><div class="tag">Sustituye Reloj Físico</div></div>
+      <div class="goal g4 rv d4"><small>Objetivo ISO</small><div class="num">Mes <span data-count="12">0</span></div><div class="tag">Certificación Acreditada</div></div>
+    </div>
+  </div>
+  <div class="scroll-cue"><i></i>Explorar</div>
+</section>
+
+<!-- 01 TABLERO -->
+<section class="s" id="tablero">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">01</div>
+      <div>
+        <span class="eyebrow">Tablero Ejecutivo</span>
+        <h2>Arquitectura en <em class="g">4 Fases</em> de Implementación</h2>
+        <p>Haz clic en cada fase para filtrar los entregables correspondientes.</p>
+      </div>
+      <span class="chip"><i class="ph-bold ph-arrows-clockwise"></i>Ciclo PHVA</span>
+    </div>
+
+    <div class="phvA">
+      <button class="card phase rv d1" style="--pc:#E8C97A" onclick="goPhase(1)">
+        <div class="top"><span>MES 1 - 3</span><span class="verb">PLANEAR</span></div>
+        <span class="big">P</span>
+        <h3>Fase 1: Cimentación y Blindaje</h3>
+        <p>Formalización de contratos en 6 sedes, redacción de Política de Calidad, Perfiles para las 5 posiciones y waivers obligatorios para menores de edad.</p>
+        <div class="foot"><span>Entregables: 4 clave</span><span>Ver fase <i class="ph ph-arrow-right"></i></span></div>
+      </button>
+      <button class="card phase rv d2" style="--pc:#C9A84C" onclick="goPhase(2)">
+        <div class="top"><span>MES 4 - 6</span><span class="verb">HACER</span></div>
+        <span class="big">H</span>
+        <h3>Fase 2: Digitalización & Controles</h3>
+        <p>Check-in móvil por geocercas GPS/QR, reingeniería web (adiós límite de 300KB y saldos en vivo) y publicación de la Cartilla IFAF 2023 unificada.</p>
+        <div class="foot"><span>Entregables: 3 sistemas</span><span>Ver fase <i class="ph ph-arrow-right"></i></span></div>
+      </button>
+      <button class="card phase rv d3" style="--pc:#F4E3B0" onclick="goPhase(3)">
+        <div class="top"><span>MES 7 - 9</span><span class="verb">VERIFICAR</span></div>
+        <span class="big">V</span>
+        <h3>Fase 3: Despliegue & Auditoría</h3>
+        <p>Capacitación de 100 colaboradores, Cédula Digital de Juego, mesa de soporte CRM para quejas en &lt;48 horas y 1ª Auditoría Interna INDUSECC.</p>
+        <div class="foot"><span>Entregables: 4 operativos</span><span>Ver fase <i class="ph ph-arrow-right"></i></span></div>
+      </button>
+      <button class="card phase rv d4" style="--pc:#F2B451" onclick="goPhase(4)">
+        <div class="top"><span>MES 10 - 12</span><span class="verb">ACTUAR</span></div>
+        <span class="big">A</span>
+        <h3>Fase 4: Certificación Formal</h3>
+        <p>Revisión por la Dirección General, contratación de casa acreditadora, Auditoría Etapa 1 (Documental) y Etapa 2 (en canchas) para emitir el certificado.</p>
+        <div class="foot"><span>Hito: Certificado Oficial</span><span>Ver fase <i class="ph ph-arrow-right"></i></span></div>
+      </button>
+    </div>
+
+    <div class="card kpi-box rv">
+      <div class="kpi-head">
+        <div>
+          <h3><i class="ph-bold ph-chart-line-up"></i>Tablero de Objetivos de Calidad y KPIs de Control</h3>
+          <p>Métricas comprometidas para aprobación en Auditoría Externa (Cláusula 9.1 ISO 9001:2015).</p>
+        </div>
+        <span class="chip">Actualización Mensual</span>
+      </div>
+      <div class="kpis">
+        <div class="kpi" style="--kc:#F5F0E8;--kc2:#C9A84C">
+          <div class="lbl"><span>Blindaje Inmobiliario</span><i class="ph-bold ph-buildings" style="color:var(--gold-2)"></i></div>
+          <div class="val">100% <small>(7 Sedes)</small></div>
+          <p>Cero canchas operando bajo acuerdos verbales o informales.</p>
+          <div class="meter"><b style="--w:100%;background:var(--gold)"></b></div>
+        </div>
+        <div class="kpi" style="--kc:#E8C97A">
+          <div class="lbl"><span>Puntualidad Oficiales GPS</span><i class="ph-bold ph-clock-countdown"></i></div>
+          <div class="val">&ge; 98.0%</div>
+          <p>Registro geovalidado antes de T-15 min respecto a rol oficial.</p>
+          <div class="meter"><b style="--w:98%"></b></div>
+        </div>
+        <div class="kpi" style="--kc:#F2B451;--kc2:#C9A84C">
+          <div class="lbl"><span>Resolución CRM & Quejas</span><i class="ph-bold ph-chats-circle"></i></div>
+          <div class="val">&lt; 48 Horas</div>
+          <p>100% de tickets en cédula con retroalimentación escrita al capitán.</p>
+          <div class="meter"><b style="--w:100%"></b></div>
+        </div>
+        <div class="kpi" style="--kc:#5FD39A">
+          <div class="lbl"><span>Recuperación de Cartera</span><i class="ph-bold ph-currency-dollar"></i></div>
+          <div class="val">0 Excepciones</div>
+          <p>Pase a campo restringido estrictamente por estado de cuenta en línea.</p>
+          <div class="meter"><b style="--w:100%"></b></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 02 CRONOGRAMA -->
+<section class="s" id="cronograma">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">02</div>
+      <div>
+        <span class="eyebrow">Cronograma Mes a Mes (Gantt)</span>
+        <h2>Cronograma Operativo de <em class="g">12 Meses</em></h2>
+        <p>Desglose secuencial de actividades, cláusulas ISO 9001:2015 asociadas y entregables auditables.</p>
+      </div>
+      <span class="chip"><i class="ph-bold ph-calendar-check"></i>Hoja de Ruta</span>
+    </div>
+
+    <div class="card gantt rv" aria-label="Diagrama de Gantt">
+      <div class="g-grid" id="gGrid"></div>
+    </div>
+
+    <div class="filters rv" style="margin-bottom:28px" id="filters">
+      <button class="f-btn on" data-f="all">Todos los Meses</button>
+      <button class="f-btn" data-f="1">Fase 1 (M1-M3)</button>
+      <button class="f-btn" data-f="2">Fase 2 (M4-M6)</button>
+      <button class="f-btn" data-f="3">Fase 3 (M7-M9)</button>
+      <button class="f-btn" data-f="4">Fase 4 (M10-M12)</button>
+    </div>
+
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 03 RIESGOS -->
+<section class="s" id="riesgos">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">03</div>
+      <div>
+        <span class="eyebrow">Matriz de Riesgos & Cláusulas</span>
+        <h2>Matriz de Hallazgos Críticos y <em class="g">Gap Analysis</em> ISO 9001</h2>
+        <p>Mapeo del estado actual de la empresa vs. acción correctiva requerida para blindaje.</p>
+      </div>
+      <div class="legend"><span class="lv c">Nivel Crítico</span><span class="lv a">Nivel Alto</span></div>
+    </div>
+
+    <div class="risks">
+      <article class="card risk rv" style="--rc:var(--crit)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 7.1.3 • INFRAESTRUCTURA</span><span class="lv c">CRÍTICO</span></div>
+        <h4>Inestabilidad Inmobiliaria (6 Sedes Informales)</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> Solo Tec CCM tiene contrato formal escrito. Benito Juárez, Venustiano Carranza, Plan Sexenal y otras 3 sedes operan por acuerdos verbales, arriesgando cancelación imprevista de torneos.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>Elaboración y firma formal de contratos de arrendamiento con cláusulas de disponibilidad de 10 semanas garantizadas y bitácoras de revisión técnica previas a juego.</p></div>
+      </article>
+      <article class="card risk rv d1" style="--rc:var(--crit)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 8.2 • RESPONSABILIDAD LEGAL</span><span class="lv c">CRÍTICO</span></div>
+        <h4>Menores de Edad sin Waiver Firmado</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> El formato impreso casi nunca se firma. Menores de 16 años ingresan por permiso verbal, contraviniendo el reglamento y exponiendo a la Dirección a contingencias penales y civiles severas.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>Digitalización del waiver en plataforma web con carga obligatoria de identificación oficial (INE) de tutores previa asignación de credencial de juego.</p></div>
+      </article>
+      <article class="card risk rv" style="--rc:var(--crit)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 10.2 • RUPTURA DE CRM</span><span class="lv c">CRÍTICO</span></div>
+        <h4>Quejas Anotadas en Cédula sin Retroalimentación</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> Las quejas en cédula física no reciben respuesta formal. Se destruyen tras un año, generando percepción de impunidad arbitral y abandono de equipos hacia ligas competidoras.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>SLA mandatorio de atención de quejas &lt; 48 horas mediante mesa de ayuda digital y repositorio histórico digital perpetuo de incidencias por equipo y oficial.</p></div>
+      </article>
+      <article class="card risk rv d1" style="--rc:var(--warn)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 8.5 • CONTROL FINANCIERO</span><span class="lv a">ALTO</span></div>
+        <h4>Cartera Vencida y Excepciones Directivas</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> Autorizaciones verbales de la Dirección para que jueguen equipos morosos, desautorizando a las representantes en campo y generando cartera incobrable no conciliada.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>Pase digital automatizado. Cero fichas emitidas si el sistema no valida el pago conciliado; arqueo de caja diario con validación contable.</p></div>
+      </article>
+      <article class="card risk rv" style="--rc:var(--warn)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 7.2 • COMPETENCIA MÉDICA</span><span class="lv a">ALTO</span></div>
+        <h4>Personal Médico sin Validación de Cédula</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> Personal en cancha con tiras de materias o cédulas no verificadas en el Registro Nacional de Profesiones; imposibilidad de tratar traumas graves sin convenio de ambulancia.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>Cotejo estricto de cédulas profesionales ante SEP y firma de convenio marco con servicio de ambulancias privadas para traslados de urgencia de traumatología.</p></div>
+      </article>
+      <article class="card risk rv d1" style="--rc:var(--warn)">
+        <div class="rt"><span class="cl">CLÁUSULA ISO 7.1.3 • RECURSOS TECNOLÓGICOS</span><span class="lv a">ALTO</span></div>
+        <h4>Dilema del "Reloj Checador" Físico</h4>
+        <p><strong>Diagnóstico INDUSECC:</strong> Instalar lectores biométricos en campos públicos rentados es inviable por falta de cableado, internet fijo y riesgos de vandalismo en deportivos abiertos.</p>
+        <div class="fix"><strong><i class="ph-bold ph-seal-check"></i>Acción Correctiva Comprometida</strong><p>Sustitución aprobada por plataforma Web App PWA de Check-in GPS móvil con geocerca (&lt;80m) y confirmación mediante código QR dinámico de mesa técnica.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 04 MACROPROCESO -->
+<section class="s" id="macroproceso">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">04</div>
+      <div>
+        <span class="eyebrow">Macroproceso del Torneo</span>
+        <h2>Mapeo de Macroprocesos del <em class="g">Ciclo de 10 Semanas</em></h2>
+        <p>Flujo estandarizado bajo requisitos de operación ISO 9001:2015 (Cláusula 8.1).</p>
+      </div>
+      <span class="chip"><i class="ph-bold ph-arrows-split"></i>Torneos Continuos</span>
+    </div>
+
+    <div class="flow">
+      <span class="arrow a1"><i class="ph-bold ph-caret-right"></i></span>
+      <span class="arrow a2"><i class="ph-bold ph-caret-right"></i></span>
+      <div class="card stage rv">
+        <div class="stage-h"><div class="stage-n">1</div><div><small>Previo a Jornada</small><h4>Fundación & Comercialización</h4></div></div>
+        <div class="step"><strong>1.1 Arrendamiento Formal:</strong><p>Contrato legal con campos públicos y escolares garantizando horarios y exclusividad.</p></div>
+        <div class="step"><strong>1.2 Convocatoria y Roster Web:</strong><p>Registro de plantillas con CURP/INE y eliminación de restricción fotográfica de 300KB.</p></div>
+        <div class="step"><strong>1.3 Cobro de Anticipos y Blindaje:</strong><p>Recepción digital bancaria y suscripción forzosa del waiver por parte de los capitanes y tutores.</p></div>
+      </div>
+      <div class="card stage rv d2">
+        <div class="stage-h"><div class="stage-n">2</div><div><small>Durante el Fin de Semana</small><h4>Operación del Torneo en Campo</h4></div></div>
+        <div class="step"><strong>2.1 Check-in GPS y Control de Árbitros:</strong><p>Geovalidación de oficiales en campo a T-15 min con asignación de planillas de 2 a 4 oficiales.</p></div>
+        <div class="step"><strong>2.2 Pase a Campo Sin Excepciones:</strong><p>Entrega de ficha física/digital solo con cuota saldada. Cero autorización verbal por la Dirección.</p></div>
+        <div class="step"><strong>2.3 Cédula Digital & Atención Médica:</strong><p>Captura de anotaciones y firma inmediata; soporte médico con cédula validada y enlace a ambulancias.</p></div>
+      </div>
+      <div class="card stage rv d4">
+        <div class="stage-h"><div class="stage-n">3</div><div><small>Posterior a Jornada</small><h4>Cierre, Playoffs & Mejora Continua</h4></div></div>
+        <div class="step"><strong>3.1 Sincronización Web y Tablas:</strong><p>Publicación inmediata de estadísticas sin demoras ni discrepancias en juegatocho.com.</p></div>
+        <div class="step"><strong>3.2 Cierre de Reclamos en &lt; 48 Horas:</strong><p>Comité arbitral revisa actas y envía respuesta argumentada al capitán por WhatsApp y correo.</p></div>
+        <div class="step"><strong>3.3 Encuestas NPS y Playoffs:</strong><p>Medición de satisfacción al cliente (ISO 9.1.2) y premiación reglamentada en sede neutral.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 05 PUESTOS -->
+<section class="s" id="puestos">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">05</div>
+      <div>
+        <span class="eyebrow">Perfiles & Partes Interesadas</span>
+        <h2>Gobernanza, <em class="g">5 Perfiles de Puesto</em> y Partes Interesadas</h2>
+        <p>Alineado a Cláusulas 4.2 (Partes Interesadas), 5.3 (Roles y Autoridades) y 7.2 (Competencia).</p>
+      </div>
+      <span class="chip"><i class="ph-bold ph-identification-badge"></i>Manual de Organización</span>
+    </div>
+
+    <div class="roles">
+      <div class="card role rv"><div class="n">01</div><h4>Representante de Campo</h4><span class="sub">Administración de Sede</span><p>Emisión de pases, control estricto de caja chica, supervisión del arranque puntual de juegos y registro digital de incidentes sin excepciones directivas.</p></div>
+      <div class="card role rv d1"><div class="n">02</div><h4>Comisionado Arbitral</h4><span class="sub">Gestión Técnica Oficial</span><p>Rol de 2 a 4 árbitros por cancha, capacitación continua bajo estándar IFAF 2023, auditoría de cédulas y dictamen técnico de protestas deportivas.</p></div>
+      <div class="card role rv d2"><div class="n">03</div><h4>Cuerpo de Oficiales</h4><span class="sub">Arbitraje en Cancha</span><p>Check-in geocercado a T-15 min, indumentaria institucional estandarizada provista por la liga y aplicación rigurosa de protocolos antiviolencia.</p></div>
+      <div class="card role rv d3"><div class="n">04</div><h4>Personal Médico</h4><span class="sub">Salud & Primeros Auxilios</span><p>Cédula profesional validada en SEP, botiquín completo para traumatología menor y activación inmediata de ambulancias privadas bajo convenio formal.</p></div>
+      <div class="card role rv d4"><div class="n">05</div><h4>Estadista y Anotador</h4><span class="sub">Mesa Técnica y Cédula</span><p>Captura directa de estadísticas en tablet, recolección de firmas digitales de capitanes y respaldo inmediato en la nube para eliminar extravíos físicos.</p></div>
+    </div>
+
+    <div class="card stake rv">
+      <h3><i class="ph-bold ph-handshake"></i>Matriz de Partes Interesadas y Expectativas (ISO 4.2)</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Parte Interesada</th><th>Necesidad / Expectativa</th><th>Riesgo Detectado por INDUSECC</th><th>Control Comprometido SGC</th></tr></thead>
+          <tbody>
+            <tr><td>Jugadores y Capitanes</td><td>Campos seguros, arbitraje imparcial, plataforma web fluida y respuesta a quejas.</td><td class="rk-a">Descontento por campos en mal estado, fotos web fallidas y reclamos sin respuesta.</td><td class="ctl">SLA &lt;48h para reclamos, encuestas NPS y reingeniería del portal web.</td></tr>
+            <tr><td>Dirección General</td><td>Rentabilidad, expansión sostenida, flujo sano y cero exposición penal o laboral.</td><td class="rk-c">Fuga por deudores, quejas no escaladas y riesgo penal con menores de edad.</td><td class="ctl">Blindaje contractual, digitalización total de cuotas y waivers notariales/digitales.</td></tr>
+            <tr><td>Personal de Campo</td><td>Autoridad clara, herramientas de cobro estables y respaldo directivo firme.</td><td class="rk-a">Sobrecarga de funciones y desgaste por tolerar morosos autorizados verbalmente.</td><td class="ctl">Manual de puesto estandarizado y veto automático por sistema a morosos.</td></tr>
+            <tr><td>Cuerpo Arbitral</td><td>Pagos justos y a tiempo, insumos provistos y protocolos de seguridad física en campo.</td><td class="rk-a">Compra de insumos propios, tarifas percibidas como bajas y riesgo ante riñas.</td><td class="ctl">Dotación de silbatos/conos, Check-in GPS para dispersión ágil y protocolo de sanciones.</td></tr>
+            <tr><td>Arrendadores (Tec, Alcaldías)</td><td>Puntualidad de uso, limpieza impecable, apego a normativas y orden en gradas.</td><td class="rk-c">Riesgo inminente de cancelación del espacio por falta de acuerdos formales.</td><td class="ctl">Convenios escritos anuales y supervisor de sede responsable del protocolo de desalojo.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- 06 SIMULADOR -->
+<section class="s" id="simulador">
+  <div class="wrap">
+    <div class="s-head rv">
+      <div class="s-idx">06</div>
+      <div>
+        <span class="eyebrow">Dictamen Tecnológico INDUSECC</span>
+        <h2>Simulador <em class="g">Check-in Móvil</em></h2>
+        <p>Sustitución de Reloj Checador (ISO 7.1.3).</p>
+      </div>
+      <span class="chip"><i class="ph-bold ph-crosshair"></i>Geocerca &lt;80m</span>
+    </div>
+
+    <div class="card sim rv">
+      <div class="radar-side">
+        <div class="radar" id="radar">
+          <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+          <div class="fence"></div>
+          <div class="cross"></div>
+          <div class="sweep"></div>
+          <div class="field"><i class="ph-fill ph-flag-banner"></i></div>
+          <div class="me"></div>
+        </div>
+        <div class="radar-cap"><span id="radarSede">TEC CCM · 19.2842° N, 99.1386° W</span><span>R 80m</span></div>
+      </div>
+      <div class="form-side">
+        <h3>Simulador Check-in Móvil</h3>
+        <span class="k">Sustitución de Reloj Checador (ISO 7.1.3)</span>
+
+        <label class="f" for="simSede">Selecciona Sede Asignada:</label>
+        <select id="simSede">
+          <option value="Tec CCM">Tec CCM (Tlalpan) - [Geocerca: 19.2842° N, 99.1386° W]</option>
+          <option value="Plan Sexenal">Plan Sexenal (Miguel Hidalgo)</option>
+          <option value="Benito Juárez">Deportivo Benito Juárez (Benito Juárez)</option>
+          <option value="Venustiano Carranza">Deportivo Venustiano Carranza</option>
+          <option value="Deportivo Reynosa">Deportivo Reynosa (Azcapotzalco)</option>
+          <option value="Sede Sur">Sede Xochimilco / Sur</option>
+          <option value="Sede Oriente">Sede Iztapalapa / Oriente</option>
+        </select>
+
+        <label class="f" for="simRol">Rol Operativo:</label>
+        <select id="simRol">
+          <option value="Oficial Principal (Head Referee)">Oficial Principal (Head Referee)</option>
+          <option value="Back Judge / Field Referee">Back Judge / Field Referee</option>
+          <option value="Representante de Cancha">Representante Administrativa de Cancha</option>
+          <option value="Médico de Sede">Personal Médico / Fisioterapeuta</option>
+          <option value="Estadista Oficial">Estadista y Anotador</option>
+        </select>
+
+        <div class="readout">
+          <div class="row"><span>Distancia detectada a la cancha:</span><b>24 metros</b></div>
+          <div class="row"><span>Ventana temporal de jornada:</span><b class="okc">T - 22 min (A tiempo)</b></div>
+          <div class="note"><i class="ph-bold ph-shield-check"></i> Geocerca autorizada (&lt;80m). Cumple Cláusula 7.1.3 sin necesidad de biométricos físicos en postes o paredes rentadas.</div>
+        </div>
+
+        <div class="result" id="checkinResult">
+          <i class="ph-bold ph-check-circle"></i>
+          <div><strong>¡Check-in Geovalidado con Éxito!</strong><span id="checkinDetail">Registro enlazado al tablero central. Turno y pago aprobados.</span></div>
+        </div>
+
+        <button class="btn btn-gold btn-wide" id="btnDoCheckin" onclick="doCheckin()">
+          <i class="ph-bold ph-fingerprint"></i><span>Validar Coordenadas GPS y Registrar Asistencia</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing">
+  <div class="wrap">
+    <img class="rv" src="/Imagenes/logo.png" alt="INDUSECC">
+    <h2 class="rv d1">Hacia el <em class="g">Certificado Internacional ISO 9001:2015</em> para Liga TAM</h2>
+    <p class="rv d2">Dictamen Técnico Liga TAM · Referencia Normativa: ISO 9001:2015 · Hoja de Ruta 12 Meses</p>
+    <div class="hero-cta rv d3">
+      <a class="btn btn-gold" href="https://wa.me/525540152551" target="_blank" rel="noopener"><i class="ph-bold ph-whatsapp-logo"></i>Hablar con INDUSECC</a>
+      <button class="btn btn-ghost" onclick="window.print()"><i class="ph-bold ph-printer"></i>Imprimir / Exportar Resumen</button>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-in">
+    <div><b>INDUSECC Operaciones & Sistemas de Calidad</b> &nbsp;•&nbsp; Dictamen Técnico Liga TAM</div>
+    <div class="mono">Referencia Normativa: ISO 9001:2015 • Hoja de Ruta 12 Meses</div>
+  </div>
+</footer>
+
+<script>
+const cronogramaData = [
+  {mes:1,fase:1,titulo:"Lanzamiento del SGC y Regularización Legal Inmobiliaria",clausula:"ISO 4.1, 4.2, 5.2",tipo:"Cimentación Legal",descripcion:"Instalación formal del Comité de Calidad con la Dirección General. Auditoría inmobiliaria y firma de contratos formales de arrendamiento por 10 semanas garantizadas en las 6 sedes en riesgo (Benito Juárez, Venustiano Carranza, etc.).",entregable:"Expediente de 7 contratos de arrendamiento firmados y Acta del Comité de Calidad.",responsable:"Dirección General & Consultoría INDUSECC"},
+  {mes:2,fase:1,titulo:"Mapeo de Procesos y Blindaje Jurídico para Menores de Edad",clausula:"ISO 4.4, 8.2",tipo:"Procesos & Legal",descripcion:"Diagramación formal de los 8 subprocesos operativos de la liga. Implementación obligatoria de responsivas (waivers) digitales con carga de identificación oficial de tutores para jugadores menores de 16 años, erradicando permisos verbales.",entregable:"Mapa interactivo de macroprocesos y módulo digital de responsivas activo en juegatocho.com.",responsable:"Coordinación Operativa & Asesoría Legal"},
+  {mes:3,fase:1,titulo:"Manual de Organización, 5 Perfiles de Puesto y Convenio Médico",clausula:"ISO 5.3, 7.2, 8.4",tipo:"Capital Humano",descripcion:"Aprobación de perfiles de puesto para los 5 roles clave (Representante, Comisionado, Árbitros, Médico, Estadista). Validación estricta de cédulas médicas ante el Registro Nacional de Profesiones y firma de convenio con red de ambulancias privadas.",entregable:"Manual de Organización aprobado, base de médicos con cédula cotejada y convenio de ambulancias.",responsable:"Recursos Humanos & Enlace Médico"},
+  {mes:4,fase:2,titulo:"Desarrollo Tecnológico: Check-in Móvil GPS + QR Dinámico",clausula:"ISO 7.1.3",tipo:"Digitalización",descripcion:"Sustitución técnica aprobada del 'reloj checador físico' por Web App PWA de geocerca GPS (&lt;80m). Configuración de perímetros en las 7 canchas y protocolo de token QR dinámico en mesa de control con alerta de inasistencia a T-15 minutos.",entregable:"Plataforma de geolocalización en producción en las 7 sedes con auditoría en tiempo real.",responsable:"Equipo de Tecnología & Webmaster"},
+  {mes:5,fase:2,titulo:"Reingeniería del Portal Web y Módulo de Estados de Cuenta",clausula:"ISO 8.2, 8.5",tipo:"Experiencia UX",descripcion:"Eliminación del límite técnico de 300KB para imágenes de perfiles en juegatocho.com con compresión automática en servidor. Liberación del módulo para consulta en vivo de saldos de equipos y fin a las autorizaciones directivas a morosos.",entregable:"Portal web optimizado, validación de CURP/INE y tablero de finanzas transparente.",responsable:"Webmaster & Administración Financiera"},
+  {mes:6,fase:2,titulo:"Cartilla Unificada de Arbitraje IFAF 2023 y Protocolo de Seguridad",clausula:"ISO 7.5, 8.5.1",tipo:"Estandarización",descripcion:"Unificación definitiva de reglamentos eliminando contradicciones entre el 'Reglamento Tochero local' y la norma internacional IFAF 2023. Publicación del protocolo de contención de riñas, agresiones verbales y esquema de sanciones disciplinarias.",entregable:"Manual Unificado de Flag Football TAM 2023-2026 e infografías de reglas de finales.",responsable:"Comisionado de Arbitraje & Oficiales"},
+  {mes:7,fase:3,titulo:"Capacitación Masiva e Implementación de la Cédula Digital",clausula:"ISO 7.2, 7.5",tipo:"Despliegue",descripcion:"Taller formal y evaluación para los ~100 colaboradores en las 7 sedes. Despliegue de tablets para Cédula Digital de Juego en cancha, eliminando la destrucción anual de papeles y garantizando el historial de conducta y estadísticas.",entregable:"100% de personal capacitado con expediente y Cédula Digital operando en fines de semana.",responsable:"Coordinación Operativa & Estadistas"},
+  {mes:8,fase:3,titulo:"Cierre de Ciclo CRM: Protocolo Obligatorio de Reclamos en &lt;48h",clausula:"ISO 8.2.1, 9.1.2",tipo:"Satisfacción Cliente",descripcion:"Implementación de la mesa de soporte digital para capitanes. Ninguna observación de cédula archivada en silencio: emisión obligatoria de resolución fundada y motivada en un lapso no mayor a 48 horas tras finalizar el juego.",entregable:"Bitácora central de tickets resueltos e implementación de encuesta semestral NPS.",responsable:"Atención a Equipos & Comité Arbitral"},
+  {mes:9,fase:3,titulo:"Auditoría Interna Integral de Calidad por INDUSECC",clausula:"ISO 9.2, 10.2",tipo:"Evaluación SGC",descripcion:"Auditoría interna exhaustiva en oficina central y visitas no anunciadas de campo en las 7 sedes durante jornadas completas. Levantamiento de No Conformidades, análisis causa raíz (diagrama de Ishikawa) y planes de acción correctiva.",entregable:"Informe de Auditoría Interna del SGC cerrado y plan de mitigación validado.",responsable:"Equipo Auditor Líder INDUSECC"},
+  {mes:10,fase:4,titulo:"Revisión por la Dirección y Selección de Casa Certificadora",clausula:"ISO 9.3",tipo:"Dirección",descripcion:"Sesión solemne de Revisión por la Dirección General para evaluar métricas de satisfacción, puntualidad de arbitraje, rentabilidad y efectividad del SGC. Licitación y contratación del Organismo de Certificación formalmente acreditado.",entregable:"Minuta formal de Revisión por la Dirección y contrato con Casa Certificadora.",responsable:"Director Fundador & Consultoría INDUSECC"},
+  {mes:11,fase:4,titulo:"Auditoría de Certificación Externa: Etapa 1 (Documental)",clausula:"Evaluación Externa",tipo:"Auditoría Etapa 1",descripcion:"Revisión por el auditor externo de la información documentada: política, objetivos, perfiles, contratos de 7 canchas, registros de check-in GPS, bitácora de quejas y registros médicos para declarar aptitud a la Etapa 2.",entregable:"Dictamen Favorable de Etapa 1 emitido por el Organismo Certificador.",responsable:"Organismo Certificador & Comité TAM"},
+  {mes:12,fase:4,titulo:"Auditoría Externa Etapa 2 (Campo) y Obtención del Certificado ISO 9001",clausula:"Certificación Final",tipo:"Hito Institucional",descripcion:"Evaluación en sitio durante partidos oficiales de fin de semana en las sedes de Liga TAM por auditores externos. Cierre de hallazgos menores y emisión oficial del Certificado ISO 9001:2015 para Tochito Atletas Mexicanos.",entregable:"Certificado Internacional ISO 9001:2015 para Liga TAM y celebración corporativa.",responsable:"Dirección General, INDUSECC & Todo el Staff"}
+];
+
+const phases = [
+  {n:1,label:"Fase 1 · Cimentación",verb:"PLANEAR",bg:"linear-gradient(135deg,#F4E3B0,#E8C97A)"},
+  {n:2,label:"Fase 2 · Digitalización",verb:"HACER",bg:"linear-gradient(135deg,#E8C97A,#C9A84C)"},
+  {n:3,label:"Fase 3 · Despliegue",verb:"VERIFICAR",bg:"linear-gradient(135deg,#C9A84C,#A8862E)"},
+  {n:4,label:"Fase 4 · Certificación",verb:"ACTUAR",bg:"linear-gradient(135deg,#A3283A,#7B1E22)"}
+];
+
+/* Gantt strip */
+const gGrid = document.getElementById('gGrid');
+let gHTML = '';
+for (let m = 1; m <= 12; m++) gHTML += `<div class="g-month">M${String(m).padStart(2,'0')}</div>`;
+phases.forEach(p => {
+  const start = (p.n - 1) * 3 + 1;
+  const col = p.n === 4 ? 'color:#F4E3B0' : '';
+  gHTML += `<div class="g-bar" data-p="${p.n}" style="grid-column:${start}/span 3;background:${p.bg};${col}" title="${p.label}"><span>${p.label}</span><span class="v">${p.verb}</span></div>`;
+});
+for (let m = 1; m <= 12; m++) gHTML += `<div class="g-dots${m===12?' star':''}" style="grid-column:${m}" title="Mes ${m}: ${cronogramaData[m-1].titulo.replace(/&lt;/g,'<')}"><i></i></div>`;
+gGrid.innerHTML = gHTML;
+gGrid.querySelectorAll('.g-bar').forEach(b => b.addEventListener('click', () => renderGantt(b.dataset.p)));
+
+/* Timeline */
+const tl = document.getElementById('timeline');
+function renderGantt(filter) {
+  filter = String(filter);
+  document.querySelectorAll('.f-btn').forEach(b => b.classList.toggle('on', b.dataset.f === filter));
+  document.querySelectorAll('.g-bar').forEach(b => b.classList.toggle('dim', filter !== 'all' && b.dataset.p !== filter));
+  const items = cronogramaData.filter(i => filter === 'all' || i.fase === +filter);
+  tl.innerHTML = items.map((i, k) => `
+    <article class="card tl${i.fase === 4 ? ' final' : ''}" style="animation-delay:${k * 60}ms">
+      <div class="tl-main">
+        <div class="tl-m"><small>MES</small><b>${String(i.mes).padStart(2,'0')}</b></div>
+        <div>
+          <div class="tl-tags"><span class="ph-tag">Fase ${i.fase} • ${i.tipo}</span><span class="cl">${i.clausula}</span></div>
+          <h4>${i.titulo}</h4>
+          <p>${i.descripcion}</p>
+        </div>
+      </div>
+      <div class="tl-del">
+        <div class="h"><i class="ph-bold ph-certificate"></i>Entregable Objetivo:</div>
+        <p>${i.entregable}</p>
+        <div class="who"><span>Responsable:</span><b>${i.responsable}</b></div>
+      </div>
+    </article>`).join('');
+}
+document.getElementById('filters').addEventListener('click', e => {
+  const b = e.target.closest('.f-btn'); if (b) renderGantt(b.dataset.f);
+});
+function goPhase(n) {
+  renderGantt(n);
+  document.getElementById('cronograma').scrollIntoView({behavior:'smooth'});
+}
+renderGantt('all');
+
+/* GPS simulator */
+const sedeSel = document.getElementById('simSede');
+const radar = document.getElementById('radar');
+sedeSel.addEventListener('change', () => {
+  document.getElementById('radarSede').textContent = sedeSel.value.toUpperCase() + ' · GEOCERCA ACTIVA';
+  resetCheckin();
+});
+document.getElementById('simRol').addEventListener('change', resetCheckin);
+function resetCheckin() {
+  const btn = document.getElementById('btnDoCheckin');
+  btn.disabled = false;
+  btn.innerHTML = '<i class="ph-bold ph-fingerprint"></i><span>Validar Coordenadas GPS y Registrar Asistencia</span>';
+  document.getElementById('checkinResult').classList.remove('show');
+  radar.classList.remove('ok');
+}
+function doCheckin() {
+  const btn = document.getElementById('btnDoCheckin');
+  const sede = sedeSel.value, rol = document.getElementById('simRol').value;
+  btn.disabled = true;
+  btn.innerHTML = '<i class="ph-bold ph-spinner spinner"></i><span>Triangulando satélites GPS...</span>';
+  setTimeout(() => {
+    btn.innerHTML = '<i class="ph-bold ph-check"></i><span>Asistencia Registrada</span>';
+    radar.classList.add('ok');
+    document.getElementById('checkinDetail').innerText = `Sede: ${sede} | Puesto: ${rol} | Radio: 24m | Hora: Sábado 08:38 AM (Válido para dispersión).`;
+    document.getElementById('checkinResult').classList.add('show');
+  }, 900);
+}
+
+/* Top bar state + active link */
+const bar = document.getElementById('bar');
+const links = [...document.querySelectorAll('.bar-nav a')];
+const secs = links.map(a => document.querySelector(a.getAttribute('href')));
+function onScroll() {
+  bar.classList.toggle('scrolled', scrollY > 20);
+  let cur = -1;
+  secs.forEach((s, i) => { if (s.getBoundingClientRect().top < 140) cur = i; });
+  links.forEach((a, i) => a.classList.toggle('on', i === cur));
+}
+addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+/* Reveal + counters */
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+function count(el) {
+  const to = +el.dataset.count;
+  if (reduce) { el.textContent = to; return; }
+  const t0 = performance.now(), d = 1400;
+  (function f(t) { const p = Math.min(1, (t - t0) / d); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(f); })(t0);
+}
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting) return;
+  e.target.classList.add('in');
+  e.target.querySelectorAll('[data-count]').forEach(count);
+  io.unobserve(e.target);
+}), {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+addEventListener('beforeprint', () => document.querySelectorAll('.rv').forEach(el => el.classList.add('in')));
+</script>
+</body>
+</html>
