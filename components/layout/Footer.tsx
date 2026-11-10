@@ -24,7 +24,7 @@ export function Footer() {
               <li><Link href="/">Inicio</Link></li>
               <li><Link href="/nosotros">Nosotros</Link></li>
               <li><Link href="/servicios">Servicios</Link></li>
-              <li><Link href="/curso-interno">Curso Auditor Interno</Link></li>
+              <li><Link href="/servicios#portafolio">Capacitación empresarial</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/contacto">Contacto</Link></li>
             </ul>

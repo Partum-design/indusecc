@@ -12,15 +12,15 @@ npm start        # sirve la compilación
 npm run lint     # chequeo de tipos
 ```
 
-Copia `.env.example` a `.env.local` y llena las credenciales (SMTP y Mercado Pago). En Vercel se configuran como variables de entorno del proyecto.
+Copia `.env.example` a `.env.local` y llena las credenciales (SMTP). En Vercel se configuran como variables de entorno del proyecto.
 
 ## Estructura
 
-- `app/` — páginas (una carpeta por ruta), `api/` (Mercado Pago y envío del diagnóstico), `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`.
+- `app/` — páginas (una carpeta por ruta), `api/` (envío del diagnóstico de auditoría), `sitemap.ts`, `robots.ts`, `opengraph-image.tsx`.
 - `components/layout` — preloader, header, footer, transición entre páginas.
 - `components/motion` — animaciones reutilizables (aparición por líneas, contadores, parallax, scroll suave).
-- `components/sections` — bloques de página (hero, CTA, pasos, FAQ, blog, curso…).
-- `components/forms` — contacto (Formspree), autodiagnóstico, diagnóstico de auditoría (PDF), checkout del curso.
+- `components/sections` — bloques de página (hero, CTA, pasos, FAQ, blog…).
+- `components/forms` — contacto (Formspree), autodiagnóstico, diagnóstico de auditoría (PDF).
 - `content/posts/*.json` — artículos del blog. Para publicar uno nuevo, agrega un JSON con el mismo formato; si su `date` es futura, se publica solo al llegar la fecha (revalidación cada hora).
 - `assets/photos/` — fotografías optimizadas (`npm run images -- <carpeta>` para reprocesar nuevas).
 - `public/` — archivos estáticos: imágenes del blog, logos, tarjetas digitales (`/tarjetas`, `/contactos`) y la propuesta privada (`/propuestas`).
@@ -34,3 +34,5 @@ Copia `.env.example` a `.env.local` y llena las credenciales (SMTP y Mercado Pag
 ## Compatibilidad
 
 Las URLs antiguas (`/nosotros.html`, `/blogs.html`, `/ruta/index.html`, rutas con `/` final) redirigen con 301/308 a las nuevas.
+
+> Los cursos con pago en Mercado Pago (julio y agosto 2026) se retiraron al terminar sus fechas. Su código (landing, checkout y `/api/create-course-preference`) está en el commit `f9a15b0` por si se programa un curso nuevo.

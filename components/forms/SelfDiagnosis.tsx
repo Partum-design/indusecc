@@ -86,7 +86,7 @@ export function SelfDiagnosis() {
       </div>
       <span className="eyebrow">Pregunta {step + 1} de {QUESTIONS.length} · {q.label}</span>
       <AnimatePresence mode="wait">
-        <motion.div key={q.id} initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -24 }} transition={{ duration: 0.4, ease }}>
+        <motion.div key={q.id} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.4, ease }}>
           <h3 className="diag-q" id={`dq-${q.id}`}>{q.text}</h3>
           <div className="diag-opts" role="radiogroup" aria-labelledby={`dq-${q.id}`}>
             {q.opts.map((opt) => (

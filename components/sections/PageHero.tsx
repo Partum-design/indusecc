@@ -24,10 +24,12 @@ export function PageHero({ image, imagePosition = 'center', crumbs, eyebrow, tit
   return (
     <section className={`phero ${compact ? 'compact' : ''}`}>
       <div className="phero-media">
-        <Parallax amount={8} className="parallax" scale={1.08}>
-          <Image src={image} alt="" fill priority sizes="100vw" placeholder="blur" quality={75} style={{ objectPosition: imagePosition }} />
+        <Parallax amount={7} className="parallax" scale={1.08}>
+          <Image src={image} alt="" fill priority sizes="(min-width: 1024px) 66vw, 100vw" placeholder="blur" quality={75} style={{ objectPosition: imagePosition }} />
         </Parallax>
       </div>
+      <div className="phero-edge" aria-hidden="true" />
+      <div className="phero-panel" aria-hidden="true" />
       <div className="phero-body">
         <div className="wrap phero-grid">
           <div>

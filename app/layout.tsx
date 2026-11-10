@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Outfit, Playfair_Display } from 'next/font/google';
+import { Archivo } from 'next/font/google';
 import '@/styles/globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -11,8 +11,8 @@ import { ScrollProgress } from '@/components/motion/ScrollProgress';
 import { JsonLd } from '@/components/ui/JsonLd';
 import { SITE } from '@/lib/site';
 
-const serif = Playfair_Display({ subsets: ['latin'], style: ['normal', 'italic'], weight: ['400', '500', '600', '700', '900'], variable: '--font-serif', display: 'swap' });
-const sans = Outfit({ subsets: ['latin'], weight: ['300', '400', '500', '600', '700'], variable: '--font-sans', display: 'swap' });
+// One variable family (weight + width axes) covers headlines, condensed display type and body text.
+const archivo = Archivo({ subsets: ['latin'], axes: ['wdth'], variable: '--font-archivo', display: 'swap' });
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -71,7 +71,7 @@ const preScript = `try{if(sessionStorage.getItem('ind-pre'))document.documentEle
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es-MX" className={`${serif.variable} ${sans.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
+    <html lang="es-MX" className={archivo.variable} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: preScript }} />
         <noscript>

@@ -53,6 +53,14 @@ export function CtaBand({
           <ContactList />
         </Reveal>
       </div>
+      <div className="wrap">
+        <div className="trust">
+          <div><Icon name="shield" /><span>Comprometidos con tu cumplimiento</span></div>
+          <div><Icon name="award" /><span>Calidad que puedes comprobar</span></div>
+          <div><Icon name="users" /><span>Equipo experto y cercano</span></div>
+          <div><Icon name="chart" /><span>Resultados medibles</span></div>
+        </div>
+      </div>
     </section>
   );
 }

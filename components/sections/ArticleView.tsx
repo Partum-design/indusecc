@@ -28,11 +28,13 @@ export function ArticleView({ image, crumbs, eyebrow, heroLines, lead, tags, met
       <section className="phero compact">
         <div className="phero-media">
           <Parallax amount={8} scale={1.08}>
-            <Image src={image} alt="" fill priority sizes="100vw" quality={75} />
+            <Image src={image} alt="" fill priority sizes="(min-width: 1024px) 66vw, 100vw" quality={75} />
           </Parallax>
         </div>
+        <div className="phero-edge" aria-hidden="true" />
+        <div className="phero-panel" aria-hidden="true" />
         <div className="phero-body">
-          <div className="wrap">
+          <div className="wrap phero-solo">
             <Reveal immediate delay={0.05}>
               <nav className="crumbs" aria-label="Ruta de navegación">
                 {crumbs.map((c, i) => (

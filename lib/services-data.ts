@@ -66,7 +66,7 @@ export const SERVICE_DETAILS: ServiceDetail[] = [
     bullets: ['Cursos y talleres de normas ISO (9001, 14001, 45001)', 'Formación de auditores internos', 'Liderazgo, trabajo en equipo y mejora continua', 'Diplomados en sistemas integrados de gestión', 'Capacitación en línea', 'Talleres de 5S, Lean y Kaizen'],
     sideTitle: 'Modalidades',
     side: ['In-house (en tu empresa)', 'Abierto (calendario público)', 'Online en vivo (Zoom / Teams / Meet)', 'E-learning asíncrono', 'Blended (combinado)'],
-    cta: { label: 'Ver curso de Auditor Interno', href: '/curso-interno' },
+    cta: { label: 'Cotizar capacitación', href: waLink('Hola, quiero cotizar una capacitación para mi equipo.') },
   },
   {
     id: 'seguridad', category: 'seguridad', kicker: 'NOM · IMSS · STPS · ISO 45001', title: 'Seguridad e higiene industrial',

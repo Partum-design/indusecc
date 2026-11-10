@@ -7,7 +7,6 @@ import boardroomCharts from '@/assets/photos/boardroom-charts.jpg';
 import checklistDark from '@/assets/photos/checklist-dark.jpg';
 import cityNight from '@/assets/photos/city-night.jpg';
 import contractGlass from '@/assets/photos/contract-glass.jpg';
-import cursoDestacado from '@/assets/photos/curso-destacado.jpg';
 import dannaRodriguez from '@/assets/photos/danna-rodriguez.png';
 import engineerDocs from '@/assets/photos/engineer-docs.jpg';
 import equipoTrabajo from '@/assets/photos/equipo-trabajo.jpg';
@@ -41,7 +40,6 @@ export const photos = {
   checklistDark,
   cityNight,
   contractGlass,
-  cursoDestacado,
   dannaRodriguez,
   engineerDocs,
   equipoTrabajo,

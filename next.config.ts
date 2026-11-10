@@ -97,7 +97,10 @@ const nextConfig: NextConfig = {
       '/anticorrupcion-iso-37001.html': '/anticorrupcion-iso-37001',
       '/blog-iso-14001-2026-mexico-guia-transicion.html': '/blog/iso-14001-2026-mexico-guia-transicion',
     };
+    // Past course landings: send visitors to the training service instead of a 404.
+    const courses = ['/curso-interno', '/curso-interno/:path*', '/curso-interno-agosto-2026', '/curso-interno-agosto-2026.html', '/curso-interno.html'].map((source) => ({ source, destination: '/servicios#portafolio', permanent: false }));
     return [
+      ...courses,
       ...Object.entries(legacy).map(([source, destination]) => ({ source, destination, permanent: true })),
       { source: '/:path*/index.html', destination: '/:path*', permanent: true },
     ];

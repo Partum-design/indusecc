@@ -79,7 +79,7 @@ export function NormSelector() {
         ))}
       </div>
       <AnimatePresence mode="wait">
-        <motion.aside key={n.code} className="panel-dark norm-detail" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} transition={{ duration: 0.45, ease }}>
+        <motion.aside key={n.code} className="panel-dark norm-detail" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -16 }} transition={{ duration: 0.45, ease }}>
           <span className="eyebrow">Versión {n.year} · renovación cada 3 años</span>
           <h3 className="serif" style={{ fontSize: 'clamp(2rem, 1.4rem + 2vw, 3rem)', color: 'var(--gold-light)', margin: '14px 0 6px', lineHeight: 1 }}>{n.code}</h3>
           <p style={{ fontWeight: 600, letterSpacing: '.02em' }}>{n.name}</p>

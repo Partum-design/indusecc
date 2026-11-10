@@ -14,7 +14,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ['/auditorias', 0.85, 'monthly'],
     ['/consultoria-asesoria', 0.8, 'monthly'],
     ['/anticorrupcion-iso-37001', 0.85, 'monthly'],
-    ['/curso-interno', 0.8, 'weekly'],
     ['/nosotros', 0.7, 'yearly'],
     ['/contacto', 0.7, 'yearly'],
     ['/auditorias/formulario', 0.5, 'yearly'],

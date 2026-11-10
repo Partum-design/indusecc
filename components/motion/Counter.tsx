@@ -1,5 +1,5 @@
 'use client';
-import { animate, useInView } from 'motion/react';
+import { useInView } from 'motion/react';
 import { useEffect, useRef } from 'react';
 
 export function Counter({ to, prefix = '', suffix = '', duration = 2, group = true }: { to: number; prefix?: string; suffix?: string; duration?: number; group?: boolean }) {
@@ -9,8 +9,16 @@ export function Counter({ to, prefix = '', suffix = '', duration = 2, group = tr
   useEffect(() => {
     if (!inView || !ref.current) return;
     const el = ref.current;
-    const controls = animate(0, to, { duration, ease: [0.16, 1, 0.3, 1], onUpdate: (v) => (el.textContent = fmt(v)) });
-    return () => controls.stop();
+    // Plain rAF tween (ease-out expo) keeps the animation engine out of this component.
+    const start = performance.now();
+    let raf = 0;
+    const tick = (now: number) => {
+      const t = Math.min((now - start) / (duration * 1000), 1);
+      el.textContent = fmt(to * (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)));
+      if (t < 1) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inView, to]);
   // Server renders the final value so crawlers and no-JS readers see real numbers.
