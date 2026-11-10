@@ -780,260 +780,78 @@ body { font-family:'Outfit',sans-serif; background:var(--cream); color:var(--tex
 
 
 </style>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/assets/ind.css"/>
+<script>try{localStorage.setItem('ind-theme','normal');localStorage.removeItem('ind-contrast');if(sessionStorage.getItem('ind-pre'))document.documentElement.classList.add('pre-quick')}catch(e){}</script>
 </head>
-<body>
-<div id="ind-preloader"><div class="ind-pre-inner"><img src="/Imagenes/logo.png" alt="INDUSECC" class="ind-pre-logo"/><div class="ind-pre-bar"><div class="ind-pre-fill"></div></div><p class="ind-pre-txt">INDUSECC</p></div></div><style>#ind-preloader{position:fixed;inset:0;z-index:99999;background:#0A0A0A;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}#ind-preloader.pre-out{opacity:0;visibility:hidden;pointer-events:none}.ind-pre-inner{display:flex;flex-direction:column;align-items:center;gap:28px}.ind-pre-logo{max-width:180px;height:auto;animation:preLogoPulse 1.8s ease-in-out infinite}.ind-pre-bar{width:180px;height:2px;background:rgba(201,168,76,.12);overflow:hidden}.ind-pre-fill{height:100%;width:0;background:linear-gradient(to right,#8B6914,#C9A84C,#E8C97A,#C9A84C);animation:preFill 1.4s cubic-bezier(.4,0,.2,1) forwards}.ind-pre-txt{font-family:"Outfit",sans-serif;font-size:9px;font-weight:700;letter-spacing:.45em;text-transform:uppercase;color:rgba(201,168,76,.45)}@keyframes preLogoPulse{0%,100%{opacity:.8;transform:scale(1)}50%{opacity:1;transform:scale(1.03)}}@keyframes preFill{0%{width:0}100%{width:100%}}</style><script>!function(){var e=document.getElementById("ind-preloader");if(!e)return;if(sessionStorage.getItem("ind-pre-seen")){e.parentNode&&e.parentNode.removeChild(e);return;}function r(){e.classList.add("pre-out");setTimeout(function(){e&&e.parentNode&&e.parentNode.removeChild(e)},650);sessionStorage.setItem("ind-pre-seen","1");}document.readyState==="complete"?setTimeout(r,300):window.addEventListener("load",function(){setTimeout(r,300)});}();</script>
-<!-- ══ NAVBAR — IDÉNTICO AL INDEX ══ -->
-<div class="ind-header-wrapper" id="navbar">
-<div class="ind-top-bar">
-<div class="ind-top-info">
-<div class="ind-top-item">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-<span>55 4015 2551</span>
+<body class="v2 is-loading pg-implementacion">
+<div id="pre" aria-hidden="true">
+  <div class="pre-panel l"></div><div class="pre-panel r"></div><div class="pre-grid"></div><div class="pre-slash"></div>
+  <div class="pre-core">
+    <div class="pre-ring"></div><div class="pre-ring b"></div>
+    <svg class="pre-mark" viewBox="340 260 1250 1435" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="preGold" x1="0" x2="1"><stop offset="0" stop-color="#8B6914"/><stop offset=".35" stop-color="#C9A84C"/><stop offset="1" stop-color="#E8C97A"/></linearGradient></defs><path class="pw" d="M965 270 1082 338 865 482 486 700 487 1254 850 1462 1087 1612 967 1682 354 1332 353 624Z"/><path class="pg" d="M1095 345 1578 622 1579 1330 1102 1605 1101 1452 1446 1253 1445 698 1095 497Z"/><path class="pw" d="M854 521 1065 384 1065 596 854 711Z"/><path class="pw" d="M854 802 1066 697 1073 1568 855 1433Z"/></svg>
+    <div class="pre-word"><span>I</span><span>N</span><span>D</span><span>U</span><span>S</span><span>E</span><span>C</span><span>C</span></div>
+    <div class="pre-meta"><div class="pre-bar"><i></i></div><div class="pre-num">0%</div></div>
+    <div class="pre-tag">Soluciones ISO · Mejora continua</div>
+  </div>
 </div>
-
-
- <div class="ind-top-item">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-<span><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a></span>
-</div>
-
-<div class="ind-top-item">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-<span><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a></span>
-</div>
-
-
-<div class="ind-top-item">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-<span>56 1604 4547</span>
-</div>
-
-
-
-
-
-</div>
-<div class="ind-top-item" style="opacity:0.6;">INDUSECC</div>
-</div>
-<header class="ind-main-header">
-<div class="ind-container">
-<div class="ind-logo-group">
-<a class="ind-logo-wrap" href="/">
-<img alt="Logo INDUSECC" class="ind-logo-img" src="/Imagenes/logo.png"/>
-</a>
-<div class="ind-logo-sep"></div>
-<div class="ind-header-tagline">Soluciones ISO<br/>para la mejora continua</div>
-</div>
-<nav class="ind-nav">
-<div class="ind-menu-item"><a class="ind-link" href="/">Inicio</a></div>
-<div class="ind-menu-item"><a class="ind-link" href="/nosotros">¿Quiénes Somos?</a></div>
-<div class="ind-menu-item">
-<a class="ind-link active" href="/servicios">Servicios
-            <svg fill="none" height="8" stroke="var(--gold)" stroke-width="4" style="margin-left:4px;" viewbox="0 0 24 24" width="8"><path d="m6 9 6 6 6-6"></path></svg>
-</a>
-<div class="ind-dropdown">
-<a class="ind-drop-link" href="/implementacion-sistema">Implementación de un Sistema de Gestión</a>
-<a class="ind-drop-link" href="/certificacion-iso">Certificación de Normas ISO</a>
-<a class="ind-drop-link" href="/consultoria-asesoria">Consultoría y Asesoría en Normatividad ISO</a>
-<a class="ind-drop-link" href="/auditorias">Auditorías</a>
-<a class="ind-drop-link" href="/anticorrupcion-iso-37001">Anticorrupción ISO 37001</a>
-</div>
-</div>
-<div class="ind-menu-item"><a class="ind-link" href="/blog">Blog</a></div>
-<div class="ind-menu-item"><a class="ind-link" href="/contacto">Contacto</a></div>
-</nav>
-<div class="ind-actions">
-<!-- Accesibilidad -->
-<div class="ind-a11y-wrap">
-<button aria-label="Panel de accesibilidad" class="a11y-trigger" id="a11yTrigger" title="Accesibilidad">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24"><circle cx="12" cy="5" r="2"></circle><path d="M5 12h14M12 7v5"></path><path d="M8 17l1.5 4h5L16 17"></path><path d="M8 12l-2 5M16 12l2 5"></path></svg>
-</button>
-<div class="a11y-panel" id="a11yPanel">
-<div class="a11y-panel-title">Accesibilidad</div>
-<div class="a11y-row">
-<span class="a11y-label">Tamaño de fuente</span>
-<div class="a11y-controls">
-<button class="a11y-ctrl-btn" id="fontDown">A−</button>
-<button class="a11y-ctrl-btn" id="fontUp">A+</button>
-</div>
-</div>
-<div class="a11y-row">
-<span class="a11y-label">Alto contraste</span>
-<div class="a11y-controls">
-<button class="a11y-ctrl-btn" id="contrastBtn">◑</button>
-</div>
-</div>
-<div class="a11y-row">
-<span class="a11y-label">Reducir movimiento</span>
-<div class="a11y-controls">
-<button class="a11y-ctrl-btn" id="motionBtn">⏸</button>
-</div>
-</div>
-<div class="a11y-sep"></div>
-<button class="a11y-reset" id="a11yReset">↺ Restablecer</button>
-</div>
-</div>
-<!-- Theme Toggle -->
-<button class="theme-toggle-btn" id="themeToggle" onclick="toggleTheme()">
-<svg fill="none" id="themeIcon" stroke="var(--gold)" stroke-width="1.8" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-<span id="themeLabel">Oscuro</span>
-</button>
-<!-- CTA -->
-<a class="ind-btn-cta shine-el" href="/contacto">Consulta Online</a>
-</div>
-</div>
+<div class="prog" id="prog"></div>
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a class="hdr-logo" href="/" aria-label="INDUSECC inicio"><img src="/Imagenes/logo.png" alt="INDUSECC"/></a>
+    <nav class="nav" aria-label="Principal"><a href="/">Inicio</a><a href="/nosotros">¿Quiénes Somos?</a><div class="dd"><a href="/servicios" class="on">Servicios <svg viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg></a><div class="dd-menu"><a href="/implementacion-sistema"><b>01</b>Implementación de un Sistema de Gestión</a><a href="/certificacion-iso"><b>02</b>Certificación de Normas ISO</a><a href="/consultoria-asesoria"><b>03</b>Consultoría y Asesoría en Normatividad ISO</a><a href="/auditorias"><b>04</b>Auditorías</a><a href="/anticorrupcion-iso-37001"><b>05</b>Anticorrupción ISO 37001</a></div></div><a href="/curso-interno">Cursos</a><a href="/blog">Blog</a><a href="/contacto">Contacto</a></nav>
+    <div class="hdr-cta">
+      <a class="btn btn-line btn-sm" href="tel:5540152551">55 4015 2551</a>
+      <a class="btn btn-gold btn-sm" href="/contacto"><span>Consulta online</span></a>
+      <button class="burger" id="burger" aria-label="Abrir menú"><i></i><i></i><i></i></button>
+    </div>
+  </div>
 </header>
-</div>
-<!-- Mobile bottom nav -->
-<nav class="ind-bottom-nav">
-<div class="ind-bnav-container">
-<a class="ind-bnav-item" href="/">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
-<span>Inicio</span>
-</a>
-<a class="ind-bnav-item active" href="javascript:void(0)" id="btnServicesMobile">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><rect height="7" width="7" x="3" y="3"></rect><rect height="7" width="7" x="14" y="3"></rect><rect height="7" width="7" x="14" y="14"></rect><rect height="7" width="7" x="3" y="14"></rect></svg>
-<span>Servicios</span>
-</a>
-<a class="ind-bnav-item wa-item" href="https://wa.me/525540152551" target="_blank">
-<svg fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
-<span>WhatsApp</span>
-</a>
-<a class="ind-bnav-item" href="/contacto">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-<span>Contacto</span>
-</a>
-<button class="ind-bnav-item ctrl-item" id="btnMobControls">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="3"></circle><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14M12 2v2M12 20v2M2 12h2M20 12h2"></path></svg>
-<span>Ajustes</span>
-</button>
-</div>
+<nav class="mnav" id="mnav" aria-label="Menú móvil">
+  <a class="ml" href="/" style="transition-delay:0.25s"><small>01</small>Inicio</a><a class="ml" href="/nosotros" style="transition-delay:0.30s"><small>02</small>¿Quiénes Somos?</a><a class="ml" href="/servicios" style="transition-delay:0.35s"><small>03</small>Servicios</a><div class="msub"><a href="/implementacion-sistema">Implementación</a><a href="/certificacion-iso">Certificación ISO</a><a href="/consultoria-asesoria">Consultoría</a><a href="/auditorias">Auditorías</a><a href="/anticorrupcion-iso-37001">ISO 37001</a></div><a class="ml" href="/curso-interno" style="transition-delay:0.40s"><small>04</small>Cursos</a><a class="ml" href="/blog" style="transition-delay:0.45s"><small>05</small>Blog</a><a class="ml" href="/contacto" style="transition-delay:0.50s"><small>06</small>Contacto</a>
+  <div class="mnav-foot"><a class="btn btn-gold btn-sm" href="/contacto"><span>Consulta online</span></a><a class="btn btn-wa btn-sm" href="https://wa.me/525540152551" target="_blank" rel="noopener"><span>WhatsApp</span></a></div>
 </nav>
-<div class="ind-sheet-overlay" id="sheetOverlay"></div>
-<div class="ind-sheet-overlay" id="mobCtrlOverlay" style="z-index:2999;"></div>
-<div class="ind-bottom-sheet" id="servicesSheet">
-<div class="ind-sheet-header">
-<h3 class="ind-sheet-title">Servicios</h3>
-<button class="ind-sheet-close" id="closeSheet"><svg fill="none" height="20" stroke="currentColor" stroke-width="3" viewbox="0 0 24 24" width="20"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg></button>
-</div>
-<div class="ind-sheet-grid">
-<a class="ind-sheet-link" data-i18n="nav_cap" href="/implementacion-sistema">Implementación de un sistema de gestión <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-<a class="ind-sheet-link" data-i18n="nav_iso" href="/certificacion-iso">Certificación ISO <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-<a class="ind-sheet-link" data-i18n="nav_mejora" href="/consultoria-asesoria">Consultoria y asesoria <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-<a class="ind-sheet-link" data-i18n="nav_audit" href="/auditorias">Auditorías <svg fill="none" height="14" stroke="var(--gold)" stroke-width="2" viewbox="0 0 24 24" width="14"><polyline points="9 18 15 12 9 6"></polyline></svg></a>
-</div>
+<div id="v2-stubs" hidden aria-hidden="true" style="display:none"><div id="navbar"></div><button id="a11yTrigger"></button><div id="a11yPanel"></div><button id="fontDown"></button><button id="fontUp"></button><button id="contrastBtn"></button><button id="motionBtn"></button><button id="a11yReset"></button><div id="themeIcon"></div><span id="themeLabel"></span><a id="btnServicesMobile"></a><button id="btnMobControls"></button><div id="sheetOverlay"></div><div id="mobCtrlOverlay"></div><div id="servicesSheet"></div><button id="closeSheet"></button><div id="mobCtrlSheet"></div><button id="closeMobCtrl"></button><span id="mobThemeLabel"></span><div id="mobThemeIcon"></div><button id="mobFontDown"></button><button id="mobFontUp"></button><button id="mobContrastBtn"></button><button id="mobMotionBtn"></button><button id="mobA11yReset"></button><canvas id="heroCanvas"></canvas></div>
 
-</div>
-<div class="mob-ctrl-sheet" id="mobCtrlSheet">
-<div class="mob-ctrl-header">
-<span class="mob-ctrl-title">Ajustes</span>
-<button class="mob-ctrl-close" id="closeMobCtrl">✕</button>
-</div>
-<div class="mob-ctrl-section">
-<div class="mob-ctrl-section-label">Tema</div>
-<button class="mob-theme-btn" id="mobThemeBtn" onclick="toggleTheme()">
-<span id="mobThemeLabel">Modo Oscuro</span>
-<svg id="mobThemeIcon" viewbox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-</button>
-</div>
-<div class="mob-ctrl-section">
-<div class="mob-ctrl-section-label">Accesibilidad</div>
-<div class="mob-a11y-grid">
-<div class="mob-a11y-row"><span class="mob-a11y-label">Tamaño de texto</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobFontDown">A−</button><button class="mob-a11y-btn" id="mobFontUp">A+</button></div></div>
-<div class="mob-a11y-row"><span class="mob-a11y-label">Alto contraste</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobContrastBtn">◑</button></div></div>
-<div class="mob-a11y-row"><span class="mob-a11y-label">Reducir movimiento</span><div class="mob-a11y-controls"><button class="mob-a11y-btn" id="mobMotionBtn">⏸</button></div></div>
-</div>
-<button class="mob-a11y-reset" id="mobA11yReset">↺ Restablecer todo</button>
-</div>
-</div>
+
+<!-- ══ NAVBAR — IDÉNTICO AL INDEX ══ -->
+
+<!-- Mobile bottom nav -->
+
+
+
+
+
 <!-- ══════════════════════════════════════
      HERO
 ══════════════════════════════════════ -->
-<section class="impl-hero">
-<canvas id="heroCanvas"></canvas>
-<div class="hero-overlay-impl"></div>
-<div class="hero-left-bar"></div>
-<div class="hero-body-impl">
-<!-- Left -->
-<div class="hero-content-impl">
-<div class="hero-pretitle">Servicio Especializado INDUSECC</div>
-<div class="hero-eyebrow">
-<div class="hero-eyebrow-dot"></div>
-<div class="hero-eyebrow-line"></div>
-<span class="hero-eyebrow-tag">Implementación ISO</span>
-<div class="hero-eyebrow-line"></div>
-<div class="hero-eyebrow-dot"></div>
-</div>
-<h1 class="hero-title-impl">
-        Sistema de<br/>
-<em>Gestión ISO</em>
-</h1>
-<p class="hero-sub-impl">
-        Diseñamos e implementamos tu sistema de gestión desde cero, con controles, mejoras y documentación que cumplen los más altos estándares normativos internacionales.
-        <strong> La diferencia entre operar y destacar.</strong>
-</p>
-<div class="hero-actions-impl">
-<a class="btn-primary-impl shine-el" href="#pasos">
-          Ver los 8 pasos
-          <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
-</a>
-<a class="btn-ghost-impl" href="/contacto">
-<span class="btn-ghost-impl-line"></span>
-          Solicitar consulta
-        </a>
-</div>
-
-</div>
-<!-- Right — gear animation -->
-<div class="hero-visual-panel">
-<div class="gear-scene">
-<!-- Gear 1 — big center -->
-<div class="gear-wrap g1">
-<svg height="180" viewbox="0 0 100 100" width="180">
-<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(201,168,76,.55)" stroke-width="1.5"></path>
-<circle cx="49.3" cy="49.3" fill="none" r="10" stroke="rgba(201,168,76,.3)" stroke-width="1"></circle>
-</svg>
-</div>
-<!-- Gear 2 — top right -->
-<div class="gear-wrap g2">
-<svg height="110" viewbox="0 0 100 100" width="110">
-<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(123,30,34,.7)" stroke-width="1.5"></path>
-</svg>
-</div>
-<!-- Gear 3 — left mid -->
-<div class="gear-wrap g3">
-<svg height="120" viewbox="0 0 100 100" width="120">
-<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z M49.3,35.3c7.7,0,14,6.3,14,14s-6.3,14-14,14s-14-6.3-14-14S41.6,35.3,49.3,35.3z" fill="none" stroke="rgba(201,168,76,.35)" stroke-width="1.5"></path>
-</svg>
-</div>
-<!-- Gear 4 — top left small -->
-<div class="gear-wrap g4">
-<svg height="80" viewbox="0 0 100 100" width="80">
-<path d="M43.3,5.3l-2.8,8.5c-2.2,0.5-4.3,1.2-6.2,2.2L27,11.8l-8.5,8.5l4.2,7.3c-1,1.9-1.7,4-2.2,6.2l-8.5,2.8v12l8.5,2.8c0.5,2.2,1.2,4.3,2.2,6.2l-4.2,7.3l8.5,8.5l7.3-4.2c1.9,1,4,1.7,6.2,2.2l2.8,8.5h12l2.8-8.5c2.2-0.5,4.3-1.2,6.2-2.2l7.3,4.2l8.5-8.5l-4.2-7.3c1-1.9,1.7-4,2.2-6.2l8.5-2.8v-12l-8.5-2.8c-0.5-2.2-1.2-4.3-2.2-6.2l4.2-7.3l-8.5-8.5l-7.3,4.2c-1.9-1-4-1.7-6.2-2.2L55.3,5.3H43.3z" fill="none" stroke="rgba(155,36,41,.5)" stroke-width="1.5"></path>
-</svg>
-</div>
-<div class="gear-center-badge">
-<div class="gear-center-badge-num">ISO</div>
-<div class="gear-center-badge-lbl">Certified</div>
-</div>
-<!-- Float cards -->
-<div class="float-doc fd1">
-<div class="float-doc-label">Estado del sistema</div>
-<div class="float-doc-val"><span class="float-doc-dot"></span>Implementando</div>
-</div>
-<div class="float-doc fd2">
-<div class="float-doc-label">Norma objetivo</div>
-<div class="float-doc-val">ISO 9001:2015</div>
-</div>
-<div class="float-doc fd3">
-<div class="float-doc-label">Avance</div>
-<div class="float-doc-val">Paso 4 / 8</div>
-</div>
-</div>
-</div>
-</div>
+<main id="v2main"><section class="phero">
+  <div class="hero-media" data-speed="0.25"><img src="/Imagenes/engineers-helmets-standing-by-factory.jpg" alt=""/></div>
+  <svg class="hero-lines" viewBox="0 0 1600 900" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="hl" x1="0" x2="1"><stop offset="0" stop-color="#C9A84C" stop-opacity="0"/><stop offset=".6" stop-color="#C9A84C" stop-opacity=".5"/><stop offset="1" stop-color="#E8C97A" stop-opacity="0"/></linearGradient></defs><g stroke="url(#hl)" stroke-width="1" fill="none"></g></svg>
+  <div class="hero-vert" aria-hidden="true">ISO</div>
+  <div class="hero-body">
+    <div class="hero-copy">
+      <nav class="crumbs" data-r style="--d:.05s" aria-label="Ruta"><a href="/">Inicio</a><i></i><a href="/servicios">Servicios</a><i></i><b>Implementación</b></nav>
+      <div class="hero-meta" data-r style="--d:.1s"><span class="dot"></span>Implementación ISO</div>
+      <h1 class="split" data-split><span class="ln"><span style="--i:0">Sistema de</span></span><span class="ln"><span style="--i:1"><em>gestión ISO.</em></span></span></h1>
+      <p class="hero-sub" data-r style="--d:.5s">Diseñamos e implementamos tu sistema de gestión desde cero, con controles, mejoras y documentación que cumplen los <strong>más altos estándares internacionales</strong>.</p>
+      <div class="hero-actions" data-r style="--d:.65s"><a class="btn btn-gold mag" href="#pasos"><span>Ver los 8 pasos</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-line mag" href="/contacto"><span>Solicitar consulta</span></a></div>
+      <div class="hero-tags" data-r style="--d:.8s"><span>ISO 9001:2015</span><span>ISO 14001</span><span>ISO 45001</span></div>
+    </div>
+    <div class="dia-stage">
+      <div class="dia dia-out c" data-hero style="--d:.2s"></div>
+      <div class="dia dia-img" data-hero style="--d:.35s" data-depth="12"><div class="dia-in"><img src="/Imagenes/engineers-helmets-standing-by-factory.jpg" alt=""/></div></div>
+      <div class="dia dia-core" data-hero style="--d:.55s" data-depth="22"><span class="dc-in"><span class="dc-num">08</span><span>Pasos</span></span></div>
+      <div class="dia dia-out a" data-hero style="--d:.7s" data-depth="30"></div>
+      <div class="dia dia-out b" data-hero style="--d:.8s" data-depth="36"></div>
+      <div class="dia dia-fill" data-hero style="--d:.9s" data-depth="28"></div>
+      <div class="float-card glass fc-a" style="--d:1.1s"><div class="fc-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></div><div><div class="fc-n">Paso 4/8</div><div class="fc-l">Estado: <br/>implementando</div></div></div>
+    </div>
+  </div>
+  <div class="hero-foot" style="--n:3"><div class="hf-card glass" style="--d:1.3s"><div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg></div><div><strong>8 pasos</strong><small>Metodología probada</small></div></div><div class="hf-card glass" style="--d:1.4s"><div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div><div><strong>100%</strong><small>Tasa de certificación</small></div></div><div class="hf-card glass" style="--d:1.5s"><div class="hf-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><div><strong>100+ empresas</strong><small>Certificadas</small></div></div><div class="scroll-ind">Scroll<i></i></div></div>
 </section>
+<div class="ticker" aria-hidden="true"><div class="ticker-track" data-marquee><span>Certificación ISO 9001</span><span>Mejora continua</span><span>Auditoría interna</span><span>Capacitación empresarial</span><span>Gestión de riesgos</span><span>ISO 14001 · ISO 45001</span><span>Consultoría integral</span><span>Anticorrupción ISO 37001</span></div></div>
+
 <!-- ══ STATS BAND ══ -->
 <div class="intro-band">
 <div class="intro-stat reveal">
@@ -1502,103 +1320,47 @@ body { font-family:'Outfit',sans-serif; background:var(--cream); color:var(--tex
 </div>
 </section>
 <!-- ══ CTA ══ -->
-<section class="cta-section" id="contacto">
-<div class="cta-inner">
-<div class="cta-tag reveal">
-<div class="cta-tag-line"></div>
-<span class="cta-tag-text">Empieza hoy</span>
-<div class="cta-tag-line"></div>
-</div>
-<h2 class="cta-title reveal reveal-delay-1">¿Listo para implementar tu<br/><em>Sistema de Gestión ISO?</em></h2>
-<p class="cta-sub reveal reveal-delay-2">Agenda una consulta gratuita con nuestros expertos. Sin compromiso. Te explicamos el proceso completo adaptado a tu empresa.</p>
-<div class="cta-actions reveal reveal-delay-3">
-<a class="btn-cta-gold shine-el" href="/servicios">
-        Solicitar consulta gratuita
-        <svg viewbox="0 0 20 20"><line x1="4" x2="16" y1="10" y2="10"></line><polyline points="11,5 16,10 11,15"></polyline></svg>
-</a>
-<a class="btn-cta-outline" href="https://wa.me/525540152551?text=Hola%2C%20me%20interesa%20implementar%20un%20Sistema%20de%20Gesti%C3%B3n%20ISO%20en%20mi%20empresa." target="_blank">
-<svg fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 1 1-7.6-10.6 8.38 8.38 0 0 1 3.9 1.1L21 3z"></path></svg>
-        WhatsApp directo
-      </a>
-</div>
-<div class="cta-trust reveal reveal-delay-4">
-<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg><span class="cta-trust-text">100% tasa de certificación</span></div>
-<div class="cta-trust-item"><svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" x2="12" y1="8" y2="12"></line><line x1="12" x2="12.01" y1="16" y2="16"></line></svg><span class="cta-trust-text">Consulta inicial sin costo</span></div>
-<div class="cta-trust-item"><svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle></svg><span class="cta-trust-text">+100 empresas certificadas</span></div>
-<div class="cta-trust-item"><svg viewbox="0 0 24 24"><rect height="11" rx="2" ry="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span class="cta-trust-text">Información confidencial</span></div>
-</div>
-</div>
+<section class="cta">
+  <div class="cta-img"><img src="/Imagenes/engineers-helmets-standing-by-factory.jpg" alt="" loading="lazy" data-speed="-0.1"/></div>
+  <div class="cta-panel">
+    <span class="eyebrow" data-r>Comienza hoy</span>
+    <h2 class="h2 light split" data-split style="margin-top:20px"><span class="ln"><span style="--i:0">¿Listo para</span></span><span class="ln"><span style="--i:1">implementar tu</span></span><span class="ln"><span style="--i:2"><em>sistema ISO?</em></span></span></h2>
+    <p class="lead light" data-r style="--d:.15s;margin-top:22px;max-width:520px">Agenda una consulta gratuita. Sin compromiso: te explicamos el proceso completo adaptado a tu empresa.</p>
+    <div class="contact-list" data-r style="--d:.25s">
+      <a href="tel:5540152551"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><div><small>Teléfono directo</small><b>55 4015 2551</b></div></a>
+      <a href="mailto:danna@indusecc.com.mx"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="4" width="20" height="16" rx="1"/><path d="m22 6-10 7L2 6"/></svg><div><small>Correo electrónico</small><b>danna@indusecc.com.mx</b></div></a>
+      <div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><div><small>Ubicación</small><b>CDMX, México</b></div></div>
+    </div>
+    <div class="cta-actions" data-r style="--d:.3s"><a class="btn btn-gold mag" href="/contacto"><span>Solicitar consulta gratuita</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn btn-wa mag" href="https://wa.me/525540152551" target="_blank" rel="noopener"><span>WhatsApp</span></a></div>
+  </div>
 </section>
+
 <!-- ══ FOOTER — IDÉNTICO AL INDEX ══ -->
-<footer class="ind-footer-wrap">
-<div class="ind-f-top-accent"></div>
-<div class="ind-f-main">
-<div class="ind-f-grid reveal">
-<div class="ind-f-brand">
-<div class="ind-f-logo-container">
-<img alt="INDUSECC" class="ind-f-logo-img" src="/Imagenes/logo.png"/>
-</div>
-<p class="ind-f-slogan">Soluciones ISO para la<br/>Mejora Continua</p>
-<div class="ind-f-contact-strip">
-<a class="ind-f-contact-link" href="tel:5540152551">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            55 4015 2551
-          </a>
-<a class="ind-f-contact-link" href="mailto:danna@indusecc.com.mx">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            danna@indusecc.com.mx
-          </a>
-<div class="ind-f-contact-link">
-<svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            CDMX, México
-          </div>
-</div>
-</div>
-<div>
-<h4 class="ind-f-title">Navegación</h4>
-<ul class="ind-f-list">
-<li><a class="ind-f-item-link" href="/">Inicio</a></li>
-<li><a class="ind-f-item-link" href="/servicios">Servicios</a></li>
-<li><a class="ind-f-item-link" href="/nosotros">¿Quiénes Somos?</a></li>
-<li><a class="ind-f-item-link" href="/#testimonios">Clientes</a></li>
-</ul>
-</div>
-<div>
-<h4 class="ind-f-title">Servicios</h4>
-<ul class="ind-f-list">
-<li><a class="ind-f-item-link" href="/implementacion-sistema">Implementación de un sistema de gestión</a></li>
-<li><a class="ind-f-item-link" href="/consultoria-asesoria">Consultoria y asesoria</a></li>
-<li><a class="ind-f-item-link" href="/certificacion-iso">Certificación ISO</a></li>
-<li><a class="ind-f-item-link" href="/auditorias">Auditorías</a></li>
-</ul>
-</div>
-<div>
-<h4 class="ind-f-title">Legal y Soporte</h4>
-<ul class="ind-f-list">
-<li><a class="ind-f-item-link" href="/contacto">Contáctanos</a></li>
-<li><a class="ind-f-item-link" href="#">Aviso de Privacidad</a></li>
-<li><a class="ind-f-item-link" href="#">Términos y Condiciones</a></li>
-<li><a class="ind-f-item-link" href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank">Brochure Corporativo</a></li>
-</ul>
- <div class="ind-f-social-wrap">
-          <a aria-label="LinkedIn" class="ind-f-social-icon linkedin" href="#">
-            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect height="12" width="4" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          </a>
-          <a aria-label="Instagram" class="ind-f-social-icon instagram" href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn">
-            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-          </a>
-          <a aria-label="Facebook" class="ind-f-social-icon facebook" href="https://www.facebook.com/share/18KwAC6TrD/">
-            <svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="22"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-          </a>
+</main>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <img class="lg" src="/Imagenes/logo.png" alt="INDUSECC" loading="lazy"/>
+        <p class="sl">Soluciones ISO para la mejora continua.</p>
+        <div class="fc"><a href="tel:5540152551">55 4015 2551</a><a href="mailto:danna@indusecc.com.mx">danna@indusecc.com.mx</a><a href="tel:5616044547">56 1604 4547</a><a href="mailto:erick@indusecc.com.mx">erick@indusecc.com.mx</a><span>CDMX, México</span></div>
+      </div>
+      <div><h4>Navegación</h4><ul><li><a href="/">Inicio</a></li><li><a href="/nosotros">¿Quiénes Somos?</a></li><li><a href="/servicios">Servicios</a></li><li><a href="/blog">Blog</a></li><li><a href="/#testimonios">Clientes</a></li></ul></div>
+      <div><h4>Servicios</h4><ul><li><a href="/implementacion-sistema">Implementación de un sistema</a></li><li><a href="/certificacion-iso">Certificación ISO</a></li><li><a href="/consultoria-asesoria">Consultoría ISO</a></li><li><a href="/auditorias">Auditorías</a></li><li><a href="/anticorrupcion-iso-37001">Anticorrupción ISO 37001</a></li></ul></div>
+      <div><h4>Soporte</h4><ul><li><a href="/contacto">Contáctanos</a></li><li><a href="/curso-interno">Curso Auditor Interno</a></li><li><a href="https://indusecc.store/wp-content/uploads/2026/02/BROCHURE-CORPORATIVO-INDUSECC-2025.pdf" target="_blank" rel="noopener">Brochure corporativo</a></li><li><a href="#">Aviso de privacidad</a></li></ul>
+        <div class="soc">
+          <a href="https://www.instagram.com/indusecc?igsh=b215amZvdTdydDJn" aria-label="Instagram" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor"/></svg></a>
+          <a href="https://www.facebook.com/share/18KwAC6TrD/" aria-label="Facebook" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 3a2 2 0 1 1 0 4 2 2 0 0 1 0-4zM2 9h4v12H2zM9 9h4v1.7c.6-1 1.9-2 3.9-2 4.1 0 4.1 2.7 4.1 6.1V21h-4v-5.5c0-1.4 0-3.1-1.9-3.1s-2.1 1.5-2.1 3V21H9z"/></svg></a>
         </div>
-</div>
-</div>
-</div>
-<div class="ind-f-bottom">
-<div class="ind-f-copy">© 2026 <span>INDUSECC</span>. Todos los derechos reservados.</div>
-<div class="ind-f-office">Excelencia en Gestión Industrial y Normativa</div>
-</div>
+      </div>
+    </div>
+    <div class="ftr-bottom"><span>© 2026 <b>INDUSECC</b>. Todos los derechos reservados.</span><span>Excelencia en gestión industrial y normativa</span></div>
+  </div>
+  <div class="ftr-giant" aria-hidden="true"><span data-fit>INDUSECC</span></div>
 </footer>
+<a class="wa-fab" href="https://wa.me/525540152551" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.8-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6a1.1 1.1 0 0 0-.8.4 3.4 3.4 0 0 0-1 2.5 5.9 5.9 0 0 0 1.2 3.1 13.5 13.5 0 0 0 5.2 4.6c1.9.8 2.7.9 3.6.7a3.1 3.1 0 0 0 2-1.4 2.5 2.5 0 0 0 .2-1.4c-.1-.1-.3-.2-.6-.3zM12 21.8a9.8 9.8 0 0 1-5-1.4l-.4-.2-3.7 1 1-3.6-.2-.4A9.8 9.8 0 1 1 12 21.8zM12 0a12 12 0 0 0-10.3 18L0 24l6.2-1.6A12 12 0 1 0 12 0z"/></svg></a>
+
 <script>
 /* ══ HERO CANVAS — Network particles ══ */
 (function(){
@@ -1734,5 +1496,6 @@ if(shOverlay) shOverlay.addEventListener('click',()=>{ svcSheet.classList.remove
 @media(max-width:1150px){#iso37001-fab{bottom:80px;left:16px;padding:10px 14px 10px 10px}}
 @media(max-width:650px){#iso37001-fab{bottom:80px;left:12px;font-size:10px;padding:9px 12px 9px 9px}#iso37001-fab .iso37001-fab-label{display:none}}
 </style>
+<script src="/assets/ind.js" defer></script>
 </body>
 </html>
